@@ -12,8 +12,16 @@ and/or constraints of these examples are complex or require advanced features of
 
 ## The flow
 
-- Step 1: Create all possible patterns for available stocks X required finished goods
-- Step 2: Calculate the weight of each set pattern from cutting stock s (the weight of the finished goods depending on the weight of mother coil)
-- Step 3: Constraint the weight of each item in pattern smaller than upper bound of weight 
+- Step 1: The Possible Space 
+Create all possible patterns for available stocks X required finished goods
+- Step 2: The Set of Contraints
+Calculate the weight of each set pattern from cutting stock s (the weight of the finished goods depending on the weight of mother coil)
+- Step 3: The Contraints Scenario
+Constraint the weight of each item in pattern smaller than upper bound of weight 
         3.1 First try:
-        Upper bound of weight
+        Upper bound of weight = Need_Cut + 50% FC1
+        3.2 Second try:
+        Upper bound of weight = Need_Cut + 200% FC1
+        3.3 Third try:
+        Upper bound of weight = Need_Cut + 300% FC1
+
