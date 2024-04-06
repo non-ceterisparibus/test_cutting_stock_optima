@@ -10,13 +10,32 @@ This modeling example is at the advanced level, where we assume that you know Py
 that you have advanced knowledge of building mathematical optimization models. Typically, the objective function 
 and/or constraints of these examples are complex or require advanced features of the Gurobi Python API.
 
-## The flow
+## The Optima Flow with Coil
+User inputs hyperparameter for cutting -> The-Pool
+Then, 
+
+- Step 0: Recount and filter the set going to Step 1
+0.0 Picking the PO Batch from The-Pool PO :
+Current technical cutting ability of warehouse is not limited by the number of choosen finished goods type.
+However, current format has upto 10 (12) kinds of finished goods that would be sent to warehouse.
+So, we will create a cutoff on the number of FG kind - 10 (12) - a PO batch
+
+Considering criteria to pick a PO batch??
+** By width: the larger, the more prioritied
+** By weight (need-cut): the larger, the more prioritied.
+
+0.1 Picking the Mother Coil set:
+Filter the set of MC that has the weight greater or equal total weight of set PO
+
+Considering criteria to pick a Mother Coil??
+** By width: the larger, the more prioritied
 
 - Step 1: The Possible Space 
-Create all possible patterns for available stocks X required finished goods
+Create all possible patterns for available stocks (width) X required finished goods (width)
+Note: with each possible pattern we has each possible finished goods weight (cut from MC)
 - Step 2: The Set of Contraints
-Calculate the weight of each set pattern from cutting stock s (the weight of the finished goods depending on the weight of mother coil)
-- Step 3: The Contraints Scenario
+Calculate the weight of each set pattern from cutting stock s (the weight of the finished goods depending on the weight of choosen Mother Coil)
+- Step 3: The Contraints Scenario (on each Cus-Spec)
 Constraint the weight of each item in pattern smaller than upper bound of weight 
         3.1 First try:
         Upper bound of weight = Need_Cut + 50% FC1
@@ -25,3 +44,9 @@ Constraint the weight of each item in pattern smaller than upper bound of weight
         3.3 Third try:
         Upper bound of weight = Need_Cut + 300% FC1
 
+After achieving the optimal, the remaining need_cut (from previous batch) will be added to The-Pool and selected for the optimization again.
+
+Stop Point: All Required Finished Goods are cut to have to need_cut < 50
+
+
+## The Optima Flow with Sheet
