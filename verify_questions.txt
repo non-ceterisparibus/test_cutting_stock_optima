@@ -1,0 +1,35 @@
+1. standardize stock-file from 3 stock-house
+2. One PO has to be cut continuously?
+3. Cot Length thuong ko co thong tin? 
+Function among Length, thickness weight, need_cut, trim_loss
+4. INVENTORY POLICY
+Last In - First Out?
+Larger weight > small weight? (assume that many small coils take more space)
+5. Cac truong thong tin cua SKU - 
+Spec - maker - thickness - length
+- Splitting Request? Final format
+
+=======
+Daily stock FILE (Stock avai upto that date)
+- Each stock house stores certains type of inventory? ( specified or mixed)
+- Where to get this file? Will it be input to PwApp
+- Standardize format - columns in use?  -> input to pw app
+Inventory No (in test case unique by line? ) inventory ID
+
+PO FILE
+- One line for one PO
+Is there any case one PO have many lines?
+
+Mother Coil
+- Master table? in system
+Slit_control (OLD SLIT PERFORMANCE)
+
+=======
+HAI:
+- YEU CAU GOP DON? GOP 5 DON? 
+
+=====
+C HANH
+
+FUNCTION NHAP PO
+- use to load data for saving info or only for steel cut? updating function? status of the PO
