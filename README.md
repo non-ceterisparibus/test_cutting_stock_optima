@@ -35,14 +35,14 @@ Create all possible patterns for available stocks (width) X required finished go
 Note: with each possible pattern we has each possible finished goods weight (cut from MC)
 - Step 2: The Set of Contraints <br />
 Calculate the weight of each set pattern from cutting stock s (the weight of the finished goods depending on the weight of choosen Mother Coil)
-- Step 3: The Contraints Scenario (on each Cus-Spec) <br />
-Constraint the weight of each item in pattern smaller than upper bound of weight \\
-        3.1 First try: 
-        Upper bound of weight = Need_Cut + 50% FC1
-        3.2 Second try:
-        Upper bound of weight = Need_Cut + 200% FC1
-        3.3 Third try:
-        Upper bound of weight = Need_Cut + 300% FC1
+- Step 3: The Contraints Branching (on each Cus-Spec) <br/>
+Constraint the weight of each item in pattern smaller than upper bound of weight <br/>
+        3.1 First branch: <br/>
+        Upper bound of weight = Need_Cut + 50% FC1<br/>
+        3.2 Second branch:<br/>
+        Upper bound of weight = Need_Cut + 200% FC1<br/>
+        3.3 Third try:<br/>
+        Upper bound of weight = Need_Cut + 300% FC1<br/>
 
 After achieving the optimal, the remaining need_cut (from previous batch) will be added to The-Pool and selected for the optimization again.
 
