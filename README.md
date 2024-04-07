@@ -14,30 +14,30 @@ and/or constraints of these examples are complex or require advanced features of
 User inputs hyperparameter for cutting -> The-Pool
 Then, 
 
-- Step 0: Recount and filter the set going to Step 1
+- Step 0: Recount and filter the set going to Step 1 <br />
 0.0 Picking the PO Batch from The-Pool PO :
 Current technical cutting ability of warehouse is not limited by the number of choosen finished goods type.
 However, current format has upto 10 (12) kinds of finished goods that would be sent to warehouse.
 So, we will create a cutoff on the number of FG kind - 10 (12) - a PO batch
 
-Considering criteria to pick a PO batch??
-** By width: the larger, the more prioritied
-** By weight (need-cut): the larger, the more prioritied.
+Considering criteria to pick a PO batch?? <br />
+** By width: the larger, the more prioritied <br />
+** By weight (need-cut): the larger, the more prioritied. 
 
-0.1 Picking the Mother Coil set:
+0.1 Picking the Mother Coil set: <br />
 Filter the set of MC that has the weight greater or equal total weight of set PO
 
-Considering criteria to pick a Mother Coil??
+Considering criteria to pick a Mother Coil <br />
 ** By width: the larger, the more prioritied
 
-- Step 1: The Possible Space 
+- Step 1: The Possible Space <br />
 Create all possible patterns for available stocks (width) X required finished goods (width)
 Note: with each possible pattern we has each possible finished goods weight (cut from MC)
-- Step 2: The Set of Contraints
+- Step 2: The Set of Contraints <br />
 Calculate the weight of each set pattern from cutting stock s (the weight of the finished goods depending on the weight of choosen Mother Coil)
-- Step 3: The Contraints Scenario (on each Cus-Spec)
-Constraint the weight of each item in pattern smaller than upper bound of weight 
-        3.1 First try:
+- Step 3: The Contraints Scenario (on each Cus-Spec) <br />
+Constraint the weight of each item in pattern smaller than upper bound of weight \\
+        3.1 First try: 
         Upper bound of weight = Need_Cut + 50% FC1
         3.2 Second try:
         Upper bound of weight = Need_Cut + 200% FC1
