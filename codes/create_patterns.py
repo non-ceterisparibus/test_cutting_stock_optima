@@ -43,7 +43,6 @@ def make_patterns_by_weight_width(stocks, finish, BOUND, MIN_MARGIN):
     patterns = []
     for f in finish:
         feasible = False
-        # finish[f]["upper_cut"] = finish[f]["need_cut"] + 
 
         for s in stocks:
             # max number of f that fit on s 
@@ -59,7 +58,8 @@ def make_patterns_by_weight_width(stocks, finish, BOUND, MIN_MARGIN):
                 feasible = True
                 cuts_dict = {key: 0 for key in finish.keys()}
                 cuts_dict[f] = num_cuts
-                patterns.append({"stock": s, "cuts": cuts_dict})
+                trim_loss = stocks[s]["width"] - finish[f]["width"]*num_cuts
+                patterns.append({"stock": s,"trim_loss": trim_loss, "cuts": cuts_dict})
         if not feasible:
             print(f"No feasible pattern was found for Stock {s} and FG {f}")
             # return []
@@ -68,8 +68,4 @@ def make_patterns_by_weight_width(stocks, finish, BOUND, MIN_MARGIN):
 
 def ap_upper_bound(naive_patterns,finish):
     #upper bound of possible cut over all kind of stocks
-    a_upper_bound = { 
-    f: max([naive_patterns[i]['cuts'][f] for i,_ in enumerate(naive_patterns)])
-    for f in finish.keys()
-    }
-    return a_upper_bound
+    return {f: max([naive_patterns[i]['cuts'][f] for i,_ in enumerate(naive_patterns)]) for f in finish.keys()}

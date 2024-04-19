@@ -2,7 +2,6 @@ from gurobipy import *
 import pandas as pd
 import numpy as np
 
-
 def multi_dict():
   number_of_vehicles = 2 
   vehicles_origin = [4, 6]

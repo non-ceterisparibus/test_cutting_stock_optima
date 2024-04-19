@@ -10,7 +10,7 @@ class MasterProblem:
         
     def setup(self, patterns, demand):
         num_patterns = len(patterns)
-        self.vars = self.model.addVars(num_patterns, obj=1, name="Pattern")
+        self.vars = self.model.addVars(num_patterns, obj=1, name="Pattern") #Objective coefficient(s) for new variables.
         self.constrs = self.model.addConstrs((gp.quicksum(patterns[pattern][piece]*self.vars[pattern]
                                                           for pattern in range(num_patterns))
                                               >= demand[piece] for piece in demand.keys()),
