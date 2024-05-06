@@ -52,28 +52,28 @@ def create_upper_bound_need_cut(df, BOUND_VALUE):
     IMPROVE: co the chi can 1 cot upper bound
     """
     # Limited case only be in the consideration if NEED_CUT < 0:
-    # df['upper_bound_limited'] = np.where(df['need_cut'] < 0, -0.3 * df['need_cut'] - df['need_cut'], np.nan)
+    df['upper_bound_limited'] = np.where(df['need_cut'] < 0, 0.3 * df['fc1'] - df['need_cut'], np.nan)
     def create_fc_list(x):
         return [f"fc{i}" for i in range(1, x+1)]
-    
-    fc_columns = create_fc_list(BOUND_VALUE)
-    # df['upper_bound_default'] = df[fc_columns].sum(axis=1) - df['need_cut']
+    try:
+        fc_columns = create_fc_list(BOUND_VALUE)
 
-    if BOUND_VALUE <= 3:
-        # Default allowing stock after cut < original need cut + X <=3 months forecast
-        df['upper_bound_default'] = df[fc_columns].sum(axis=1) - df['need_cut']
-    else:
-        # User setting allowing stock after cut < original need cut + X<=6 months forecast
-        df['upper_bound_user_setting'] =  df[fc_columns].sum(axis=1) - df['need_cut']
+        if BOUND_VALUE <= 3:
+            # Default allowing stock after cut < original need cut + X <=3 months forecast
+            df['upper_bound_default'] = df[fc_columns].sum(axis=1) - df['need_cut']
+        else:
+            # User setting allowing stock after cut < original need cut + X<=6 months forecast
+            df['upper_bound_user_setting'] =  df[fc_columns].sum(axis=1) - df['need_cut']
+    except:
+        pass
     
     return df
 
-def filter_stock_excel_to_dict(file_path, stock_id, value_columns, params, PRIORITY):
-
-    df = filter_by_params(file_path,params)
+def filter_stock_df_to_dict(df, stock_id, value_columns, PRIORITY):
 
     # Sort data according to the priority of FIFO
     sorted_df = df.sort_values(by=['receiving_date','weight'], ascending=[True, False])
+
     # CASE 1: TRY TO OPTIMIZE WITH SEMI AND REWIND FIRST
     if PRIORITY == "CASE_1":
         sorted_df = sorted_df[sorted_df['status'].isin(['R:REWIND'
@@ -92,23 +92,18 @@ def filter_stock_excel_to_dict(file_path, stock_id, value_columns, params, PRIOR
 
     # Set the index of the DataFrame to 'stock_id'
     sorted_df.set_index(stock_id, inplace=True)
-
     # Convert DataFrame to dictionary
     result = sorted_df[value_columns].to_dict(orient='index')
 
     return result
 
-def filter_finish_excel_to_dict(file_path, finish_id, value_columns,params, BOUND_KEY, BOUND_VALUE):
+def filter_finish_excel_to_dict(df, finish_id, value_columns, BOUND_KEY, BOUND_VALUE):
     """
     Filter test case with finished goods have need_cut < 0 is the need_cut to be considered
     Note: 
     File path here is the new list of need cut/ AND / OR / list of stock after cut
 
     """
-    # Filter DataFrame based on parameters
-    df = filter_by_params(file_path, params)
-    # filtered_df = query_by_params(df, params)
-
     # Create the upper bound for need cut
     filtered_df = create_upper_bound_need_cut(df, BOUND_VALUE)
     # Filter the DataFrame based on the upper bound column
