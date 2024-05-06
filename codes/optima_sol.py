@@ -8,7 +8,7 @@ BOUND = 0.3
 
 from amplpy import AMPL
 
-def cut_patterns_by_stock(width_s, weight_s, finish, patterns, BOUND_KEY):
+def cut_patterns_by_stock(width_s, weight_s, finish, patterns, BOUND_KEY, MIN_MARGIN):
     m = AMPL()
     m.eval("reset data;")
     m.eval(
@@ -18,6 +18,8 @@ def cut_patterns_by_stock(width_s, weight_s, finish, patterns, BOUND_KEY):
 
         # width stock
         param width_s integer;
+        # width stock minus min_margin
+        param width_s_min_margin integer;
         # weight per unit of stock
         param wu > 0;
         # width finished pieces
@@ -42,7 +44,7 @@ def cut_patterns_by_stock(width_s, weight_s, finish, patterns, BOUND_KEY):
           sum{p in P, f in F} b[p]* a[f,p] * width_f[f] >= 0.96 * width_s;
         
         subject to feasible_pattern_min_margin:
-          sum{p in P, f in F}  b[p] * a[f,p] * width_f[f] <= width_s - 8;
+          sum{p in P, f in F}  b[p] * a[f,p] * width_f[f] <= width_s_min_margin;
 
         subject to weight_demand {f in F}:
           sum{p in P} b[p] * a[f,p] * width_f[f] * wu <= f_upper_demand[f];
@@ -51,7 +53,8 @@ def cut_patterns_by_stock(width_s, weight_s, finish, patterns, BOUND_KEY):
     m.set["F"] = list(finish.keys())
     m.set["P"] = list(range(len(patterns)))
 
-    m.param["width_s"] = width_s #stocks[s]["width"] 
+    m.param["width_s"] = width_s
+    m.param["width_s_min_margin"] = width_s - MIN_MARGIN
     m.param["width_f"] = {f: finish[f]["width"] for f in finish.keys()}
 
     m.param["wu"] = weight_s/width_s  # stock weight per unit (unique)
@@ -102,8 +105,8 @@ def cut_patterns_by_defective_stock(width_s, weight_s, finish, patterns, BOUND_K
         subject to assign_each_finish_to_pattern:
           sum{p in P} b[p]  = 1;
         
-        subject to feasible_pattern_max_margin:
-          sum{p in P, f in F} b[p]* a[f,p] * width_f[f] >= 0.96 * width_s;
+        # subject to feasible_pattern_max_margin:
+        #   sum{p in P, f in F} b[p]* a[f,p] * width_f[f] >= 0.96 * width_s;
         
         subject to feasible_pattern_min_margin:
           sum{p in P, f in F}  b[p] * a[f,p] * width_f[f] <= width_s - 8;
