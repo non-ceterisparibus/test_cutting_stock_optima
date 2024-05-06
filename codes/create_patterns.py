@@ -188,6 +188,8 @@ def generate_cut_combinations(stock_id, min_c_values, max_c_values, pattern):
     generate_combinations_util(list(keys), {})
     return pattern
 
+
+# ADD TIME OUT FOR FUNCTION WITH TOO LARGE COMBINATION
 def generate_cut_combinations_with_timeout(stock_id, min_c_values, max_c_values, pattern, TIMEOUT):
 
     def generate_combinations_util(keys, current_combination, start_time, TIMEOUT):
@@ -210,7 +212,6 @@ def generate_cut_combinations_with_timeout(stock_id, min_c_values, max_c_values,
                 new_combination[key] = c
                 generate_combinations_util(keys[1:], new_combination, start_time, TIMEOUT)
 
-    # keys = set(min_c_values.keys()) | set(max_c_values.keys()) # converts any iterable into a set without order
     reorderd_max_c = change_order_dict(max_c_values)
     keys = list(reorderd_max_c.keys())
 
