@@ -123,6 +123,7 @@ def solve_cutting_stock_ampl(width_s, weight_s, finish, naive_patterns, MIN_MARG
     return opt_patterns
 
 def solve_cutting_stock_ortools(finish, width_s, weight_s, MIN_MARGIN, BOUND_KEY, naive_patterns, SOLVER_MILO='SCIP'):
+    
     """"
     # upper bound with over-cut
         param f_upper_demand{F};
@@ -182,9 +183,10 @@ def solve_cutting_stock_ortools(finish, width_s, weight_s, MIN_MARGIN, BOUND_KEY
         over_cut = sum([finish[f]["need_cut"] for f in finish.keys()]) + weight_cut
         # print('Total w =', solver.Objective().Value())
         # print(f"Trim Loss: {trim_loss}, Weigh loss : {weight_loss}")
-        return {f'trim_loss: {trim_loss},over_cut : {over_cut},weight_loss: {weight_loss}'}
+        return {f'trim_loss: {trim_loss}, over_cut: {over_cut},weight_loss: {weight_loss}'}
     else:
         print("The problem does not have an optimal solution.")
+  
 
 # error and defective 
 def cut_patterns_by_defective_stock(width_s, weight_s, finish, patterns, BOUND_KEY):
