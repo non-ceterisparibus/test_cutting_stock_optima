@@ -172,18 +172,25 @@ def cutting_stocks(MIN_MARGIN, total_dual_pat,dual_stocks, dual_finish, nai_patt
     return final_solution_patterns, over_cut, over_cut_ratio,overused_list
 
 @task
-def new_stock_finish(final_solution_patterns, dual_finish, dual_stocks, over_cut):
-    taken_stocks = [p['stock'] for p in final_solution_patterns]
-    finish_cont = {}
-    for f, f_info in dual_finish.items():
-        if over_cut[f] < 0:
-            f_info['need_cut'] = over_cut[f] *(-1)
-            finish_cont[f] ={**f_info}
-    stocks_cont = {}
-    for s, s_info in dual_stocks.items():
-        if s not in taken_stocks:
-            stocks_cont[s] = {**s_info}
-    return finish_cont,stocks_cont
+def refresh_data(final_solution_patterns, dual_finish, dual_stocks, over_cut):
+    # Extract stocks from final_solution_patterns
+    taken_stocks = {p['stock'] for p in final_solution_patterns}  # Using a set for faster lookups
+
+    # Prepare finish_cont dictionary
+    finish_cont = {
+        f: {**f_info, 'need_cut': -over_cut[f]}
+        for f, f_info in dual_finish.items()
+        if over_cut[f] < 0
+    }
+
+    # Prepare stocks_cont dictionary
+    stocks_cont = {
+        s: {**s_info}
+        for s, s_info in dual_stocks.items()
+        if s not in taken_stocks
+    }
+
+    return finish_cont, stocks_cont
 
 @task
 def check_condition(overused_list):
@@ -204,20 +211,18 @@ def loop_cutting():
     final_solution_patterns =[]
 
     # CAN BE RESET AT EACH ROUND
-    total_dual_pat = []
     dual_stocks = copy.deepcopy(stocks)
     dual_finish = copy.deepcopy(finish)
     nai_patterns = make_naive_patterns(stocks, finish, MIN_MARGIN)
     cond = True
+    
     while cond == True:
+        total_dual_pat = []
+        # START LOOP
         final_solution_patterns, over_cut, over_cut_ratio, overused_list = cutting_stocks(MIN_MARGIN, total_dual_pat,dual_stocks, dual_finish, nai_patterns, stocks,finish, final_solution_patterns)
         cond = check_condition(overused_list)
-        if cond==True:
-            finish_cont, stocks_cont = new_stock_finish(final_solution_patterns, dual_finish, dual_stocks, over_cut)
-            
-            # RESET AT EACH ROUND
-            del nai_patterns, dual_finish, dual_stocks
-            total_dual_pat = []
+        if cond == True:
+            finish_cont, stocks_cont = refresh_data(final_solution_patterns, dual_finish, dual_stocks, over_cut)
             dual_stocks = copy.deepcopy(stocks_cont)
             dual_finish = copy.deepcopy(finish_cont)
             nai_patterns = make_naive_patterns(dual_stocks, dual_finish, MIN_MARGIN)
