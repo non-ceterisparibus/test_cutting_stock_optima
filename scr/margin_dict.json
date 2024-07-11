@@ -1,0 +1,31 @@
+{ "HSC":
+    {
+    "thickness_2.6": {
+        "thickness": 2.6,
+        "margin": 10
+    },
+    "thickness_2": {
+        "thickness": 2.0,
+        "margin": 6
+    },
+    "thickness_1.6": {
+        "thickness": 1.6,
+        "margin": 6
+    }
+    },
+    "NQS":
+    {
+    "thickness_2.6": {
+        "thickness": 2.6,
+        "margin": 10
+    },
+    "thickness_2": {
+        "thickness": 2.0,
+        "margin": 8
+    },
+    "thickness_1.6": {
+        "thickness": 1.6,
+        "margin": 6
+    }
+    }
+}
