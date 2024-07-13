@@ -39,7 +39,7 @@ def load_data():
       'fc1': 2585.511168,  'fc2': 4319.793456,  'fc3': 3797.778504},
      'F24': {'width': 82.0,  'need_cut': 977.9362646180011,  'upper_bound': 1585.531389098001,
       'fc1': 2025.3170816,  'fc2': 3383.8382072,  'fc3': 2974.9264948}
-      }
+    }
     return stocks, finish
 
 @task
@@ -56,11 +56,11 @@ def load_params():
         #   ,"forecast_scenario": median
           }
 
-    with open('scr/margin_dict.json', 'r') as file:
+    with open('margin_dict.json', 'r') as file:
         margin_dict = json.load(file)
 
     # GET ALL PARAMS
-    MIN_MARGIN = margin_dict[PARAMS["warehouse"]][f"thickness_{PARAMS["thickness"]}"]["margin"]
+    MIN_MARGIN = margin_dict[PARAMS["warehouse"]][f"thickness_{PARAMS['thickness']}"]["margin"]
     print(f"MIN_MARGIN:{MIN_MARGIN}")
 
     # BOUND_KEY = next(iter(PARAMS['stock_ratio']))
@@ -75,9 +75,7 @@ def cutting_stocks(MIN_MARGIN, total_dual_pat,dual_stocks, dual_finish, nai_patt
     max_key = None
     while rm_stock == True:
         dual_stocks = filter_out_stock_by_cond(dual_stocks, max_key)
-
         len_stocks = len(dual_stocks)
-
         # print("PHASE 1: Naive/ Dual Pattern Generation",end=".")    
         patterns = make_naive_patterns(dual_stocks, dual_finish, MIN_MARGIN)
         dual_finish = create_finish_demand_by_line_fr_naive_pattern(patterns, dual_finish)
@@ -107,7 +105,7 @@ def cutting_stocks(MIN_MARGIN, total_dual_pat,dual_stocks, dual_finish, nai_patt
     sum_patterns = nai_patterns + total_dual_pat
 
     # Phrase: Filter Patterns having trim loss as requirements
-    print("PHASE 3: Filter Patterns", end=":")
+    # print("PHASE 3: Filter Patterns", end=".")
     filtered_trimloss_pattern = []
     idx=0
     for pattern in sum_patterns:
@@ -153,7 +151,7 @@ def cutting_stocks(MIN_MARGIN, total_dual_pat,dual_stocks, dual_finish, nai_patt
             final_solution_patterns.append(solution_pattern)
                 
     # Phase 5: Evaluation Over-cut / Stock Ratio
-    print("PHASE 5: Evaluation Stock Ratio", end=".")
+    print("\n PHASE 5: Evaluation Stock Ratio", end=".")
     for i, sol in enumerate(final_solution_patterns):
         s = final_solution_patterns[i]['stock'] # stock cut
         cuts_dict = final_solution_patterns[i]['cuts']
@@ -175,32 +173,29 @@ def cutting_stocks(MIN_MARGIN, total_dual_pat,dual_stocks, dual_finish, nai_patt
 def refresh_data(final_solution_patterns, dual_finish, dual_stocks, over_cut):
     # Extract stocks from final_solution_patterns
     taken_stocks = {p['stock'] for p in final_solution_patterns}  # Using a set for faster lookups
-
     # Prepare finish_cont dictionary
     finish_cont = {
         f: {**f_info, 'need_cut': -over_cut[f]}
         for f, f_info in dual_finish.items()
         if over_cut[f] < 0
     }
-
     # Prepare stocks_cont dictionary
     stocks_cont = {
         s: {**s_info}
         for s, s_info in dual_stocks.items()
         if s not in taken_stocks
     }
-
     return finish_cont, stocks_cont
 
 @task
 def check_condition(overused_list):
     # CHECK FOR ANOTHER ROUND
     if not overused_list:
-        print("FINISH CUTTING")
+        print("\n FINISH CUTTING")
         return False
     else:
         # go back to PHRASE 3
-        print("BACK TO PHRASE 3: TO FILTER OUT PATTERNS")
+        print("\n BACK TO PHRASE 3: TO FILTER OUT PATTERNS")
         return True
     
 @flow
@@ -213,23 +208,25 @@ def loop_cutting():
     # CAN BE RESET AT EACH ROUND
     dual_stocks = copy.deepcopy(stocks)
     dual_finish = copy.deepcopy(finish)
-    nai_patterns = make_naive_patterns(stocks, finish, MIN_MARGIN)
+    # nai_patterns = make_naive_patterns(stocks, finish, MIN_MARGIN)
     cond = True
     
     while cond == True:
         total_dual_pat = []
+        nai_patterns = make_naive_patterns(dual_stocks, dual_finish, MIN_MARGIN)
+        
         # START LOOP
-        final_solution_patterns, over_cut, over_cut_ratio, overused_list = cutting_stocks(MIN_MARGIN, total_dual_pat,dual_stocks, dual_finish, nai_patterns, stocks,finish, final_solution_patterns)
+        final_solution_patterns, over_cut, over_cut_ratio, overused_list = cutting_stocks(MIN_MARGIN, total_dual_pat, dual_stocks, dual_finish, nai_patterns, stocks,finish, final_solution_patterns)
         cond = check_condition(overused_list)
-        if cond == True:
+        if not cond:
+            print([p['stock'] for p in final_solution_patterns])
+            # print(f"Total stock used:{len(final_solution_patterns)}")
+            print(f">> Stock-ratio on next month forecast: {over_cut_ratio}")
+            print(f"no stock used {len(final_solution_patterns)}")
+        else:
             finish_cont, stocks_cont = refresh_data(final_solution_patterns, dual_finish, dual_stocks, over_cut)
             dual_stocks = copy.deepcopy(stocks_cont)
             dual_finish = copy.deepcopy(finish_cont)
-            nai_patterns = make_naive_patterns(dual_stocks, dual_finish, MIN_MARGIN)
-        else:
-            print(overused_list)
-            # print(f"Total stock used:{len(final_solution_patterns)}")
-            print(f">> Stock-ratio on next month forecast: {over_cut_ratio}")
     
 if __name__ =="__main__":
     loop_cutting()
