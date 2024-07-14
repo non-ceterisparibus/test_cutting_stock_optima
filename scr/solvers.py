@@ -1,53 +1,5 @@
 from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum, PULP_CBC_CMD, value
 
-
-def make_naive_patterns(stocks, finish, MIN_MARGIN):
-    """
-    Generates patterns of feasible cuts from stock width to meet specified finish widths.
-
-    Parameters:
-    stocks (dict): A dictionary where keys are stock identifiers and values are dictionaries
-                   with key 'length' representing the length of each stock.
-
-    finish (dict): A dictionary where keys are finish identifiers and values are dictionaries
-                   with key 'length' representing the required finish lengths.
-
-    Returns:
-    patterns (list): A list of dictionaries, where each dictionary represents a pattern of cuts.
-                   Each pattern dictionary contains 'stock' (the stock identifier) and 'cuts'
-                   (a dictionary where keys are finish identifiers and the value is the number
-                   of cuts from the stock for each finish).
-                   
-                   Naive pattern with maximum number of cuts of each Finished Goods
-                   that is closet to the required need_cut
-                   and SUM(widths of FG) smaller Mother Coil width
-    """
-
-    patterns = []
-    for f in finish:
-        feasible = False
-        for s in stocks:
-            # max number of f that fit on s
-            num_cuts_by_width = int((stocks[s]["width"]-MIN_MARGIN) / finish[f]["width"])
-            # max number of f that satisfied the need cut WEIGHT BOUND
-            num_cuts_by_weight = round((finish[f]["upper_bound"] * stocks[s]["width"] ) / (finish[f]["width"] * stocks[s]['weight']))
-            # min of two max will satisfies both
-            num_cuts = min(num_cuts_by_width, num_cuts_by_weight)
-
-            # make pattern and add to list of patterns
-            if num_cuts > 0:
-                feasible = True
-                cuts_dict = {key: 0 for key in finish.keys()}
-                cuts_dict[f] = num_cuts
-                trim_loss = stocks[s]['width'] - sum([finish[f]["width"] * cuts_dict[f] for f in finish.keys()])
-                trim_loss_pct = round(trim_loss/stocks[s]['width'] * 100, 3)
-                patterns.append({"stock": s, "cuts": cuts_dict, 'trim_loss':trim_loss, "trim_loss_pct": round(trim_loss_pct,2) })
-
-        if not feasible:
-            print(f"No feasible pattern was found for Stock {s} and FG {f}")
-
-    return patterns
-
 # NEW PATTERN - OBJECT FUNC KO WORK CHO WEIGHT
 # GENERATE ON LINE CUT PATTERN - WEIGHT WONT BE CONSIDER, IN ADDITION, FIRST FIT STOCK WILL BE TAKEN
 def new_pattern_problem(finish, width_s, ap_upper_bound, demand_duals, MIN_MARGIN):
@@ -84,7 +36,7 @@ def generate_pattern_dual(stocks, finish, patterns, MIN_MARGIN):
     # Parameters
     s = {p: patterns[p]["stock"] for p in range(len(patterns))}
     a = {(f, p): patterns[p]["cuts"][f] for p in P for f in F}
-    demand_finish = {f: finish[f]["demand_slice"] for f in F}
+    demand_finish = {f: finish[f]["demand_line"] for f in F}
 
     # Decision variables #relaxed integrality
     x = {p: LpVariable(f"x_{p}", 0, None, cat="Continuous") for p in P}
@@ -141,7 +93,13 @@ def cut_weight_patterns(stocks, finish, patterns):
     # Extract results
     # Fix integer
     solution = [1 if (x[p].varValue > 0 and round(x[p].varValue)==0) else round(x[p].varValue) for p in range(len(patterns))]
-    total_cost = sum(solution)
+    
+    solution_list = []
+    for i, pattern_info in enumerate(patterns):
+        count = solution[i]
+        if count > 0:
+            solution_list.append({"count": count, **pattern_info})
+    # total_cost = sum(solution)
 
-    return solution, total_cost
+    return solution, solution_list
 
