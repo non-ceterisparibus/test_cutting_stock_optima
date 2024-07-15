@@ -37,6 +37,7 @@ def generate_pattern_dual(stocks, finish, patterns, MIN_MARGIN):
     s = {p: patterns[p]["stock"] for p in range(len(patterns))}
     a = {(f, p): patterns[p]["cuts"][f] for p in P for f in F}
     demand_finish = {f: finish[f]["demand_line"] for f in F}
+    upper_demand_finish = {f: finish[f]["upper_demand_line"] for f in F}
 
     # Decision variables #relaxed integrality
     x = {p: LpVariable(f"x_{p}", 0, None, cat="Continuous") for p in P}
@@ -47,6 +48,7 @@ def generate_pattern_dual(stocks, finish, patterns, MIN_MARGIN):
     # Constraints
     for f in F:
         prob += lpSum(a[f, p] * x[p] for p in P) >= demand_finish[f], f"Demand_{f}"
+        prob += lpSum(a[f, p] * x[p] for p in P) <= upper_demand_finish[f], f"UpperDemand_{f}" # ADD CONTRAINT UPPER
 
     # Solve the problem
     prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs']))
