@@ -10,9 +10,9 @@ from solvers import *
 
 def load_params():
     PARAMS = {"warehouse": "HSC"
-            ,"spec_name": "SAPH440-PO" # yeu cau chuan hoa du lieu OP - PO
-            ,"thickness": 4
-            ,"maker" : "POSCO"
+            ,"spec_name": "JSH590R-PO" # yeu cau chuan hoa du lieu OP - PO
+            ,"thickness": 2
+            ,"maker" : "CSC"
             ,"stock_ratio": { #get from app 
                     "limited": None
                     # "default": 2          ->>>> OPERATOR FLOW
@@ -28,22 +28,38 @@ def load_params():
     return MIN_MARGIN
 
 def load_data():
-    stocks = {'TR246H00000085': {'receiving_date': 45170, 'width': 1219, 'weight': 6820.0},
-              'TM246H00000163': {'receiving_date': 45041, 'width': 1219, 'weight': 6860.0},
-             'TP235H002665': {'receiving_date': 45229, 'width': 1219, 'weight': 7095.0},
-             'TP235H002666': {'receiving_date': 44956, 'width': 1219, 'weight': 7170.0}, 
-            'TP234H001880': {'receiving_date': 45037, 'width': 1219, 'weight': 8535.0},
-             'TM246H00000161': {'receiving_date': 45039, 'width': 1219, 'weight': 8610.0}}
+    stocks = {'TP235H002656-2': {'receiving_date': 45150, 'width': 1219, 'weight': 4332.5}, 
+            'TP235H002656-1': {'receiving_date': 44951, 'width': 1219, 'weight': 4332.5},
+             'TP232H001074': {'receiving_date': 45040, 'width': 1233, 'weight': 7105.0},
+             'TP232H001073': {'receiving_date': 45153, 'width': 1233, 'weight': 7550.0}, 
+            'TP236H005198': {'receiving_date': 45011, 'width': 1136, 'weight': 8000.0},
+             'TP235H002652': {'receiving_date': 45039, 'width': 1219, 'weight': 8400.0}, 
+            'TP235H002654': {'receiving_date': 45045, 'width': 1219, 'weight': 8500.0}, 
+            'TP232H001072': {'receiving_date': 45013, 'width': 1233, 'weight': 8675.0}, 
+            'TP235H002655': {'receiving_date': 45229, 'width': 1219, 'weight': 8845.0}, 
+            'TP235H002653': {'receiving_date': 45045, 'width': 1219, 'weight': 8855.0}, 
+            'TP232H001075': {'receiving_date': 45247, 'width': 1233, 'weight': 9630.0}}
 
-    finish = {'F28': {'width': 225.0,  'need_cut': 3442.0,  'upper_bound': 5246.0615974, 
-         'fc1': 6013.538658,  'fc2': 9388.0560735,  'fc3': 8791.33875525}, 
-              'F27': {'width': 150.0,  'need_cut': 663.0,  'upper_bound': 1691.686608, 
-        'fc1': 3428.95536,  'fc2': 5728.99437,  'fc3': 5036.687955}}
+    finish = {'F23': {'width': 306.0,  'need_cut': 839.0,  'upper_bound': 1548.5841833599998, 
+                      'fc1': 2365.2806112,  'fc2': 3692.5657704,  'fc3': 3457.8613836}, 
+            'F22': {'width': 205.0,  'need_cut': 498.79081,  'upper_bound': 3362.2258921410994, 
+                    'fc1': 9544.7836,  'fc2': 5494.6232,  'fc3': 3908.5464},
+            'F21': {'width': 188.0,  'need_cut': 30772.5997,  'upper_bound': 39966.4243228516,  
+                     'fc1': 30646.0820436,  'fc2': 35762.3146452,  'fc3': 34039.2591132},
+            'F20': {'width': 175.0,  'need_cut': 28574.78588,  'upper_bound': 36618.447115077855, 
+                     'fc1': 26812.20409,  'fc2': 31288.38713,  'fc3': 29780.88883}, 
+            'F19': {'width': 155.0,  'need_cut': 4401.84053,  'upper_bound': 5851.570175548759, 
+                    'fc1': 4832.4321325,  'fc2': 5639.1860525,  'fc3': 5367.4857775},
+            'F18': {'width': 133.0,  'need_cut': 400.0,  'upper_bound': 795.8254562499999, 
+                     'fc1': 1319.4181875,  'fc2': 759.546375,  'fc3': 540.295875}, 
+            'F17': {'width': 120.0,  'need_cut': 1751.0,  'upper_bound': 2526.6533504, 
+                    'fc1': 2585.511168,  'fc2': 4319.793456,  'fc3': 3797.778504}, 
+            'F24': {'width': 82.0,  'need_cut': 977.9362,  'upper_bound': 1585.531389098001, 
+                    'fc1': 2025.3170816,  'fc2': 3383.8382072,  'fc3': 2974.9264948}}
 
     return stocks, finish
 
-def calculate_upper_bounds(finish):
-    # Re calculate upper_bound according to the (remained) need_cut and
+def calculate_upper_bounds(finish): # FIX BY THE OPERATOR AND THE BOUND calculate upper_bound according to the (remained) need_cut and
     return {f: {**f_info, "upper_bound": f_info['need_cut'] + f_info['fc1']} for f, f_info in finish.items()}
 
 def cutting_stocks(MIN_MARGIN, dual_stocks, dual_finish, stocks,finish, final_solution_patterns):
@@ -127,16 +143,14 @@ def cutting_stocks(MIN_MARGIN, dual_stocks, dual_finish, stocks,finish, final_so
 
 def refresh_data(final_solution_patterns, dual_finish, dual_stocks, over_cut):
     # Extract stocks from final_solution_patterns
-    taken_stocks = {p['stock'] for p in final_solution_patterns}  # Using a set for faster lookups
-    # Prepare finish_cont dictionary
-    
-    # remained_finish = {}
+    taken_stocks = {p['stock'] for p in final_solution_patterns} 
+
     for f, f_info in dual_finish.items():
         if over_cut[f] <0:
             f_info['need_cut'] = -over_cut[f]
         else: 
             f_info['need_cut'] = 0
-            f_info['upper_bound'] = f_info['fc1'] -over_cut[f]
+            f_info['upper_bound'] += -over_cut[f]
         
     # remained_finish = {
     #     f: {**f_info, 'need_cut': -over_cut[f]}
@@ -144,7 +158,7 @@ def refresh_data(final_solution_patterns, dual_finish, dual_stocks, over_cut):
     #     if over_cut[f] < 0                      # continue to cut if negative cut
     # }
     
-    # Prepare stocks_cont dictionary
+    # Prepare remained_stocks dictionary
     remained_stocks = {
         s: {**s_info}
         for s, s_info in dual_stocks.items()
@@ -152,9 +166,9 @@ def refresh_data(final_solution_patterns, dual_finish, dual_stocks, over_cut):
     }
     return dual_finish, remained_stocks
 
-def check_conditions(overused_list):
+def check_conditions(overused_list,remained_stocks):
     # CHECK FOR ANOTHER ROUND
-    if not overused_list:
+    if not overused_list or not remained_stocks:
         print("\n FINISH CUTTING")
         return False
     else:
@@ -178,7 +192,9 @@ def loop_cutting():
         # START LOOP
         final_solution_patterns, over_cut, overused_list = cutting_stocks(MIN_MARGIN, dual_stocks, dual_finish, stocks,finish, final_solution_patterns)
         logger.info(f'Take stock {[p['stock'] for p in final_solution_patterns]}')
-        cond = check_conditions(overused_list)
+        logger.info(f'overcut amount {over_cut}')
+        remained_finish, remained_stocks = refresh_data(final_solution_patterns, dual_finish, dual_stocks, over_cut)
+        cond = check_conditions(overused_list, remained_stocks)
         if not cond:
             logger.info(f"Total stock used {len(final_solution_patterns)}")
             logger.info(f'TRIM LOSS PERCENT OF EACH STOCK {[p['trim_loss_pct'] for p in final_solution_patterns]}')
@@ -187,15 +203,16 @@ def loop_cutting():
             logger.info(f">> TOTAL STOCK OVER CUT: {over_cut_rate}")
         else:
             # print(f">> TOTAL STOCK OVER CUT: {over_cut}") SUA LAI PHAN PICK NEXT STOCK, NHUNG STOCK CO THE TIEP TUC CAT DU THI NEN BO VAO THU
-            remained_finish, remained_stocks = refresh_data(final_solution_patterns, dual_finish, dual_stocks, over_cut)
             dual_stocks = copy.deepcopy(remained_stocks)
-            dual_finish = calculate_upper_bounds(remained_finish)
+            dual_finish = copy.deepcopy(remained_finish)
+            # dual_finish = calculate_upper_bounds(remained_finish)
     
 if __name__ =="__main__":
     logger = logging.getLogger(__name__)
     logging.basicConfig(filename=f'cutting_stocks{datetime.date.today()}.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     batch = "POSCO+SAPH440-PO+4"
     logger.info(f'Started {batch}')
+    logger.info('add contraint upperbound')
     logger.info(f'Process PARAMS')
     loop_cutting()
     logger.info('Finished')
