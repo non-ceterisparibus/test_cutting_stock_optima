@@ -10,17 +10,16 @@ from solvers import *
 
 def load_params():
     PARAMS = {"warehouse": "HSC"
-          ,"spec_name": "JSH590R-PO" # yeu cau chuan hoa du lieu OP - PO
-          ,"thickness": 2
-          ,"maker" : "CSC"
-          ,"stock_ratio": { #get from app 
+            ,"spec_name": "SAPH440-PO" # yeu cau chuan hoa du lieu OP - PO
+            ,"thickness": 4
+            ,"maker" : "POSCO"
+            ,"stock_ratio": { #get from app 
                     "limited": None
                     # "default": 2          ->>>> OPERATOR FLOW
                     # "user_setting": 4
                 }
         #   ,"forecast_scenario": median
           }
-
     with open('scr/margin_dict.json', 'r') as file:
         margin_dict = json.load(file)
 
@@ -29,46 +28,30 @@ def load_params():
     return MIN_MARGIN
 
 def load_data():
-    stocks = {'HTV1983/23-2': {'receiving_date': 45142, 'width': 1219, 'weight': 5485.0},
-    'HTV1983/23-1': {'receiving_date': 45017, 'width': 1219, 'weight': 5485.0},
-    'HTV1060/24': {'receiving_date': 45135, 'width': 1219, 'weight': 11295.0},
-    'HTV1059/24': {'receiving_date': 45149, 'width': 1219, 'weight': 11470.0}}
+    stocks = {'TR246H00000085': {'receiving_date': 45170, 'width': 1219, 'weight': 6820.0},
+              'TM246H00000163': {'receiving_date': 45041, 'width': 1219, 'weight': 6860.0},
+             'TP235H002665': {'receiving_date': 45229, 'width': 1219, 'weight': 7095.0},
+             'TP235H002666': {'receiving_date': 44956, 'width': 1219, 'weight': 7170.0}, 
+            'TP234H001880': {'receiving_date': 45037, 'width': 1219, 'weight': 8535.0},
+             'TM246H00000161': {'receiving_date': 45039, 'width': 1219, 'weight': 8610.0}}
 
-    finish = {'F147': {'width': 180.0,  'need_cut': 1900.0,  'upper_bound': 2639.22928,
-            'fc1': 2464.0976,  'fc2': 2991.6864,  'fc3': 3116.0216},
-            'F146': {'width': 135.0,  'need_cut': 148.0,  'upper_bound': 591.5031999999999,
-             'fc1': 1478.3439999999998,  'fc2': 1047.788,  'fc3': 860.8880000000001},
-            'F145': {'width': 130.0,  'need_cut': 1300.0,  'upper_bound': 1614.1936, 
-            'fc1': 1047.3120000000001,  'fc2': 1127.448,  'fc3': 1355.76},
-            'F144': {'width': 125.0,  'need_cut': 857.0,  'upper_bound': 1649.82368,
-             'fc1': 2642.7456,  'fc2': 1723.6512000000002,  'fc3': 1700.3712000000003},
-            'F143': {'width': 104.0,  'need_cut': 994.0,  'upper_bound': 2488.4296,
-             'fc1': 4981.432,  'fc2': 4540.3060000000005,  'fc3': 5178.620000000001},
-            'F152': {'width': 90.0,  'need_cut': 4778.0,  'upper_bound': 8071.152320000001,
-             'fc1': 10977.174400000002,  'fc2': 9940.747600000002,  'fc3': 11556.632},
-            'F151': {'width': 75.0,  'need_cut': 500.0,  'upper_bound': 711.5,
-            'fc1': 705.0,  'fc2': 628.5,  'fc3': 726.0},
-            'F150': {'width': 72.0,  'need_cut': 5015.0,  'upper_bound': 6995.11172,
-             'fc1': 6600.372399999999,  'fc2': 5905.539400000001,  'fc3': 7208.1378},
-            'F149': {'width': 58.0,  'need_cut': 700.0,  'upper_bound': 866.3199999999999,
-            'fc1': 554.4,  'fc2': 449.99999999999994,  'fc3': 601.1999999999999},
-            'F148': {'width': 47.0,  'need_cut': 300.0,  'upper_bound': 598.89,
-            'fc1': 996.3,  'fc2': 900.3399999999999,  'fc3': 1037.8299999999997}}
-    
+    finish = {'F28': {'width': 225.0,  'need_cut': 3442.0,  'upper_bound': 5246.0615974, 
+         'fc1': 6013.538658,  'fc2': 9388.0560735,  'fc3': 8791.33875525}, 
+              'F27': {'width': 150.0,  'need_cut': 663.0,  'upper_bound': 1691.686608, 
+        'fc1': 3428.95536,  'fc2': 5728.99437,  'fc3': 5036.687955}}
+
     return stocks, finish
 
 def calculate_upper_bounds(finish):
     # Re calculate upper_bound according to the (remained) need_cut and
-    for key, finish_info in finish.items():
-        finish[key] = {**finish_info, "upper_bound": finish_info['need_cut'] + finish_info['fc1']}
-    return finish
+    return {f: {**f_info, "upper_bound": f_info['need_cut'] + f_info['fc1']} for f, f_info in finish.items()}
 
 def cutting_stocks(MIN_MARGIN, dual_stocks, dual_finish, stocks,finish, final_solution_patterns):
     n = 0
     rm_stock = True
     max_key = None
     # print("PHASE 1: Naive/ Dual Pattern Generation",end=".")    
-    patterns = make_naive_patterns(dual_stocks,dual_finish,MIN_MARGIN)
+    patterns = make_naive_patterns(dual_stocks,dual_finish,MIN_MARGIN) # FIX ->> neu ko co pattern nao phu hop thi gian UPPERBOUND
     dual_finish = create_finish_demand_by_line_fr_naive_pattern(patterns, dual_finish)
     len_stocks = len(dual_stocks)
     while rm_stock == True:
@@ -146,21 +129,30 @@ def refresh_data(final_solution_patterns, dual_finish, dual_stocks, over_cut):
     # Extract stocks from final_solution_patterns
     taken_stocks = {p['stock'] for p in final_solution_patterns}  # Using a set for faster lookups
     # Prepare finish_cont dictionary
-    remained_finish = {
-        f: {**f_info, 'need_cut': -over_cut[f]}
-        for f, f_info in dual_finish.items()
-        if over_cut[f] < 0                      # continue to cut if negative cut
-    }
+    
+    # remained_finish = {}
+    for f, f_info in dual_finish.items():
+        if over_cut[f] <0:
+            f_info['need_cut'] = -over_cut[f]
+        else: 
+            f_info['need_cut'] = 0
+            f_info['upper_bound'] = f_info['fc1'] -over_cut[f]
+        
+    # remained_finish = {
+    #     f: {**f_info, 'need_cut': -over_cut[f]}
+    #     for f, f_info in dual_finish.items()
+    #     if over_cut[f] < 0                      # continue to cut if negative cut
+    # }
+    
     # Prepare stocks_cont dictionary
     remained_stocks = {
         s: {**s_info}
         for s, s_info in dual_stocks.items()
         if s not in taken_stocks
     }
-    return remained_finish, remained_stocks
+    return dual_finish, remained_stocks
 
 def check_conditions(overused_list):
-    
     # CHECK FOR ANOTHER ROUND
     if not overused_list:
         print("\n FINISH CUTTING")
@@ -191,7 +183,7 @@ def loop_cutting():
             logger.info(f"Total stock used {len(final_solution_patterns)}")
             logger.info(f'TRIM LOSS PERCENT OF EACH STOCK {[p['trim_loss_pct'] for p in final_solution_patterns]}')
             # print([p['stock'] for p in final_solution_patterns])
-            over_cut_rate = [key: round(over_cut[key]/finish[key]['fc1'], 4) for key in finish.keys()]
+            over_cut_rate = {key: round(over_cut[key]/finish[key]['fc1'], 4) for key in over_cut.keys()}
             logger.info(f">> TOTAL STOCK OVER CUT: {over_cut_rate}")
         else:
             # print(f">> TOTAL STOCK OVER CUT: {over_cut}") SUA LAI PHAN PICK NEXT STOCK, NHUNG STOCK CO THE TIEP TUC CAT DU THI NEN BO VAO THU
@@ -199,11 +191,11 @@ def loop_cutting():
             dual_stocks = copy.deepcopy(remained_stocks)
             dual_finish = calculate_upper_bounds(remained_finish)
     
-    
 if __name__ =="__main__":
     logger = logging.getLogger(__name__)
     logging.basicConfig(filename=f'cutting_stocks{datetime.date.today()}.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-    logger.info('Started')
+    batch = "POSCO+SAPH440-PO+4"
+    logger.info(f'Started {batch}')
     logger.info(f'Process PARAMS')
     loop_cutting()
     logger.info('Finished')
