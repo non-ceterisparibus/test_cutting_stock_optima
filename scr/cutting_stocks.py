@@ -29,36 +29,31 @@ def load_params():
     return MIN_MARGIN
 
 def load_data():
-    stocks = {'TP235H002656-2': {'receiving_date': 45150, 'width': 1219, 'weight': 4332.5},
-    #  'TP235H002656-1': {'receiving_date': 44951, 'width': 1219, 'weight': 4332.5},
-     'TP232H001074': {'receiving_date': 45040, 'width': 1219, 'weight': 7105.0},
-     'TP232H001073': {'receiving_date': 45153, 'width': 1219, 'weight': 7550.0},
-     'TP236H005198': {'receiving_date': 45011, 'width': 1219, 'weight': 8000.0},
-     'TP235H002652': {'receiving_date': 45039, 'width': 1219, 'weight': 8400.0},
-     'TP235H002654': {'receiving_date': 45045, 'width': 1219, 'weight': 8500.0},
-     'TP232H001072': {'receiving_date': 45013, 'width': 1219, 'weight': 8675.0},
-     'TP235H002655': {'receiving_date': 45229, 'width': 1219, 'weight': 8845.0},
-     'TP235H002653': {'receiving_date': 45045, 'width': 1219, 'weight': 8855.0},
-     'TP232H001075': {'receiving_date': 45247, 'width': 1219, 'weight': 9630.0}
-    }
+    stocks = {'HTV1983/23-2': {'receiving_date': 45142, 'width': 1219, 'weight': 5485.0},
+    'HTV1983/23-1': {'receiving_date': 45017, 'width': 1219, 'weight': 5485.0},
+    'HTV1060/24': {'receiving_date': 45135, 'width': 1219, 'weight': 11295.0},
+    'HTV1059/24': {'receiving_date': 45149, 'width': 1219, 'weight': 11470.0}}
 
-    finish = {'F23': {'width': 306.0,  'need_cut': 839.0, "upper_bound": 1000,
-      'fc1': 2365.2806112,  'fc2': 3692.5657704,  'fc3': 3457.8613836},
-     'F22': {'width': 205.0,  'need_cut': 498.7908121410992,  "upper_bound": 1000,
-      'fc1': 9544.7836,  'fc2': 5494.6232,  'fc3': 3908.5464},
-     'F21': {'width': 188.0,  'need_cut': 30772.599709771595, "upper_bound": 1000,
-      'fc1': 30646.0820436,  'fc2': 35762.3146452,  'fc3': 34039.2591132},
-     'F20': {'width': 175.0,  'need_cut': 28574.78588807786, 
-      'fc1': 26812.20409,  'fc2': 31288.38713,  'fc3': 29780.88883},
-     'F19': {'width': 155.0,  'need_cut': 4401.8405357987585,  
-      'fc1': 4832.4321325,  'fc2': 5639.1860525,  'fc3': 5367.4857775},
-     'F18': {'width': 133.0,  'need_cut': 400.0,  
-      'fc1': 1319.4181875,  'fc2': 759.546375,  'fc3': 540.295875},
-     'F17': {'width': 120.0,  'need_cut': 1751.0,
-      'fc1': 2585.511168,  'fc2': 4319.793456,  'fc3': 3797.778504},
-     'F24': {'width': 82.0,  'need_cut': 977.9362646180011,  
-      'fc1': 2025.3170816,  'fc2': 3383.8382072,  'fc3': 2974.9264948}
-    }
+    finish = {'F147': {'width': 180.0,  'need_cut': 1900.0,  'upper_bound': 2639.22928,
+            'fc1': 2464.0976,  'fc2': 2991.6864,  'fc3': 3116.0216},
+            'F146': {'width': 135.0,  'need_cut': 148.0,  'upper_bound': 591.5031999999999,
+             'fc1': 1478.3439999999998,  'fc2': 1047.788,  'fc3': 860.8880000000001},
+            'F145': {'width': 130.0,  'need_cut': 1300.0,  'upper_bound': 1614.1936, 
+            'fc1': 1047.3120000000001,  'fc2': 1127.448,  'fc3': 1355.76},
+            'F144': {'width': 125.0,  'need_cut': 857.0,  'upper_bound': 1649.82368,
+             'fc1': 2642.7456,  'fc2': 1723.6512000000002,  'fc3': 1700.3712000000003},
+            'F143': {'width': 104.0,  'need_cut': 994.0,  'upper_bound': 2488.4296,
+             'fc1': 4981.432,  'fc2': 4540.3060000000005,  'fc3': 5178.620000000001},
+            'F152': {'width': 90.0,  'need_cut': 4778.0,  'upper_bound': 8071.152320000001,
+             'fc1': 10977.174400000002,  'fc2': 9940.747600000002,  'fc3': 11556.632},
+            'F151': {'width': 75.0,  'need_cut': 500.0,  'upper_bound': 711.5,
+            'fc1': 705.0,  'fc2': 628.5,  'fc3': 726.0},
+            'F150': {'width': 72.0,  'need_cut': 5015.0,  'upper_bound': 6995.11172,
+             'fc1': 6600.372399999999,  'fc2': 5905.539400000001,  'fc3': 7208.1378},
+            'F149': {'width': 58.0,  'need_cut': 700.0,  'upper_bound': 866.3199999999999,
+            'fc1': 554.4,  'fc2': 449.99999999999994,  'fc3': 601.1999999999999},
+            'F148': {'width': 47.0,  'need_cut': 300.0,  'upper_bound': 598.89,
+            'fc1': 996.3,  'fc2': 900.3399999999999,  'fc3': 1037.8299999999997}}
     
     return stocks, finish
 
@@ -117,7 +112,7 @@ def cutting_stocks(MIN_MARGIN, dual_stocks, dual_finish, stocks,finish, final_so
             chosen_stocks[stock_name]= {**stock_info}
 
     _, solution_list = cut_weight_patterns(chosen_stocks, dual_finish, filtered_trimloss_pattern)
-    print(f'Solution list {[p['stock'] for p in solution_list]}')
+    # print(f'Solution list {[p['stock'] for p in solution_list]}')
     
     # Neu lap stock thi rm all pattern tru cai trim loss thap nhat va chay lai
     sorted_solution_list = sorted(solution_list, key=lambda x: (x['stock'],  x.get('trim_loss_pct', float('inf'))))
@@ -196,9 +191,10 @@ def loop_cutting():
             logger.info(f"Total stock used {len(final_solution_patterns)}")
             logger.info(f'TRIM LOSS PERCENT OF EACH STOCK {[p['trim_loss_pct'] for p in final_solution_patterns]}')
             # print([p['stock'] for p in final_solution_patterns])
-            logger.info(f">> TOTAL STOCK OVER CUT: {over_cut}")
+            over_cut_rate = [key: round(over_cut[key]/finish[key]['fc1'], 4) for key in finish.keys()]
+            logger.info(f">> TOTAL STOCK OVER CUT: {over_cut_rate}")
         else:
-            # print(f">> TOTAL STOCK OVER CUT: {over_cut}")
+            # print(f">> TOTAL STOCK OVER CUT: {over_cut}") SUA LAI PHAN PICK NEXT STOCK, NHUNG STOCK CO THE TIEP TUC CAT DU THI NEN BO VAO THU
             remained_finish, remained_stocks = refresh_data(final_solution_patterns, dual_finish, dual_stocks, over_cut)
             dual_stocks = copy.deepcopy(remained_stocks)
             dual_finish = calculate_upper_bounds(remained_finish)
