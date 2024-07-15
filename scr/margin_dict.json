@@ -1,11 +1,17 @@
-{ "HSC":
+{ 
+    "HSC":
     {
-    "thickness_2.6": {
-        "thickness": 2.6,
+    "thickness_2.9": {
+        "thickness": 2.9,
+        "margin": 8
+    },
+    
+    "thickness_4": {
+        "thickness": 4,
         "margin": 10
     },
     "thickness_2": {
-        "thickness": 2.0,
+        "thickness": 2,
         "margin": 6
     },
     "thickness_1.6": {
@@ -15,13 +21,13 @@
     },
     "NQS":
     {
-    "thickness_2.6": {
-        "thickness": 2.6,
-        "margin": 10
+    "thickness_2.9": {
+        "thickness": 2.9,
+        "margin": 8
     },
     "thickness_2": {
-        "thickness": 2.0,
-        "margin": 8
+        "thickness": 2,
+        "margin": 6
     },
     "thickness_1.6": {
         "thickness": 1.6,
