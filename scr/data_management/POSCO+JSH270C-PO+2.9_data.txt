@@ -1,0 +1,22 @@
+POSCO+JSH270C-PO+2.9
+STOCK: 
+ {'HTV0800/24-D2': {'receiving_date': 45041, 'width': 1219, 'weight': 4153}, 'HTV0802/24-D1': {'receiving_date': 45153, 'width': 1219, 'weight': 5848}, 'TR23AH00000052': {'receiving_date': 44939, 'width': 1219, 'weight': 7400}, 'HTV1772/23': {'receiving_date': 45137, 'width': 1178, 'weight': 8900}, 'HTV1773/23': {'receiving_date': 45016, 'width': 1178, 'weight': 9140}}
+FINISH: 
+ {'F387': {'width': 426.0, 'need_cut': 2296.0, 'upper_bound': 4404.304, 'fc1': 7027.68, 'fc2': 6442.04, 'fc3': 5270.759999999999}, 'F386': {'width': 294.0, 'need_cut': 400.0, 'upper_bound': 400.0, 'fc1': 0.0, 'fc2': 0.0, 'fc3': 0.0}, 'F385': {'width': 248.0, 'need_cut': 5076.0, 'upper_bound': 7846.152, 'fc1': 9233.84, 'fc2': 7495.0, 'fc3': 10013.32}, 'F156': {'width': 234.0, 'need_cut': 15398.07130730051, 'upper_bound': 26591.72807432051, 'fc1': 37312.1892234, 'fc2': 36921.3997698, 'fc3': 37310.39934804}, 'F159': {'width': 90.6, 'need_cut': 27.909090909090878, 'upper_bound': 323.3778602217309, 'fc1': 984.8958977088, 'fc2': 848.726578518, 'fc3': 1917.93553413672}}
+
+Started POSCO+JSH270C-PO+2.9
+2024-07-17 16:03:02,710 - INFO - add contraint upperbound
+2024-07-17 16:03:02,710 - INFO - Process PARAMS
+2024-07-17 16:03:02,712 - INFO - MIN_MARGIN:6
+2024-07-17 16:03:03,747 - INFO - Take stock ['HTV0800/24-D2', 'HTV1772/23', 'HTV1773/23']
+2024-07-17 16:03:03,747 - INFO - overcut amount {'F156': 4113.839, 'F387': -2296.0, 'F385': -2541.27, 'F159': -27.909, 'F386': -400.0}
+2024-07-17 16:03:04,224 - INFO - Take stock ['HTV0800/24-D2', 'HTV1772/23', 'HTV1773/23', 'HTV0802/24-D1']
+2024-07-17 16:03:04,224 - INFO - overcut amount {'F156': 4113.839, 'F387': 1791.36, 'F385': -1351.52, 'F159': 406.731, 'F386': -400.0}
+2024-07-17 16:03:04,443 - INFO - Take stock ['HTV0800/24-D2', 'HTV1772/23', 'HTV1773/23', 'HTV0802/24-D1', 'TR23AH00000052']
+2024-07-17 16:03:04,443 - INFO - overcut amount {'F156': 4113.839, 'F387': 6963.47, 'F385': 153.98, 'F159': 956.721, 'F386': -400.0}
+2024-07-17 16:03:04,443 - INFO - Total stock used 5
+2024-07-17 16:03:04,443 - INFO - TRIM LOSS PERCENT OF EACH STOCK [0.574, 0.679, 0.679, 2.33, 2.33]
+2024-07-17 16:03:04,443 - INFO - >> TOTAL STOCK RATIO (OVER CUT): {'F156': 0.1103, 'F387': 0.9909, 'F385': 0.0167, 'F159': 0.9714, 'F386': -0.9091}
+2024-07-17 16:03:04,443 - INFO - Finished
+
+Note: F386 having low forecast qty, hard to cut
