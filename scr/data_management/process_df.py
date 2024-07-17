@@ -13,7 +13,8 @@ def filter_by_params(file_path,params):
     # Read the Excel file into a DataFrame
     df = pd.read_excel(file_path)
 
-    filtered_df = df[(df["warehouse"] == params["warehouse"]) & 
+    filtered_df = df[
+                    # (df["warehouse"] == params["warehouse"]) & 
                     (df["spec_name"] == params["spec_name"]) & 
                     (df["thickness"] == params["thickness"]) &
                     (df["maker"] == params["maker"])
@@ -106,12 +107,12 @@ def filter_single_stock_df_to_dict(df, stock_id, value_columns, sum_of_total_nee
 
     return result
 
-def filter_multi_stock_df_to_dict(df, stock_id, value_columns, sum_of_total_need_cuts):
+def filter_multi_stock_df_to_dict(df, stock_id, value_columns):
 
     # Sort data according to the priority of FIFO
     sorted_df = df.sort_values(by=['weight','receiving_date'], ascending=[True, False])
     sorted_df = choose_stock_by_status(sorted_df)
-    sorted_df = choose_stocks_by_need_cuts(sorted_df, sum_of_total_need_cuts, over_cut_rate = 1.0)
+    #sorted_df = choose_stocks_by_need_cuts(sorted_df, sum_of_total_need_cuts, over_cut_rate = 1.0)
     # Set the index of the DataFrame to 'stock_id'
     sorted_df.set_index(stock_id, inplace=True)
     
