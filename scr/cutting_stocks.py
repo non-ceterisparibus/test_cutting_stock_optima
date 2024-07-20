@@ -28,45 +28,25 @@ def load_params():
     return MIN_MARGIN
 
 def load_data():
-    stocks = {'TP238H002948-1': {'receiving_date': 45261, 'width': 1219, 'weight': 3000},
-            'TP238H002948-2': {'receiving_date': 45261, 'width': 1219, 'weight': 3459}, # generate nhieu pattern hon
+    stocks = { 'TP238H002948-2': {'receiving_date': 45261, 'width': 1219, 'weight': 3459}, # generate nhieu pattern hon
+            'TP238H002948-1': {'receiving_date': 45261, 'width': 1219, 'weight': 3000},
               }
 
-    finish = {'F200': {'width': 210.0,             'need_cut': 908.876582278481,
-             'upper_bound': 1585.750502278481,
-             'fc1': 2256.2464,
-             'fc2': 1984.6524,
-             'fc3': 1934.0102},
-            'F198': {'width': 152.0,             'need_cut': 178.0,
-             'upper_bound': 365.74,
-             'fc1': 625.8,
-             'fc2': 983.4,
-             'fc3': 596.0},
-            'F197': {'width': 150.0,             'need_cut': 300.0,
-             'upper_bound': 519.5526465,
-             'fc1': 731.842155,
-             'fc2': 687.165744375,
-             'fc3': 577.24759125},
-            'F196': {'width': 125.0,             'need_cut': 100.0,
-             'upper_bound': 141.505403125,
-             'fc1': 135.35134375,
-             'fc2': 130.7123125,
-             'fc3': 48.38053125},
-            'F190': {'width': 100.0,             'need_cut': 300.0,
-             'upper_bound': 445.829136,
-             'fc1': 486.09712,
-             'fc2': 812.15629,
-             'fc3': 714.013235},
-            'F511': {'width': 95.0,             'need_cut': 300.0,
-             'upper_bound': 358.212,
-             'fc1': 194.04,
-             'fc2': 183.48000000000002,
-             'fc3': 329.99999999999994},
-            'F203': {'width': 60.0,             'need_cut': 109.0,
-             'upper_bound': 520.96899538,
-             'fc1': 1373.2299846,
-             'fc2': 1331.7674778,
-             'fc3': 905.3461206}}
+    finish = {'F200': {'width': 210.0,             'need_cut': 908.876582278481,             'upper_bound': 1585.750502278481,
+             'fc1': 2256.2464,             'fc2': 1984.6524,             'fc3': 1934.0102},
+            'F198': {'width': 152.0,             'need_cut': 178.0,             'upper_bound': 365.74,
+             'fc1': 625.8,             'fc2': 983.4,             'fc3': 596.0},
+            'F197': {'width': 150.0,             'need_cut': 300.0,             'upper_bound': 519.5526465,
+             'fc1': 731.842155,             'fc2': 687.165744375,             'fc3': 577.24759125},
+            'F196': {'width': 125.0,             'need_cut': 100.0,             'upper_bound': 141.505403125,
+             'fc1': 135.35134375,             'fc2': 130.7123125,             'fc3': 48.38053125},
+            'F190': {'width': 100.0,             'need_cut': 300.0,             'upper_bound': 445.829136,
+             'fc1': 486.09712,             'fc2': 812.15629,             'fc3': 714.013235},
+            'F511': {'width': 95.0,             'need_cut': 300.0,             'upper_bound': 358.212,
+             'fc1': 194.04,             'fc2': 183.48000000000002,             'fc3': 329.99999999999994},
+            'F203': {'width': 60.0,             'need_cut': 109.0,             'upper_bound': 520.96899538,
+             'fc1': 1373.2299846,             'fc2': 1331.7674778,             'fc3': 905.3461206}}
+    # FILTER LAI DU LIEU, THEO WIDTH OR WEIGHT
     return stocks, finish
 
 def calculate_upper_bounds(finish): # FIX BY THE OPERATOR AND THE BOUND calculate upper_bound according to the (remained) need_cut and
@@ -76,6 +56,7 @@ def cutting_stocks(MIN_MARGIN, dual_stocks, dual_finish, stocks,finish, final_so
     n = 0
     rm_stock = True
     max_key = None
+    
     # print("PHASE 1: Naive/ Dual Pattern Generation",end=".")    
     patterns = make_naive_patterns(dual_stocks,dual_finish,MIN_MARGIN) # FIX ->> neu ko co pattern nao phu hop thi gian UPPERBOUND
     dual_finish = create_finish_demand_by_line_fr_naive_pattern(patterns, dual_finish) # new dual list se bo finish nao cut qua be, ko cat duoc
@@ -114,6 +95,7 @@ def cutting_stocks(MIN_MARGIN, dual_stocks, dual_finish, stocks,finish, final_so
             filtered_trimloss_pattern.append(pattern)
 
     logger.info(f"len pattern {len(filtered_trimloss_pattern)}")
+    logger.info(filtered_trimloss_pattern)
 
     filtered_stocks = [filtered_trimloss_pattern[i]['stock'] for i in range(len(filtered_trimloss_pattern))]
     chosen_stocks = {}
@@ -208,8 +190,7 @@ def steel_cutting():
         else:
             dual_stocks = copy.deepcopy(remained_stocks)
             dual_finish = copy.deepcopy(remained_finish)
-  
-    
+     
 if __name__ =="__main__":
     logger = logging.getLogger(__name__)
     logging.basicConfig(filename=f'cutting_stocks{datetime.date.today()}.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
