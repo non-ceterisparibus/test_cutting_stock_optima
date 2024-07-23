@@ -44,11 +44,12 @@ finish_item = finish_list['param_finish'][param_set]['customer'][0]
 customer = list(finish_item.keys())[0]
 finish = finish_item[customer]
 
-print(finish.keys())
+
 
 batch = PARAMS['code']
-bound =1
+bound = 2
 logger.info(f'Start processing PARAMS: [{batch}] with over_cut bound {bound} forecast month')
+logger.info(f"Process {len(finish.keys)} FINISHED GOODS for CUSTOMER {customer}")
 
 # Calculating the sum of 'total_need_cut' values
 if stocks_available >= 5 * total_need_cut:
@@ -56,7 +57,7 @@ if stocks_available >= 5 * total_need_cut:
 elif stocks_available >= 2 * total_need_cut:
     logger.info("May have enough stocks to cut")
 elif stocks_available < total_need_cut:
-    logger.info("Lacks of stocks")
+    logger.warning("Lacks of stocks")
 
 # RUN
 cond = True
