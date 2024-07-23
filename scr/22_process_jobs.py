@@ -5,9 +5,9 @@ import datetime
 import copy
 
 # INPUT
-fin_file_path = "data/20240710_finish_df.xlsx"
-mc_file_path = "data/20240710_mc_df.xlsx"
-spec_type_df = pd.read_csv('data/spec_type.csv')
+fin_file_path = "scr/data/20240710_finish_df.xlsx"
+mc_file_path = "scr/data/20240710_mc_df.xlsx"
+spec_type_df = pd.read_csv('scr/data/spec_type.csv')
 
 # SETUP
 finish_key = 'order_id'
@@ -67,62 +67,62 @@ def find_spec_type(spec,spec_type_df):
     return type
 
 # PROCESS
-
-today = datetime.datetime.today()
-# Format the date to dd/mm/yy
-formatted_date = today.strftime("%d-%m-%y")
-
-finish_list = {
-    'date': formatted_date,
-    'param_finish':{}
-}
-stocks_list = {
-    'date': formatted_date,
-    'param_finish':{}
-}
-
-with open(f'job-list-{formatted_date}.json', 'r') as file:
-    job_list = json.load(file)
-
-for job in job_list['jobs']: 
-    # loop to create stock list
-    PARAMS = {}
-    param = job['param']
-    param_split = param.split("+")
-    maker = param_split[0]
-    spec = param_split[1]
-    thickness = round(float(param_split[2]),2)
-
-    PARAMS = {
-                "spec_name" :spec,
-                "type"      : find_spec_type(spec,spec_type_df),
-                "thickness" :thickness,
-                "maker"     : maker,
-                "code"      : maker + " " + spec  + " " + str(thickness)
-                }
+if __name__ == "__main__":
     
-    mc_df = filter_by_params(mc_file_path, PARAMS)
-    stocks = create_stocks_dict(mc_df)
+    today = datetime.datetime.today()
+    # Format the date to dd/mm/yy
+    formatted_date = today.strftime("%d-%m-%y")
 
-    stocks_list['param_finish'][param] = {'param': PARAMS, 'stocks': stocks}
-    finish_list['param_finish'][param] = {'param': PARAMS, 'customer':[]}
-    for cust, value in job['tasks'].items():
-        # loop to create finish list accordingly with params and customer
-        PARAMS1 = {
-                'customer'  :cust,
-                "spec_name" :spec,
-                "type"      : find_spec_type(spec,spec_type_df),
-                "thickness" :thickness,
-                "maker"     : maker,
-                "code"      : maker + " " + spec  + " " + str(thickness)
-                }
-        finish_df = filter_fininsh_by_params(fin_file_path, PARAMS1)
-        finish = create_finish_dict(finish_df)
-        finish_list['param_finish'][param]['customer'].append({cust: finish})
+    finish_list = {
+        'date': formatted_date,
+        'param_finish':{}
+    }
+    stocks_list = {
+        'date': formatted_date,
+        'param_finish':{}
+    }
 
+    with open(f'job-list-{formatted_date}.json', 'r') as file:
+        job_list = json.load(file)
+
+    for job in job_list['jobs']: 
+        # loop to create stock list
+        PARAMS = {}
+        param = job['param']
+        param_split = param.split("+")
+        maker = param_split[0]
+        spec = param_split[1]
+        thickness = round(float(param_split[2]),2)
+
+        PARAMS = {
+                    "spec_name" :spec,
+                    "type"      : find_spec_type(spec,spec_type_df),
+                    "thickness" :thickness,
+                    "maker"     : maker,
+                    "code"      : maker + " " + spec  + " " + str(thickness)
+                    }
+
+        mc_df = filter_by_params(mc_file_path, PARAMS)
+        stocks = create_stocks_dict(mc_df)
+
+        stocks_list['param_finish'][param] = {'param': PARAMS, 'stocks': stocks}
+        finish_list['param_finish'][param] = {'param': PARAMS, 'customer':[]}
+        for cust, value in job['tasks'].items():
+            # loop to create finish list accordingly with params and customer
+            PARAMS1 = {
+                    'customer'  :cust,
+                    "spec_name" :spec,
+                    "type"      : find_spec_type(spec,spec_type_df),
+                    "thickness" :thickness,
+                    "maker"     : maker,
+                    "code"      : maker + " " + spec  + " " + str(thickness)
+                    }
+            finish_df = filter_fininsh_by_params(fin_file_path, PARAMS1)
+            finish = create_finish_dict(finish_df)
+            finish_list['param_finish'][param]['customer'].append({cust: finish})
         
-with open(f'stocks-list-{formatted_date}.json', 'w') as stocks_file:
-    json.dump(stocks_list, stocks_file, indent=3)
+    with open(f'jobs_by_day/stocks-list-{formatted_date}.json', 'w') as stocks_file:
+        json.dump(stocks_list, stocks_file, indent=3)
 
-with open(f'finish-list-{formatted_date}.json', 'w') as json_file:
-    json.dump(finish_list, json_file, indent=3)
+    with open(f'jobs_by_day/finish-list-{formatted_date}.json', 'w') as json_file:
+        json.dump(finish_list, json_file, indent=3)

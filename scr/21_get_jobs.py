@@ -6,8 +6,8 @@ import datetime
 import copy
 
 # INPUT
-fin_file_path = "data/20240710_finish_df.xlsx"
-mc_file_path = "data/20240710_mc_df.xlsx"
+fin_file_path = "scr/data/20240710_finish_df.xlsx"
+mc_file_path = "scr/data/20240710_mc_df.xlsx"
 
 finish_key = 'order_id'
 finish_columns = ["customer_name","width", "need_cut", "fc1", "fc2", "fc3"]
@@ -101,5 +101,5 @@ for i, param in enumerate(params):
     current_job['tasks'] = copy.deepcopy(sorted_data)
 
 
-with open(f'job-list-{formatted_date}.json', 'w') as json_file:
+with open(f'jobs_by_day/job-list-{formatted_date}.json', 'w') as json_file:
     json.dump(job_list, json_file, indent=4)
