@@ -320,8 +320,9 @@ class DualProblem:
         
         # Solve the problem
         prob.solve()
+        self.probstt = LpStatus[prob.status]
 
-        if  LpStatus[prob.status] == "Optimal":
+        if  self.probstt == "Optimal":
             # Extract results
             solution = [1 if (x[p].varValue > 0 and round(x[p].varValue)==0) else round(x[p].varValue) for p in range(len(self.filtered_patterns))]  # Fix integer
             self.solution_list = []
@@ -329,7 +330,6 @@ class DualProblem:
                 count = solution[i]
                 if count > 0:
                     self.solution_list.append({"count": count, **pattern_info})
-        else: self.probstt = LpStatus[prob.status]
     
     def find_final_solution_patterns(self):
         # Neu lap stock thi rm all pattern tru cai trim loss thap nhat va chay lai
