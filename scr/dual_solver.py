@@ -330,6 +330,7 @@ class DualProblem:
                 count = solution[i]
                 if count > 0:
                     self.solution_list.append({"count": count, **pattern_info})
+        else: pass # khong co nghiem
     
     def find_final_solution_patterns(self):
         # Neu lap stock thi rm all pattern tru cai trim loss thap nhat va chay lai
@@ -371,6 +372,7 @@ class Cuttingtocks:
     def __init__(self, finish, stocks, PARAMS):
         self.S = StockObjects(stocks, PARAMS)
         self.F = FinishObjects(finish, PARAMS)
+        self.over_cut = None
 
     def update(self, bound, margin_df):
         self.F.update_bound(bound)
@@ -398,25 +400,25 @@ class Cuttingtocks:
                 total_sums[key] += round(count * value,2)
         return total_sums
 
-    def calculate_finish_after_cut(self):
+    def _calculate_finish_after_cut(self):
         # for all orginal finish, not only dual
-        for i, sol in enumerate(self.dualprob.final_solution_patterns):
-            s = self.dualprob.final_solution_patterns[i]['stock'] # stock cut
-            cuts_dict = self.dualprob.final_solution_patterns[i]['cuts']
-            weight_dict = {f: round(cuts_dict[f] * self.F.finish[f]['width'] * self.S.stocks[s]['weight']/self.S.stocks[s]['width'],3) for f in cuts_dict.keys()}
-            self.dualprob.final_solution_patterns[i] = {**sol, "cut_w": weight_dict}
-        # Total Cuts
-        total_sums = self._count_weight()
-        self.over_cut = {k: round(total_sums[k] - self.F.finish[k]['need_cut'],3) for k in total_sums.keys()} # can tinh overcut cho moi finish, du ko duoc cat trong list dual finish
-
+        if self.dualprob.probstt == "Optimal":
+            for i, sol in enumerate(self.dualprob.final_solution_patterns):
+                s = self.dualprob.final_solution_patterns[i]['stock'] # stock cut
+                cuts_dict = self.dualprob.final_solution_patterns[i]['cuts']
+                weight_dict = {f: round(cuts_dict[f] * self.F.finish[f]['width'] * self.S.stocks[s]['weight']/self.S.stocks[s]['width'],3) for f in cuts_dict.keys()}
+                self.dualprob.final_solution_patterns[i] = {**sol, "cut_w": weight_dict}
+            # Total Cuts
+            total_sums = self._count_weight()
+            self.over_cut = {k: round(total_sums[k] - self.F.finish[k]['need_cut'],3) for k in total_sums.keys()} # can tinh overcut cho moi finish, du ko duoc cat trong list dual finish
+        else: pass # ko co nghiem trong lan chay truoc do
+        
     def solve_dualprob(self):
         # Run and calculate results
         self.dualprob.run()
-        if self.dualprob.probstt == "Optimal":
-            self.calculate_finish_after_cut()
-            return self.dualprob.probstt, self.dualprob.final_solution_patterns, self.over_cut
-        else:
-            return self.dualprob.probstt, None, None
+        self._calculate_finish_after_cut()
+        
+        return self.dualprob.probstt, self.dualprob.final_solution_patterns, self.over_cut
         
     def _check_remain_stocks(self):
         # Extract stocks from final_solution_patterns
