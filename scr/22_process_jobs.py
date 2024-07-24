@@ -29,7 +29,7 @@ def create_finish_dict(finish_df):
 
 def create_stocks_dict(stock_df):
     # Sort data according to the priority of FIFO
-    sorted_df = stock_df.sort_values(by=['weight','receiving_date'], ascending=[True, False])
+    sorted_df = stock_df.sort_values(by=['weight','receiving_date'], ascending=[False, False])
     # Set the index of the DataFrame to 'stock_id'
     sorted_df.set_index(stock_key, inplace=True)
     # Convert DataFrame to dictionary
@@ -82,7 +82,7 @@ if __name__ == "__main__":
         'param_finish':{}
     }
 
-    with open(f'job-list-{formatted_date}.json', 'r') as file:
+    with open(f'scr/jobs_by_day/job-list-{formatted_date}.json', 'r') as file:
         job_list = json.load(file)
 
     for job in job_list['jobs']: 
@@ -121,8 +121,8 @@ if __name__ == "__main__":
             finish = create_finish_dict(finish_df)
             finish_list['param_finish'][param]['customer'].append({cust: finish})
         
-    with open(f'jobs_by_day/stocks-list-{formatted_date}.json', 'w') as stocks_file:
+    with open(f'scr/jobs_by_day/stocks-list-{formatted_date}.json', 'w') as stocks_file:
         json.dump(stocks_list, stocks_file, indent=3)
 
-    with open(f'jobs_by_day/finish-list-{formatted_date}.json', 'w') as json_file:
+    with open(f'scr/jobs_by_day/finish-list-{formatted_date}.json', 'w') as json_file:
         json.dump(finish_list, json_file, indent=3)
