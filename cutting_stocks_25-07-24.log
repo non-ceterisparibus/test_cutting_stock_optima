@@ -1,0 +1,612 @@
+2024-07-25 14:58:23,113 - INFO - START processing job 34 PARAMS: [POSCO JSH440W-PO 2.0] with over_cut bound 2 forecast month
+2024-07-25 14:58:23,113 - INFO - Process 7 FINISH  w 6 stocks for CUSTOMER CIC
+2024-07-25 14:58:25,669 - INFO - > Take stock ['TM246H00000202']
+2024-07-25 14:58:25,669 - INFO - >> Overcut amount {'F259': 77.138, 'F261': -2279.008, 'F256': -926.539, 'F176': 501.61, 'F179': 1021.94, 'F178': 2364.01, 'F257': -200.0}
+2024-07-25 14:58:25,669 - INFO - >>> Stocks to continue to cut dict_keys(['TM246H00000204', 'TP231H005005', 'TM246H00000203', 'TP231H004996', 'TP233H000003'])
+2024-07-25 14:58:27,689 - INFO - > Take stock ['TM246H00000202', 'TM246H00000204']
+2024-07-25 14:58:27,689 - INFO - >> Overcut amount {'F259': 77.138, 'F261': 1530.672, 'F256': 2565.671, 'F176': 501.61, 'F179': 1021.94, 'F178': 2364.01, 'F257': 180.97}
+2024-07-25 14:58:27,689 - INFO - >>> Total stock used 2
+2024-07-25 14:58:27,689 - INFO - TRIM LOSS PERCENT OF EACH STOCK [0.656, 0.738]
+2024-07-25 14:58:27,689 - INFO - >> TOTAL STOCK RATIO (OVER CUT): {'F259': 0.0042, 'F261': 0.0577, 'F256': 0.3762, 'F176': 0.216, 'F179': 0.7165, 'F178': 0.3443, 'F257': 1.1921}
+2024-07-25 14:58:27,690 - INFO - -->> SOLUTION [{'count': 1, 'stock': 'TM246H00000202', 'cuts': {'F259': 2, 'F261': 0, 'F256': 0, 'F176': 1, 'F179': 1, 'F178': 2, 'F257': 0}, 'trim_loss': 8.0, 'trim_loss_pct': 0.656, 'cut_w': {'F259': 2422.149, 'F261': 0.0, 'F256': 0.0, 'F176': 1145.611, 'F179': 1544.938, 'F178': 2814.93, 'F257': 0.0}}, {'count': 1, 'stock': 'TM246H00000204', 'cuts': {'F259': 0, 'F261': 2, 'F256': 2, 'F176': 0, 'F179': 0, 'F178': 0, 'F257': 1}, 'trim_loss': 9.0, 'trim_loss_pct': 0.738, 'cut_w': {'F259': 0.0, 'F261': 3809.68, 'F256': 3492.207, 'F176': 0.0, 'F179': 0.0, 'F178': 0.0, 'F257': 380.968}}]
+2024-07-25 14:58:27,690 - INFO - ENDED
+2024-07-25 15:05:30,564 - INFO - START processing job 31 PARAMS: [POSCO JSH270C-PO 2.6] with over_cut bound 3 forecast month
+2024-07-25 15:05:30,564 - INFO - Process 8 FINISH  w 4 stocks for CUSTOMER VPIC1
+2024-07-25 15:05:30,564 - WARNING - Lacks of stocks
+2024-07-25 15:05:32,516 - INFO - > Take stock ['HTV0828/23-D1', 'HTV0895/23', 'HTV1363/23', 'TP235H001943']
+2024-07-25 15:05:32,516 - INFO - >> Overcut amount {'F375': -5865.17, 'F370': 682.38, 'F368': -567.9, 'F381': -1349.08, 'F372': -1819.0, 'F379': -920.0, 'F369': 221.01, 'F374': -412.0}
+2024-07-25 15:05:32,516 - INFO - >>> Total stock used 4
+2024-07-25 15:05:32,516 - INFO - TRIM LOSS PERCENT OF EACH STOCK [0.903, 0.492, 0.492, 1.559]
+2024-07-25 15:05:32,516 - INFO - >> TOTAL STOCK RATIO (OVER CUT): {'F375': -0.2528, 'F370': 0.1015, 'F368': -0.1224, 'F381': -0.3846, 'F372': -1.1092, 'F379': -0.3819, 'F369': 0.1108, 'F374': -0.2034}
+2024-07-25 15:05:32,516 - INFO - -->> SOLUTION [{'count': 1, 'stock': 'HTV0828/23-D1', 'cuts': {'F375': 0, 'F370': 9, 'F368': 0, 'F381': 0, 'F372': 0, 'F379': 0, 'F369': 0, 'F374': 0}, 'trim_loss': 10.0, 'trim_loss_pct': 0.903, 'cut_w': {'F375': 0.0, 'F370': 4227.498, 'F368': 0.0, 'F381': 0.0, 'F372': 0.0, 'F379': 0.0, 'F369': 0.0, 'F374': 0.0}}, {'count': 1, 'stock': 'HTV0895/23', 'cuts': {'F375': 4, 'F370': 2, 'F368': 1, 'F381': 1, 'F372': 0, 'F379': 0, 'F369': 0, 'F374': 0}, 'trim_loss': 6.0, 'trim_loss_pct': 0.492, 'cut_w': {'F375': 3511.075, 'F370': 1070.878, 'F368': 460.829, 'F381': 280.886, 'F372': 0.0, 'F379': 0.0, 'F369': 0.0, 'F374': 0.0}}, {'count': 1, 'stock': 'HTV1363/23', 'cuts': {'F375': 0, 'F370': 0, 'F368': 6, 'F381': 4, 'F372': 0, 'F379': 0, 'F369': 3, 'F374': 0}, 'trim_loss': 6.0, 'trim_loss_pct': 0.492, 'cut_w': {'F375': 0.0, 'F370': 0.0, 'F368': 2067.268, 'F381': 840.033, 'F372': 0.0, 'F379': 0.0, 'F369': 1073.011, 'F374': 0.0}}, {'count': 1, 'stock': 'TP235H001943', 'cuts': {'F375': 6, 'F370': 0, 'F368': 0, 'F381': 0, 'F372': 0, 'F379': 0, 'F369': 0, 'F374': 0}, 'trim_loss': 19.0, 'trim_loss_pct': 1.559, 'cut_w': {'F375': 393.765, 'F370': 0.0, 'F368': 0.0, 'F381': 0.0, 'F372': 0.0, 'F379': 0.0, 'F369': 0.0, 'F374': 0.0}}]
+2024-07-25 15:05:32,516 - INFO - ENDED
+
+2024-07-25 15:08:35,901 - INFO - *** LOAD JOB LIST ***
+2024-07-25 15:08:35,902 - INFO - --- PROCEED JOBS ---
+2024-07-25 15:08:35,902 - INFO - --> START processing job 0 PARAMS: [POSCOVN JSC270C-SD 1.0] with over_cut bound 2 forecast month
+2024-07-25 15:08:35,902 - INFO - Process 1 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:08:35,902 - WARNING - May over cut too much 
+2024-07-25 15:08:35,961 - INFO - > Take stock []
+2024-07-25 15:08:35,961 - INFO - >> Overcut amount None
+2024-07-25 15:08:35,961 - WARNING - Status Infeasible
+2024-07-25 15:08:35,961 - INFO - The solution is empty.
+2024-07-25 15:08:35,961 - INFO -  Stock after cut: None
+2024-07-25 15:08:35,961 - INFO - --- DONE TASK ---
+2024-07-25 15:08:35,961 - INFO - --> START processing job 1 PARAMS: [POSCOVST SUS409L-2D 2.0] with over_cut bound 2 forecast month
+2024-07-25 15:08:35,961 - INFO - Process 5 FINISH  w 2 stocks for CUSTOMER TEC
+2024-07-25 15:08:35,961 - WARNING - Lacks of stocks
+2024-07-25 15:08:36,316 - INFO - > Take stock []
+2024-07-25 15:08:36,316 - INFO - >> Overcut amount None
+2024-07-25 15:08:36,316 - WARNING - Status Infeasible
+2024-07-25 15:08:36,316 - INFO - The solution is empty.
+2024-07-25 15:08:36,316 - INFO -  Stock after cut: None
+2024-07-25 15:08:36,316 - INFO - --- DONE TASK ---
+2024-07-25 15:08:36,317 - INFO - --> START processing job 2 PARAMS: [CSVC JSH270C-PO 3.0] with over_cut bound 2 forecast month
+2024-07-25 15:08:36,317 - INFO - Process 3 FINISH  w 1 stocks for CUSTOMER VPIC1
+2024-07-25 15:08:36,317 - WARNING - May have enough stocks to cut
+2024-07-25 15:08:36,419 - INFO - > Take stock ['TR246H00000053']
+2024-07-25 15:08:36,419 - INFO - >> Overcut amount {'F418': 1615.24, 'F419': 635.49, 'F420': 0.0}
+2024-07-25 15:08:36,419 - INFO - >>> Total stock USED 1
+2024-07-25 15:08:36,419 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [0.984]
+2024-07-25 15:08:36,419 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F418': 0.3601, 'F419': 1.2647, 'F420': 0.0}
+2024-07-25 15:08:36,419 - INFO - saved to csv
+2024-07-25 15:08:36,419 - INFO -  Stock after cut: {'F418': 1615.24, 'F419': 635.49, 'F420': 0.0}
+2024-07-25 15:08:36,419 - INFO - --- DONE TASK ---
+2024-07-25 15:08:36,419 - INFO - --> START processing job 3 PARAMS: [CSC JSH590R-PO 2.0] with over_cut bound 2 forecast month
+2024-07-25 15:08:36,419 - INFO - Process 8 FINISH  w 11 stocks for CUSTOMER CIC
+2024-07-25 15:08:36,419 - WARNING - May have enough stocks to cut
+2024-07-25 15:08:41,364 - INFO - > Take stock []
+2024-07-25 15:08:41,364 - INFO - >> Overcut amount None
+2024-07-25 15:08:41,364 - WARNING - Status Infeasible
+2024-07-25 15:08:41,364 - INFO - The solution is empty.
+2024-07-25 15:08:41,364 - INFO -  Stock after cut: None
+2024-07-25 15:08:41,364 - INFO - --- DONE TASK ---
+2024-07-25 15:08:41,364 - INFO - --> START processing job 4 PARAMS: [POSCO JSH270C-PO 2.3] with over_cut bound 2 forecast month
+2024-07-25 15:08:41,365 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER VPIC1
+2024-07-25 15:08:41,365 - WARNING - Lacks of stocks
+2024-07-25 15:08:41,969 - INFO - > Take stock ['HTV0876/23']
+2024-07-25 15:08:41,969 - INFO - >> Overcut amount {'F364': -729.96, 'F361': -83.99, 'F360': -1599.0, 'F365': 520.29, 'F359': 1601.03, 'F367': 444.92}
+2024-07-25 15:08:41,969 - INFO - >>> Total stock USED 1
+2024-07-25 15:08:41,969 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [0.492]
+2024-07-25 15:08:41,969 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F364': -0.0465, 'F361': -0.016, 'F360': -0.4846, 'F365': 0.3954, 'F359': 1.5425, 'F367': 0.7218}
+2024-07-25 15:08:41,969 - INFO - saved to csv
+2024-07-25 15:08:41,969 - INFO -  Stock after cut: {'F364': -729.96, 'F361': -83.99, 'F360': -1599.0, 'F365': 520.29, 'F359': 1601.03, 'F367': 444.92}
+2024-07-25 15:08:41,969 - INFO - --- DONE TASK ---
+2024-07-25 15:08:41,969 - INFO - Out of stocks for for CUSTOMER CIC
+2024-07-25 15:08:41,969 - INFO - --> START processing job 5 PARAMS: [POSCOVN JSC270C-SD 2.0] with over_cut bound 2 forecast month
+2024-07-25 15:08:41,969 - INFO - Process 1 FINISH  w 1 stocks for CUSTOMER VPIC1
+2024-07-25 15:08:41,969 - WARNING - May over cut too much 
+2024-07-25 15:08:42,004 - INFO - > Take stock []
+2024-07-25 15:08:42,004 - INFO - >> Overcut amount None
+2024-07-25 15:08:42,004 - WARNING - Status Infeasible
+2024-07-25 15:08:42,004 - INFO - The solution is empty.
+2024-07-25 15:08:42,004 - INFO -  Stock after cut: None
+2024-07-25 15:08:42,004 - INFO - --- DONE TASK ---
+2024-07-25 15:08:42,004 - INFO - --> START processing job 6 PARAMS: [CSC JSH590R-PO 2.3] with over_cut bound 2 forecast month
+2024-07-25 15:08:42,004 - INFO - Process 1 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:08:42,004 - WARNING - May have enough stocks to cut
+2024-07-25 15:08:42,038 - INFO - > Take stock []
+2024-07-25 15:08:42,038 - INFO - >> Overcut amount None
+2024-07-25 15:08:42,038 - WARNING - Status Infeasible
+2024-07-25 15:08:42,038 - INFO - The solution is empty.
+2024-07-25 15:08:42,038 - INFO -  Stock after cut: None
+2024-07-25 15:08:42,038 - INFO - --- DONE TASK ---
+2024-07-25 15:08:42,038 - INFO - --> START processing job 7 PARAMS: [POSCOVN SPCC-SD 1.6] with over_cut bound 2 forecast month
+2024-07-25 15:08:42,038 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:08:42,038 - WARNING - May over cut too much 
+2024-07-25 15:08:42,490 - INFO - > Take stock ['TP234H005714']
+2024-07-25 15:08:42,490 - INFO - >> Overcut amount {'F240': 468.708, 'F234': 703.21, 'F233': 0.0, 'F228': 570.14, 'F229': 0.0, 'F231': 1240.05}
+2024-07-25 15:08:42,490 - INFO - >>> Total stock USED 1
+2024-07-25 15:08:42,490 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [0.656]
+2024-07-25 15:08:42,490 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F240': 0.4341, 'F234': 1.7729, 'F233': 0.0, 'F228': 1.2444, 'F229': 0.0, 'F231': 0.1948}
+2024-07-25 15:08:42,490 - INFO - saved to csv
+2024-07-25 15:08:42,490 - INFO -  Stock after cut: {'F240': 468.708, 'F234': 703.21, 'F233': 0.0, 'F228': 570.14, 'F229': 0.0, 'F231': 1240.05}
+2024-07-25 15:08:42,490 - INFO - --- DONE TASK ---
+2024-07-25 15:08:42,490 - INFO - --> START processing job 8 PARAMS: [POSCO JSH270C-PO 2.9] with over_cut bound 2 forecast month
+2024-07-25 15:08:42,490 - INFO - Process 3 FINISH  w 2 stocks for CUSTOMER CIC
+2024-07-25 15:08:42,490 - WARNING - Lacks of stocks
+2024-07-25 15:08:42,603 - INFO - > Take stock []
+2024-07-25 15:08:42,604 - INFO - >> Overcut amount None
+2024-07-25 15:08:42,604 - WARNING - Status Infeasible
+2024-07-25 15:08:42,604 - INFO - The solution is empty.
+2024-07-25 15:08:42,604 - INFO -  Stock after cut: None
+2024-07-25 15:08:42,604 - INFO - --- DONE TASK ---
+2024-07-25 15:08:42,604 - INFO - Process 3 FINISH  w 2 stocks for CUSTOMER VPIC1
+2024-07-25 15:08:42,604 - WARNING - Lacks of stocks
+2024-07-25 15:08:42,655 - INFO - > Take stock ['HTV1773/23']
+2024-07-25 15:08:42,655 - INFO - >> Overcut amount {'F385': 696.63, 'F387': 1009.3}
+2024-07-25 15:08:42,655 - INFO - >>> Total stock USED 1
+2024-07-25 15:08:42,655 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [0.679]
+2024-07-25 15:08:42,655 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F385': 0.0754, 'F387': 0.1436}
+2024-07-25 15:08:42,656 - INFO - saved to csv
+2024-07-25 15:08:42,656 - INFO -  Stock after cut: {'F385': 696.63, 'F387': 1009.3}
+2024-07-25 15:08:42,656 - INFO - --- DONE TASK ---
+2024-07-25 15:08:42,656 - INFO - --> START processing job 9 PARAMS: [POSCOVST SUS409L-2D 1.2] with over_cut bound 2 forecast month
+2024-07-25 15:08:42,656 - INFO - Process 6 FINISH  w 4 stocks for CUSTOMER TEC
+2024-07-25 15:08:42,656 - WARNING - May have enough stocks to cut
+2024-07-25 15:08:44,236 - INFO - > Take stock ['HTV0340/24', 'HTV0341/24', 'HTV0348/24']
+2024-07-25 15:08:44,236 - INFO - >> Overcut amount {'F626': 758.453, 'F636': -1629.587, 'F637': 2357.012, 'F624': 1036.271, 'F628': 2574.861, 'F646': 458.45}
+2024-07-25 15:08:44,236 - INFO - >>> Stocks to continue to cut dict_keys(['HTV0349/24'])
+2024-07-25 15:08:44,725 - INFO - > Take stock ['HTV0340/24', 'HTV0341/24', 'HTV0348/24', 'HTV0349/24']
+2024-07-25 15:08:44,726 - INFO - >> Overcut amount {'F626': 758.453, 'F636': 5995.603, 'F637': 2357.012, 'F624': 1036.271, 'F628': 2574.861, 'F646': 458.45}
+2024-07-25 15:08:44,726 - INFO - >>> Total stock USED 4
+2024-07-25 15:08:44,726 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [0.492, 1.313, 0.574, 3.527]
+2024-07-25 15:08:44,726 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F626': 0.0463, 'F636': 0.502, 'F637': 0.2222, 'F624': 0.595, 'F628': 1.1431, 'F646': 1.1726}
+2024-07-25 15:08:44,726 - INFO - saved to csv
+2024-07-25 15:08:44,726 - INFO -  Stock after cut: {'F626': 758.453, 'F636': 5995.603, 'F637': 2357.012, 'F624': 1036.271, 'F628': 2574.861, 'F646': 458.45}
+2024-07-25 15:08:44,726 - INFO - --- DONE TASK ---
+2024-07-25 15:08:44,726 - INFO - --> START processing job 10 PARAMS: [POSCO SAPH440-PO 4.0] with over_cut bound 2 forecast month
+2024-07-25 15:08:44,726 - INFO - Process 2 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:08:44,726 - WARNING - May have enough stocks to cut
+2024-07-25 15:08:44,761 - INFO - > Take stock []
+2024-07-25 15:08:44,761 - INFO - >> Overcut amount None
+2024-07-25 15:08:44,761 - WARNING - Status Infeasible
+2024-07-25 15:08:44,761 - INFO - The solution is empty.
+2024-07-25 15:08:44,761 - INFO -  Stock after cut: None
+2024-07-25 15:08:44,761 - INFO - --- DONE TASK ---
+2024-07-25 15:08:44,761 - INFO - Process 2 FINISH  w 1 stocks for CUSTOMER VPIC1
+2024-07-25 15:08:44,761 - WARNING - May have enough stocks to cut
+2024-07-25 15:08:44,809 - INFO - > Take stock []
+2024-07-25 15:08:44,809 - INFO - >> Overcut amount None
+2024-07-25 15:08:44,809 - WARNING - Status Infeasible
+2024-07-25 15:08:44,809 - INFO - The solution is empty.
+2024-07-25 15:08:44,809 - INFO -  Stock after cut: None
+2024-07-25 15:08:44,809 - INFO - --- DONE TASK ---
+2024-07-25 15:08:44,809 - INFO - --> START processing job 11 PARAMS: [POSCOVN SPCC-SD 1.4] with over_cut bound 2 forecast month
+2024-07-25 15:08:44,809 - INFO - Process 3 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:08:44,884 - INFO - > Take stock []
+2024-07-25 15:08:44,884 - INFO - >> Overcut amount None
+2024-07-25 15:08:44,884 - WARNING - Status Infeasible
+2024-07-25 15:08:44,884 - INFO - The solution is empty.
+2024-07-25 15:08:44,884 - INFO -  Stock after cut: None
+2024-07-25 15:08:44,884 - INFO - --- DONE TASK ---
+2024-07-25 15:08:44,884 - INFO - Process 3 FINISH  w 1 stocks for CUSTOMER VPIC1
+2024-07-25 15:08:44,930 - INFO - > Take stock []
+2024-07-25 15:08:44,930 - INFO - >> Overcut amount None
+2024-07-25 15:08:44,930 - WARNING - Status Infeasible
+2024-07-25 15:08:44,930 - INFO - The solution is empty.
+2024-07-25 15:08:44,930 - INFO -  Stock after cut: None
+2024-07-25 15:08:44,930 - INFO - --- DONE TASK ---
+2024-07-25 15:08:44,930 - INFO - --> START processing job 12 PARAMS: [POSCOVN JSC270C-SD 1.6] with over_cut bound 2 forecast month
+2024-07-25 15:08:44,930 - INFO - Process 1 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:08:44,930 - WARNING - May have enough stocks to cut
+2024-07-25 15:08:44,967 - INFO - > Take stock ['TP238H005824']
+2024-07-25 15:08:44,967 - INFO - >> Overcut amount {'F183': 782.301}
+2024-07-25 15:08:44,967 - INFO - >>> Total stock USED 1
+2024-07-25 15:08:44,967 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [3.39]
+2024-07-25 15:08:44,967 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F183': 1.0137}
+2024-07-25 15:08:44,967 - INFO - saved to csv
+2024-07-25 15:08:44,967 - INFO -  Stock after cut: {'F183': 782.301}
+2024-07-25 15:08:44,967 - INFO - --- DONE TASK ---
+2024-07-25 15:08:44,967 - INFO - --> START processing job 13 PARAMS: [POSCOVST SUS409L-2D 1.0] with over_cut bound 2 forecast month
+2024-07-25 15:08:44,967 - INFO - Process 11 FINISH  w 7 stocks for CUSTOMER TEC
+2024-07-25 15:08:44,967 - WARNING - May have enough stocks to cut
+2024-07-25 15:08:52,701 - INFO - > Take stock ['HTV0140/24']
+2024-07-25 15:08:52,701 - INFO - >> Overcut amount {'F621': -16090.788, 'F620': -5384.858, 'F610': -5855.524, 'F618': -5143.398, 'F617': -1677.0, 'F608': 702.642, 'F613': -647.362, 'F616': -455.0, 'F607': -90.678, 'F615': -56.619, 'F609': -22.935}
+2024-07-25 15:08:52,701 - INFO - >>> Stocks to continue to cut dict_keys(['HTV0133/24', 'HTV0134/24', 'HTV0132/24', 'HTV0136/24', 'HTV0135/24', 'HTV0139/24'])
+2024-07-25 15:08:59,691 - INFO - > Take stock ['HTV0140/24', 'HTV0133/24']
+2024-07-25 15:08:59,691 - INFO - >> Overcut amount {'F621': -14165.358, 'F620': -5384.858, 'F610': -3145.414, 'F618': -5143.398, 'F617': 670.44, 'F608': 702.642, 'F613': -647.362, 'F616': -455.0, 'F607': -90.678, 'F615': 958.851, 'F609': -22.935}
+2024-07-25 15:08:59,691 - INFO - >>> Stocks to continue to cut dict_keys(['HTV0134/24', 'HTV0132/24', 'HTV0136/24', 'HTV0135/24', 'HTV0139/24'])
+2024-07-25 15:09:04,779 - INFO - > Take stock ['HTV0140/24', 'HTV0133/24']
+2024-07-25 15:09:04,779 - INFO - >> Overcut amount {'F621': -14165.358, 'F620': -5384.858, 'F610': -3145.414, 'F618': -5143.398, 'F617': 670.44, 'F608': 702.642, 'F613': -647.362, 'F616': -455.0, 'F607': -90.678, 'F615': 958.851, 'F609': -22.935}
+2024-07-25 15:09:04,779 - INFO - >>> Stocks to continue to cut dict_keys(['HTV0132/24', 'HTV0136/24', 'HTV0135/24', 'HTV0139/24'])
+2024-07-25 15:09:11,730 - INFO - > Take stock ['HTV0140/24', 'HTV0133/24', 'HTV0132/24', 'HTV0139/24']
+2024-07-25 15:09:11,730 - INFO - >> Overcut amount {'F621': -12246.878, 'F620': -5384.858, 'F610': 455.026, 'F618': 2405.582, 'F617': 670.44, 'F608': 1458.212, 'F613': -647.362, 'F616': 569.94, 'F607': 579.472, 'F615': 958.851, 'F609': -22.935}
+2024-07-25 15:09:11,730 - INFO - >>> Stocks to continue to cut dict_keys(['HTV0136/24', 'HTV0135/24'])
+2024-07-25 15:09:14,249 - INFO - > Take stock ['HTV0140/24', 'HTV0133/24', 'HTV0132/24', 'HTV0139/24', 'HTV0136/24']
+2024-07-25 15:09:14,249 - INFO - >> Overcut amount {'F621': -10349.958, 'F620': -3552.898, 'F610': 1345.016, 'F618': 2405.582, 'F617': 2983.13, 'F608': 1458.212, 'F613': 301.098, 'F616': 569.94, 'F607': 579.472, 'F615': 958.851, 'F609': -22.935}
+2024-07-25 15:09:14,249 - INFO - >>> Stocks to continue to cut dict_keys(['HTV0135/24'])
+2024-07-25 15:09:15,611 - INFO - > Take stock ['HTV0140/24', 'HTV0133/24', 'HTV0132/24', 'HTV0139/24', 'HTV0136/24', 'HTV0135/24']
+2024-07-25 15:09:15,611 - INFO - >> Overcut amount {'F621': -8465.018, 'F620': -3552.898, 'F610': 2229.396, 'F618': 7466.532, 'F617': 2983.13, 'F608': 1458.212, 'F613': 301.098, 'F616': 569.94, 'F607': 579.472, 'F615': 958.851, 'F609': -22.935}
+2024-07-25 15:09:15,611 - INFO - >>> Total stock USED 6
+2024-07-25 15:09:15,611 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [0.492, 0.492, 0.492, 3.527, 0.492, 0.492]
+2024-07-25 15:09:15,611 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F621': -0.2715, 'F620': -0.1396, 'F610': 0.1776, 'F618': 0.6498, 'F617': 0.3647, 'F608': 1.1598, 'F613': 0.2117, 'F616': 0.3707, 'F607': 0.8293, 'F615': 0.634, 'F609': -0.0432}
+2024-07-25 15:09:15,611 - INFO - saved to csv
+2024-07-25 15:09:15,611 - INFO -  Stock after cut: {'F621': -8465.018, 'F620': -3552.898, 'F610': 2229.396, 'F618': 7466.532, 'F617': 2983.13, 'F608': 1458.212, 'F613': 301.098, 'F616': 569.94, 'F607': 579.472, 'F615': 958.851, 'F609': -22.935}
+2024-07-25 15:09:15,611 - INFO - --- DONE TASK ---
+2024-07-25 15:09:15,611 - INFO - --> START processing job 14 PARAMS: [CSC CH1751Z-F-20/20 1.0] with over_cut bound 2 forecast month
+2024-07-25 15:09:15,611 - INFO - Process 4 FINISH  w 2 stocks for CUSTOMER VPIC1
+2024-07-25 15:09:15,611 - WARNING - May over cut too much 
+2024-07-25 15:09:15,695 - INFO - > Take stock []
+2024-07-25 15:09:15,695 - INFO - >> Overcut amount None
+2024-07-25 15:09:15,695 - WARNING - Status Infeasible
+2024-07-25 15:09:15,695 - INFO - The solution is empty.
+2024-07-25 15:09:15,695 - INFO -  Stock after cut: None
+2024-07-25 15:09:15,695 - INFO - --- DONE TASK ---
+2024-07-25 15:09:15,695 - INFO - --> START processing job 15 PARAMS: [POSCO JSH270C-PO 4.0] with over_cut bound 2 forecast month
+2024-07-25 15:09:15,695 - INFO - Process 3 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:09:15,695 - WARNING - May over cut too much 
+2024-07-25 15:09:15,823 - INFO - > Take stock ['TP237H001167']
+2024-07-25 15:09:15,823 - INFO - >> Overcut amount {'F20': 4851.371, 'F18': 1341.8, 'F19': 0.0}
+2024-07-25 15:09:15,823 - INFO - >>> Total stock USED 1
+2024-07-25 15:09:15,823 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [1.756]
+2024-07-25 15:09:15,823 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F20': 1.6599, 'F18': 0.4663, 'F19': 0.0}
+2024-07-25 15:09:15,823 - INFO - saved to csv
+2024-07-25 15:09:15,823 - INFO -  Stock after cut: {'F20': 4851.371, 'F18': 1341.8, 'F19': 0.0}
+2024-07-25 15:09:15,823 - INFO - --- DONE TASK ---
+2024-07-25 15:09:15,823 - INFO - --> START processing job 16 PARAMS: [CSVC JSH270C-PO 6.0] with over_cut bound 2 forecast month
+2024-07-25 15:09:15,823 - INFO - Process 3 FINISH  w 2 stocks for CUSTOMER VPIC1
+2024-07-25 15:09:15,823 - WARNING - May have enough stocks to cut
+2024-07-25 15:09:16,012 - INFO - > Take stock ['HTV0831/24']
+2024-07-25 15:09:16,012 - INFO - >> Overcut amount {'F424': -2891.01, 'F426': 2400.61, 'F425': -736.0}
+2024-07-25 15:09:16,012 - INFO - >>> Stocks to continue to cut dict_keys(['TR246H00000078'])
+2024-07-25 15:09:16,123 - INFO - > Take stock ['HTV0831/24', 'TR246H00000078']
+2024-07-25 15:09:16,123 - INFO - >> Overcut amount {'F424': 3104.81, 'F426': 3046.83, 'F425': 576.42}
+2024-07-25 15:09:16,123 - INFO - >>> Total stock USED 2
+2024-07-25 15:09:16,123 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [1.148, 2.051]
+2024-07-25 15:09:16,123 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F424': 0.1708, 'F426': 1.3481, 'F425': 0.1483}
+2024-07-25 15:09:16,123 - INFO - saved to csv
+2024-07-25 15:09:16,123 - INFO -  Stock after cut: {'F424': 3104.81, 'F426': 3046.83, 'F425': 576.42}
+2024-07-25 15:09:16,123 - INFO - --- DONE TASK ---
+2024-07-25 15:09:16,123 - INFO - --> START processing job 17 PARAMS: [POSCOVN JSC270C-SD 1.4] with over_cut bound 2 forecast month
+2024-07-25 15:09:16,123 - INFO - Process 1 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:09:16,157 - INFO - > Take stock []
+2024-07-25 15:09:16,157 - INFO - >> Overcut amount None
+2024-07-25 15:09:16,157 - WARNING - Status Infeasible
+2024-07-25 15:09:16,157 - INFO - The solution is empty.
+2024-07-25 15:09:16,157 - INFO -  Stock after cut: None
+2024-07-25 15:09:16,157 - INFO - --- DONE TASK ---
+2024-07-25 15:09:16,157 - INFO - --> START processing job 18 PARAMS: [POSCOVST SUS409L-2D 0.8] with over_cut bound 2 forecast month
+2024-07-25 15:09:16,157 - INFO - Process 1 FINISH  w 1 stocks for CUSTOMER TEC
+2024-07-25 15:09:16,157 - WARNING - Lacks of stocks
+2024-07-25 15:09:16,193 - INFO - > Take stock []
+2024-07-25 15:09:16,193 - INFO - >> Overcut amount None
+2024-07-25 15:09:16,193 - WARNING - Status Infeasible
+2024-07-25 15:09:16,193 - INFO - The solution is empty.
+2024-07-25 15:09:16,193 - INFO -  Stock after cut: None
+2024-07-25 15:09:16,193 - INFO - --- DONE TASK ---
+2024-07-25 15:09:16,193 - INFO - --> START processing job 19 PARAMS: [POSCOVN SPCC-SD 1.2] with over_cut bound 2 forecast month
+2024-07-25 15:09:16,193 - INFO - Process 2 FINISH  w 2 stocks for CUSTOMER CIC
+2024-07-25 15:09:16,193 - WARNING - May have enough stocks to cut
+2024-07-25 15:09:16,240 - INFO - > Take stock []
+2024-07-25 15:09:16,240 - INFO - >> Overcut amount None
+2024-07-25 15:09:16,240 - WARNING - Status Infeasible
+2024-07-25 15:09:16,240 - INFO - The solution is empty.
+2024-07-25 15:09:16,240 - INFO -  Stock after cut: None
+2024-07-25 15:09:16,240 - INFO - --- DONE TASK ---
+2024-07-25 15:09:16,240 - INFO - Process 1 FINISH  w 2 stocks for CUSTOMER VPIC1
+2024-07-25 15:09:16,240 - WARNING - May have enough stocks to cut
+2024-07-25 15:09:16,287 - INFO - > Take stock []
+2024-07-25 15:09:16,287 - INFO - >> Overcut amount None
+2024-07-25 15:09:16,287 - WARNING - Status Infeasible
+2024-07-25 15:09:16,287 - INFO - The solution is empty.
+2024-07-25 15:09:16,287 - INFO -  Stock after cut: None
+2024-07-25 15:09:16,287 - INFO - --- DONE TASK ---
+2024-07-25 15:09:16,288 - INFO - --> START processing job 20 PARAMS: [CSC JSH590R-PO 2.9] with over_cut bound 2 forecast month
+2024-07-25 15:09:16,288 - INFO - Process 2 FINISH  w 2 stocks for CUSTOMER CIC
+2024-07-25 15:09:16,365 - INFO - > Take stock ['HTV1152/23']
+2024-07-25 15:09:16,365 - INFO - >> Overcut amount {'F41': 1560.05, 'F40': 1004.35}
+2024-07-25 15:09:16,365 - INFO - >>> Total stock USED 1
+2024-07-25 15:09:16,365 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [1.559]
+2024-07-25 15:09:16,365 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F41': 0.2594, 'F40': 0.2929}
+2024-07-25 15:09:16,365 - INFO - saved to csv
+2024-07-25 15:09:16,365 - INFO -  Stock after cut: {'F41': 1560.05, 'F40': 1004.35}
+2024-07-25 15:09:16,365 - INFO - --- DONE TASK ---
+2024-07-25 15:09:16,365 - INFO - --> START processing job 21 PARAMS: [CSC SPHC 8.0] with over_cut bound 2 forecast month
+2024-07-25 15:09:16,365 - INFO - Process 2 FINISH  w 2 stocks for CUSTOMER VPIC1
+2024-07-25 15:09:16,418 - INFO - > Take stock []
+2024-07-25 15:09:16,418 - INFO - >> Overcut amount None
+2024-07-25 15:09:16,418 - WARNING - Status Infeasible
+2024-07-25 15:09:16,418 - INFO - The solution is empty.
+2024-07-25 15:09:16,418 - INFO -  Stock after cut: None
+2024-07-25 15:09:16,418 - INFO - --- DONE TASK ---
+2024-07-25 15:09:16,418 - INFO - --> START processing job 22 PARAMS: [CSC JSH590R-PO 2.6] with over_cut bound 2 forecast month
+2024-07-25 15:09:16,418 - INFO - Process 1 FINISH  w 2 stocks for CUSTOMER CIC
+2024-07-25 15:09:16,418 - WARNING - May over cut too much 
+2024-07-25 15:09:16,466 - INFO - > Take stock []
+2024-07-25 15:09:16,466 - INFO - >> Overcut amount None
+2024-07-25 15:09:16,466 - WARNING - Status Infeasible
+2024-07-25 15:09:16,466 - INFO - The solution is empty.
+2024-07-25 15:09:16,466 - INFO -  Stock after cut: None
+2024-07-25 15:09:16,466 - INFO - --- DONE TASK ---
+2024-07-25 15:09:16,466 - INFO - --> START processing job 23 PARAMS: [CSVC JSH440W-PO 3.2] with over_cut bound 2 forecast month
+2024-07-25 15:09:16,466 - INFO - Process 3 FINISH  w 3 stocks for CUSTOMER CIC
+2024-07-25 15:09:16,466 - WARNING - May have enough stocks to cut
+2024-07-25 15:09:16,565 - INFO - > Take stock ['HTV0519/23', 'HTV0520/23', 'HTV0729/23']
+2024-07-25 15:09:16,565 - INFO - >> Overcut amount {'F124': 472.15, 'F125': 1786.224, 'F123': 3574.6}
+2024-07-25 15:09:16,565 - INFO - >>> Total stock USED 3
+2024-07-25 15:09:16,565 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [1.559, 2.051, 1.559]
+2024-07-25 15:09:16,565 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F124': 0.0343, 'F125': 0.1943, 'F123': 0.6879}
+2024-07-25 15:09:16,565 - INFO - saved to csv
+2024-07-25 15:09:16,565 - INFO -  Stock after cut: {'F124': 472.15, 'F125': 1786.224, 'F123': 3574.6}
+2024-07-25 15:09:16,565 - INFO - --- DONE TASK ---
+2024-07-25 15:09:16,565 - INFO - --> START processing job 24 PARAMS: [CSVC JSH440W-PO 2.9] with over_cut bound 2 forecast month
+2024-07-25 15:09:16,565 - INFO - Process 1 FINISH  w 3 stocks for CUSTOMER VPIC1
+2024-07-25 15:09:16,636 - INFO - > Take stock ['HTV0834/24']
+2024-07-25 15:09:16,636 - INFO - >> Overcut amount {'F442': 2858.96}
+2024-07-25 15:09:16,636 - INFO - >>> Total stock USED 1
+2024-07-25 15:09:16,636 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [1.138]
+2024-07-25 15:09:16,636 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F442': 0.3084}
+2024-07-25 15:09:16,636 - INFO - saved to csv
+2024-07-25 15:09:16,636 - INFO -  Stock after cut: {'F442': 2858.96}
+2024-07-25 15:09:16,636 - INFO - --- DONE TASK ---
+2024-07-25 15:09:16,636 - INFO - --> START processing job 25 PARAMS: [CSC JSC590R-SD 1.6] with over_cut bound 2 forecast month
+2024-07-25 15:09:16,636 - INFO - Process 2 FINISH  w 7 stocks for CUSTOMER CIC
+2024-07-25 15:09:16,776 - INFO - > Take stock []
+2024-07-25 15:09:16,776 - INFO - >> Overcut amount None
+2024-07-25 15:09:16,776 - WARNING - Status Infeasible
+2024-07-25 15:09:16,776 - INFO - The solution is empty.
+2024-07-25 15:09:16,776 - INFO -  Stock after cut: None
+2024-07-25 15:09:16,776 - INFO - --- DONE TASK ---
+2024-07-25 15:09:16,776 - INFO - --> START processing job 26 PARAMS: [CSVC JSH270C-PO 2.0] with over_cut bound 2 forecast month
+2024-07-25 15:09:16,776 - INFO - Process 10 FINISH  w 4 stocks for CUSTOMER VPIC1
+2024-07-25 15:09:16,776 - WARNING - May have enough stocks to cut
+2024-07-25 15:09:18,930 - INFO - > Take stock []
+2024-07-25 15:09:18,930 - INFO - >> Overcut amount None
+2024-07-25 15:09:18,931 - WARNING - Status Infeasible
+2024-07-25 15:09:18,931 - INFO - The solution is empty.
+2024-07-25 15:09:18,931 - INFO -  Stock after cut: None
+2024-07-25 15:09:18,931 - INFO - --- DONE TASK ---
+2024-07-25 15:09:18,931 - INFO - Process 13 FINISH  w 4 stocks for CUSTOMER CIC
+2024-07-25 15:09:18,931 - WARNING - May have enough stocks to cut
+2024-07-25 15:09:22,144 - INFO - > Take stock []
+2024-07-25 15:09:22,144 - INFO - >> Overcut amount None
+2024-07-25 15:09:22,144 - WARNING - Status Infeasible
+2024-07-25 15:09:22,144 - INFO - The solution is empty.
+2024-07-25 15:09:22,144 - INFO -  Stock after cut: None
+2024-07-25 15:09:22,144 - INFO - --- DONE TASK ---
+2024-07-25 15:09:22,144 - INFO - --> START processing job 27 PARAMS: [CSC CH1751Z-F-20/20 0.8] with over_cut bound 2 forecast month
+2024-07-25 15:09:22,144 - INFO - Process 2 FINISH  w 2 stocks for CUSTOMER VPIC1
+2024-07-25 15:09:22,144 - WARNING - May over cut too much 
+2024-07-25 15:09:22,214 - INFO - > Take stock []
+2024-07-25 15:09:22,214 - INFO - >> Overcut amount None
+2024-07-25 15:09:22,214 - WARNING - Status Infeasible
+2024-07-25 15:09:22,214 - INFO - The solution is empty.
+2024-07-25 15:09:22,214 - INFO -  Stock after cut: None
+2024-07-25 15:09:22,214 - INFO - --- DONE TASK ---
+2024-07-25 15:09:22,214 - INFO - --> START processing job 28 PARAMS: [POSCO JSH270C-PO 3.2] with over_cut bound 2 forecast month
+2024-07-25 15:09:22,214 - INFO - Process 6 FINISH  w 3 stocks for CUSTOMER VPIC1
+2024-07-25 15:09:22,214 - WARNING - Lacks of stocks
+2024-07-25 15:09:23,819 - INFO - > Take stock ['HTV1525/23']
+2024-07-25 15:09:23,819 - INFO - >> Overcut amount {'F303': -9997.0, 'F309': 1073.57, 'F312': -2228.59, 'F295': -735.58, 'F297': 1018.49, 'F314': -140.0}
+2024-07-25 15:09:23,819 - INFO - >>> Stocks to continue to cut dict_keys(['HTV1368/23-D1', 'HTV1366/23-D1'])
+2024-07-25 15:09:24,860 - INFO - > Take stock ['HTV1525/23', 'HTV1366/23-D1', 'HTV1368/23-D1']
+2024-07-25 15:09:24,860 - INFO - >> Overcut amount {'F303': -5665.11, 'F309': 1073.57, 'F312': 3757.61, 'F295': -354.26, 'F297': 1508.41, 'F314': 1276.9}
+2024-07-25 15:09:24,860 - INFO - >>> Total stock USED 3
+2024-07-25 15:09:24,860 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [0.656, 0.738, 0.738]
+2024-07-25 15:09:24,860 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F303': -0.1837, 'F309': 0.161, 'F312': 0.567, 'F295': -0.1961, 'F297': 0.5094, 'F314': 0.5635}
+2024-07-25 15:09:24,860 - INFO - saved to csv
+2024-07-25 15:09:24,860 - INFO -  Stock after cut: {'F303': -5665.11, 'F309': 1073.57, 'F312': 3757.61, 'F295': -354.26, 'F297': 1508.41, 'F314': 1276.9}
+2024-07-25 15:09:24,860 - INFO - --- DONE TASK ---
+2024-07-25 15:09:24,860 - INFO - Out of stocks for for CUSTOMER CIC
+2024-07-25 15:09:24,860 - INFO - --> START processing job 29 PARAMS: [CSVC JSH440W-PO 2.3] with over_cut bound 2 forecast month
+2024-07-25 15:09:24,860 - INFO - Process 3 FINISH  w 3 stocks for CUSTOMER VPIC1
+2024-07-25 15:09:24,860 - WARNING - Lacks of stocks
+2024-07-25 15:09:25,059 - INFO - > Take stock []
+2024-07-25 15:09:25,059 - INFO - >> Overcut amount None
+2024-07-25 15:09:25,059 - WARNING - Status Infeasible
+2024-07-25 15:09:25,059 - INFO - The solution is empty.
+2024-07-25 15:09:25,059 - INFO -  Stock after cut: None
+2024-07-25 15:09:25,059 - INFO - --- DONE TASK ---
+2024-07-25 15:09:25,059 - INFO - --> START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 2 forecast month
+2024-07-25 15:09:25,059 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:09:25,059 - WARNING - May have enough stocks to cut
+2024-07-25 15:09:25,455 - INFO - > Take stock []
+2024-07-25 15:09:25,455 - INFO - >> Overcut amount None
+2024-07-25 15:09:25,455 - WARNING - Status Infeasible
+2024-07-25 15:09:25,456 - INFO - The solution is empty.
+2024-07-25 15:09:25,456 - INFO -  Stock after cut: None
+2024-07-25 15:09:25,456 - INFO - --- DONE TASK ---
+2024-07-25 15:09:25,456 - INFO - Process 7 FINISH  w 1 stocks for CUSTOMER VPIC1
+2024-07-25 15:09:25,456 - WARNING - May have enough stocks to cut
+2024-07-25 15:09:25,503 - INFO - > Take stock []
+2024-07-25 15:09:25,503 - INFO - >> Overcut amount None
+2024-07-25 15:09:25,503 - WARNING - Status Infeasible
+2024-07-25 15:09:25,503 - INFO - The solution is empty.
+2024-07-25 15:09:25,503 - INFO -  Stock after cut: None
+2024-07-25 15:09:25,503 - INFO - --- DONE TASK ---
+2024-07-25 15:09:25,503 - INFO - --> START processing job 31 PARAMS: [POSCO JSH270C-PO 2.6] with over_cut bound 2 forecast month
+2024-07-25 15:09:25,503 - INFO - Process 8 FINISH  w 4 stocks for CUSTOMER VPIC1
+2024-07-25 15:09:25,503 - WARNING - Lacks of stocks
+2024-07-25 15:09:27,385 - INFO - > Take stock ['HTV0828/23-D1', 'HTV0895/23', 'HTV1363/23', 'TP235H001943']
+2024-07-25 15:09:27,385 - INFO - >> Overcut amount {'F375': -5865.17, 'F370': 682.38, 'F368': -567.9, 'F381': -1349.08, 'F372': -1819.0, 'F379': -920.0, 'F369': 221.01, 'F374': -412.0}
+2024-07-25 15:09:27,385 - INFO - >>> Total stock USED 4
+2024-07-25 15:09:27,385 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [0.903, 0.492, 0.492, 1.559]
+2024-07-25 15:09:27,385 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F375': -0.2528, 'F370': 0.1015, 'F368': -0.1224, 'F381': -0.3846, 'F372': -1.1092, 'F379': -0.3819, 'F369': 0.1108, 'F374': -0.2034}
+2024-07-25 15:09:27,385 - INFO - saved to csv
+2024-07-25 15:09:27,385 - INFO -  Stock after cut: {'F375': -5865.17, 'F370': 682.38, 'F368': -567.9, 'F381': -1349.08, 'F372': -1819.0, 'F379': -920.0, 'F369': 221.01, 'F374': -412.0}
+2024-07-25 15:09:27,385 - INFO - --- DONE TASK ---
+2024-07-25 15:09:27,385 - INFO - Out of stocks for for CUSTOMER CIC
+2024-07-25 15:09:27,385 - INFO - --> START processing job 32 PARAMS: [POSCO SS400-PO 2.3] with over_cut bound 2 forecast month
+2024-07-25 15:09:27,385 - INFO - Process 4 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:09:27,385 - WARNING - May have enough stocks to cut
+2024-07-25 15:09:27,588 - INFO - > Take stock ['HTV1545/23']
+2024-07-25 15:09:27,588 - INFO - >> Overcut amount {'F282': -1244.137, 'F279': 2317.585, 'F281': 6579.849, 'F280': -303.0}
+2024-07-25 15:09:27,589 - INFO - >>> Total stock USED 1
+2024-07-25 15:09:27,589 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [0.738]
+2024-07-25 15:09:27,589 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F282': -0.3053, 'F279': 0.4608, 'F281': 1.0496, 'F280': -0.2579}
+2024-07-25 15:09:27,589 - INFO - saved to csv
+2024-07-25 15:09:27,589 - INFO -  Stock after cut: {'F282': -1244.137, 'F279': 2317.585, 'F281': 6579.849, 'F280': -303.0}
+2024-07-25 15:09:27,589 - INFO - --- DONE TASK ---
+2024-07-25 15:09:27,589 - INFO - --> START processing job 33 PARAMS: [CSVC JSH270C-PO 1.6] with over_cut bound 2 forecast month
+2024-07-25 15:09:27,589 - INFO - Process 14 FINISH  w 3 stocks for CUSTOMER CIC
+2024-07-25 15:09:27,589 - WARNING - May have enough stocks to cut
+2024-07-25 15:14:04,612 - INFO - > Take stock []
+2024-07-25 15:14:04,612 - INFO - >> Overcut amount None
+2024-07-25 15:14:04,612 - WARNING - Status Infeasible
+2024-07-25 15:14:04,612 - INFO - The solution is empty.
+2024-07-25 15:14:04,612 - INFO -  Stock after cut: None
+2024-07-25 15:14:04,612 - INFO - --- DONE TASK ---
+2024-07-25 15:14:04,612 - INFO - Process 6 FINISH  w 3 stocks for CUSTOMER VPIC1
+2024-07-25 15:14:04,612 - WARNING - May have enough stocks to cut
+2024-07-25 15:14:05,956 - INFO - > Take stock []
+2024-07-25 15:14:05,956 - INFO - >> Overcut amount None
+2024-07-25 15:14:05,956 - WARNING - Status Infeasible
+2024-07-25 15:14:05,956 - INFO - The solution is empty.
+2024-07-25 15:14:05,956 - INFO -  Stock after cut: None
+2024-07-25 15:14:05,956 - INFO - --- DONE TASK ---
+2024-07-25 15:14:05,956 - INFO - --> START processing job 34 PARAMS: [POSCO JSH440W-PO 2.0] with over_cut bound 2 forecast month
+2024-07-25 15:14:05,956 - INFO - Process 7 FINISH  w 6 stocks for CUSTOMER CIC
+2024-07-25 15:14:08,272 - INFO - > Take stock ['TM246H00000202']
+2024-07-25 15:14:08,273 - INFO - >> Overcut amount {'F259': 77.138, 'F261': -2279.008, 'F256': -926.539, 'F176': 501.61, 'F179': 1021.94, 'F178': 2364.01, 'F257': -200.0}
+2024-07-25 15:14:08,273 - INFO - >>> Stocks to continue to cut dict_keys(['TM246H00000204', 'TP231H005005', 'TM246H00000203', 'TP231H004996', 'TP233H000003'])
+2024-07-25 15:14:10,128 - INFO - > Take stock ['TM246H00000202', 'TM246H00000204']
+2024-07-25 15:14:10,128 - INFO - >> Overcut amount {'F259': 77.138, 'F261': 1530.672, 'F256': 2565.671, 'F176': 501.61, 'F179': 1021.94, 'F178': 2364.01, 'F257': 180.97}
+2024-07-25 15:14:10,128 - INFO - >>> Total stock USED 2
+2024-07-25 15:14:10,128 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [0.656, 0.738]
+2024-07-25 15:14:10,128 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F259': 0.0042, 'F261': 0.0577, 'F256': 0.3762, 'F176': 0.216, 'F179': 0.7165, 'F178': 0.3443, 'F257': 1.1921}
+2024-07-25 15:14:10,128 - INFO - saved to csv
+2024-07-25 15:14:10,129 - INFO -  Stock after cut: {'F259': 77.138, 'F261': 1530.672, 'F256': 2565.671, 'F176': 501.61, 'F179': 1021.94, 'F178': 2364.01, 'F257': 180.97}
+2024-07-25 15:14:10,129 - INFO - --- DONE TASK ---
+2024-07-25 15:14:10,129 - INFO - Process 2 FINISH  w 4 stocks for CUSTOMER VPIC1
+2024-07-25 15:14:10,250 - INFO - > Take stock ['TP231H005005']
+2024-07-25 15:14:10,250 - INFO - >> Overcut amount {'F330': 1878.68, 'F332': 1686.23}
+2024-07-25 15:14:10,250 - INFO - >>> Total stock USED 1
+2024-07-25 15:14:10,250 - INFO - >>> TRIM LOSS PERCENT OF EACH STOCK [1.148]
+2024-07-25 15:14:10,250 - INFO - >>> TOTAL STOCK RATIO (OVER CUT): {'F330': 0.1502, 'F332': 1.4583}
+2024-07-25 15:14:10,250 - INFO - saved to csv
+2024-07-25 15:14:10,250 - INFO -  Stock after cut: {'F330': 1878.68, 'F332': 1686.23}
+2024-07-25 15:14:10,250 - INFO - --- DONE TASK ---
+2024-07-25 15:14:10,250 - INFO - **** ENDED **** 
+2024-07-25 15:16:04,897 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 3 forecast month
+2024-07-25 15:16:04,897 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:16:04,897 - INFO - May have enough stocks to cut
+2024-07-25 15:16:05,278 - INFO - > Take stock ['TP238H002948']
+2024-07-25 15:16:05,278 - INFO - >> Overcut amount {'F200': -908.877, 'F197': -300.0, 'F190': -300.0, 'F198': 1547.24, 'F203': 1253.03, 'F196': 254.7}
+2024-07-25 15:16:05,278 - INFO - >>> Total stock used 1
+2024-07-25 15:16:05,278 - INFO - TRIM LOSS PERCENT OF EACH STOCK [0.492]
+2024-07-25 15:16:05,278 - INFO - >> TOTAL STOCK RATIO (OVER CUT): {'F200': -0.4028, 'F197': -0.4099, 'F190': -0.6172, 'F198': 2.4724, 'F203': 0.9125, 'F196': 1.841}
+2024-07-25 15:16:05,278 - INFO - -->> SOLUTION [{'count': 1, 'stock': 'TP238H002948', 'cuts': {'F200': 0, 'F197': 0, 'F190': 0, 'F198': 4, 'F203': 8, 'F196': 1}, 'trim_loss': 6.0, 'trim_loss_pct': 0.492, 'cut_w': {'F200': 0.0, 'F197': 0.0, 'F190': 0.0, 'F198': 1725.244, 'F203': 1362.034, 'F196': 354.696}}]
+2024-07-25 15:16:05,278 - INFO - ENDED
+2024-07-25 15:16:33,661 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 2 forecast month
+2024-07-25 15:16:33,661 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:16:33,661 - INFO - May have enough stocks to cut
+2024-07-25 15:16:34,044 - INFO - > Take stock ['TP238H002948']
+2024-07-25 15:16:34,044 - INFO - >> Overcut amount {'F200': -908.877, 'F197': 1402.54, 'F190': 835.03, 'F198': 253.31, 'F203': 61.25, 'F196': -100.0}
+2024-07-25 15:16:34,044 - INFO - >>> Total stock used 1
+2024-07-25 15:16:34,044 - INFO - TRIM LOSS PERCENT OF EACH STOCK [0.574]
+2024-07-25 15:16:34,044 - INFO - >> TOTAL STOCK RATIO (OVER CUT): {'F200': -0.4028, 'F197': 1.9165, 'F190': 1.7178, 'F198': 0.4048, 'F203': 0.0446, 'F196': -0.7228}
+2024-07-25 15:16:34,045 - INFO - -->> SOLUTION [{'count': 1, 'stock': 'TP238H002948', 'cuts': {'F200': 0, 'F197': 4, 'F190': 4, 'F198': 1, 'F203': 1, 'F196': 0}, 'trim_loss': 7.0, 'trim_loss_pct': 0.574, 'cut_w': {'F200': 0.0, 'F197': 1702.543, 'F190': 1135.029, 'F198': 431.311, 'F203': 170.254, 'F196': 0.0}}]
+2024-07-25 15:16:34,045 - INFO - ENDED2024-07-25 15:17:14,154 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 2 forecast month
+2024-07-25 15:17:14,154 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:17:14,154 - INFO - May have enough stocks to cut
+2024-07-25 15:17:14,518 - INFO - > Take stock []
+2024-07-25 15:17:14,519 - INFO - >> Overcut amount None
+2024-07-25 15:17:14,519 - INFO - Status Infeasible
+2024-07-25 15:17:14,519 - INFO - -->> SOLUTION []
+2024-07-25 15:17:14,519 - INFO - ENDED
+2024-07-25 15:22:58,716 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 3 forecast month
+2024-07-25 15:22:58,716 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:22:58,716 - INFO - May have enough stocks to cut
+2024-07-25 15:22:59,131 - INFO - > Take stock []
+2024-07-25 15:22:59,131 - INFO - >> Overcut amount None
+2024-07-25 15:22:59,131 - INFO - Status Infeasible
+2024-07-25 15:22:59,131 - INFO - -->> SOLUTION []
+2024-07-25 15:22:59,131 - INFO - ENDED
+2024-07-25 15:23:25,320 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 3 forecast month
+2024-07-25 15:23:25,320 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:23:25,320 - INFO - May have enough stocks to cut
+2024-07-25 15:23:25,709 - INFO - > Take stock ['TP238H002948']
+2024-07-25 15:23:25,709 - INFO - >> Overcut amount {'F200': -908.877, 'F197': -300.0, 'F190': -300.0, 'F198': 1547.24, 'F203': 1253.03, 'F196': 254.7}
+2024-07-25 15:23:25,709 - INFO - >>> Total stock used 1
+2024-07-25 15:23:25,709 - INFO - TRIM LOSS PERCENT OF EACH STOCK [0.492]
+2024-07-25 15:23:25,709 - INFO - >> TOTAL STOCK RATIO (OVER CUT): {'F200': -0.4028, 'F197': -0.4099, 'F190': -0.6172, 'F198': 2.4724, 'F203': 0.9125, 'F196': 1.841}
+2024-07-25 15:23:25,709 - INFO - -->> SOLUTION [{'count': 1, 'stock': 'TP238H002948', 'cuts': {'F200': 0, 'F197': 0, 'F190': 0, 'F198': 4, 'F203': 8, 'F196': 1}, 'trim_loss': 6.0, 'trim_loss_pct': 0.492, 'cut_w': {'F200': 0.0, 'F197': 0.0, 'F190': 0.0, 'F198': 1725.244, 'F203': 1362.034, 'F196': 354.696}}]
+2024-07-25 15:23:25,709 - INFO - ENDED
+2024-07-25 15:23:59,477 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 2 forecast month
+2024-07-25 15:23:59,477 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:23:59,477 - INFO - May have enough stocks to cut
+2024-07-25 15:23:59,871 - INFO - > Take stock ['TP238H002948']
+2024-07-25 15:23:59,871 - INFO - >> Overcut amount {'F200': -908.877, 'F197': 1402.54, 'F190': 835.03, 'F198': 253.31, 'F203': 61.25, 'F196': -100.0}
+2024-07-25 15:23:59,871 - INFO - >>> Total stock used 1
+2024-07-25 15:23:59,871 - INFO - TRIM LOSS PERCENT OF EACH STOCK [0.574]
+2024-07-25 15:23:59,871 - INFO - >> TOTAL STOCK RATIO (OVER CUT): {'F200': -0.4028, 'F197': 1.9165, 'F190': 1.7178, 'F198': 0.4048, 'F203': 0.0446, 'F196': -0.7228}
+2024-07-25 15:23:59,871 - INFO - -->> SOLUTION [{'count': 1, 'stock': 'TP238H002948', 'cuts': {'F200': 0, 'F197': 4, 'F190': 4, 'F198': 1, 'F203': 1, 'F196': 0}, 'trim_loss': 7.0, 'trim_loss_pct': 0.574, 'cut_w': {'F200': 0.0, 'F197': 1702.543, 'F190': 1135.029, 'F198': 431.311, 'F203': 170.254, 'F196': 0.0}}]
+2024-07-25 15:23:59,871 - INFO - ENDED
+2024-07-25 15:24:28,794 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 1 forecast month
+2024-07-25 15:24:28,794 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:24:28,794 - INFO - May have enough stocks to cut
+2024-07-25 15:24:29,192 - INFO - > Take stock []
+2024-07-25 15:24:29,192 - INFO - >> Overcut amount None
+2024-07-25 15:24:29,192 - INFO - Status Infeasible
+2024-07-25 15:24:29,192 - INFO - -->> SOLUTION []
+2024-07-25 15:24:29,192 - INFO - ENDED
+2024-07-25 15:26:48,507 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 2 forecast month
+2024-07-25 15:26:48,508 - INFO - Process 6 FINISH  w 2 stocks for CUSTOMER CIC
+2024-07-25 15:26:48,508 - INFO - May have enough stocks to cut
+2024-07-25 15:26:49,093 - INFO - > Take stock []
+2024-07-25 15:26:49,093 - INFO - >> Overcut amount None
+2024-07-25 15:26:49,093 - INFO - Status Infeasible
+2024-07-25 15:26:49,093 - INFO - -->> SOLUTION []
+2024-07-25 15:26:49,093 - INFO - ENDED
+2024-07-25 15:27:23,573 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 1 forecast month
+2024-07-25 15:27:23,574 - INFO - Process 6 FINISH  w 2 stocks for CUSTOMER CIC
+2024-07-25 15:27:23,574 - INFO - May have enough stocks to cut
+2024-07-25 15:27:24,182 - INFO - > Take stock []
+2024-07-25 15:27:24,182 - INFO - >> Overcut amount None
+2024-07-25 15:27:24,182 - INFO - Status Infeasible
+2024-07-25 15:27:24,182 - INFO - -->> SOLUTION []
+2024-07-25 15:27:24,183 - INFO - ENDED
+2024-07-25 15:29:13,695 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 2 forecast month
+2024-07-25 15:29:13,695 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:29:13,695 - INFO - May have enough stocks to cut
+2024-07-25 15:29:14,079 - INFO - > Take stock ['TP238H002948']
+2024-07-25 15:29:14,079 - INFO - >> Overcut amount {'F200': -908.877, 'F197': 1402.54, 'F190': 835.03, 'F198': 253.31, 'F203': 61.25, 'F196': -100.0}
+2024-07-25 15:29:14,079 - INFO - >>> Total stock used 1
+2024-07-25 15:29:14,079 - INFO - TRIM LOSS PERCENT OF EACH STOCK [0.574]
+2024-07-25 15:29:14,079 - INFO - >> TOTAL STOCK RATIO (OVER CUT): {'F200': -0.4028, 'F197': 1.9165, 'F190': 1.7178, 'F198': 0.4048, 'F203': 0.0446, 'F196': -0.7228}
+2024-07-25 15:29:14,079 - INFO - -->> SOLUTION [{'count': 1, 'stock': 'TP238H002948', 'cuts': {'F200': 0, 'F197': 4, 'F190': 4, 'F198': 1, 'F203': 1, 'F196': 0}, 'trim_loss': 7.0, 'trim_loss_pct': 0.574, 'cut_w': {'F200': 0.0, 'F197': 1702.543, 'F190': 1135.029, 'F198': 431.311, 'F203': 170.254, 'F196': 0.0}}]
+2024-07-25 15:29:14,080 - INFO - ENDED
+2024-07-25 15:29:36,297 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 2 forecast month
+2024-07-25 15:29:36,298 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:29:36,298 - INFO - May have enough stocks to cut
+2024-07-25 15:29:36,708 - INFO - > Take stock []
+2024-07-25 15:29:36,708 - INFO - >> Overcut amount None
+2024-07-25 15:29:36,708 - INFO - Status Infeasible
+2024-07-25 15:29:36,708 - INFO - -->> SOLUTION []
+2024-07-25 15:29:36,708 - INFO - ENDED
+2024-07-25 15:29:50,958 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 2 forecast month
+2024-07-25 15:29:50,958 - INFO - Process 6 FINISH  w 1 stocks for CUSTOMER CIC
+2024-07-25 15:29:50,958 - INFO - May have enough stocks to cut
+2024-07-25 15:29:51,346 - INFO - > Take stock ['TP238H002948']
+2024-07-25 15:29:51,346 - INFO - >> Overcut amount {'F200': -908.877, 'F197': 1304.1, 'F190': 769.4, 'F198': 228.37, 'F203': 51.41, 'F196': -100.0}
+2024-07-25 15:29:51,346 - INFO - >>> Total stock used 1
+2024-07-25 15:29:51,346 - INFO - TRIM LOSS PERCENT OF EACH STOCK [0.574]
+2024-07-25 15:29:51,346 - INFO - >> TOTAL STOCK RATIO (OVER CUT): {'F200': -0.4028, 'F197': 1.7819, 'F190': 1.5828, 'F198': 0.3649, 'F203': 0.0374, 'F196': -0.7228}
+2024-07-25 15:29:51,346 - INFO - -->> SOLUTION [{'count': 1, 'stock': 'TP238H002948', 'cuts': {'F200': 0, 'F197': 4, 'F190': 4, 'F198': 1, 'F203': 1, 'F196': 0}, 'trim_loss': 7.0, 'trim_loss_pct': 0.574, 'cut_w': {'F200': 0.0, 'F197': 1604.102, 'F190': 1069.401, 'F198': 406.372, 'F203': 160.41, 'F196': 0.0}}]
+2024-07-25 15:29:51,346 - INFO - ENDED
+2024-07-25 15:30:35,363 - INFO - START processing job 30 PARAMS: [POSCOVN SPCC-SD 1.0] with over_cut bound 2 forecast month
+2024-07-25 15:30:35,363 - INFO - Process 6 FINISH  w 2 stocks for CUSTOMER CIC
+2024-07-25 15:30:35,363 - INFO - May have enough stocks to cut
+2024-07-25 15:30:36,104 - INFO - > Take stock ['TP238H002948-1']
+2024-07-25 15:30:36,104 - INFO - >> Overcut amount {'F200': -908.877, 'F197': 1304.1, 'F190': 769.4, 'F198': 228.37, 'F203': 51.41, 'F196': -100.0}
+2024-07-25 15:30:36,104 - INFO - >>> Stocks to continue to cut dict_keys(['TP238H002948-2'])
+2024-07-25 15:30:36,516 - INFO - > Take stock ['TP238H002948-1', 'TP238H002948-2']
+2024-07-25 15:30:36,516 - INFO - >> Overcut amount {'F200': 213.993, 'F197': 1304.1, 'F190': 769.4, 'F198': 228.37, 'F203': 1815.92, 'F196': 234.19}
+2024-07-25 15:30:36,516 - INFO - >>> Total stock used 2
+2024-07-25 15:30:36,516 - INFO - TRIM LOSS PERCENT OF EACH STOCK [0.574, 1.148]
+2024-07-25 15:30:36,516 - INFO - >> TOTAL STOCK RATIO (OVER CUT): {'F200': 0.0948, 'F197': 1.7819, 'F190': 1.5828, 'F198': 0.3649, 'F203': 1.3224, 'F196': 1.6927}
+2024-07-25 15:30:36,516 - INFO - -->> SOLUTION [{'count': 1, 'stock': 'TP238H002948-1', 'cuts': {'F200': 0, 'F197': 4, 'F190': 4, 'F198': 1, 'F203': 1, 'F196': 0}, 'trim_loss': 7.0, 'trim_loss_pct': 0.574, 'cut_w': {'F200': 0.0, 'F197': 1604.102, 'F190': 1069.401, 'F198': 406.372, 'F203': 160.41, 'F196': 0.0}}, {'count': 1, 'stock': 'TP238H002948-2', 'cuts': {'F200': 2, 'F197': 0, 'F190': 0, 'F198': 0, 'F203': 11, 'F196': 1}, 'trim_loss': 14.0, 'trim_loss_pct': 1.148, 'cut_w': {'F200': 1122.871, 'F197': 0.0, 'F190': 0.0, 'F198': 0.0, 'F203': 1764.512, 'F196': 334.188}}]
+2024-07-25 15:30:36,516 - INFO - ENDED
+2024-07-25 15:39:49,777 - INFO - START processing job 33 PARAMS: [CSVC JSH270C-PO 1.6] with over_cut bound 2 forecast month
+2024-07-25 15:39:49,777 - INFO - Process 14 FINISH  w 3 stocks for CUSTOMER CIC
+2024-07-25 15:39:49,777 - INFO - May have enough stocks to cut
+2024-07-25 15:42:52,802 - INFO - > Take stock []
+2024-07-25 15:42:52,803 - INFO - >> Overcut amount None
+2024-07-25 15:42:52,803 - INFO - Status Infeasible
+2024-07-25 15:42:52,803 - INFO - -->> SOLUTION []
+2024-07-25 15:42:52,803 - INFO - ENDED
+2024-07-25 16:01:20,099 - INFO - START processing job 27 PARAMS: [CSC CH1751Z-F-20/20 0.8] with over_cut bound 3 forecast month
+2024-07-25 16:01:20,099 - INFO - Process 2 FINISH  w 2 stocks for CUSTOMER VPIC1
+2024-07-25 16:01:20,099 - WARNING -  May over cut too much 
+2024-07-25 16:01:20,176 - INFO - > Take stock []
+2024-07-25 16:01:20,176 - INFO - >> Overcut amount None
+2024-07-25 16:01:20,176 - INFO - Status Infeasible
+2024-07-25 16:01:20,176 - INFO - -->> SOLUTION []
+2024-07-25 16:01:20,176 - INFO - ENDED
+2024-07-25 17:31:33,219 - INFO - START processing job 3 PARAMS: [CSC JSH590R-PO 2.0] with over_cut bound 1 forecast month
+2024-07-25 17:31:33,219 - INFO - Process 8 FINISH  w 11 stocks for CUSTOMER CIC
+2024-07-25 17:31:33,219 - INFO - May have enough stocks to cut
+2024-07-25 17:31:40,250 - INFO - > Take stock []
+2024-07-25 17:31:40,250 - INFO - >> Overcut amount None
+2024-07-25 17:31:40,250 - INFO - Status Infeasible
+2024-07-25 17:31:40,250 - INFO - -->> SOLUTION []
+2024-07-25 17:31:40,250 - INFO - ENDED
+2024-07-25 17:33:31,867 - INFO - START processing job 3 PARAMS: [CSC JSH590R-PO 2.0] with over_cut bound 2 forecast month
+2024-07-25 17:33:31,867 - INFO - Process 8 FINISH  w 11 stocks for CUSTOMER CIC
+2024-07-25 17:33:31,867 - INFO - May have enough stocks to cut
+2024-07-25 17:33:36,720 - INFO - > Take stock []
+2024-07-25 17:33:36,720 - INFO - >> Overcut amount None
+2024-07-25 17:33:36,720 - INFO - Status Infeasible
+2024-07-25 17:33:36,720 - INFO - -->> SOLUTION []
+2024-07-25 17:33:36,720 - INFO - ENDED
