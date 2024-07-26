@@ -1,0 +1,2822 @@
+{
+   "date": "25-07-24",
+   "param_finish": {
+      "POSCOVN+JSC270C-SD+1.0": {
+         "param": {
+            "spec_name": "JSC270C-SD",
+            "type": "Carbon",
+            "thickness": 1.0,
+            "maker": "POSCOVN",
+            "code": "POSCOVN JSC270C-SD 1.0"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F180": {
+                     "customer_name": "CIC",
+                     "width": 114.0,
+                     "need_cut": -100.0,
+                     "fc1": 118.096,
+                     "fc2": 109.296,
+                     "fc3": 95.568
+                  }
+               }
+            }
+         ]
+      },
+      "POSCOVST+SUS409L-2D+2.0": {
+         "param": {
+            "spec_name": "SUS409L-2D",
+            "type": "SUS409L",
+            "thickness": 2.0,
+            "maker": "POSCOVST",
+            "code": "POSCOVST SUS409L-2D 2.0"
+         },
+         "customer": [
+            {
+               "TEC": {
+                  "F663": {
+                     "customer_name": "TEC",
+                     "width": 144.0,
+                     "need_cut": -17605.0,
+                     "fc1": 43704.90132999999,
+                     "fc2": 0.0,
+                     "fc3": 17442.48704
+                  },
+                  "F665": {
+                     "customer_name": "TEC",
+                     "width": 165.0,
+                     "need_cut": -6969.0,
+                     "fc1": 13002.64,
+                     "fc2": 0.0,
+                     "fc3": 5494.664
+                  },
+                  "F668": {
+                     "customer_name": "TEC",
+                     "width": 56.0,
+                     "need_cut": -625.0,
+                     "fc1": 1042.264,
+                     "fc2": 1254.6938599999999,
+                     "fc3": 1295.9729999999997
+                  },
+                  "F661": {
+                     "customer_name": "TEC",
+                     "width": 120.0,
+                     "need_cut": -399.0,
+                     "fc1": 1509.18168,
+                     "fc2": 1281.6423,
+                     "fc3": 892.19736
+                  },
+                  "F669": {
+                     "customer_name": "TEC",
+                     "width": 95.0,
+                     "need_cut": -370.0,
+                     "fc1": 319.77988,
+                     "fc2": 218.84884,
+                     "fc3": 240.20597999999998
+                  },
+                  "F658": {
+                     "customer_name": "TEC",
+                     "width": 102.0,
+                     "need_cut": 0.0,
+                     "fc1": 23.732860000000002,
+                     "fc2": 42.172779999999996,
+                     "fc3": 57.454010000000004
+                  },
+                  "F659": {
+                     "customer_name": "TEC",
+                     "width": 110.0,
+                     "need_cut": 42.0,
+                     "fc1": 383.76067,
+                     "fc2": 390.98162,
+                     "fc3": 397.02095999999995
+                  },
+                  "F662": {
+                     "customer_name": "TEC",
+                     "width": 133.0,
+                     "need_cut": 48.0,
+                     "fc1": 219.84866749999998,
+                     "fc2": 150.4585775,
+                     "fc3": 165.14161124999998
+                  }
+               }
+            }
+         ]
+      },
+      "CSVC+JSH270C-PO+3.0": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 3.0,
+            "maker": "CSVC",
+            "code": "CSVC JSH270C-PO 3.0"
+         },
+         "customer": [
+            {
+               "VPIC1": {
+                  "F418": {
+                     "customer_name": "VPIC1",
+                     "width": 59.0,
+                     "need_cut": -2586.0,
+                     "fc1": 4485.08,
+                     "fc2": 3636.7599999999993,
+                     "fc3": 4473.210000000001
+                  },
+                  "F419": {
+                     "customer_name": "VPIC1",
+                     "width": 68.0,
+                     "need_cut": -219.0,
+                     "fc1": 502.49,
+                     "fc2": 537.37,
+                     "fc3": 561.35
+                  },
+                  "F420": {
+                     "customer_name": "VPIC1",
+                     "width": 76.0,
+                     "need_cut": 28.0,
+                     "fc1": 1770.4224,
+                     "fc2": 1395.3347999999996,
+                     "fc3": 2006.3447999999999
+                  }
+               }
+            }
+         ]
+      },
+      "CSC+JSH590R-PO+2.0": {
+         "param": {
+            "spec_name": "JSH590R-PO",
+            "type": "Carbon",
+            "thickness": 2.0,
+            "maker": "CSC",
+            "code": "CSC JSH590R-PO 2.0"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F33": {
+                     "customer_name": "CIC",
+                     "width": 188.0,
+                     "need_cut": -30772.599709771595,
+                     "fc1": 30646.0820436,
+                     "fc2": 35762.3146452,
+                     "fc3": 34039.2591132
+                  },
+                  "F32": {
+                     "customer_name": "CIC",
+                     "width": 175.0,
+                     "need_cut": -28574.78588807786,
+                     "fc1": 26812.20409,
+                     "fc2": 31288.38713,
+                     "fc3": 29780.88883
+                  },
+                  "F31": {
+                     "customer_name": "CIC",
+                     "width": 155.0,
+                     "need_cut": -4401.8405357987585,
+                     "fc1": 4832.4321325,
+                     "fc2": 5639.1860525,
+                     "fc3": 5367.4857775
+                  },
+                  "F29": {
+                     "customer_name": "CIC",
+                     "width": 120.0,
+                     "need_cut": -1751.0,
+                     "fc1": 2585.511168,
+                     "fc2": 4319.793456,
+                     "fc3": 3797.778504
+                  },
+                  "F37": {
+                     "customer_name": "CIC",
+                     "width": 82.0,
+                     "need_cut": -977.9362646180011,
+                     "fc1": 2025.3170816,
+                     "fc2": 3383.8382072,
+                     "fc3": 2974.9264948
+                  },
+                  "F36": {
+                     "customer_name": "CIC",
+                     "width": 306.0,
+                     "need_cut": -839.0,
+                     "fc1": 2365.2806112,
+                     "fc2": 3692.5657704,
+                     "fc3": 3457.8613836
+                  },
+                  "F34": {
+                     "customer_name": "CIC",
+                     "width": 205.0,
+                     "need_cut": -498.7908121410992,
+                     "fc1": 9544.7836,
+                     "fc2": 5494.6232,
+                     "fc3": 3908.5464
+                  },
+                  "F30": {
+                     "customer_name": "CIC",
+                     "width": 133.0,
+                     "need_cut": -400.0,
+                     "fc1": 1319.4181875,
+                     "fc2": 759.546375,
+                     "fc3": 540.295875
+                  },
+                  "F266": {
+                     "customer_name": "CIC",
+                     "width": 291.0,
+                     "need_cut": 0.0,
+                     "fc1": 512.60814,
+                     "fc2": 372.80592,
+                     "fc3": 722.31147
+                  },
+                  "F275": {
+                     "customer_name": "CIC",
+                     "width": 96.0,
+                     "need_cut": 0.0,
+                     "fc1": 232.1088,
+                     "fc2": 168.8064,
+                     "fc3": 327.0624
+                  },
+                  "F35": {
+                     "customer_name": "CIC",
+                     "width": 230.0,
+                     "need_cut": 502.4087591240875,
+                     "fc1": 2596.442607,
+                     "fc2": 3125.6075745,
+                     "fc3": 2937.974598
+                  }
+               }
+            }
+         ]
+      },
+      "POSCO+JSH270C-PO+2.3": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 2.3,
+            "maker": "POSCO",
+            "code": "POSCO JSH270C-PO 2.3"
+         },
+         "customer": [
+            {
+               "VPIC1": {
+                  "F364": {
+                     "customer_name": "VPIC1",
+                     "width": 200.0,
+                     "need_cut": -2054.0,
+                     "fc1": 15714.000000000002,
+                     "fc2": 14288.400000000001,
+                     "fc3": 16491.600000000002
+                  },
+                  "F361": {
+                     "customer_name": "VPIC1",
+                     "width": 129.0,
+                     "need_cut": -1792.0,
+                     "fc1": 5263.8826,
+                     "fc2": 5010.626399999999,
+                     "fc3": 5639.3191
+                  },
+                  "F360": {
+                     "customer_name": "VPIC1",
+                     "width": 124.5,
+                     "need_cut": -1599.0,
+                     "fc1": 3299.3999999999996,
+                     "fc2": 2990.52,
+                     "fc3": 3446.8199999999997
+                  },
+                  "F365": {
+                     "customer_name": "VPIC1",
+                     "width": 42.0,
+                     "need_cut": -1148.0,
+                     "fc1": 1316.0,
+                     "fc2": 1173.2,
+                     "fc3": 1355.2
+                  },
+                  "F359": {
+                     "customer_name": "VPIC1",
+                     "width": 102.0,
+                     "need_cut": -1100.0,
+                     "fc1": 1037.96,
+                     "fc2": 842.5,
+                     "fc3": 1125.58
+                  },
+                  "F367": {
+                     "customer_name": "VPIC1",
+                     "width": 95.0,
+                     "need_cut": -184.0,
+                     "fc1": 616.424,
+                     "fc2": 510.748,
+                     "fc3": 333.848
+                  },
+                  "F527": {
+                     "customer_name": "VPIC1",
+                     "width": 160.0,
+                     "need_cut": 0.0,
+                     "fc1": 42.288,
+                     "fc2": 63.43199999999999,
+                     "fc3": 52.86
+                  },
+                  "F362": {
+                     "customer_name": "VPIC1",
+                     "width": 133.0,
+                     "need_cut": 0.0,
+                     "fc1": 369.6,
+                     "fc2": 338.8,
+                     "fc3": 277.2
+                  },
+                  "F366": {
+                     "customer_name": "VPIC1",
+                     "width": 70.0,
+                     "need_cut": 1383.0,
+                     "fc1": 2873.28,
+                     "fc2": 2489.25,
+                     "fc3": 3120.9
+                  }
+               }
+            },
+            {
+               "CIC": {
+                  "F21": {
+                     "customer_name": "CIC",
+                     "width": 110.0,
+                     "need_cut": -1240.0484003281379,
+                     "fc1": 1747.8118949999998,
+                     "fc2": 2176.06816,
+                     "fc3": 2677.2316949999995
+                  },
+                  "F26": {
+                     "customer_name": "CIC",
+                     "width": 145.0,
+                     "need_cut": -1096.8006562756357,
+                     "fc1": 3328.768302375,
+                     "fc2": 3206.42771265,
+                     "fc3": 1395.728865675
+                  },
+                  "F42": {
+                     "customer_name": "CIC",
+                     "width": 50.0,
+                     "need_cut": -790.0,
+                     "fc1": 735.74125,
+                     "fc2": 695.1175,
+                     "fc3": 257.28375
+                  },
+                  "F22": {
+                     "customer_name": "CIC",
+                     "width": 120.0,
+                     "need_cut": -668.2346185397867,
+                     "fc1": 2804.7720299999996,
+                     "fc2": 2422.9791944999997,
+                     "fc3": 2899.6691100000003
+                  },
+                  "F24": {
+                     "customer_name": "CIC",
+                     "width": 128.0,
+                     "need_cut": -425.0,
+                     "fc1": 2184.857216,
+                     "fc2": 2064.220928,
+                     "fc3": 764.029824
+                  },
+                  "F133": {
+                     "customer_name": "CIC",
+                     "width": 90.0,
+                     "need_cut": -200.0,
+                     "fc1": 294.0347025,
+                     "fc2": 239.23326375,
+                     "fc3": 273.27596625
+                  },
+                  "F132": {
+                     "customer_name": "CIC",
+                     "width": 84.0,
+                     "need_cut": 0.0,
+                     "fc1": 472.502961,
+                     "fc2": 394.927848,
+                     "fc3": 267.986754
+                  },
+                  "F130": {
+                     "customer_name": "CIC",
+                     "width": 70.0,
+                     "need_cut": 0.0,
+                     "fc1": 112.015657425,
+                     "fc2": 147.978509175,
+                     "fc3": 165.37603635
+                  },
+                  "F129": {
+                     "customer_name": "CIC",
+                     "width": 66.0,
+                     "need_cut": 379.8572600492207,
+                     "fc1": 7519.066137,
+                     "fc2": 7665.636627,
+                     "fc3": 5848.162551
+                  },
+                  "F23": {
+                     "customer_name": "CIC",
+                     "width": 124.0,
+                     "need_cut": 1272.0,
+                     "fc1": 5902.4026598,
+                     "fc2": 4725.9475262,
+                     "fc3": 5715.4164134
+                  },
+                  "F25": {
+                     "customer_name": "CIC",
+                     "width": 138.0,
+                     "need_cut": 1613.698113207547,
+                     "fc1": 8442.76766454,
+                     "fc2": 8607.54149442,
+                     "fc3": 6569.575353
+                  },
+                  "F27": {
+                     "customer_name": "CIC",
+                     "width": 190.0,
+                     "need_cut": 4336.287120590648,
+                     "fc1": 9620.54,
+                     "fc2": 9088.36,
+                     "fc3": 3365.36
+                  }
+               }
+            }
+         ]
+      },
+      "POSCOVN+JSC270C-SD+2.0": {
+         "param": {
+            "spec_name": "JSC270C-SD",
+            "type": "Carbon",
+            "thickness": 2.0,
+            "maker": "POSCOVN",
+            "code": "POSCOVN JSC270C-SD 2.0"
+         },
+         "customer": [
+            {
+               "VPIC1": {
+                  "F524": {
+                     "customer_name": "VPIC1",
+                     "width": 82.0,
+                     "need_cut": -350.0,
+                     "fc1": 114.8576,
+                     "fc2": 93.372,
+                     "fc3": 114.7572
+                  }
+               }
+            }
+         ]
+      },
+      "CSC+JSH590R-PO+2.3": {
+         "param": {
+            "spec_name": "JSH590R-PO",
+            "type": "Carbon",
+            "thickness": 2.3,
+            "maker": "CSC",
+            "code": "CSC JSH590R-PO 2.3"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F38": {
+                     "customer_name": "CIC",
+                     "width": 122.0,
+                     "need_cut": -772.0,
+                     "fc1": 1378.7863245,
+                     "fc2": 1580.664696,
+                     "fc3": 1550.5977045
+                  }
+               }
+            }
+         ]
+      },
+      "POSCOVN+SPCC-SD+1.6": {
+         "param": {
+            "spec_name": "SPCC-SD",
+            "type": "Carbon",
+            "thickness": 1.6,
+            "maker": "POSCOVN",
+            "code": "POSCOVN SPCC-SD 1.6"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F240": {
+                     "customer_name": "CIC",
+                     "width": 92.0,
+                     "need_cut": -318.08170515097686,
+                     "fc1": 1079.725052224,
+                     "fc2": 1100.797577152,
+                     "fc3": 840.1670368
+                  },
+                  "F234": {
+                     "customer_name": "CIC",
+                     "width": 50.0,
+                     "need_cut": -152.0,
+                     "fc1": 396.6493216,
+                     "fc2": 382.1847232,
+                     "fc3": 391.1771808
+                  },
+                  "F233": {
+                     "customer_name": "CIC",
+                     "width": 175.0,
+                     "need_cut": 0.0,
+                     "fc1": 452.0745292,
+                     "fc2": 458.495107,
+                     "fc3": 431.9896448
+                  },
+                  "F228": {
+                     "customer_name": "CIC",
+                     "width": 100.0,
+                     "need_cut": 0.0,
+                     "fc1": 458.1827712,
+                     "fc2": 372.7878336,
+                     "fc3": 425.8352448
+                  },
+                  "F229": {
+                     "customer_name": "CIC",
+                     "width": 110.0,
+                     "need_cut": 29.0,
+                     "fc1": 542.22163072,
+                     "fc2": 905.92741624,
+                     "fc3": 796.45281716
+                  },
+                  "F231": {
+                     "customer_name": "CIC",
+                     "width": 145.0,
+                     "need_cut": 880.3712255772646,
+                     "fc1": 6365.094,
+                     "fc2": 6515.343,
+                     "fc3": 4848.945
+                  }
+               }
+            }
+         ]
+      },
+      "POSCO+JSH270C-PO+2.9": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 2.9,
+            "maker": "POSCO",
+            "code": "POSCO JSH270C-PO 2.9"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F156": {
+                     "customer_name": "CIC",
+                     "width": 234.0,
+                     "need_cut": -15398.07130730051,
+                     "fc1": 37312.1892234,
+                     "fc2": 36921.3997698,
+                     "fc3": 37310.39934804
+                  },
+                  "F159": {
+                     "customer_name": "CIC",
+                     "width": 90.6,
+                     "need_cut": -27.909090909090878,
+                     "fc1": 984.8958977088,
+                     "fc2": 848.726578518,
+                     "fc3": 1917.93553413672
+                  },
+                  "F158": {
+                     "customer_name": "CIC",
+                     "width": 86.0,
+                     "need_cut": 82.0,
+                     "fc1": 2140.406386272,
+                     "fc2": 1844.47898817,
+                     "fc3": 4168.1171332668
+                  }
+               }
+            },
+            {
+               "VPIC1": {
+                  "F385": {
+                     "customer_name": "VPIC1",
+                     "width": 248.0,
+                     "need_cut": -5076.0,
+                     "fc1": 9233.84,
+                     "fc2": 7495.0,
+                     "fc3": 10013.32
+                  },
+                  "F387": {
+                     "customer_name": "VPIC1",
+                     "width": 426.0,
+                     "need_cut": -2296.0,
+                     "fc1": 7027.68,
+                     "fc2": 6442.04,
+                     "fc3": 5270.759999999999
+                  },
+                  "F386": {
+                     "customer_name": "VPIC1",
+                     "width": 294.0,
+                     "need_cut": -400.0,
+                     "fc1": 0.0,
+                     "fc2": 0.0,
+                     "fc3": 0.0
+                  },
+                  "F384": {
+                     "customer_name": "VPIC1",
+                     "width": 112.0,
+                     "need_cut": 59.0,
+                     "fc1": 1835.68,
+                     "fc2": 1490.0,
+                     "fc3": 1990.64
+                  }
+               }
+            }
+         ]
+      },
+      "POSCOVST+SUS409L-2D+1.2": {
+         "param": {
+            "spec_name": "SUS409L-2D",
+            "type": "SUS409L",
+            "thickness": 1.2,
+            "maker": "POSCOVST",
+            "code": "POSCOVST SUS409L-2D 1.2"
+         },
+         "customer": [
+            {
+               "TEC": {
+                  "F626": {
+                     "customer_name": "TEC",
+                     "width": 121.2,
+                     "need_cut": -7005.70698757764,
+                     "fc1": 16388.348,
+                     "fc2": 0.0,
+                     "fc3": 9008.282
+                  },
+                  "F636": {
+                     "customer_name": "TEC",
+                     "width": 196.0,
+                     "need_cut": -5663.586956521739,
+                     "fc1": 11943.8700096,
+                     "fc2": 174.68986079999996,
+                     "fc3": 6921.4064136
+                  },
+                  "F637": {
+                     "customer_name": "TEC",
+                     "width": 206.0,
+                     "need_cut": -5203.64751552795,
+                     "fc1": 10608.94386,
+                     "fc2": 0.0,
+                     "fc3": 6658.549940000001
+                  },
+                  "F624": {
+                     "customer_name": "TEC",
+                     "width": 110.0,
+                     "need_cut": -1280.4992236024846,
+                     "fc1": 1741.616,
+                     "fc2": 1048.29242,
+                     "fc3": 2165.562
+                  },
+                  "F628": {
+                     "customer_name": "TEC",
+                     "width": 135.0,
+                     "need_cut": -203.65877329192546,
+                     "fc1": 2252.57308,
+                     "fc2": 1912.9525500000002,
+                     "fc3": 1331.6751600000002
+                  },
+                  "F646": {
+                     "customer_name": "TEC",
+                     "width": 63.0,
+                     "need_cut": -4.0,
+                     "fc1": 390.9795,
+                     "fc2": 343.1219,
+                     "fc3": 588.3921
+                  },
+                  "F643": {
+                     "customer_name": "TEC",
+                     "width": 292.0,
+                     "need_cut": 37.71583850931677,
+                     "fc1": 631.38,
+                     "fc2": 926.024,
+                     "fc3": 1052.3
+                  }
+               }
+            }
+         ]
+      },
+      "POSCO+SAPH440-PO+4.0": {
+         "param": {
+            "spec_name": "SAPH440-PO",
+            "type": "Carbon",
+            "thickness": 4.0,
+            "maker": "POSCO",
+            "code": "POSCO SAPH440-PO 4.0"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F271": {
+                     "customer_name": "CIC",
+                     "width": 156.0,
+                     "need_cut": -1550.0,
+                     "fc1": 1342.2938568,
+                     "fc2": 1962.862356,
+                     "fc3": 3278.1635796
+                  },
+                  "F276": {
+                     "customer_name": "CIC",
+                     "width": 230.0,
+                     "need_cut": 1482.0,
+                     "fc1": 7631.834056,
+                     "fc2": 6209.432268,
+                     "fc3": 7093.029524
+                  }
+               }
+            },
+            {
+               "VPIC1": {
+                  "F471": {
+                     "customer_name": "VPIC1",
+                     "width": 90.0,
+                     "need_cut": -259.0,
+                     "fc1": 465.50640000000004,
+                     "fc2": 385.7028,
+                     "fc3": 252.11280000000002
+                  },
+                  "F470": {
+                     "customer_name": "VPIC1",
+                     "width": 124.0,
+                     "need_cut": 501.0,
+                     "fc1": 1614.3932000000002,
+                     "fc2": 1337.6314000000002,
+                     "fc3": 874.3363999999999
+                  }
+               }
+            }
+         ]
+      },
+      "POSCOVN+SPCC-SD+1.4": {
+         "param": {
+            "spec_name": "SPCC-SD",
+            "type": "Carbon",
+            "thickness": 1.4,
+            "maker": "POSCOVN",
+            "code": "POSCOVN SPCC-SD 1.4"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F218": {
+                     "customer_name": "CIC",
+                     "width": 130.0,
+                     "need_cut": -500.0,
+                     "fc1": 2312.20808,
+                     "fc2": 1777.87428,
+                     "fc3": 1875.02588
+                  },
+                  "F225": {
+                     "customer_name": "CIC",
+                     "width": 85.0,
+                     "need_cut": -314.39130434782606,
+                     "fc1": 952.4668132,
+                     "fc2": 1147.6387727,
+                     "fc3": 1072.08004995
+                  },
+                  "F223": {
+                     "customer_name": "CIC",
+                     "width": 80.0,
+                     "need_cut": -285.0,
+                     "fc1": 774.22352,
+                     "fc2": 595.30632,
+                     "fc3": 627.83672
+                  },
+                  "F215": {
+                     "customer_name": "CIC",
+                     "width": 106.0,
+                     "need_cut": 0.0,
+                     "fc1": 941.19230408,
+                     "fc2": 785.07403492,
+                     "fc3": 802.22894136
+                  },
+                  "F214": {
+                     "customer_name": "CIC",
+                     "width": 100.0,
+                     "need_cut": 17.0,
+                     "fc1": 1203.1852,
+                     "fc2": 925.1382,
+                     "fc3": 975.6922
+                  },
+                  "F224": {
+                     "customer_name": "CIC",
+                     "width": 82.0,
+                     "need_cut": 22.0,
+                     "fc1": 675.7272935,
+                     "fc2": 388.994347,
+                     "fc3": 276.707319
+                  },
+                  "F219": {
+                     "customer_name": "CIC",
+                     "width": 65.0,
+                     "need_cut": 23.0,
+                     "fc1": 967.1884677,
+                     "fc2": 975.08417825,
+                     "fc3": 778.6043538
+                  },
+                  "F226": {
+                     "customer_name": "CIC",
+                     "width": 92.0,
+                     "need_cut": 527.0,
+                     "fc1": 1297.746457,
+                     "fc2": 1323.074011,
+                     "fc3": 1009.81615
+                  }
+               }
+            },
+            {
+               "VPIC1": {
+                  "F486": {
+                     "customer_name": "VPIC1",
+                     "width": 122.0,
+                     "need_cut": -485.0,
+                     "fc1": 309.09600000000006,
+                     "fc2": 212.88959999999997,
+                     "fc3": 207.31680000000003
+                  },
+                  "F488": {
+                     "customer_name": "VPIC1",
+                     "width": 50.0,
+                     "need_cut": -434.0,
+                     "fc1": 725.9900000000001,
+                     "fc2": 636.6899999999999,
+                     "fc3": 1142.66
+                  },
+                  "F490": {
+                     "customer_name": "VPIC1",
+                     "width": 65.0,
+                     "need_cut": -150.0,
+                     "fc1": 0.0,
+                     "fc2": 0.0,
+                     "fc3": 0.0
+                  }
+               }
+            }
+         ]
+      },
+      "POSCOVN+JSC270C-SD+1.6": {
+         "param": {
+            "spec_name": "JSC270C-SD",
+            "type": "Carbon",
+            "thickness": 1.6,
+            "maker": "POSCOVN",
+            "code": "POSCOVN JSC270C-SD 1.6"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F183": {
+                     "customer_name": "CIC",
+                     "width": 57.0,
+                     "need_cut": -735.4493243243244,
+                     "fc1": 771.76390776,
+                     "fc2": 900.60659832,
+                     "fc3": 857.21468712
+                  }
+               }
+            }
+         ]
+      },
+      "POSCOVST+SUS409L-2D+1.0": {
+         "param": {
+            "spec_name": "SUS409L-2D",
+            "type": "SUS409L",
+            "thickness": 1.0,
+            "maker": "POSCOVST",
+            "code": "POSCOVST SUS409L-2D 1.0"
+         },
+         "customer": [
+            {
+               "TEC": {
+                  "F621": {
+                     "customer_name": "TEC",
+                     "width": 292.0,
+                     "need_cut": -16090.78753076292,
+                     "fc1": 31183.453,
+                     "fc2": 0.0,
+                     "fc3": 16977.268
+                  },
+                  "F620": {
+                     "customer_name": "TEC",
+                     "width": 282.0,
+                     "need_cut": -11081.308449548811,
+                     "fc1": 25452.07,
+                     "fc2": 0.0,
+                     "fc3": 13856.92
+                  },
+                  "F610": {
+                     "customer_name": "TEC",
+                     "width": 137.0,
+                     "need_cut": -6777.9942575881905,
+                     "fc1": 12553.569,
+                     "fc2": 0.0,
+                     "fc3": 6834.564
+                  },
+                  "F618": {
+                     "customer_name": "TEC",
+                     "width": 196.0,
+                     "need_cut": -5143.3978671041805,
+                     "fc1": 11489.84,
+                     "fc2": 0.0,
+                     "fc3": 4855.384
+                  },
+                  "F617": {
+                     "customer_name": "TEC",
+                     "width": 178.0,
+                     "need_cut": -1677.0,
+                     "fc1": 8179.20666,
+                     "fc2": 0.0,
+                     "fc3": 4614.813
+                  },
+                  "F608": {
+                     "customer_name": "TEC",
+                     "width": 115.0,
+                     "need_cut": -846.037735849057,
+                     "fc1": 1257.28328,
+                     "fc2": 1038.41916,
+                     "fc3": 673.56244
+                  },
+                  "F613": {
+                     "customer_name": "TEC",
+                     "width": 146.0,
+                     "need_cut": -647.36177194422,
+                     "fc1": 1422.4431599999998,
+                     "fc2": 1207.98135,
+                     "fc3": 840.91932
+                  },
+                  "F616": {
+                     "customer_name": "TEC",
+                     "width": 156.0,
+                     "need_cut": -455.0,
+                     "fc1": 1537.528824,
+                     "fc2": 1655.174196,
+                     "fc3": 1990.35252
+                  },
+                  "F607": {
+                     "customer_name": "TEC",
+                     "width": 102.0,
+                     "need_cut": -90.6776859504132,
+                     "fc1": 698.7898399999999,
+                     "fc2": 752.25836,
+                     "fc3": 904.5931999999999
+                  },
+                  "F615": {
+                     "customer_name": "TEC",
+                     "width": 154.0,
+                     "need_cut": -56.619360131255235,
+                     "fc1": 1512.4032,
+                     "fc2": 1495.2168000000001,
+                     "fc3": 2990.4336000000003
+                  },
+                  "F609": {
+                     "customer_name": "TEC",
+                     "width": 126.0,
+                     "need_cut": -22.93519278096801,
+                     "fc1": 530.948,
+                     "fc2": 524.9145,
+                     "fc3": 1049.829
+                  },
+                  "F619": {
+                     "customer_name": "TEC",
+                     "width": 206.0,
+                     "need_cut": 212.28055783429045,
+                     "fc1": 981.30164,
+                     "fc2": 810.4795799999999,
+                     "fc3": 525.71122
+                  }
+               }
+            }
+         ]
+      },
+      "CSC+CH1751Z-F-20/20+1.0": {
+         "param": {
+            "spec_name": "CH1751Z-F-20/20",
+            "type": "All",
+            "thickness": 1.0,
+            "maker": "CSC",
+            "code": "CSC CH1751Z-F-20/20 1.0"
+         },
+         "customer": [
+            {
+               "VPIC1": {
+                  "F288": {
+                     "customer_name": "VPIC1",
+                     "width": 143.5,
+                     "need_cut": -1300.0,
+                     "fc1": 2724.48,
+                     "fc2": 1776.9600000000003,
+                     "fc3": 1752.9600000000003
+                  },
+                  "F290": {
+                     "customer_name": "VPIC1",
+                     "width": 97.0,
+                     "need_cut": -700.0,
+                     "fc1": 486.39449999999994,
+                     "fc2": 214.927,
+                     "fc3": 272.756
+                  },
+                  "F289": {
+                     "customer_name": "VPIC1",
+                     "width": 96.0,
+                     "need_cut": 0.0,
+                     "fc1": 167.5564,
+                     "fc2": 116.45780000000003,
+                     "fc3": 112.50280000000001
+                  },
+                  "F286": {
+                     "customer_name": "VPIC1",
+                     "width": 102.0,
+                     "need_cut": 640.0,
+                     "fc1": 2127.0573,
+                     "fc2": 959.6278,
+                     "fc3": 1068.2224
+                  }
+               }
+            }
+         ]
+      },
+      "POSCO+JSH270C-PO+4.0": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 4.0,
+            "maker": "POSCO",
+            "code": "POSCO JSH270C-PO 4.0"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F20": {
+                     "customer_name": "CIC",
+                     "width": 72.0,
+                     "need_cut": -669.1591468416735,
+                     "fc1": 2922.7599792,
+                     "fc2": 2418.7666176,
+                     "fc3": 2563.6692024
+                  },
+                  "F18": {
+                     "customer_name": "CIC",
+                     "width": 175.0,
+                     "need_cut": 295.0,
+                     "fc1": 2877.68754,
+                     "fc2": 2405.35932,
+                     "fc3": 1632.57549
+                  },
+                  "F19": {
+                     "customer_name": "CIC",
+                     "width": 52.0,
+                     "need_cut": 698.0,
+                     "fc1": 2282.6544,
+                     "fc2": 2336.5368,
+                     "fc3": 1738.932
+                  }
+               }
+            }
+         ]
+      },
+      "CSVC+JSH270C-PO+6.0": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 6.0,
+            "maker": "CSVC",
+            "code": "CSVC JSH270C-PO 6.0"
+         },
+         "customer": [
+            {
+               "VPIC1": {
+                  "F424": {
+                     "customer_name": "VPIC1",
+                     "width": 180.0,
+                     "need_cut": -8260.0,
+                     "fc1": 18179.1352,
+                     "fc2": 16937.7608,
+                     "fc3": 19681.876
+                  },
+                  "F426": {
+                     "customer_name": "VPIC1",
+                     "width": 97.0,
+                     "need_cut": -1216.0,
+                     "fc1": 2260.12,
+                     "fc2": 1885.8600000000001,
+                     "fc3": 2287.34
+                  },
+                  "F425": {
+                     "customer_name": "VPIC1",
+                     "width": 197.0,
+                     "need_cut": -736.0,
+                     "fc1": 3887.0975999999996,
+                     "fc2": 3568.2304,
+                     "fc3": 3530.448
+                  }
+               }
+            }
+         ]
+      },
+      "POSCOVN+JSC270C-SD+1.4": {
+         "param": {
+            "spec_name": "JSC270C-SD",
+            "type": "Carbon",
+            "thickness": 1.4,
+            "maker": "POSCOVN",
+            "code": "POSCOVN JSC270C-SD 1.4"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F181": {
+                     "customer_name": "CIC",
+                     "width": 120.0,
+                     "need_cut": -1332.241610738255,
+                     "fc1": 1608.7322454,
+                     "fc2": 1877.3032278,
+                     "fc3": 1786.8533298
+                  }
+               }
+            }
+         ]
+      },
+      "POSCOVST+SUS409L-2D+0.8": {
+         "param": {
+            "spec_name": "SUS409L-2D",
+            "type": "SUS409L",
+            "thickness": 0.8,
+            "maker": "POSCOVST",
+            "code": "POSCOVST SUS409L-2D 0.8"
+         },
+         "customer": [
+            {
+               "TEC": {
+                  "F605": {
+                     "customer_name": "TEC",
+                     "width": 230.0,
+                     "need_cut": -8024.0,
+                     "fc1": 9141.575895,
+                     "fc2": 6623.858969999999,
+                     "fc3": 3736.9631999999997
+                  }
+               }
+            }
+         ]
+      },
+      "POSCOVN+SPCC-SD+1.2": {
+         "param": {
+            "spec_name": "SPCC-SD",
+            "type": "Carbon",
+            "thickness": 1.2,
+            "maker": "POSCOVN",
+            "code": "POSCOVN SPCC-SD 1.2"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F211": {
+                     "customer_name": "CIC",
+                     "width": 38.0,
+                     "need_cut": -577.0,
+                     "fc1": 1077.9356868,
+                     "fc2": 1356.2961216,
+                     "fc3": 1271.5526712
+                  },
+                  "F270": {
+                     "customer_name": "CIC",
+                     "width": 47.0,
+                     "need_cut": 0.0,
+                     "fc1": 57.467652,
+                     "fc2": 41.794656,
+                     "fc3": 80.977146
+                  }
+               }
+            },
+            {
+               "VPIC1": {
+                  "F483": {
+                     "customer_name": "VPIC1",
+                     "width": 78.0,
+                     "need_cut": -300.0,
+                     "fc1": 213.4,
+                     "fc2": 194.04000000000002,
+                     "fc3": 223.96000000000004
+                  }
+               }
+            }
+         ]
+      },
+      "CSC+JSH590R-PO+2.9": {
+         "param": {
+            "spec_name": "JSH590R-PO",
+            "type": "Carbon",
+            "thickness": 2.9,
+            "maker": "CSC",
+            "code": "CSC JSH590R-PO 2.9"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F41": {
+                     "customer_name": "CIC",
+                     "width": 225.0,
+                     "need_cut": -3442.0,
+                     "fc1": 6013.538658,
+                     "fc2": 9388.0560735,
+                     "fc3": 8791.33875525
+                  },
+                  "F40": {
+                     "customer_name": "CIC",
+                     "width": 150.0,
+                     "need_cut": -663.0,
+                     "fc1": 3428.95536,
+                     "fc2": 5728.99437,
+                     "fc3": 5036.687955
+                  }
+               }
+            }
+         ]
+      },
+      "CSC+SPHC+8.0": {
+         "param": {
+            "spec_name": "SPHC",
+            "type": "Carbon",
+            "thickness": 8.0,
+            "maker": "CSC",
+            "code": "CSC SPHC 8.0"
+         },
+         "customer": [
+            {
+               "VPIC1": {
+                  "F338": {
+                     "customer_name": "VPIC1",
+                     "width": 130.0,
+                     "need_cut": -3116.0,
+                     "fc1": 16592.329059999996,
+                     "fc2": 16195.69884,
+                     "fc3": 16333.6637
+                  },
+                  "F337": {
+                     "customer_name": "VPIC1",
+                     "width": 118.0,
+                     "need_cut": -1657.0,
+                     "fc1": 3169.9149999999995,
+                     "fc2": 2873.157,
+                     "fc3": 3311.5495000000005
+                  }
+               }
+            }
+         ]
+      },
+      "CSC+JSH590R-PO+2.6": {
+         "param": {
+            "spec_name": "JSH590R-PO",
+            "type": "Carbon",
+            "thickness": 2.6,
+            "maker": "CSC",
+            "code": "CSC JSH590R-PO 2.6"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F39": {
+                     "customer_name": "CIC",
+                     "width": 225.0,
+                     "need_cut": -800.0,
+                     "fc1": 6521.91345,
+                     "fc2": 10181.7070875,
+                     "fc3": 9534.54425625
+                  }
+               }
+            }
+         ]
+      },
+      "CSVC+JSH440W-PO+3.2": {
+         "param": {
+            "spec_name": "JSH440W-PO",
+            "type": "Carbon",
+            "thickness": 3.2,
+            "maker": "CSVC",
+            "code": "CSVC JSH440W-PO 3.2"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F124": {
+                     "customer_name": "CIC",
+                     "width": 225.0,
+                     "need_cut": -5929.0,
+                     "fc1": 13745.483136,
+                     "fc2": 11183.635008,
+                     "fc3": 12775.057344
+                  },
+                  "F125": {
+                     "customer_name": "CIC",
+                     "width": 400.0,
+                     "need_cut": -4479.566037735849,
+                     "fc1": 9193.8717696,
+                     "fc2": 13482.9047808,
+                     "fc3": 22518.3236096
+                  },
+                  "F123": {
+                     "customer_name": "CIC",
+                     "width": 173.0,
+                     "need_cut": -1347.1698113207547,
+                     "fc1": 5196.301717376,
+                     "fc2": 4227.828241728,
+                     "fc3": 4829.444826304
+                  }
+               }
+            }
+         ]
+      },
+      "CSVC+JSH440W-PO+2.9": {
+         "param": {
+            "spec_name": "JSH440W-PO",
+            "type": "Carbon",
+            "thickness": 2.9,
+            "maker": "CSVC",
+            "code": "CSVC JSH440W-PO 2.9"
+         },
+         "customer": [
+            {
+               "VPIC1": {
+                  "F442": {
+                     "customer_name": "VPIC1",
+                     "width": 304.0,
+                     "need_cut": -6004.0,
+                     "fc1": 9270.8,
+                     "fc2": 7525.0,
+                     "fc3": 10053.4
+                  }
+               }
+            }
+         ]
+      },
+      "CSC+JSC590R-SD+1.6": {
+         "param": {
+            "spec_name": "JSC590R-SD",
+            "type": "Carbon",
+            "thickness": 1.6,
+            "maker": "CSC",
+            "code": "CSC JSC590R-SD 1.6"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F6": {
+                     "customer_name": "CIC",
+                     "width": 235.0,
+                     "need_cut": -11524.384741591468,
+                     "fc1": 12028.244,
+                     "fc2": 14036.308,
+                     "fc3": 13360.028
+                  },
+                  "F5": {
+                     "customer_name": "CIC",
+                     "width": 166.0,
+                     "need_cut": -4512.969647251845,
+                     "fc1": 5796.42440048,
+                     "fc2": 6764.11271536,
+                     "fc3": 6438.21261776
+                  }
+               }
+            }
+         ]
+      },
+      "CSVC+JSH270C-PO+2.0": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 2.0,
+            "maker": "CSVC",
+            "code": "CSVC JSH270C-PO 2.0"
+         },
+         "customer": [
+            {
+               "VPIC1": {
+                  "F410": {
+                     "customer_name": "VPIC1",
+                     "width": 72.0,
+                     "need_cut": -5015.0,
+                     "fc1": 6600.372399999999,
+                     "fc2": 5905.539400000001,
+                     "fc3": 7208.1378
+                  },
+                  "F415": {
+                     "customer_name": "VPIC1",
+                     "width": 90.0,
+                     "need_cut": -4778.0,
+                     "fc1": 10977.174400000002,
+                     "fc2": 9940.747600000002,
+                     "fc3": 11556.632
+                  },
+                  "F401": {
+                     "customer_name": "VPIC1",
+                     "width": 180.0,
+                     "need_cut": -1900.0,
+                     "fc1": 2464.0976,
+                     "fc2": 2991.6864,
+                     "fc3": 3116.0216
+                  },
+                  "F396": {
+                     "customer_name": "VPIC1",
+                     "width": 130.0,
+                     "need_cut": -1300.0,
+                     "fc1": 1047.3120000000001,
+                     "fc2": 1127.448,
+                     "fc3": 1355.76
+                  },
+                  "F391": {
+                     "customer_name": "VPIC1",
+                     "width": 104.0,
+                     "need_cut": -994.0,
+                     "fc1": 4981.432,
+                     "fc2": 4540.3060000000005,
+                     "fc3": 5178.620000000001
+                  },
+                  "F395": {
+                     "customer_name": "VPIC1",
+                     "width": 125.0,
+                     "need_cut": -857.0,
+                     "fc1": 2642.7456,
+                     "fc2": 1723.6512000000002,
+                     "fc3": 1700.3712000000003
+                  },
+                  "F407": {
+                     "customer_name": "VPIC1",
+                     "width": 58.0,
+                     "need_cut": -700.0,
+                     "fc1": 554.4,
+                     "fc2": 449.99999999999994,
+                     "fc3": 601.1999999999999
+                  },
+                  "F411": {
+                     "customer_name": "VPIC1",
+                     "width": 75.0,
+                     "need_cut": -500.0,
+                     "fc1": 705.0,
+                     "fc2": 628.5,
+                     "fc3": 726.0
+                  },
+                  "F406": {
+                     "customer_name": "VPIC1",
+                     "width": 47.0,
+                     "need_cut": -300.0,
+                     "fc1": 996.3,
+                     "fc2": 900.3399999999999,
+                     "fc3": 1037.8299999999997
+                  },
+                  "F397": {
+                     "customer_name": "VPIC1",
+                     "width": 135.0,
+                     "need_cut": -148.0,
+                     "fc1": 1478.3439999999998,
+                     "fc2": 1047.788,
+                     "fc3": 860.8880000000001
+                  },
+                  "F404": {
+                     "customer_name": "VPIC1",
+                     "width": 236.0,
+                     "need_cut": 0.0,
+                     "fc1": 307.2,
+                     "fc2": 281.6,
+                     "fc3": 301.55999999999995
+                  },
+                  "F402": {
+                     "customer_name": "VPIC1",
+                     "width": 206.0,
+                     "need_cut": 0.0,
+                     "fc1": 2111.2479999999996,
+                     "fc2": 2272.792,
+                     "fc3": 2733.04
+                  },
+                  "F392": {
+                     "customer_name": "VPIC1",
+                     "width": 110.0,
+                     "need_cut": 0.0,
+                     "fc1": 1660.736,
+                     "fc2": 1154.2720000000002,
+                     "fc3": 1115.0720000000001
+                  },
+                  "F412": {
+                     "customer_name": "VPIC1",
+                     "width": 77.0,
+                     "need_cut": 0.0,
+                     "fc1": 1332.65,
+                     "fc2": 1221.9499999999998,
+                     "fc3": 1409.8899999999999
+                  },
+                  "F409": {
+                     "customer_name": "VPIC1",
+                     "width": 67.7,
+                     "need_cut": 0.0,
+                     "fc1": 38.4,
+                     "fc2": 35.2,
+                     "fc3": 28.8
+                  },
+                  "F393": {
+                     "customer_name": "VPIC1",
+                     "width": 116.0,
+                     "need_cut": 314.0,
+                     "fc1": 1951.3880000000001,
+                     "fc2": 1023.8260000000001,
+                     "fc3": 1258.5260000000003
+                  },
+                  "F394": {
+                     "customer_name": "VPIC1",
+                     "width": 122.0,
+                     "need_cut": 484.0,
+                     "fc1": 2231.8231999999994,
+                     "fc2": 1505.2364,
+                     "fc3": 1461.1463999999999
+                  },
+                  "F416": {
+                     "customer_name": "VPIC1",
+                     "width": 95.0,
+                     "need_cut": 598.0,
+                     "fc1": 3877.0238,
+                     "fc2": 3416.7731999999996,
+                     "fc3": 4210.4633
+                  }
+               }
+            },
+            {
+               "CIC": {
+                  "F87": {
+                     "customer_name": "CIC",
+                     "width": 120.0,
+                     "need_cut": -2031.777686628384,
+                     "fc1": 2365.49388,
+                     "fc2": 1973.12262,
+                     "fc3": 2016.2379599999997
+                  },
+                  "F84": {
+                     "customer_name": "CIC",
+                     "width": 110.0,
+                     "need_cut": -1508.0,
+                     "fc1": 2391.1368469999998,
+                     "fc2": 1930.136648,
+                     "fc3": 1698.804998
+                  },
+                  "F111": {
+                     "customer_name": "CIC",
+                     "width": 86.0,
+                     "need_cut": -734.3068088597211,
+                     "fc1": 2967.737959,
+                     "fc2": 2950.9758218,
+                     "fc3": 2253.0909716
+                  },
+                  "F115": {
+                     "customer_name": "CIC",
+                     "width": 95.0,
+                     "need_cut": -568.057834290402,
+                     "fc1": 1499.4,
+                     "fc2": 1152.9,
+                     "fc3": 1215.9
+                  },
+                  "F91": {
+                     "customer_name": "CIC",
+                     "width": 138.0,
+                     "need_cut": -568.0,
+                     "fc1": 834.3739094999999,
+                     "fc2": 662.74939875,
+                     "fc3": 684.4939380000001
+                  },
+                  "F81": {
+                     "customer_name": "CIC",
+                     "width": 102.0,
+                     "need_cut": -372.46103363412635,
+                     "fc1": 565.45434,
+                     "fc2": 648.24672,
+                     "fc3": 635.91594
+                  },
+                  "F83": {
+                     "customer_name": "CIC",
+                     "width": 105.0,
+                     "need_cut": -345.1804757998359,
+                     "fc1": 1640.349816,
+                     "fc2": 1697.480232,
+                     "fc3": 1809.340848
+                  },
+                  "F108": {
+                     "customer_name": "CIC",
+                     "width": 65.0,
+                     "need_cut": -304.46062346185397,
+                     "fc1": 264.991194,
+                     "fc2": 220.587198,
+                     "fc3": 225.595812
+                  },
+                  "F109": {
+                     "customer_name": "CIC",
+                     "width": 80.0,
+                     "need_cut": -272.5184577522559,
+                     "fc1": 1145.456928,
+                     "fc2": 931.969584,
+                     "fc3": 1064.588112
+                  },
+                  "F88": {
+                     "customer_name": "CIC",
+                     "width": 126.0,
+                     "need_cut": -227.1082854799016,
+                     "fc1": 761.4645696,
+                     "fc2": 1272.2318532,
+                     "fc3": 1118.4920838
+                  },
+                  "F104": {
+                     "customer_name": "CIC",
+                     "width": 234.0,
+                     "need_cut": -217.0,
+                     "fc1": 709.1444295,
+                     "fc2": 592.749261,
+                     "fc3": 402.31324575
+                  },
+                  "F99": {
+                     "customer_name": "CIC",
+                     "width": 180.0,
+                     "need_cut": -150.0,
+                     "fc1": 512.6484105,
+                     "fc2": 484.290207,
+                     "fc3": 179.329482
+                  },
+                  "F113": {
+                     "customer_name": "CIC",
+                     "width": 90.0,
+                     "need_cut": -74.0,
+                     "fc1": 347.727996,
+                     "fc2": 282.919338,
+                     "fc3": 323.178534
+                  },
+                  "F86": {
+                     "customer_name": "CIC",
+                     "width": 116.0,
+                     "need_cut": 0.0,
+                     "fc1": 1644.8841644,
+                     "fc2": 2172.9775284,
+                     "fc3": 2428.4500008
+                  },
+                  "F85": {
+                     "customer_name": "CIC",
+                     "width": 115.0,
+                     "need_cut": 0.0,
+                     "fc1": 525.241616,
+                     "fc2": 420.551504,
+                     "fc3": 508.60212800000005
+                  },
+                  "F101": {
+                     "customer_name": "CIC",
+                     "width": 214.0,
+                     "need_cut": 115.00656275635765,
+                     "fc1": 2389.758544,
+                     "fc2": 3992.735923,
+                     "fc3": 3510.2434445
+                  },
+                  "F80": {
+                     "customer_name": "CIC",
+                     "width": 100.0,
+                     "need_cut": 147.0,
+                     "fc1": 4124.666,
+                     "fc2": 4035.312125,
+                     "fc3": 3248.467375
+                  },
+                  "F112": {
+                     "customer_name": "CIC",
+                     "width": 88.0,
+                     "need_cut": 194.1148482362592,
+                     "fc1": 1036.3050016,
+                     "fc2": 978.9796544,
+                     "fc3": 362.5097344
+                  },
+                  "F114": {
+                     "customer_name": "CIC",
+                     "width": 92.0,
+                     "need_cut": 336.60377358490564,
+                     "fc1": 2836.3047264,
+                     "fc2": 2270.9781216,
+                     "fc3": 2746.4514912
+                  },
+                  "F105": {
+                     "customer_name": "CIC",
+                     "width": 295.0,
+                     "need_cut": 840.0,
+                     "fc1": 4517.24,
+                     "fc2": 3473.34,
+                     "fc3": 3663.14
+                  },
+                  "F95": {
+                     "customer_name": "CIC",
+                     "width": 150.0,
+                     "need_cut": 1605.6201804757998,
+                     "fc1": 6136.3764,
+                     "fc2": 4992.6942,
+                     "fc3": 5703.1506
+                  },
+                  "F89": {
+                     "customer_name": "CIC",
+                     "width": 130.0,
+                     "need_cut": 2176.0106644790812,
+                     "fc1": 9847.637228,
+                     "fc2": 9479.900053,
+                     "fc3": 7886.8699585
+                  },
+                  "F103": {
+                     "customer_name": "CIC",
+                     "width": 218.0,
+                     "need_cut": 2316.817883511075,
+                     "fc1": 5579.10068455,
+                     "fc2": 5687.98556965,
+                     "fc3": 4341.2686225
+                  },
+                  "F100": {
+                     "customer_name": "CIC",
+                     "width": 190.0,
+                     "need_cut": 3312.9237079573422,
+                     "fc1": 7895.750427999999,
+                     "fc2": 7162.791531999999,
+                     "fc3": 4036.0825240000004
+                  },
+                  "F98": {
+                     "customer_name": "CIC",
+                     "width": 170.0,
+                     "need_cut": 3748.0,
+                     "fc1": 10198.134224499998,
+                     "fc2": 8862.173919,
+                     "fc3": 6697.416751000001
+                  }
+               }
+            }
+         ]
+      },
+      "CSC+CH1751Z-F-20/20+0.8": {
+         "param": {
+            "spec_name": "CH1751Z-F-20/20",
+            "type": "All",
+            "thickness": 0.8,
+            "maker": "CSC",
+            "code": "CSC CH1751Z-F-20/20 0.8"
+         },
+         "customer": [
+            {
+               "VPIC1": {
+                  "F284": {
+                     "customer_name": "VPIC1",
+                     "width": 50.0,
+                     "need_cut": -200.0,
+                     "fc1": 245.2032,
+                     "fc2": 159.9264,
+                     "fc3": 157.7664
+                  },
+                  "F285": {
+                     "customer_name": "VPIC1",
+                     "width": 65.0,
+                     "need_cut": 0.0,
+                     "fc1": 200.9304,
+                     "fc2": 131.05079999999998,
+                     "fc3": 129.2808
+                  }
+               }
+            }
+         ]
+      },
+      "POSCO+JSH270C-PO+3.2": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 3.2,
+            "maker": "POSCO",
+            "code": "POSCO JSH270C-PO 3.2"
+         },
+         "customer": [
+            {
+               "VPIC1": {
+                  "F303": {
+                     "customer_name": "VPIC1",
+                     "width": 336.0,
+                     "need_cut": -9997.0,
+                     "fc1": 30832.0,
+                     "fc2": 27486.4,
+                     "fc3": 31750.399999999998
+                  },
+                  "F309": {
+                     "customer_name": "VPIC1",
+                     "width": 216.0,
+                     "need_cut": -4120.0,
+                     "fc1": 6669.5035,
+                     "fc2": 5118.201,
+                     "fc3": 4767.708
+                  },
+                  "F312": {
+                     "customer_name": "VPIC1",
+                     "width": 163.0,
+                     "need_cut": -3535.0,
+                     "fc1": 6626.999999999999,
+                     "fc2": 5907.9,
+                     "fc3": 6824.4
+                  },
+                  "F295": {
+                     "customer_name": "VPIC1",
+                     "width": 96.0,
+                     "need_cut": -1505.0,
+                     "fc1": 1806.76,
+                     "fc2": 1497.0199999999998,
+                     "fc3": 978.52
+                  },
+                  "F297": {
+                     "customer_name": "VPIC1",
+                     "width": 76.0,
+                     "need_cut": -1418.0,
+                     "fc1": 2961.0,
+                     "fc2": 2683.7999999999997,
+                     "fc3": 3093.3
+                  },
+                  "F314": {
+                     "customer_name": "VPIC1",
+                     "width": 136.0,
+                     "need_cut": -140.0,
+                     "fc1": 2266.0687000000003,
+                     "fc2": 2075.8725,
+                     "fc3": 1697.8847
+                  },
+                  "F305": {
+                     "customer_name": "VPIC1",
+                     "width": 314.0,
+                     "need_cut": 0.0,
+                     "fc1": 555.84,
+                     "fc2": 509.52,
+                     "fc3": 416.88
+                  },
+                  "F311": {
+                     "customer_name": "VPIC1",
+                     "width": 177.0,
+                     "need_cut": 0.0,
+                     "fc1": 598.42244,
+                     "fc2": 644.21126,
+                     "fc3": 774.6662
+                  },
+                  "F299": {
+                     "customer_name": "VPIC1",
+                     "width": 54.0,
+                     "need_cut": 0.0,
+                     "fc1": 266.49,
+                     "fc2": 241.54199999999997,
+                     "fc3": 278.397
+                  },
+                  "F301": {
+                     "customer_name": "VPIC1",
+                     "width": 361.0,
+                     "need_cut": 814.0,
+                     "fc1": 6566.1904,
+                     "fc2": 7460.2416,
+                     "fc3": 8873.592
+                  },
+                  "F525": {
+                     "customer_name": "VPIC1",
+                     "width": 100.0,
+                     "need_cut": 896.0,
+                     "fc1": 5351.500000000001,
+                     "fc2": 4343.75,
+                     "fc3": 5803.25
+                  }
+               }
+            },
+            {
+               "CIC": {
+                  "F162": {
+                     "customer_name": "CIC",
+                     "width": 215.0,
+                     "need_cut": -3794.4626743232157,
+                     "fc1": 8099.14,
+                     "fc2": 6227.49,
+                     "fc3": 6567.79
+                  },
+                  "F160": {
+                     "customer_name": "CIC",
+                     "width": 168.0,
+                     "need_cut": -3437.0,
+                     "fc1": 10774.7648064,
+                     "fc2": 12573.5658048,
+                     "fc3": 11967.7618368
+                  },
+                  "F13": {
+                     "customer_name": "CIC",
+                     "width": 55.0,
+                     "need_cut": -2063.6997538966366,
+                     "fc1": 2126.2824,
+                     "fc2": 2167.7304,
+                     "fc3": 1653.7752
+                  },
+                  "F8": {
+                     "customer_name": "CIC",
+                     "width": 123.0,
+                     "need_cut": -2000.0,
+                     "fc1": 6555.640501488,
+                     "fc2": 6548.14149948,
+                     "fc3": 5405.897239872
+                  },
+                  "F9": {
+                     "customer_name": "CIC",
+                     "width": 156.0,
+                     "need_cut": -881.2469237079573,
+                     "fc1": 1410.04950528,
+                     "fc2": 2355.86784576,
+                     "fc3": 2071.17871584
+                  },
+                  "F11": {
+                     "customer_name": "CIC",
+                     "width": 320.0,
+                     "need_cut": -638.0,
+                     "fc1": 4035.919872,
+                     "fc2": 6743.092224,
+                     "fc3": 5928.239616
+                  },
+                  "F14": {
+                     "customer_name": "CIC",
+                     "width": 60.0,
+                     "need_cut": -611.0360951599672,
+                     "fc1": 1255.753824,
+                     "fc2": 1550.5787232,
+                     "fc3": 1983.4013472
+                  },
+                  "F10": {
+                     "customer_name": "CIC",
+                     "width": 182.0,
+                     "need_cut": -524.0,
+                     "fc1": 1037.579088,
+                     "fc2": 1522.7998968,
+                     "fc3": 2543.086
+                  },
+                  "F12": {
+                     "customer_name": "CIC",
+                     "width": 45.0,
+                     "need_cut": -500.0,
+                     "fc1": 2580.047568,
+                     "fc2": 2437.458912,
+                     "fc3": 878.637312
+                  },
+                  "F15": {
+                     "customer_name": "CIC",
+                     "width": 70.0,
+                     "need_cut": -202.0,
+                     "fc1": 3263.695904,
+                     "fc2": 2722.337296,
+                     "fc3": 2781.823968
+                  },
+                  "F161": {
+                     "customer_name": "CIC",
+                     "width": 195.0,
+                     "need_cut": 246.88269073010656,
+                     "fc1": 1882.6139904,
+                     "fc2": 1622.328344,
+                     "fc3": 3666.10550176001
+                  },
+                  "F16": {
+                     "customer_name": "CIC",
+                     "width": 86.0,
+                     "need_cut": 932.0,
+                     "fc1": 15182.944992,
+                     "fc2": 15478.908832,
+                     "fc3": 11808.957216
+                  }
+               }
+            }
+         ]
+      },
+      "CSVC+JSH440W-PO+2.3": {
+         "param": {
+            "spec_name": "JSH440W-PO",
+            "type": "Carbon",
+            "thickness": 2.3,
+            "maker": "CSVC",
+            "code": "CSVC JSH440W-PO 2.3"
+         },
+         "customer": [
+            {
+               "VPIC1": {
+                  "F429": {
+                     "customer_name": "VPIC1",
+                     "width": 138.0,
+                     "need_cut": -6572.0,
+                     "fc1": 10751.713160000001,
+                     "fc2": 9044.23774,
+                     "fc3": 9996.2442
+                  },
+                  "F430": {
+                     "customer_name": "VPIC1",
+                     "width": 150.0,
+                     "need_cut": -5323.0,
+                     "fc1": 6237.84,
+                     "fc2": 5653.871999999999,
+                     "fc3": 6516.552000000001
+                  },
+                  "F433": {
+                     "customer_name": "VPIC1",
+                     "width": 80.0,
+                     "need_cut": -1408.0,
+                     "fc1": 1320.8128,
+                     "fc2": 1064.0479999999998,
+                     "fc3": 1012.4531999999999
+                  }
+               }
+            }
+         ]
+      },
+      "POSCOVN+SPCC-SD+1.0": {
+         "param": {
+            "spec_name": "SPCC-SD",
+            "type": "Carbon",
+            "thickness": 1.0,
+            "maker": "POSCOVN",
+            "code": "POSCOVN SPCC-SD 1.0"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F200": {
+                     "customer_name": "CIC",
+                     "width": 210.0,
+                     "need_cut": -908.876582278481,
+                     "fc1": 2256.2464,
+                     "fc2": 1984.6524,
+                     "fc3": 1934.0102
+                  },
+                  "F197": {
+                     "customer_name": "CIC",
+                     "width": 150.0,
+                     "need_cut": -300.0,
+                     "fc1": 731.842155,
+                     "fc2": 687.165744375,
+                     "fc3": 577.24759125
+                  },
+                  "F190": {
+                     "customer_name": "CIC",
+                     "width": 100.0,
+                     "need_cut": -300.0,
+                     "fc1": 486.09712,
+                     "fc2": 812.15629,
+                     "fc3": 714.013235
+                  },
+                  "F198": {
+                     "customer_name": "CIC",
+                     "width": 152.0,
+                     "need_cut": -178.0,
+                     "fc1": 625.8,
+                     "fc2": 983.4,
+                     "fc3": 596.0
+                  },
+                  "F203": {
+                     "customer_name": "CIC",
+                     "width": 60.0,
+                     "need_cut": -109.0,
+                     "fc1": 1373.2299846,
+                     "fc2": 1331.7674778,
+                     "fc3": 905.3461206
+                  },
+                  "F196": {
+                     "customer_name": "CIC",
+                     "width": 125.0,
+                     "need_cut": -100.0,
+                     "fc1": 138.35134375,
+                     "fc2": 130.7123125,
+                     "fc3": 48.38053125
+                  },
+                  "F273": {
+                     "customer_name": "CIC",
+                     "width": 77.0,
+                     "need_cut": 0.0,
+                     "fc1": 28.590485,
+                     "fc2": 20.79308,
+                     "fc3": 40.2865925
+                  },
+                  "F204": {
+                     "customer_name": "CIC",
+                     "width": 66.0,
+                     "need_cut": 0.0,
+                     "fc1": 26.9173674,
+                     "fc2": 32.966703,
+                     "fc3": 56.9718303
+                  },
+                  "F195": {
+                     "customer_name": "CIC",
+                     "width": 11.0,
+                     "need_cut": 0.0,
+                     "fc1": 244.2,
+                     "fc2": 233.4,
+                     "fc3": 109.8
+                  },
+                  "F191": {
+                     "customer_name": "CIC",
+                     "width": 102.0,
+                     "need_cut": 25.0,
+                     "fc1": 290.614065,
+                     "fc2": 223.4553525,
+                     "fc3": 235.6660275
+                  },
+                  "F199": {
+                     "customer_name": "CIC",
+                     "width": 204.0,
+                     "need_cut": 184.01807300448854,
+                     "fc1": 4308.7332456,
+                     "fc2": 4329.0261864,
+                     "fc3": 4509.2413368
+                  }
+               }
+            },
+            {
+               "VPIC1": {
+                  "F511": {
+                     "customer_name": "VPIC1",
+                     "width": 95.0,
+                     "need_cut": -300.0,
+                     "fc1": 194.04,
+                     "fc2": 183.48000000000002,
+                     "fc3": 329.99999999999994
+                  },
+                  "F504": {
+                     "customer_name": "VPIC1",
+                     "width": 440.0,
+                     "need_cut": 0.0,
+                     "fc1": 98.49,
+                     "fc2": 93.13000000000001,
+                     "fc3": 167.5
+                  },
+                  "F501": {
+                     "customer_name": "VPIC1",
+                     "width": 120.0,
+                     "need_cut": 0.0,
+                     "fc1": 188.892,
+                     "fc2": 130.0992,
+                     "fc3": 126.69359999999999
+                  },
+                  "F512": {
+                     "customer_name": "VPIC1",
+                     "width": 96.0,
+                     "need_cut": 0.0,
+                     "fc1": 24.86,
+                     "fc2": 9.04,
+                     "fc3": 11.299999999999999
+                  },
+                  "F509": {
+                     "customer_name": "VPIC1",
+                     "width": 68.0,
+                     "need_cut": 0.0,
+                     "fc1": 28.860000000000003,
+                     "fc2": 12.209999999999999,
+                     "fc3": 19.610000000000003
+                  },
+                  "F508": {
+                     "customer_name": "VPIC1",
+                     "width": 65.0,
+                     "need_cut": 0.0,
+                     "fc1": 166.3288,
+                     "fc2": 177.8744,
+                     "fc3": 185.812
+                  },
+                  "F507": {
+                     "customer_name": "VPIC1",
+                     "width": 62.0,
+                     "need_cut": 0.0,
+                     "fc1": 37.92,
+                     "fc2": 34.760000000000005,
+                     "fc3": 28.44
+                  }
+               }
+            }
+         ]
+      },
+      "POSCO+JSH270C-PO+2.6": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 2.6,
+            "maker": "POSCO",
+            "code": "POSCO JSH270C-PO 2.6"
+         },
+         "customer": [
+            {
+               "VPIC1": {
+                  "F375": {
+                     "customer_name": "VPIC1",
+                     "width": 200.0,
+                     "need_cut": -9770.0,
+                     "fc1": 23197.8528,
+                     "fc2": 21325.6512,
+                     "fc3": 24811.703999999998
+                  },
+                  "F370": {
+                     "customer_name": "VPIC1",
+                     "width": 122.0,
+                     "need_cut": -4616.0,
+                     "fc1": 6722.180799999999,
+                     "fc2": 6665.782599999999,
+                     "fc3": 6695.3674
+                  },
+                  "F368": {
+                     "customer_name": "VPIC1",
+                     "width": 105.0,
+                     "need_cut": -3096.0,
+                     "fc1": 4639.6844,
+                     "fc2": 3791.4984,
+                     "fc3": 4265.9472000000005
+                  },
+                  "F381": {
+                     "customer_name": "VPIC1",
+                     "width": 64.0,
+                     "need_cut": -2470.0,
+                     "fc1": 3507.525,
+                     "fc2": 3143.5070000000005,
+                     "fc3": 3709.2115000000003
+                  },
+                  "F372": {
+                     "customer_name": "VPIC1",
+                     "width": 167.0,
+                     "need_cut": -1819.0,
+                     "fc1": 1639.9253,
+                     "fc2": 1247.0058000000001,
+                     "fc3": 1451.1263999999996
+                  },
+                  "F379": {
+                     "customer_name": "VPIC1",
+                     "width": 290.0,
+                     "need_cut": -920.0,
+                     "fc1": 2408.8176,
+                     "fc2": 2593.1304,
+                     "fc3": 3118.248
+                  },
+                  "F369": {
+                     "customer_name": "VPIC1",
+                     "width": 109.0,
+                     "need_cut": -852.0,
+                     "fc1": 1994.0488,
+                     "fc2": 2146.6252,
+                     "fc3": 2581.324
+                  },
+                  "F374": {
+                     "customer_name": "VPIC1",
+                     "width": 195.0,
+                     "need_cut": -412.0,
+                     "fc1": 2026.0240000000001,
+                     "fc2": 1647.03,
+                     "fc3": 2024.253
+                  },
+                  "F382": {
+                     "customer_name": "VPIC1",
+                     "width": 76.0,
+                     "need_cut": 133.0,
+                     "fc1": 2738.12,
+                     "fc2": 2222.5,
+                     "fc3": 2969.2599999999993
+                  }
+               }
+            },
+            {
+               "CIC": {
+                  "F146": {
+                     "customer_name": "CIC",
+                     "width": 220.0,
+                     "need_cut": -4247.0,
+                     "fc1": 22574.03148,
+                     "fc2": 23014.07108,
+                     "fc3": 17557.58004
+                  },
+                  "F141": {
+                     "customer_name": "CIC",
+                     "width": 145.0,
+                     "need_cut": -1895.0,
+                     "fc1": 4559.92056,
+                     "fc2": 5227.57248,
+                     "fc3": 5128.13496
+                  },
+                  "F134": {
+                     "customer_name": "CIC",
+                     "width": 106.0,
+                     "need_cut": -1413.9565217391305,
+                     "fc1": 10417.0599,
+                     "fc2": 11942.2992,
+                     "fc3": 11715.1359
+                  },
+                  "F142": {
+                     "customer_name": "CIC",
+                     "width": 150.0,
+                     "need_cut": -788.267432321575,
+                     "fc1": 4618.88505,
+                     "fc2": 5295.1704,
+                     "fc3": 5194.44705
+                  },
+                  "F153": {
+                     "customer_name": "CIC",
+                     "width": 70.0,
+                     "need_cut": -515.0,
+                     "fc1": 669.131645,
+                     "fc2": 684.06156,
+                     "fc3": 515.7607
+                  },
+                  "F154": {
+                     "customer_name": "CIC",
+                     "width": 72.0,
+                     "need_cut": -200.0,
+                     "fc1": 912.258966666668,
+                     "fc2": 778.41062208,
+                     "fc3": 300.0
+                  },
+                  "F138": {
+                     "customer_name": "CIC",
+                     "width": 127.0,
+                     "need_cut": -100.0,
+                     "fc1": 0.0,
+                     "fc2": 0.0,
+                     "fc3": 0.0
+                  },
+                  "F151": {
+                     "customer_name": "CIC",
+                     "width": 52.0,
+                     "need_cut": -100.0,
+                     "fc1": 103.578,
+                     "fc2": 97.635,
+                     "fc3": 33.96
+                  },
+                  "F136": {
+                     "customer_name": "CIC",
+                     "width": 120.0,
+                     "need_cut": -50.0,
+                     "fc1": 268.8707268,
+                     "fc2": 394.3016064,
+                     "fc3": 658.5384468
+                  },
+                  "F152": {
+                     "customer_name": "CIC",
+                     "width": 63.0,
+                     "need_cut": -47.899097621000834,
+                     "fc1": 1687.0931047152,
+                     "fc2": 1593.8543825568,
+                     "fc3": 574.5409383168
+                  },
+                  "F155": {
+                     "customer_name": "CIC",
+                     "width": 95.0,
+                     "need_cut": 0.0,
+                     "fc1": 399.6486182,
+                     "fc2": 664.157268775,
+                     "fc3": 583.8987961625
+                  },
+                  "F143": {
+                     "customer_name": "CIC",
+                     "width": 160.0,
+                     "need_cut": 167.0,
+                     "fc1": 2620.644,
+                     "fc2": 3004.352,
+                     "fc3": 2947.204
+                  },
+                  "F145": {
+                     "customer_name": "CIC",
+                     "width": 190.0,
+                     "need_cut": 440.0,
+                     "fc1": 6557.2419354,
+                     "fc2": 5250.2655426,
+                     "fc3": 6349.5105882
+                  },
+                  "F148": {
+                     "customer_name": "CIC",
+                     "width": 255.0,
+                     "need_cut": 458.5512715340442,
+                     "fc1": 9166.25346,
+                     "fc2": 7048.00161,
+                     "fc3": 7433.13831
+                  },
+                  "F139": {
+                     "customer_name": "CIC",
+                     "width": 130.0,
+                     "need_cut": 2138.3880229696474,
+                     "fc1": 5010.560126156,
+                     "fc2": 4668.243377564,
+                     "fc3": 4279.168617048001
+                  },
+                  "F149": {
+                     "customer_name": "CIC",
+                     "width": 277.0,
+                     "need_cut": 2154.0,
+                     "fc1": 9970.94134478,
+                     "fc2": 7983.55318982,
+                     "fc3": 9655.06508174
+                  }
+               }
+            }
+         ]
+      },
+      "POSCO+SS400-PO+2.3": {
+         "param": {
+            "spec_name": "SS400-PO",
+            "type": "Carbon",
+            "thickness": 2.3,
+            "maker": "POSCO",
+            "code": "POSCO SS400-PO 2.3"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F282": {
+                     "customer_name": "CIC",
+                     "width": 88.0,
+                     "need_cut": -2103.2067268252667,
+                     "fc1": 4075.3746,
+                     "fc2": 4154.8166,
+                     "fc3": 3169.7358
+                  },
+                  "F279": {
+                     "customer_name": "CIC",
+                     "width": 118.0,
+                     "need_cut": -1138.1952420016407,
+                     "fc1": 5029.46691741,
+                     "fc2": 5003.04458043,
+                     "fc3": 4934.695478544
+                  },
+                  "F281": {
+                     "customer_name": "CIC",
+                     "width": 128.0,
+                     "need_cut": -917.4405250205086,
+                     "fc1": 6269.1350976,
+                     "fc2": 6407.09725248,
+                     "fc3": 4909.54333248
+                  },
+                  "F280": {
+                     "customer_name": "CIC",
+                     "width": 120.0,
+                     "need_cut": -303.0,
+                     "fc1": 1174.8518496,
+                     "fc2": 1012.4196809999999,
+                     "fc3": 2287.84596924
+                  }
+               }
+            }
+         ]
+      },
+      "CSVC+JSH270C-PO+1.6": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 1.6,
+            "maker": "CSVC",
+            "code": "CSVC JSH270C-PO 1.6"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F58": {
+                     "customer_name": "CIC",
+                     "width": 147.0,
+                     "need_cut": -1308.0,
+                     "fc1": 6895.65070656,
+                     "fc2": 5610.45689568,
+                     "fc3": 6408.82043424
+                  },
+                  "F57": {
+                     "customer_name": "CIC",
+                     "width": 136.0,
+                     "need_cut": -1290.2050861361772,
+                     "fc1": 838.00706848,
+                     "fc2": 897.73800736,
+                     "fc3": 865.90644576
+                  },
+                  "F74": {
+                     "customer_name": "CIC",
+                     "width": 80.0,
+                     "need_cut": -1149.766201804758,
+                     "fc1": 1225.50432,
+                     "fc2": 1085.4100799999999,
+                     "fc3": 966.19056
+                  },
+                  "F53": {
+                     "customer_name": "CIC",
+                     "width": 123.8,
+                     "need_cut": -703.850697292863,
+                     "fc1": 639.649176432,
+                     "fc2": 634.89265168,
+                     "fc3": 625.2141578368
+                  },
+                  "F55": {
+                     "customer_name": "CIC",
+                     "width": 130.0,
+                     "need_cut": -561.9852337981952,
+                     "fc1": 2648.8555184,
+                     "fc2": 2516.2003151999997,
+                     "fc3": 2564.1687136
+                  },
+                  "F70": {
+                     "customer_name": "CIC",
+                     "width": 68.0,
+                     "need_cut": -309.0,
+                     "fc1": 250.16003199999997,
+                     "fc2": 197.02771520000002,
+                     "fc3": 201.178544
+                  },
+                  "F46": {
+                     "customer_name": "CIC",
+                     "width": 100.0,
+                     "need_cut": -307.0,
+                     "fc1": 366.1868,
+                     "fc2": 281.5638,
+                     "fc3": 296.9498
+                  },
+                  "F71": {
+                     "customer_name": "CIC",
+                     "width": 70.0,
+                     "need_cut": -260.0,
+                     "fc1": 1043.6385344,
+                     "fc2": 849.1278432,
+                     "fc3": 969.9580576
+                  },
+                  "F67": {
+                     "customer_name": "CIC",
+                     "width": 60.0,
+                     "need_cut": -159.0,
+                     "fc1": 421.7627904,
+                     "fc2": 331.1258112,
+                     "fc3": 360.1122816
+                  },
+                  "F75": {
+                     "customer_name": "CIC",
+                     "width": 85.0,
+                     "need_cut": -132.0,
+                     "fc1": 381.1332,
+                     "fc2": 293.0562,
+                     "fc3": 309.0702
+                  },
+                  "F77": {
+                     "customer_name": "CIC",
+                     "width": 92.0,
+                     "need_cut": -100.0,
+                     "fc1": 63.62466447999999,
+                     "fc2": 93.0395816,
+                     "fc3": 155.38479656
+                  },
+                  "F66": {
+                     "customer_name": "CIC",
+                     "width": 57.0,
+                     "need_cut": -100.0,
+                     "fc1": 114.52787016,
+                     "fc2": 93.27685884,
+                     "fc3": 106.45587216
+                  },
+                  "F78": {
+                     "customer_name": "CIC",
+                     "width": 93.0,
+                     "need_cut": -65.0,
+                     "fc1": 958.82080416,
+                     "fc2": 770.77394112,
+                     "fc3": 919.2322368
+                  },
+                  "F72": {
+                     "customer_name": "CIC",
+                     "width": 74.0,
+                     "need_cut": -59.0,
+                     "fc1": 426.3759528,
+                     "fc2": 327.8436948,
+                     "fc3": 345.7586508
+                  },
+                  "F59": {
+                     "customer_name": "CIC",
+                     "width": 150.0,
+                     "need_cut": 9.0,
+                     "fc1": 504.44100000000003,
+                     "fc2": 387.8685,
+                     "fc3": 409.0635
+                  },
+                  "F48": {
+                     "customer_name": "CIC",
+                     "width": 105.0,
+                     "need_cut": 13.226415094339643,
+                     "fc1": 1721.8593788,
+                     "fc2": 2008.2778715999998,
+                     "fc3": 1911.5175156
+                  },
+                  "F60": {
+                     "customer_name": "CIC",
+                     "width": 154.0,
+                     "need_cut": 99.0,
+                     "fc1": 227.86507744,
+                     "fc2": 333.2115248,
+                     "fc3": 556.49438768
+                  },
+                  "F47": {
+                     "customer_name": "CIC",
+                     "width": 104.0,
+                     "need_cut": 198.0,
+                     "fc1": 1296.9624304,
+                     "fc2": 1513.4847728,
+                     "fc3": 1440.5639248
+                  },
+                  "F51": {
+                     "customer_name": "CIC",
+                     "width": 114.0,
+                     "need_cut": 597.9163248564398,
+                     "fc1": 1424.267258984,
+                     "fc2": 1172.40425028,
+                     "fc3": 1336.158735548
+                  },
+                  "F63": {
+                     "customer_name": "CIC",
+                     "width": 215.0,
+                     "need_cut": 1385.0,
+                     "fc1": 24200.000000000004,
+                     "fc2": 2223.7794,
+                     "fc3": 2345.2974
+                  }
+               }
+            },
+            {
+               "VPIC1": {
+                  "F351": {
+                     "customer_name": "VPIC1",
+                     "width": 334.0,
+                     "need_cut": -3623.0,
+                     "fc1": 5261.21,
+                     "fc2": 2238.4600000000005,
+                     "fc3": 3587.9100000000003
+                  },
+                  "F349": {
+                     "customer_name": "VPIC1",
+                     "width": 160.0,
+                     "need_cut": -891.0,
+                     "fc1": 740.88,
+                     "fc2": 700.5600000000001,
+                     "fc3": 1260.0000000000002
+                  },
+                  "F347": {
+                     "customer_name": "VPIC1",
+                     "width": 135.0,
+                     "need_cut": -677.0,
+                     "fc1": 595.1679999999998,
+                     "fc2": 493.1360000000001,
+                     "fc3": 322.3359999999999
+                  },
+                  "F348": {
+                     "customer_name": "VPIC1",
+                     "width": 147.0,
+                     "need_cut": -471.0,
+                     "fc1": 2678.5764,
+                     "fc2": 2273.0178,
+                     "fc3": 2548.5227999999997
+                  },
+                  "F354": {
+                     "customer_name": "VPIC1",
+                     "width": 55.0,
+                     "need_cut": -74.0,
+                     "fc1": 715.6236,
+                     "fc2": 481.7222,
+                     "fc3": 466.4772
+                  },
+                  "F357": {
+                     "customer_name": "VPIC1",
+                     "width": 90.0,
+                     "need_cut": -38.0,
+                     "fc1": 665.5988,
+                     "fc2": 480.9296,
+                     "fc3": 429.26160000000004
+                  },
+                  "F345": {
+                     "customer_name": "VPIC1",
+                     "width": 124.0,
+                     "need_cut": 0.0,
+                     "fc1": 217.77439999999999,
+                     "fc2": 234.4376,
+                     "fc3": 281.912
+                  },
+                  "F344": {
+                     "customer_name": "VPIC1",
+                     "width": 122.0,
+                     "need_cut": 0.0,
+                     "fc1": 797.125,
+                     "fc2": 660.5144000000001,
+                     "fc3": 431.8762000000001
+                  },
+                  "F358": {
+                     "customer_name": "VPIC1",
+                     "width": 95.0,
+                     "need_cut": 0.0,
+                     "fc1": 98.9128,
+                     "fc2": 106.4812,
+                     "fc3": 128.044
+                  },
+                  "F355": {
+                     "customer_name": "VPIC1",
+                     "width": 58.0,
+                     "need_cut": 0.0,
+                     "fc1": 20.25,
+                     "fc2": 20.25,
+                     "fc3": 24.3
+                  },
+                  "F346": {
+                     "customer_name": "VPIC1",
+                     "width": 130.0,
+                     "need_cut": 28.0,
+                     "fc1": 1197.0210000000002,
+                     "fc2": 1131.877,
+                     "fc3": 2035.7500000000002
+                  }
+               }
+            }
+         ]
+      },
+      "POSCO+JSH440W-PO+2.0": {
+         "param": {
+            "spec_name": "JSH440W-PO",
+            "type": "Carbon",
+            "thickness": 2.0,
+            "maker": "POSCO",
+            "code": "POSCO JSH440W-PO 2.0"
+         },
+         "customer": [
+            {
+               "CIC": {
+                  "F259": {
+                     "customer_name": "CIC",
+                     "width": 185.0,
+                     "need_cut": -2345.0123051681703,
+                     "fc1": 18500.03848,
+                     "fc2": 15052.04844,
+                     "fc3": 17193.94292
+                  },
+                  "F261": {
+                     "customer_name": "CIC",
+                     "width": 300.0,
+                     "need_cut": -2279.008203445447,
+                     "fc1": 26507.88,
+                     "fc2": 18100.53,
+                     "fc3": 19089.63
+                  },
+                  "F256": {
+                     "customer_name": "CIC",
+                     "width": 275.0,
+                     "need_cut": -926.5387471898503,
+                     "fc1": 6820.1259225,
+                     "fc2": 5677.2923075,
+                     "fc3": 5806.199905
+                  },
+                  "F176": {
+                     "customer_name": "CIC",
+                     "width": 175.0,
+                     "need_cut": -644.0,
+                     "fc1": 2321.994675,
+                     "fc2": 3395.497875,
+                     "fc3": 5670.7987875
+                  },
+                  "F179": {
+                     "customer_name": "CIC",
+                     "width": 236.0,
+                     "need_cut": -523.0,
+                     "fc1": 1426.2352256,
+                     "fc2": 2382.9104552,
+                     "fc3": 2094.9534268
+                  },
+                  "F178": {
+                     "customer_name": "CIC",
+                     "width": 215.0,
+                     "need_cut": -450.91960623461864,
+                     "fc1": 6865.989783,
+                     "fc2": 5715.470861,
+                     "fc3": 5845.245334
+                  },
+                  "F257": {
+                     "customer_name": "CIC",
+                     "width": 60.0,
+                     "need_cut": -200.0,
+                     "fc1": 151.81272,
+                     "fc2": 222.807492,
+                     "fc3": 372.09
+                  },
+                  "F262": {
+                     "customer_name": "CIC",
+                     "width": 96.0,
+                     "need_cut": 10.398687448728424,
+                     "fc1": 3272.73408,
+                     "fc2": 2662.77024,
+                     "fc3": 3041.68032
+                  },
+                  "F258": {
+                     "customer_name": "CIC",
+                     "width": 107.0,
+                     "need_cut": 517.0,
+                     "fc1": 2115.6862188,
+                     "fc2": 1721.3700114,
+                     "fc3": 1966.3195902
+                  },
+                  "F174": {
+                     "customer_name": "CIC",
+                     "width": 140.0,
+                     "need_cut": 625.6488549618321,
+                     "fc1": 8185.387168,
+                     "fc2": 7834.164352,
+                     "fc3": 8662.599344
+                  }
+               }
+            },
+            {
+               "VPIC1": {
+                  "F330": {
+                     "customer_name": "VPIC1",
+                     "width": 460.0,
+                     "need_cut": -3910.0,
+                     "fc1": 12511.281599999998,
+                     "fc2": 10366.423200000001,
+                     "fc3": 6775.9632
+                  },
+                  "F332": {
+                     "customer_name": "VPIC1",
+                     "width": 95.0,
+                     "need_cut": -107.0,
+                     "fc1": 1156.3264000000001,
+                     "fc2": 958.0928000000001,
+                     "fc3": 626.2528000000001
+                  }
+               }
+            }
+         ]
+      }
+   }
+}

@@ -1,0 +1,354 @@
+{
+    "date": "25-07-24",
+    "number of job": 35,
+    "jobs": [
+        {
+            "param": "POSCOVN+JSC270C-SD+1.0",
+            "stocks_available": 2155.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 100.0
+                }
+            }
+        },
+        {
+            "param": "POSCOVST+SUS409L-2D+2.0",
+            "stocks_available": 17556.0,
+            "tasks": {
+                "TEC": {
+                    "total_need_cut": 25968.0
+                }
+            }
+        },
+        {
+            "param": "CSVC+JSH270C-PO+3.0",
+            "stocks_available": 5106.0,
+            "tasks": {
+                "VPIC1": {
+                    "total_need_cut": 2805.0
+                }
+            }
+        },
+        {
+            "param": "CSC+JSH590R-PO+2.0",
+            "stocks_available": 84893.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 68215.95321040732
+                }
+            }
+        },
+        {
+            "param": "POSCO+JSH270C-PO+2.3",
+            "stocks_available": 8070.0,
+            "tasks": {
+                "VPIC1": {
+                    "total_need_cut": 7877.0
+                },
+                "CIC": {
+                    "total_need_cut": 4420.08367514356
+                }
+            }
+        },
+        {
+            "param": "POSCOVN+JSC270C-SD+2.0",
+            "stocks_available": 4415.0,
+            "tasks": {
+                "VPIC1": {
+                    "total_need_cut": 350.0
+                }
+            }
+        },
+        {
+            "param": "CSC+JSH590R-PO+2.3",
+            "stocks_available": 970.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 772.0
+                }
+            }
+        },
+        {
+            "param": "POSCOVN+SPCC-SD+1.6",
+            "stocks_available": 3475.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 470.08170515097686
+                }
+            }
+        },
+        {
+            "param": "POSCO+JSH270C-PO+2.9",
+            "stocks_available": 18040.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 15425.9803982096
+                },
+                "VPIC1": {
+                    "total_need_cut": 7772.0
+                }
+            }
+        },
+        {
+            "param": "POSCOVST+SUS409L-2D+1.2",
+            "stocks_available": 33024.0,
+            "tasks": {
+                "TEC": {
+                    "total_need_cut": 19357.09945652174
+                }
+            }
+        },
+        {
+            "param": "POSCO+SAPH440-PO+4.0",
+            "stocks_available": 4149.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 1550.0
+                },
+                "VPIC1": {
+                    "total_need_cut": 259.0
+                }
+            }
+        },
+        {
+            "param": "POSCOVN+SPCC-SD+1.4",
+            "stocks_available": 6610.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 1099.391304347826
+                },
+                "VPIC1": {
+                    "total_need_cut": 1069.0
+                }
+            }
+        },
+        {
+            "param": "POSCOVN+JSC270C-SD+1.6",
+            "stocks_available": 1571.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 735.4493243243244
+                }
+            }
+        },
+        {
+            "param": "POSCOVST+SUS409L-2D+1.0",
+            "stocks_available": 55906.0,
+            "tasks": {
+                "TEC": {
+                    "total_need_cut": 42889.11985166001
+                }
+            }
+        },
+        {
+            "param": "CSC+CH1751Z-F-20/20+1.0",
+            "stocks_available": 17960.0,
+            "tasks": {
+                "VPIC1": {
+                    "total_need_cut": 2000.0
+                }
+            }
+        },
+        {
+            "param": "POSCO+JSH270C-PO+4.0",
+            "stocks_available": 6985.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 669.1591468416735
+                }
+            }
+        },
+        {
+            "param": "CSVC+JSH270C-PO+6.0",
+            "stocks_available": 17211.0,
+            "tasks": {
+                "VPIC1": {
+                    "total_need_cut": 10212.0
+                }
+            }
+        },
+        {
+            "param": "POSCOVN+JSC270C-SD+1.4",
+            "stocks_available": 7954.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 1332.241610738255
+                }
+            }
+        },
+        {
+            "param": "POSCOVST+SUS409L-2D+0.8",
+            "stocks_available": 3936.0,
+            "tasks": {
+                "TEC": {
+                    "total_need_cut": 8024.0
+                }
+            }
+        },
+        {
+            "param": "POSCOVN+SPCC-SD+1.2",
+            "stocks_available": 1510.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 577.0
+                },
+                "VPIC1": {
+                    "total_need_cut": 300.0
+                }
+            }
+        },
+        {
+            "param": "CSC+JSH590R-PO+2.9",
+            "stocks_available": 13040.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 4105.0
+                }
+            }
+        },
+        {
+            "param": "CSC+SPHC+8.0",
+            "stocks_available": 20505.0,
+            "tasks": {
+                "VPIC1": {
+                    "total_need_cut": 4773.0
+                }
+            }
+        },
+        {
+            "param": "CSC+JSH590R-PO+2.6",
+            "stocks_available": 13945.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 800.0
+                }
+            }
+        },
+        {
+            "param": "CSVC+JSH440W-PO+3.2",
+            "stocks_available": 17925.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 11755.735849056604
+                }
+            }
+        },
+        {
+            "param": "CSVC+JSH440W-PO+2.9",
+            "stocks_available": 29330.0,
+            "tasks": {
+                "VPIC1": {
+                    "total_need_cut": 6004.0
+                }
+            }
+        },
+        {
+            "param": "CSC+JSC590R-SD+1.6",
+            "stocks_available": 51885.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 16037.354388843312
+                }
+            }
+        },
+        {
+            "param": "CSVC+JSH270C-PO+2.0",
+            "stocks_available": 34250.0,
+            "tasks": {
+                "VPIC1": {
+                    "total_need_cut": 16492.0
+                },
+                "CIC": {
+                    "total_need_cut": 7372.871205906481
+                }
+            }
+        },
+        {
+            "param": "CSC+CH1751Z-F-20/20+0.8",
+            "stocks_available": 7745.0,
+            "tasks": {
+                "VPIC1": {
+                    "total_need_cut": 200.0
+                }
+            }
+        },
+        {
+            "param": "POSCO+JSH270C-PO+3.2",
+            "stocks_available": 22470.0,
+            "tasks": {
+                "VPIC1": {
+                    "total_need_cut": 20715.0
+                },
+                "CIC": {
+                    "total_need_cut": 14651.445447087777
+                }
+            }
+        },
+        {
+            "param": "CSVC+JSH440W-PO+2.3",
+            "stocks_available": 2969.0,
+            "tasks": {
+                "VPIC1": {
+                    "total_need_cut": 13303.0
+                }
+            }
+        },
+        {
+            "param": "POSCOVN+SPCC-SD+1.0",
+            "stocks_available": 6459.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 1895.876582278481
+                },
+                "VPIC1": {
+                    "total_need_cut": 300.0
+                }
+            }
+        },
+        {
+            "param": "POSCO+JSH270C-PO+2.6",
+            "stocks_available": 14016.0,
+            "tasks": {
+                "VPIC1": {
+                    "total_need_cut": 23955.0
+                },
+                "CIC": {
+                    "total_need_cut": 9357.123051681707
+                }
+            }
+        },
+        {
+            "param": "POSCO+SS400-PO+2.3",
+            "stocks_available": 11900.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 4461.842493847416
+                }
+            }
+        },
+        {
+            "param": "CSVC+JSH270C-PO+1.6",
+            "stocks_available": 18273.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 6504.807219031994
+                },
+                "VPIC1": {
+                    "total_need_cut": 5774.0
+                }
+            }
+        },
+        {
+            "param": "POSCO+JSH440W-PO+2.0",
+            "stocks_available": 42280.0,
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 7368.478862038086
+                },
+                "VPIC1": {
+                    "total_need_cut": 4017.0
+                }
+            }
+        }
+    ]
+}
