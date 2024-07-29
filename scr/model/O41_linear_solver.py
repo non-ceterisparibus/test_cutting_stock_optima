@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 from pulp import LpMaximize, LpProblem, LpVariable, lpSum, value, LpStatus
-from O31_steel_objects import FinishObjects, StockObjects
+from model.O31_steel_objects import FinishObjects, StockObjects
 
 # DEFINE PROBLEM
 class LinearProb:

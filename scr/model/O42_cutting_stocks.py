@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 import copy
-from O31_steel_objects import FinishObjects, StockObjects
-from O41_dual_solver import DualProblem
+from model.O31_steel_objects import FinishObjects, StockObjects
+from model.O41_dual_solver import DualProblem
 from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum, PULP_CBC_CMD, LpStatus, value
 
 def transform_to_df(data):

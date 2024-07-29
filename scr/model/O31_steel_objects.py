@@ -1,12 +1,10 @@
 import pandas as pd
 import numpy as np
-import json
-import datetime
-import copy
+
 
 # INPUT
-margin_df = pd.read_csv('scr/data/min_margin.csv')
-spec_type = pd.read_csv('scr/data/spec_type.csv')
+margin_df = pd.read_csv('scr/model_config/min_margin.csv')
+spec_type = pd.read_csv('scr/model_config/spec_type.csv') 
 # coil_priority = pd.read_csv('data/coil_data.csv')
 
 # DEFINE OBJECTS

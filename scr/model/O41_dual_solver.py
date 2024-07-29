@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import copy
-from O31_steel_objects import FinishObjects, StockObjects
+from model.O31_steel_objects import FinishObjects, StockObjects
 from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum, PULP_CBC_CMD, LpStatus, value
 
 # DEFINE PROBLEM
