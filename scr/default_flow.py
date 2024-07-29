@@ -94,9 +94,9 @@ for i in range(n_jobs): # loop for each job
         #### Calculating the sum of 'total_need_cut' values
         if stocks_available >= 6 * total_need_cut:
             logger.warning("May over cut too much ")
-        elif total_need_cut < stocks_available <= 3 * total_need_cut:
+        elif 1.5 * total_need_cut < stocks_available <= 3 * total_need_cut:
             logger.warning("May have enough stocks to cut")
-        elif stocks_available < total_need_cut:
+        elif stocks_available < 1.5 * total_need_cut:
             logger.warning("Lacks of stocks")
             
         # def rewind_flow(): try if and only if pattern suit width not weight?, how to define the ratio to cut
