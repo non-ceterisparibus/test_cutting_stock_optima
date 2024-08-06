@@ -7,12 +7,7 @@ import copy
 
 # INPUT
 fin_file_path = "scr/data/20240710_finish_df.xlsx"
-mc_file_path = "scr/data/20240710_mc_df.xlsx"
-
-finish_key = 'order_id'
-finish_columns = ["customer_name","width", "need_cut", "fc1", "fc2", "fc3"]
-stock_key = "inventory_id"
-stock_columns = ['receiving_date',"width", "weight",'warehouse']
+mc_file_path = "scr/data/20240801_mc_df.xlsx"
 
 def filter_by_params(file_path,params):
     # Read the Excel file into a DataFrame
@@ -68,7 +63,6 @@ if __name__ == "__main__":
     }
     for i, param in enumerate(params):
         # LOAD JOB
-        # print(f"process param {param}")
         param_split = param.split("+")
         maker = param_split[0]
         spec = param_split[1]
@@ -87,10 +81,16 @@ if __name__ == "__main__":
 
         # Filter STOCKS by PARAMS 
         param_stocks_df = filter_by_params(mc_file_path, PARAMS)
-        sum_stock = param_stocks_df['weight'].sum()
-
-        job_list['jobs'].append({'param': param,'stocks_available': float(sum_stock) ,'tasks':{}})
+        job_list['jobs'].append({'param': param,'stocks_available': {} ,'tasks':{}})
         current_job = job_list['jobs'][i]
+        
+        # SUM STOCK BY WAREHOUSE
+        wh_list = param_stocks_df['warehouse'].unique().tolist()
+        for wh in wh_list:
+            wh_stock = param_stocks_df[param_stocks_df['warehouse'] == wh]
+            sum_wh_stock = wh_stock['weight'].sum()
+            current_job['stocks_available'][wh] = float(sum_wh_stock)
+            
         # CUSTOMER in the list
         customer_list = to_cut_finish_df['customer_name'].unique()
         sub_job_operator = {}
