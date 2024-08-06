@@ -5,11 +5,14 @@ import numpy as np
 # INPUT
 margin_df = pd.read_csv('scr/model_config/min_margin.csv')
 spec_type = pd.read_csv('scr/model_config/spec_type.csv') 
-# coil_priority = pd.read_csv('data/coil_data.csv')
 
 # DEFINE OBJECTS
 class FinishObjects:
     # SET UP FINISH
+    # Finish: { width, need_cut,
+    #               fc1,fc2,fc3
+    #               fc4, fc5, fc6
+    #               min_weight, max_weight} 
     def __init__(self, finish, PARAMS):
         self.upperbound = 2 # DEFAULT 2 months forecast
         self.spec = PARAMS['spec_name']
@@ -46,6 +49,7 @@ class FinishObjects:
     
 class StockObjects:
     # SET UP STOCKS
+    # Stock: {receiving_date, width, weight, status, remark}
     def __init__(self,stocks, PARAMS):
         self.spec = PARAMS['spec_name']
         self.thickness = PARAMS['thickness']
