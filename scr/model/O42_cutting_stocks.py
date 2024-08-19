@@ -5,21 +5,6 @@ import statistics
 from model.O31_steel_objects import FinishObjects, StockObjects
 from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum, PULP_CBC_CMD, value
 
-# HELPER
-def transform_to_df(data):
-    # Flatten the data
-    flattened_data = []
-    for item in data:
-        common_data = {k: v for k, v in item.items() if k not in ['count','cuts',"cut_w"]}
-        for cut, line in item['cuts'].items():
-            if line > 0:
-                flattened_item = {**common_data, 'cuts': cut, 'lines': line}
-                flattened_data.append(flattened_item)
-
-    # Create DataFrame
-    df = pd.DataFrame(flattened_data)
-    return df
-
 # DEFINE PROBLEM
 class DualProblem:
     def __init__(self, dual_finish, dual_stocks):
@@ -34,9 +19,10 @@ class DualProblem:
     def _make_naive_patterns(self):
         """
         Generates patterns of feasible cuts from stock width to meet specified finish widths.
-        patterns [{'stock': 'TP238H002948-1', 'stock_weight': 
+        patterns [{'inventory_id': 'TP238H002948-1', 'stock_weight': 
+                    'trim_loss': 48.0, 'trim_loss_pct': 3.938}
                   'cuts': {'F200': 0, 'F198': 3, 'F197': 0, 'F196': 1, 'F190': 4, 'F511': 2, 'F203': 0}, 
-                'trim_loss': 48.0, 'trim_loss_pct': 3.938}, ]
+                , ]
         """
         self.patterns = []
         for f in self.dual_finish:
@@ -56,8 +42,13 @@ class DualProblem:
                     cuts_dict[f] = num_cuts
                     trim_loss = self.dual_stocks[s]['width'] - sum([self.dual_finish[f]["width"] * cuts_dict[f] for f in self.dual_finish.keys()])
                     trim_loss_pct = round(trim_loss/self.dual_stocks[s]['width'] * 100, 3)
-                    self.patterns.append({"stock": s, "stock_weight": self.dual_stocks[s]['weight'], 'stock_width':self.dual_stocks[s]['width']
-                                          ,"cuts": cuts_dict, 'trim_loss':trim_loss, "trim_loss_pct": trim_loss_pct })
+                    self.patterns.append({"stock":s, "inventory_id": s,
+                                          'trim_loss_mm':trim_loss, "trim_loss_pct": trim_loss_pct ,
+                                          "explanation":"",'remark':"","cutting_date":"",
+                                          "stock_weight": self.dual_stocks[s]['weight'], 'stock_width':self.dual_stocks[s]['width'],
+                                          "cuts": cuts_dict,
+                                          "details": [{'order_no': f, 'width':self.dual_finish[f]['width'], 'lines': cuts_dict[f]} for f in cuts_dict.keys()] 
+                    })
 
             if not feasible:
                 pass
@@ -177,10 +168,16 @@ class DualProblem:
             
         try:
             s = max(marginal_values, key=marginal_values.get) # pick the first stock if having same width
-            new_pattern = {"stock": s,
+            cuts_dict =pattern[s]
+            new_pattern = {"stock":s, "inventory_id": s,"explanation":"",'remark':"","cutting_date":"",
                            'stock_weight': self.dual_stocks[s]['weight'], 
                            'stock_width': self.dual_stocks[s]["width"],
-                           "cuts": pattern[s]}
+                           "cuts": pattern[s],
+                           "details": [{'order_no': f, 
+                                        'width':self.dual_finish[f]['width'], 
+                                        'lines': cuts_dict[f]} 
+                                       for f in cuts_dict.keys()] 
+                           }
         except ValueError:
             new_pattern = None
         return new_pattern
@@ -224,7 +221,7 @@ class DualProblem:
             trim_loss = width_s - sum([self.start_finish[f]["width"] * cuts_dict[f] for f in cuts_dict.keys()])
             trim_loss_pct = round(trim_loss/width_s * 100, 3)
             if trim_loss_pct <= 4.00: # filter for naive pattern
-                pattern.update({'trim_loss': trim_loss, "trim_loss_pct": trim_loss_pct})
+                pattern.update({'trim_loss_mm': trim_loss, "trim_loss_pct": trim_loss_pct})
                 self.filtered_patterns.append(pattern)
 
         # Initiate dict
@@ -274,9 +271,13 @@ class DualProblem:
     
     def find_final_solution_patterns(self):
         """ 
-        patterns [{'stock': 'TP238H002948-1', 'stock_weight': , 'stock_width':
+        patterns [
+        {"stock":,'TP238H002948-1', 'inventory_id': 'TP238H002948-1',
+        'stock_weight': 4000, 'stock_width': 1219 'trim_loss_mm': 48.0, 'trim_loss_pct': 3.938,
+        'explanation':, "cutting_date': , 'remark':,
         'cuts': {'F200': 0, 'F198': 3, 'F197': 0, 'F196': 1, 'F190': 4, 'F511': 2, 'F203': 0}, 
-        'trim_loss': 48.0, 'trim_loss_pct': 3.938}, 
+        'details:[]
+        }, 
         """
         
         sorted_solution_list = sorted(self.solution_list, key=lambda x: (x['stock'],  x.get('trim_loss_pct', float('inf'))))
@@ -308,7 +309,7 @@ class DualProblem:
 class RewindProb(DualProblem):
 
   def __init__(self, finish, stock):
-    super().__init__(finish, {} )
+    super().__init__(finish, {} ) # tao dual_stocks va start stocks sau
     self.ratio = 0.5 # default ratio --> NEED TO CONSIDER SMALLEST LEFT OVER ALLOWED
     self.stock_key = list(stock.keys())[0]
     self.og_weight = stock[self.stock_key]['weight']
@@ -316,35 +317,40 @@ class RewindProb(DualProblem):
     
   def _rewind_ratio(self):
     # xac dinh ratio da phai tinh den weight cat
-    coil_weight = [self.dual_finish[f]["need_cut"] * self.stock[self.stock_key]['width'] /self.dual_finish[f]["width"] for f in self.dual_finish.keys()]
+    coil_weight = [round(self.dual_finish[f]["need_cut"] * self.stock[self.stock_key]['width'] /self.dual_finish[f]["width"], 3) for f in self.dual_finish.keys()]
     self.med_demand_weight= statistics.median(coil_weight) # cho phep cat du 1 chut
     
   def _check_rewind_coil(self):
     #remained rewind stock weight should be in this range 
-    min_coil_weight = [self.dual_finish[f]["Min_weight"] * self.stock[self.stock_key]['width'] /self.dual_finish[f]["width"] for f in self.dual_finish.keys()]
+    min_coil_weight = [round(self.dual_finish[f]["Min_weight"] * self.stock[self.stock_key]['width'] /self.dual_finish[f]["width"],3) for f in self.dual_finish.keys()]
     min_w = statistics.median(min_coil_weight)
-
     return min_w
   
   def create_new_stocks_set(self ):
     self._rewind_ratio()
     min_w = self._check_rewind_coil()
-    if min_w < self.og_weight - self.med_demand_weight:
-      for i in range(2):
-        self.dual_stocks[f'{self.stock_key}-Re{i+1}'] = self.stock[self.stock_key]
-        if i < 1: 
-          self.dual_stocks[f'{self.stock_key}-Re{i+1}'].update({'weight':self.med_demand_weight})
-          print(f"cut rewind weight {self.med_demand_weight}")
-        else: 
-          self.dual_stocks[f'{self.stock_key}-Re{i+1}'].update({'weight': self.og_weight - self.med_demand_weight}) # we have new set of stock
-        self.dual_stocks[f'{self.stock_key}-Re{i+1}'].update({'status':"R:REWIND"})
-        
+    print(f"start_stocks: {self.start_stocks}")
+    if self.med_demand_weight> 0 and min_w < self.og_weight - self.med_demand_weight:
+        i = 1
+        while i < 3:
+            self.dual_stocks[f'{self.stock_key}-Re{i}'] = self.stock[self.stock_key].copy()
+            if i == 1: 
+                self.dual_stocks[f'{self.stock_key}-Re{i}']['weight'] = self.med_demand_weight
+                print(f"cut rewind weight {self.med_demand_weight}")
+            else: 
+                self.dual_stocks[f'{self.stock_key}-Re{i}'].update({'weight': float(self.og_weight) - float(self.med_demand_weight),
+                                                                    'status': "R:REWIND"}) # we have new set of stock
+                # print(f"remained weight {self.og_weight - self.med_demand_weight}")
+            i += 1   
         self.start_stocks = copy.deepcopy(self.dual_stocks) 
-    else: print(f"rewind_coil too small{self.og_weight - self.med_demand_weight}")
+        print(self.start_stocks)
+        
+    else: print(f" rewind_coil too small {self.og_weight - self.med_demand_weight}")
 
-class Cuttingtocks:
+class CuttingStocks:
     def __init__(self, finish, stocks, PARAMS):
         """
+        -- Input --
         PARAMS: {
             "spec_name": "JSH270C-PO",
             "type": "Carbon",
@@ -419,10 +425,13 @@ class Cuttingtocks:
             min_w = sv['min']
             filtered_min_stocks = {k: v for k, v in self.S.stocks.items() if (v['width'] == s_width and v['weight'] >= min_w)}
             self.filtered_stocks.update(filtered_min_stocks)
-
-    def filter_stocks_by_min_max_weight(self, min_w, max_w):
-        self._stock_weight_threshold_by_width(min_w, max_w)
-        self._filter_min_stock()
+        
+    def filter_stocks(self, min_weight = None,max_weight = None):
+        if min_weight == None  and max_weight == None:
+            self.filtered_stocks = copy.deepcopy(self.S.stocks)
+        else:
+            self._stock_weight_threshold_by_width(min_weight, max_weight)
+            self._filter_min_stock()
 
     def set_prob(self, prob_type):
         if len(self.filtered_stocks) > 0 and prob_type == "Dual":
@@ -476,7 +485,7 @@ class Cuttingtocks:
                 self.div_ratio =  (3-i) + 2
                 break
     
-    def _calculate_finish_after_cut(self):
+    def _calculate_finish_after_cut_by_mm_weight(self):
         # for all orginal finish, not only dual
         if self.prob.probstt == "Solved":
             for i, sol in enumerate(self.prob.final_solution_patterns):
@@ -488,14 +497,31 @@ class Cuttingtocks:
                     rmark_note = "" 
                 else: rmark_note = f"chat {self.div_ratio} phan"
                 self.prob.final_solution_patterns[i] = {**sol, 
-                                                        "cut_w": weight_dict, 
-                                                        "remark": rmark_note
+                                                        "cut_w": weight_dict,
+                                                        }
+                self.prob.final_solution_patterns[i].update({"remark": rmark_note})
+            # Total Cuts
+            total_sums = self._count_weight()
+            self.over_cut = {k: round(total_sums[k] - self.F.finish[k]['need_cut'],3) for k in total_sums.keys()} # can tinh overcut cho moi finish, du ko duoc cat trong list dual finish
+        else: pass # ko co nghiem trong lan chay truoc do
+    
+    def _calculate_finish_after_cut(self):
+        # for all orginal finish, not only dual
+        if self.prob.probstt == "Solved":
+            for i, sol in enumerate(self.prob.final_solution_patterns):
+                s = self.prob.final_solution_patterns[i]['stock'] # stock cut
+                # self._calculate_div_ratio(s)
+                cuts_dict = self.prob.final_solution_patterns[i]['cuts']
+                weight_dict = {f: round(cuts_dict[f] * self.F.finish[f]['width'] * self.prob.start_stocks[s]['weight']/self.prob.start_stocks[s]['width'],3) for f in cuts_dict.keys()}
+
+                self.prob.final_solution_patterns[i] = {**sol, 
+                                                        "cut_w": weight_dict,
                                                         }
             # Total Cuts
             total_sums = self._count_weight()
             self.over_cut = {k: round(total_sums[k] - self.F.finish[k]['need_cut'],3) for k in total_sums.keys()} # can tinh overcut cho moi finish, du ko duoc cat trong list dual finish
         else: pass # ko co nghiem trong lan chay truoc do
-        
+    
     def solve_prob(self):
         # Run and calculate results
         self.prob.run()
@@ -534,86 +560,3 @@ class Cuttingtocks:
         
     def refresh_data(self):
         self.prob.dual_stocks = copy.deepcopy(self.remained_stocks)
-    
-# if __name__ == "__main__":
-#     # LOAD CONFIG & DATA
-#     PARAMS = {
-#          "spec_name": "SUS409L-2D",
-#             "type": "SUS409L",
-#             "thickness": 2.0,
-#             "maker": "POSCOVST",
-#             "code": "POSCOVST SUS409L-2D 2.0",
-#             "warehouse": "NQS"
-#                 }
-
-#     margin_df = pd.read_csv('scr/model_config/min_margin.csv')
-#     spec_type = pd.read_csv('scr/model_config/spec_type.csv')
-#     # coil_priority = pd.read_csv('data/coil_data.csv')
-#     min_w = 150.0
-#     max_w = 350.0
-#     # CONVERT F-S TO DICT
-
-#     finish ={
-#                         "F663": {
-#                            "customer_name": "TEC",
-#                            "width": 144.0,
-#                            "need_cut": -17605.0,
-#                            "fc1": 43704.90132999999,
-#                            "fc2": 0.0,
-#                            "fc3": 17442.48704,
-#                            "1st Priority": "NQS",
-#                            "2nd Priority": "x",
-#                            "3rd Priority": "x"
-#                         },
-#                         "F665": {
-#                            "customer_name": "TEC",
-#                            "width": 165.0,
-#                            "need_cut": -6969.0,
-#                            "fc1": 13002.64,
-#                            "fc2": 0.0,
-#                            "fc3": 5494.664,
-#                            "1st Priority": "NQS",
-#                            "2nd Priority": "x",
-#                            "3rd Priority": "x"
-#                         },
-#                         "F659": {
-#                            "customer_name": "TEC",
-#                            "width": 110.0,
-#                            "need_cut": 42.0,
-#                            "fc1": 383.76067,
-#                            "fc2": 390.98162,
-#                            "fc3": 397.02095999999995,
-#                            "1st Priority": "NQS",
-#                            "2nd Priority": "x",
-#                            "3rd Priority": "x"
-#                         }
-#                      }
-
-#     stocks= {
-#     "test": {   "receiving_date": 44936,   "width": 1219,   "weight": 1000,   "warehouse": "NQS"},
-#     "HTV0260/24": {   "receiving_date": 44936,   "width": 1219,   "weight": 8668,   "warehouse": "NQS"},
-#          "HTV0261/24": {   "receiving_date": 44937,   "width": 1219,   "weight": 8888,   "warehouse": "NQS"},
-#          "HTV0261/34": {   "receiving_date": 44937,   "width": 1080,   "weight": 7800,   "warehouse": "NQS"},
-#          "HTV0262/34": {   "receiving_date": 44937,   "width": 1080,   "weight": 8500,   "warehouse": "NQS"},
-#          }
-    
-#     # SETUP
-#     steel = Cuttingtocks(finish, stocks, PARAMS)
-#     steel.update(bound = 2, margin_df=margin_df)
-    
-#     steel.filter_stocks_by_min_max_weight(min_w,max_w)
-#     steel.set_prob("Dual")
-#     # print(steel.filtered_stocks)
-#     stt, final_solution_patterns, over_cut = steel.solve_prob()
-#     print(f'Take stock {[p['stock'] for p in final_solution_patterns]}')
-#     print(f'overcut amount {over_cut}')
-#     print(over_cut)
-#     if not final_solution_patterns:
-#         print(f"The solution - bound {2} is empty.")
-
-#     else:
-#         print(final_solution_patterns)
-#         # df = transform_to_df(final_solution_patterns)
-#         # filename = f"scr/results/solution-.xlsx"
-#         # df.to_excel(filename, index=False)
-

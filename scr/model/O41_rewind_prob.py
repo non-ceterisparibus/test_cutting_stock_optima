@@ -1,39 +1,55 @@
 import numpy as np
-
+import copy
+import statistics
 from pulp import LpMaximize, LpProblem, LpVariable, lpSum, value, LpStatus
-
-from O41_linear_solver import LinearProb
+from model.O41_dual_solver import DualProblem
     
-class RewindProb(LinearProb):
+class RewindProb(DualProblem):
+  
   # have condition to decide proportion of orginal MC to cut # apply for many FG and 1 stock MC
   # then move to the linear problem -> to decide the trim loss only
-  def __init__(self, stock, finish):
-    super().__init__(stock, finish)
+  def __init__(self, finish, stock):
+    super().__init__(finish, {} )
     self.ratio = 0.5 # default ratio --> NEED TO CONSIDER SMALLEST LEFT OVER ALLOWED
+    self.stock_key = list(stock.keys())[0]
+    self.og_weight = stock[self.stock_key]['weight']
+    self.stock = stock
     
-  def _cut_partial_stock(self ):
-    self.stock['weight'] *= self.ratio
-    
-  def ratio_array(self):
-    
-  def rewind_ratio(self):
+  def _rewind_ratio(self):
     # xac dinh ratio da phai tinh den weight cat
-    sum_demand = sum([self.finish[f]["need_cut"]for f in self.finish.keys()])
-    sum_upper_demand = sum([self.finish[f]["need_cut"]for f in self.finish.keys()])
+    coil_weight = [self.dual_finish[f]["need_cut"] * self.stock[self.stock_key]['width'] /self.dual_finish[f]["width"] for f in self.dual_finish.keys()]
+    self.med_demand_weight= statistics.median(coil_weight) # cho phep cat du 1 chut
     
+  def _check_rewind_coil(self):
+    #remained rewind stock weight should be in this range 
+    min_coil_weight = [self.dual_finish[f]["Min_weight"] * self.stock[self.stock_key]['width'] /self.dual_finish[f]["width"] for f in self.dual_finish.keys()]
+    # max_coil_weight = [self.dual_finish[f]["max_weight"] * self.stock[self.stock_key]['width'] /self.dual_finish[f]["width"] for f in self.dual_finish.keys()]
+    min_w = statistics.median(min_coil_weight)
+    # max_w = statistics.median(max_coil_weight)
+    return min_w
   
-  def run(self):
-    self.make_naive_patterns()
-    probstt = self.optimize_cut()
+  def create_new_stocks_set(self ):
+    self._rewind_ratio()
+    min_w= self._check_rewind_coil()
     
-    if probstt == "Optimal":
-      return self.solution, self.over_cut
-    else:
-      return 
+    #create new set stock if remained weight not to small
+    if min_w < self.og_weight - self.med_demand_weight:
+      for i in range(2):
+        self.dual_stocks[f'{self.stock_key}-{i+1}'] = self.stock[self.stock_key]
+        if i < 1: 
+          self.dual_stocks[f'{self.stock_key}-{i+1}'].update({'weight':self.med_demand_weight})
+          # print(f"cut rewind weight {self.med_demand_weight}")
+        else: 
+          self.dual_stocks[f'{self.stock_key}-{i+1}'].update({'weight': self.og_weight - self.med_demand_weight}) # we have new set of stock
+        self.dual_stocks[f'{self.stock_key}-{i+1}'].update({'status':"R:REWIND"})
+        
+      self.start_stocks = copy.deepcopy(self.dual_stocks)
+    else: 
+      print(f"rewind_coil too small{self.og_weight - self.med_demand_weight}")
       
+
+     
   
-class SemiProb(LinearProb):
-  def __init__(self, stock, finish):
-    super().__init__(stock, finish)
+
   
   
