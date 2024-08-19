@@ -5,19 +5,37 @@ import datetime
 import copy
 
 # INPUT
-fin_file_path = "scr/data/20240710_finish_df.xlsx"
-mc_file_path = "scr/data/20240710_mc_df.xlsx"
-spec_type_df = pd.read_csv('scr/data/spec_type.csv')
+fin_file_path = "scr/data/20240815_finish_df.xlsx"
+mc_file_path = "scr/data/20240815_mc_df.xlsx"
+spec_type_df = pd.read_csv('scr/model_config/spec_type.csv')
 
 # SETUP
 finish_key = 'order_id'
-finish_columns = ["customer_name","width", "need_cut", "fc1", "fc2", "fc3"]
+finish_columns = ["customer_name", "width", "need_cut", 
+                  "fc1", "fc2", "fc3", "average FC",
+                  "1st Priority", "2nd Priority", "3rd Priority",
+                  "Min_weight", "Max_weight"
+                  ]
 stock_key = "inventory_id"
-stock_columns = ['receiving_date',"width", "weight",'warehouse']
+stock_columns = ['receiving_date',"width", "weight",'warehouse',
+                 "status",'remark'
+                 ]
+def div(numerator, denominator):
+    def division_operation(row):
+        if row[denominator] == 0:
+            if row[numerator] > 0:
+                return np.inf
+            elif row[numerator] < 0:
+                return -np.inf
+            else:
+                return np.nan  # Handle division by zero with numerator equal to zero
+        else:
+            return float(row[numerator] / row[denominator])
+    return division_operation
 
 def create_finish_dict(finish_df):
-    
-    finish_df['stock_ratio'] = finish_df['need_cut']/finish_df['fc1']
+  
+    finish_df.loc[:, 'stock_ratio'] = finish_df.apply(div('need_cut', 'average FC'), axis=1)
     can_cut_df = finish_df[finish_df['stock_ratio'] < 0.5] # Co the cat du cho hang ko co need cut am
     sorted_df = can_cut_df.sort_values(by=['need_cut','width'], ascending=[True,False]) # need cut van dang am
     
@@ -29,11 +47,13 @@ def create_finish_dict(finish_df):
 
 def create_stocks_dict(stock_df):
     # Sort data according to the priority of FIFO
-    sorted_df = stock_df.sort_values(by=['weight','receiving_date'], ascending=[False, False])
+    sorted_df = stock_df.sort_values(by=['width','weight','receiving_date',], ascending=[ False,False,True,])
     # Set the index of the DataFrame to 'stock_id'
     sorted_df.set_index(stock_key, inplace=True)
     # Convert DataFrame to dictionary
+    sorted_df[stock_columns] = sorted_df[stock_columns].fillna("") 
     stocks = sorted_df[stock_columns].to_dict(orient='index')
+   
 
     return stocks
 
