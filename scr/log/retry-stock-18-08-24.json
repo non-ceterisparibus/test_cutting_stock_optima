@@ -1,0 +1,34 @@
+{
+    "date": "17-08-24",
+    "split_request_id": {
+       "CSC+JSH590R-PO+2.6": {
+
+          "param": { 
+             "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 2.3,
+            "maker": "POSCO"
+          },
+
+        "oldstock": { 
+             "HTV0247/24": {
+               "receiving_date": 44945,
+               "width": 1280,
+               "weight": 8860.0,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+        }},
+        "newstock": {
+             "CHANGESTOCK1": {
+                "receiving_date": 44945,
+                "width": 1358,
+                "weight": 6975.0,
+                "warehouse": "HSC",
+                "status": "M:RAW MATERIAL",
+                "remark": ""
+             }
+            }
+       }
+    }
+}

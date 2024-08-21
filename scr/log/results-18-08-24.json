@@ -1,0 +1,124 @@
+{
+"HTV0247/24":{
+      "count": 1,
+      "stock": "HTV0247/24",
+      "inventory_id": "HTV0247/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8860,
+      "stock_width": 1280,
+      "cuts": {
+        "F364": 3,
+        "F361": 0,
+        "F360": 2,
+        "F365": 3,
+        "F359": 2,
+        "F367": 1
+      },
+      "details": [
+        {
+          "order_no": "F364",
+          "width": 200.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F361",
+          "width": 129.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F360",
+          "width": 124.5,
+          "lines": 2
+        },
+        {
+          "order_no": "F365",
+          "width": 42.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F359",
+          "width": 102.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F367",
+          "width": 95.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.469,
+      "cut_w": {
+        "F364": 4153.125,
+        "F361": 0.0,
+        "F360": 1723.547,
+        "F365": 872.156,
+        "F359": 1412.062,
+        "F367": 657.578
+      },
+      "customer_short_name": "VPIC1"
+    },
+"HTV0581/24":{
+      "count": 1,
+      "stock": "HTV0581/24",
+      "inventory_id": "HTV0581/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9510,
+      "stock_width": 1280,
+      "cuts": {
+        "F364": 3,
+        "F361": 2,
+        "F360": 3,
+        "F365": 1,
+        "F359": 0,
+        "F367": 0
+      },
+      "details": [
+        {
+          "order_no": "F364",
+          "width": 200.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F361",
+          "width": 129.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F360",
+          "width": 124.5,
+          "lines": 3
+        },
+        {
+          "order_no": "F365",
+          "width": 42.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F359",
+          "width": 102.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F367",
+          "width": 95.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.5,
+      "trim_loss_pct": 0.508,
+      "cut_w": {
+        "F364": 4457.812,
+        "F361": 1916.859,
+        "F360": 2774.988,
+        "F365": 312.047,
+        "F359": 0.0,
+        "F367": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    }
+}
