@@ -1,0 +1,5401 @@
+{
+  "date": "13-08-24",
+  "number_params": 35,
+  "status": 200,
+  "solution": [
+    // sua lai thanh dict cho de tra
+    {
+      "count": 1,
+      "stock": "HTV0247/24",
+      "inventory_id": "HTV0247/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8860,
+      "stock_width": 1280,
+      "cuts": {
+        "F364": 3,
+        "F361": 0,
+        "F360": 2,
+        "F365": 3,
+        "F359": 2,
+        "F367": 1
+      },
+      "details": [
+        {
+          "order_no": "F364",
+          "width": 200.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F361",
+          "width": 129.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F360",
+          "width": 124.5,
+          "lines": 2
+        },
+        {
+          "order_no": "F365",
+          "width": 42.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F359",
+          "width": 102.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F367",
+          "width": 95.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.469,
+      "cut_w": {
+        "F364": 4153.125,
+        "F361": 0.0,
+        "F360": 1723.547,
+        "F365": 872.156,
+        "F359": 1412.062,
+        "F367": 657.578
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0581/24",
+      "inventory_id": "HTV0581/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9510,
+      "stock_width": 1280,
+      "cuts": {
+        "F364": 3,
+        "F361": 2,
+        "F360": 3,
+        "F365": 1,
+        "F359": 0,
+        "F367": 0
+      },
+      "details": [
+        {
+          "order_no": "F364",
+          "width": 200.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F361",
+          "width": 129.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F360",
+          "width": 124.5,
+          "lines": 3
+        },
+        {
+          "order_no": "F365",
+          "width": 42.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F359",
+          "width": 102.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F367",
+          "width": 95.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.5,
+      "trim_loss_pct": 0.508,
+      "cut_w": {
+        "F364": 4457.812,
+        "F361": 1916.859,
+        "F360": 2774.988,
+        "F365": 312.047,
+        "F359": 0.0,
+        "F367": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+
+    {
+      "count": 1,
+      "stock": "MCTEST7",
+      "inventory_id": "MCTEST7",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9500,
+      "stock_width": 1219,
+      "cuts": {
+        "F21": 3,
+        "F26": 1,
+        "F42": 3,
+        "F22": 2,
+        "F24": 2,
+        "F133": 1
+      },
+      "details": [
+        {
+          "order_no": "F21",
+          "width": 110.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F26",
+          "width": 145.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F42",
+          "width": 50.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F22",
+          "width": 120.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F24",
+          "width": 128.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F133",
+          "width": 90.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.656,
+      "cut_w": {
+        "F21": 2571.78,
+        "F26": 1130.025,
+        "F42": 1168.991,
+        "F22": 1870.386,
+        "F24": 1995.078,
+        "F133": 701.395
+      },
+      "customer_short_name": "CIC"
+    },
+    
+    {
+      "count": 7,
+      "stock": "TS245H00000107",
+      "inventory_id": "TS245H00000107",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 729,
+      "stock_width": 1219,
+      "cuts": {
+        "F429": 0,
+        "F430": 7,
+        "F433": 2
+      },
+      "details": [
+        {
+          "order_no": "F429",
+          "width": 138.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F430",
+          "width": 150.0,
+          "lines": 7
+        },
+        {
+          "order_no": "F433",
+          "width": 80.0,
+          "lines": 2
+        }
+      ],
+      "trim_loss_mm": 9.0,
+      "trim_loss_pct": 0.738,
+      "cut_w": {
+        "F429": 0.0,
+        "F430": 627.933,
+        "F433": 95.685
+      },
+      "customer_short_name": "VPIC1"
+    },
+
+    {
+      "count": 1,
+      "stock": "TM244H00000309-Re1",
+      "inventory_id": "TM244H00000309-Re1",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 4508.741,
+      "stock_width": 1219,
+      "cuts": {
+        "F218": 5,
+        "F225": 0,
+        "F223": 7
+      },
+      "details": [
+        {
+          "order_no": "F218",
+          "width": 130.0,
+          "lines": 5
+        },
+        {
+          "order_no": "F225",
+          "width": 85.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F223",
+          "width": 80.0,
+          "lines": 7
+        }
+      ],
+      "trim_loss_mm": 9.0,
+      "trim_loss_pct": 0.738,
+      "cut_w": {
+        "F218": 2404.169,
+        "F225": 0.0,
+        "F223": 2071.284
+      },
+      "customer_short_name": "CIC"
+    },
+
+    {
+      "count": 1,
+      "stock": "TM244H00000309-Re2",
+      "inventory_id": "TM244H00000309-Re2",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 2101.259,
+      "stock_width": 1219,
+      "cuts": {
+        "F486": 3,
+        "F488": 15,
+        "F490": 1
+      },
+      "details": [
+        {
+          "order_no": "F486",
+          "width": 122.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F488",
+          "width": 50.0,
+          "lines": 15
+        },
+        {
+          "order_no": "F490",
+          "width": 65.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 38.0,
+      "trim_loss_pct": 3.117,
+      "cut_w": {
+        "F486": 630.895,
+        "F488": 1292.817,
+        "F490": 112.044
+      },
+      "customer_short_name": "VPIC1"
+    },
+
+    {
+      "count": 1,
+      "stock": "HTV0269/24-D1",
+      "inventory_id": "HTV0269/24-D1",
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.691,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 3936,
+      "stock_width": 1158,
+      "cuts": {
+        "F605": 5
+      },
+      "details": [
+        {
+          "order_no": "F605",
+          "width": 230.0,
+          "lines": 5
+        }
+      ],
+      "cut_w": {
+        "F605": 3908.808
+      },
+      "customer_short_name": "TEC"
+    },
+
+    {
+      "count": 1,
+      "stock": "MCTEST4",
+      "inventory_id": "MCTEST4",
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.691,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8000,
+      "stock_width": 1158,
+      "cuts": {
+        "F605": 5
+      },
+      "details": [
+        {
+          "order_no": "F605",
+          "width": 230.0,
+          "lines": 5
+        }
+      ],
+      "cut_w": {
+        "F605": 7944.732
+      },
+      "customer_short_name": "TEC"
+    },
+    
+    {
+      "count": 1,
+      "stock": "TP234H005714",
+      "inventory_id": "TP234H005714",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 3475,
+      "stock_width": 1219,
+      "cuts": {
+        "F240": 3,
+        "F234": 2,
+        "F233": 0,
+        "F228": 0,
+        "F229": 1,
+        "F231": 5,
+        "F232": 0
+      },
+      "details": [
+        {
+          "order_no": "F240",
+          "width": 92.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F234",
+          "width": 50.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F233",
+          "width": 175.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F228",
+          "width": 100.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F229",
+          "width": 110.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F231",
+          "width": 145.0,
+          "lines": 5
+        },
+        {
+          "order_no": "F232",
+          "width": 172.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.656,
+      "cut_w": {
+        "F240": 786.792,
+        "F234": 285.07,
+        "F233": 0.0,
+        "F228": 0.0,
+        "F229": 313.577,
+        "F231": 2066.756,
+        "F232": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "X7",
+      "inventory_id": "X7",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 10000,
+      "stock_width": 1219,
+      "cuts": {
+        "F410": 0,
+        "F415": 0,
+        "F401": 6,
+        "F396": 0,
+        "F391": 0,
+        "F395": 0,
+        "F407": 1,
+        "F411": 1,
+        "F406": 0,
+        "F397": 0
+      },
+      "details": [
+        {
+          "order_no": "F410",
+          "width": 72.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F415",
+          "width": 90.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F401",
+          "width": 180.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F396",
+          "width": 130.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F391",
+          "width": 104.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F395",
+          "width": 125.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F407",
+          "width": 58.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F411",
+          "width": 75.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F406",
+          "width": 47.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F397",
+          "width": 135.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.492,
+      "cut_w": {
+        "F410": 0.0,
+        "F415": 0.0,
+        "F401": 8859.721,
+        "F396": 0.0,
+        "F391": 0.0,
+        "F395": 0.0,
+        "F407": 475.8,
+        "F411": 615.258,
+        "F406": 0.0,
+        "F397": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "X9",
+      "inventory_id": "X9",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9500,
+      "stock_width": 1219,
+      "cuts": {
+        "F410": 3,
+        "F415": 1,
+        "F396": 0,
+        "F391": 0,
+        "F395": 5,
+        "F407": 0,
+        "F411": 0,
+        "F406": 6,
+        "F397": 0
+      },
+      "details": [
+        {
+          "order_no": "F410",
+          "width": 72.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F415",
+          "width": 90.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F396",
+          "width": 130.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F391",
+          "width": 104.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F395",
+          "width": 125.0,
+          "lines": 5
+        },
+        {
+          "order_no": "F407",
+          "width": 58.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F411",
+          "width": 75.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F406",
+          "width": 47.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F397",
+          "width": 135.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.492,
+      "cut_w": {
+        "F410": 1683.347,
+        "F415": 701.395,
+        "F396": 0.0,
+        "F391": 0.0,
+        "F395": 4870.796,
+        "F407": 0.0,
+        "F411": 0.0,
+        "F406": 2197.703,
+        "F397": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "HTV1060/24",
+      "inventory_id": "HTV1060/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 11295,
+      "stock_width": 1219,
+      "cuts": {
+        "F410": 10,
+        "F415": 4,
+        "F396": 0,
+        "F391": 0,
+        "F407": 1,
+        "F411": 1,
+        "F397": 0
+      },
+      "details": [
+        {
+          "order_no": "F410",
+          "width": 72.0,
+          "lines": 10
+        },
+        {
+          "order_no": "F415",
+          "width": 90.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F396",
+          "width": 130.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F391",
+          "width": 104.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F407",
+          "width": 58.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F411",
+          "width": 75.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F397",
+          "width": 135.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.492,
+      "cut_w": {
+        "F410": 6671.37,
+        "F415": 3335.685,
+        "F396": 0.0,
+        "F391": 0.0,
+        "F407": 537.416,
+        "F411": 694.934,
+        "F397": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "X8",
+      "inventory_id": "X8",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9000,
+      "stock_width": 1219,
+      "cuts": {
+        "F410": 4,
+        "F415": 3,
+        "F396": 4,
+        "F391": 0,
+        "F407": 0,
+        "F411": 0,
+        "F397": 1
+      },
+      "details": [
+        {
+          "order_no": "F410",
+          "width": 72.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F415",
+          "width": 90.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F396",
+          "width": 130.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F391",
+          "width": 104.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F407",
+          "width": 58.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F411",
+          "width": 75.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F397",
+          "width": 135.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.492,
+      "cut_w": {
+        "F410": 2126.333,
+        "F415": 1993.437,
+        "F396": 3839.212,
+        "F391": 0.0,
+        "F407": 0.0,
+        "F411": 0.0,
+        "F397": 996.719
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "HTV1983/23-1",
+      "inventory_id": "HTV1983/23-1",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 5485,
+      "stock_width": 1219,
+      "cuts": {
+        "F410": 3,
+        "F415": 0,
+        "F391": 9,
+        "F407": 1,
+        "F397": 0
+      },
+      "details": [
+        {
+          "order_no": "F410",
+          "width": 72.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F415",
+          "width": 90.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F391",
+          "width": 104.0,
+          "lines": 9
+        },
+        {
+          "order_no": "F407",
+          "width": 58.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F397",
+          "width": 135.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 9.0,
+      "trim_loss_pct": 0.738,
+      "cut_w": {
+        "F410": 971.911,
+        "F415": 0.0,
+        "F391": 4211.616,
+        "F407": 260.976,
+        "F397": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "HTV1983/23-2",
+      "inventory_id": "HTV1983/23-2",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 6000,
+      "stock_width": 1219,
+      "cuts": {
+        "F87": 1,
+        "F84": 6,
+        "F111": 1,
+        "F115": 0,
+        "F91": 0,
+        "F81": 1,
+        "F83": 0,
+        "F108": 1,
+        "F109": 0,
+        "F88": 0,
+        "F104": 0,
+        "F99": 1,
+        "F113": 0
+      },
+      "details": [
+        {
+          "order_no": "F87",
+          "width": 120.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F84",
+          "width": 110.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F111",
+          "width": 86.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F115",
+          "width": 95.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F91",
+          "width": 138.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F81",
+          "width": 102.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F83",
+          "width": 105.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F108",
+          "width": 65.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F109",
+          "width": 80.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F88",
+          "width": 126.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F104",
+          "width": 234.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F99",
+          "width": 180.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F113",
+          "width": 90.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.492,
+      "cut_w": {
+        "F87": 590.648,
+        "F84": 3248.564,
+        "F111": 423.298,
+        "F115": 0.0,
+        "F91": 0.0,
+        "F81": 502.051,
+        "F83": 0.0,
+        "F108": 319.934,
+        "F109": 0.0,
+        "F88": 0.0,
+        "F104": 0.0,
+        "F99": 885.972,
+        "F113": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV1059/24",
+      "inventory_id": "HTV1059/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 11470,
+      "stock_width": 1219,
+      "cuts": {
+        "F87": 4,
+        "F84": 2,
+        "F111": 0,
+        "F115": 2,
+        "F91": 1,
+        "F81": 0,
+        "F83": 1,
+        "F108": 0,
+        "F109": 1,
+        "F88": 0
+      },
+      "details": [
+        {
+          "order_no": "F87",
+          "width": 120.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F84",
+          "width": 110.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F111",
+          "width": 86.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F115",
+          "width": 95.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F91",
+          "width": 138.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F81",
+          "width": 102.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F83",
+          "width": 105.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F108",
+          "width": 65.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F109",
+          "width": 80.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F88",
+          "width": 126.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.492,
+      "cut_w": {
+        "F87": 4516.489,
+        "F84": 2070.057,
+        "F111": 0.0,
+        "F115": 1787.777,
+        "F91": 1298.491,
+        "F81": 0.0,
+        "F83": 987.982,
+        "F108": 0.0,
+        "F109": 752.748,
+        "F88": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV1152/23",
+      "inventory_id": "HTV1152/23",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 6775,
+      "stock_width": 1219,
+      "cuts": {
+        "F41": 4,
+        "F40": 2
+      },
+      "details": [
+        {
+          "order_no": "F41",
+          "width": 225.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F40",
+          "width": 150.0,
+          "lines": 2
+        }
+      ],
+      "trim_loss_mm": 19.0,
+      "trim_loss_pct": 1.559,
+      "cut_w": {
+        "F41": 5002.051,
+        "F40": 1667.35
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV1366/23-D1",
+      "inventory_id": "HTV1366/23-D1",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 4842,
+      "stock_width": 1219,
+      "cuts": {
+        "F303": 2,
+        "F309": 0,
+        "F312": 2,
+        "F295": 0,
+        "F297": 1,
+        "F314": 1
+      },
+      "details": [
+        {
+          "order_no": "F303",
+          "width": 336.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F309",
+          "width": 216.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F312",
+          "width": 163.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F295",
+          "width": 96.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F297",
+          "width": 76.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F314",
+          "width": 136.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 9.0,
+      "trim_loss_pct": 0.738,
+      "cut_w": {
+        "F303": 2669.257,
+        "F309": 0.0,
+        "F312": 1294.907,
+        "F295": 0.0,
+        "F297": 301.88,
+        "F314": 540.207
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "HTV1525/23",
+      "inventory_id": "HTV1525/23",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9770,
+      "stock_width": 1219,
+      "cuts": {
+        "F303": 0,
+        "F309": 0,
+        "F312": 6,
+        "F295": 1,
+        "F297": 0,
+        "F314": 1
+      },
+      "details": [
+        {
+          "order_no": "F303",
+          "width": 336.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F309",
+          "width": 216.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F312",
+          "width": 163.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F295",
+          "width": 96.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F297",
+          "width": 76.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F314",
+          "width": 136.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 9.0,
+      "trim_loss_pct": 0.738,
+      "cut_w": {
+        "F303": 0.0,
+        "F309": 0.0,
+        "F312": 7838.441,
+        "F295": 769.418,
+        "F297": 0.0,
+        "F314": 1090.008
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "HTV1368/23-D1",
+      "inventory_id": "HTV1368/23-D1",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7858,
+      "stock_width": 1219,
+      "cuts": {
+        "F303": 2,
+        "F309": 0,
+        "F312": 0,
+        "F295": 0,
+        "F297": 7,
+        "F314": 0
+      },
+      "details": [
+        {
+          "order_no": "F303",
+          "width": 336.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F309",
+          "width": 216.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F312",
+          "width": 163.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F295",
+          "width": 96.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F297",
+          "width": 76.0,
+          "lines": 7
+        },
+        {
+          "order_no": "F314",
+          "width": 136.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 15.0,
+      "trim_loss_pct": 1.231,
+      "cut_w": {
+        "F303": 4331.892,
+        "F309": 0.0,
+        "F312": 0.0,
+        "F295": 0.0,
+        "F297": 3429.414,
+        "F314": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "TM244H00000150",
+      "inventory_id": "TM244H00000150",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9210,
+      "stock_width": 1219,
+      "cuts": {
+        "F303": 3,
+        "F309": 0,
+        "F312": 0,
+        "F295": 2,
+        "F297": 0,
+        "F314": 0
+      },
+      "details": [
+        {
+          "order_no": "F303",
+          "width": 336.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F309",
+          "width": 216.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F312",
+          "width": 163.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F295",
+          "width": 96.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F297",
+          "width": 76.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F314",
+          "width": 136.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 19.0,
+      "trim_loss_pct": 1.559,
+      "cut_w": {
+        "F303": 7615.816,
+        "F309": 0.0,
+        "F312": 0.0,
+        "F295": 1450.632,
+        "F297": 0.0,
+        "F314": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "TM245H00000178",
+      "inventory_id": "TM245H00000178",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8870,
+      "stock_width": 1219,
+      "cuts": {
+        "F303": 0,
+        "F309": 4,
+        "F312": 2,
+        "F295": 0,
+        "F297": 0,
+        "F314": 0
+      },
+      "details": [
+        {
+          "order_no": "F303",
+          "width": 336.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F309",
+          "width": 216.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F312",
+          "width": 163.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F295",
+          "width": 96.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F297",
+          "width": 76.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F314",
+          "width": 136.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 29.0,
+      "trim_loss_pct": 2.379,
+      "cut_w": {
+        "F303": 0.0,
+        "F309": 6286.858,
+        "F312": 2372.125,
+        "F295": 0.0,
+        "F297": 0.0,
+        "F314": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "TM244H00000149",
+      "inventory_id": "TM244H00000149",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9250,
+      "stock_width": 1219,
+      "cuts": {
+        "F162": 0,
+        "F160": 6,
+        "F13": 2,
+        "F8": 0,
+        "F9": 0,
+        "F11": 0,
+        "F14": 0,
+        "F10": 0,
+        "F12": 2,
+        "F15": 0
+      },
+      "details": [
+        {
+          "order_no": "F162",
+          "width": 215.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F160",
+          "width": 168.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F13",
+          "width": 55.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F8",
+          "width": 123.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F9",
+          "width": 156.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F11",
+          "width": 320.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F14",
+          "width": 60.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F10",
+          "width": 182.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F12",
+          "width": 45.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F15",
+          "width": 70.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 11.0,
+      "trim_loss_pct": 0.902,
+      "cut_w": {
+        "F162": 0.0,
+        "F160": 7648.893,
+        "F13": 834.701,
+        "F8": 0.0,
+        "F9": 0.0,
+        "F11": 0.0,
+        "F14": 0.0,
+        "F10": 0.0,
+        "F12": 682.937,
+        "F15": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TR245H00000041",
+      "inventory_id": "TR245H00000041",
+      "trim_loss_mm": 43.0,
+      "trim_loss_pct": 3.527,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9272,
+      "stock_width": 1219,
+      "cuts": {
+        "F162": 0,
+        "F160": 7,
+        "F13": 0,
+        "F8": 0,
+        "F9": 0,
+        "F11": 0,
+        "F14": 0,
+        "F10": 0,
+        "F12": 0,
+        "F15": 0
+      },
+      "details": [
+        {
+          "order_no": "F162",
+          "width": 215.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F160",
+          "width": 168.0,
+          "lines": 7
+        },
+        {
+          "order_no": "F13",
+          "width": 55.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F8",
+          "width": 123.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F9",
+          "width": 156.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F11",
+          "width": 320.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F14",
+          "width": 60.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F10",
+          "width": 182.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F12",
+          "width": 45.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F15",
+          "width": 70.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F162": 0.0,
+        "F160": 8944.932,
+        "F13": 0.0,
+        "F8": 0.0,
+        "F9": 0.0,
+        "F11": 0.0,
+        "F14": 0.0,
+        "F10": 0.0,
+        "F12": 0.0,
+        "F15": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TM245H00000179",
+      "inventory_id": "TM245H00000179",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9240,
+      "stock_width": 1219,
+      "cuts": {
+        "F162": 0,
+        "F160": 1,
+        "F13": 4,
+        "F8": 0,
+        "F9": 1,
+        "F11": 0,
+        "F14": 5,
+        "F10": 2,
+        "F12": 0,
+        "F15": 0
+      },
+      "details": [
+        {
+          "order_no": "F162",
+          "width": 215.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F160",
+          "width": 168.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F13",
+          "width": 55.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F8",
+          "width": 123.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F9",
+          "width": 156.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F11",
+          "width": 320.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F14",
+          "width": 60.0,
+          "lines": 5
+        },
+        {
+          "order_no": "F10",
+          "width": 182.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F12",
+          "width": 45.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F15",
+          "width": 70.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 11.0,
+      "trim_loss_pct": 0.902,
+      "cut_w": {
+        "F162": 0.0,
+        "F160": 1273.437,
+        "F13": 1667.596,
+        "F8": 0.0,
+        "F9": 1182.477,
+        "F11": 0.0,
+        "F14": 2273.995,
+        "F10": 2759.114,
+        "F12": 0.0,
+        "F15": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TZ242H12000026",
+      "inventory_id": "TZ242H12000026",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 4483,
+      "stock_width": 567,
+      "cuts": {
+        "F471": 2,
+        "F470": 3
+      },
+      "details": [
+        {
+          "order_no": "F471",
+          "width": 90.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F470",
+          "width": 124.0,
+          "lines": 3
+        }
+      ],
+      "trim_loss_mm": 15.0,
+      "trim_loss_pct": 2.646,
+      "cut_w": {
+        "F471": 1423.175,
+        "F470": 2941.228
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0260/24",
+      "inventory_id": "HTV0260/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8668,
+      "stock_width": 1219,
+      "cuts": {
+        "F663": 3,
+        "F665": 4,
+        "F668": 0,
+        "F661": 1,
+        "F669": 0
+      },
+      "details": [
+        {
+          "order_no": "F663",
+          "width": 144.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F665",
+          "width": 165.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F668",
+          "width": 56.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F661",
+          "width": 120.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F669",
+          "width": 95.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 7.0,
+      "trim_loss_pct": 0.574,
+      "cut_w": {
+        "F663": 3071.842,
+        "F665": 4693.093,
+        "F668": 0.0,
+        "F661": 853.29,
+        "F669": 0.0
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0261/24",
+      "inventory_id": "HTV0261/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8888,
+      "stock_width": 1219,
+      "cuts": {
+        "F663": 8,
+        "F665": 0,
+        "F668": 1,
+        "F661": 0,
+        "F669": 0
+      },
+      "details": [
+        {
+          "order_no": "F663",
+          "width": 144.0,
+          "lines": 8
+        },
+        {
+          "order_no": "F665",
+          "width": 165.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F668",
+          "width": 56.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F661",
+          "width": 120.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F669",
+          "width": 95.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 11.0,
+      "trim_loss_pct": 0.902,
+      "cut_w": {
+        "F663": 8399.488,
+        "F665": 0.0,
+        "F668": 408.308,
+        "F661": 0.0,
+        "F669": 0.0
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "MCTEST5",
+      "inventory_id": "MCTEST5",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9000,
+      "stock_width": 1219,
+      "cuts": {
+        "F663": 5,
+        "F665": 1,
+        "F668": 2,
+        "F661": 1,
+        "F669": 1
+      },
+      "details": [
+        {
+          "order_no": "F663",
+          "width": 144.0,
+          "lines": 5
+        },
+        {
+          "order_no": "F665",
+          "width": 165.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F668",
+          "width": 56.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F661",
+          "width": 120.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F669",
+          "width": 95.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 7.0,
+      "trim_loss_pct": 0.574,
+      "cut_w": {
+        "F663": 5315.833,
+        "F665": 1218.212,
+        "F668": 826.907,
+        "F661": 885.972,
+        "F669": 701.395
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "MCTEST6",
+      "inventory_id": "MCTEST6",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9500,
+      "stock_width": 1219,
+      "cuts": {
+        "F663": 8,
+        "F665": 0,
+        "F668": 1,
+        "F661": 0,
+        "F669": 0
+      },
+      "details": [
+        {
+          "order_no": "F663",
+          "width": 144.0,
+          "lines": 8
+        },
+        {
+          "order_no": "F665",
+          "width": 165.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F668",
+          "width": 56.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F661",
+          "width": 120.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F669",
+          "width": 95.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 11.0,
+      "trim_loss_pct": 0.902,
+      "cut_w": {
+        "F663": 8977.851,
+        "F665": 0.0,
+        "F668": 436.423,
+        "F661": 0.0,
+        "F669": 0.0
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "X14",
+      "inventory_id": "X14",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8000,
+      "stock_width": 1219,
+      "cuts": {
+        "F663": 3,
+        "F665": 4,
+        "F668": 2,
+        "F669": 0
+      },
+      "details": [
+        {
+          "order_no": "F663",
+          "width": 144.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F665",
+          "width": 165.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F668",
+          "width": 56.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F669",
+          "width": 95.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 15.0,
+      "trim_loss_pct": 1.231,
+      "cut_w": {
+        "F663": 2835.111,
+        "F665": 4331.419,
+        "F668": 735.029,
+        "F669": 0.0
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "TM246H00000161",
+      "inventory_id": "TM246H00000161",
+      "trim_loss_mm": 44.0,
+      "trim_loss_pct": 3.61,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8610,
+      "stock_width": 1219,
+      "cuts": {
+        "F6": 5,
+        "F5": 0
+      },
+      "details": [
+        {
+          "order_no": "F6",
+          "width": 235.0,
+          "lines": 5
+        },
+        {
+          "order_no": "F5",
+          "width": 166.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F6": 8299.221,
+        "F5": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 2,
+      "stock": "TP235H002666",
+      "inventory_id": "TP235H002666",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7170,
+      "stock_width": 1219,
+      "cuts": {
+        "F6": 3,
+        "F5": 3
+      },
+      "details": [
+        {
+          "order_no": "F6",
+          "width": 235.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F5",
+          "width": 166.0,
+          "lines": 3
+        }
+      ],
+      "trim_loss_mm": 16.0,
+      "trim_loss_pct": 1.313,
+      "cut_w": {
+        "F6": 4146.719,
+        "F5": 2929.171
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP238H005824",
+      "inventory_id": "TP238H005824",
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 3.39,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 1571,
+      "stock_width": 236,
+      "cuts": {
+        "F183": 4,
+        "F182": 0
+      },
+      "details": [
+        {
+          "order_no": "F183",
+          "width": 57.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F182",
+          "width": 212.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F183": 1517.746,
+        "F182": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "X10",
+      "inventory_id": "X10",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 6000,
+      "stock_width": 1219,
+      "cuts": {
+        "F200": 3,
+        "F197": 1,
+        "F190": 2,
+        "F198": 1,
+        "F203": 1
+      },
+      "details": [
+        {
+          "order_no": "F200",
+          "width": 210.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F197",
+          "width": 150.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F190",
+          "width": 100.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F198",
+          "width": 152.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F203",
+          "width": 60.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 27.0,
+      "trim_loss_pct": 2.215,
+      "cut_w": {
+        "F200": 3100.902,
+        "F197": 738.31,
+        "F190": 984.413,
+        "F198": 748.154,
+        "F203": 295.324
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "MCTEST1",
+      "inventory_id": "MCTEST1",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9000,
+      "stock_width": 1219,
+      "cuts": {
+        "F375": 0,
+        "F370": 0,
+        "F368": 2,
+        "F381": 4,
+        "F372": 1,
+        "F379": 2,
+        "F369": 0,
+        "F374": 0
+      },
+      "details": [
+        {
+          "order_no": "F375",
+          "width": 200.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F370",
+          "width": 122.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F368",
+          "width": 105.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F381",
+          "width": 64.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F372",
+          "width": 167.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F379",
+          "width": 290.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F369",
+          "width": 109.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F374",
+          "width": 195.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.492,
+      "cut_w": {
+        "F375": 0.0,
+        "F370": 0.0,
+        "F368": 1550.451,
+        "F381": 1890.074,
+        "F372": 1232.978,
+        "F379": 4282.199,
+        "F369": 0.0,
+        "F374": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "MCTEST2",
+      "inventory_id": "MCTEST2",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 10000,
+      "stock_width": 1219,
+      "cuts": {
+        "F375": 0,
+        "F370": 0,
+        "F368": 6,
+        "F381": 4,
+        "F372": 0,
+        "F379": 0,
+        "F369": 3,
+        "F374": 0
+      },
+      "details": [
+        {
+          "order_no": "F375",
+          "width": 200.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F370",
+          "width": 122.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F368",
+          "width": 105.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F381",
+          "width": 64.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F372",
+          "width": 167.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F379",
+          "width": 290.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F369",
+          "width": 109.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F374",
+          "width": 195.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.492,
+      "cut_w": {
+        "F375": 0.0,
+        "F370": 0.0,
+        "F368": 5168.171,
+        "F381": 2100.082,
+        "F372": 0.0,
+        "F379": 0.0,
+        "F369": 2682.527,
+        "F374": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "MCTEST3",
+      "inventory_id": "MCTEST3",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8000,
+      "stock_width": 1219,
+      "cuts": {
+        "F375": 0,
+        "F370": 9,
+        "F368": 0,
+        "F381": 0,
+        "F372": 0,
+        "F369": 1,
+        "F374": 0
+      },
+      "details": [
+        {
+          "order_no": "F375",
+          "width": 200.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F370",
+          "width": 122.0,
+          "lines": 9
+        },
+        {
+          "order_no": "F368",
+          "width": 105.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F381",
+          "width": 64.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F372",
+          "width": 167.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F369",
+          "width": 109.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F374",
+          "width": 195.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 12.0,
+      "trim_loss_pct": 0.984,
+      "cut_w": {
+        "F375": 0.0,
+        "F370": 7205.906,
+        "F368": 0.0,
+        "F381": 0.0,
+        "F372": 0.0,
+        "F369": 715.34,
+        "F374": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "X4",
+      "inventory_id": "X4",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9500,
+      "stock_width": 1219,
+      "cuts": {
+        "F375": 0,
+        "F370": 1,
+        "F368": 0,
+        "F381": 4,
+        "F372": 5,
+        "F369": 0,
+        "F374": 0
+      },
+      "details": [
+        {
+          "order_no": "F375",
+          "width": 200.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F370",
+          "width": 122.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F368",
+          "width": 105.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F381",
+          "width": 64.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F372",
+          "width": 167.0,
+          "lines": 5
+        },
+        {
+          "order_no": "F369",
+          "width": 109.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F374",
+          "width": 195.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.492,
+      "cut_w": {
+        "F375": 0.0,
+        "F370": 950.779,
+        "F368": 0.0,
+        "F381": 1995.078,
+        "F372": 6507.383,
+        "F369": 0.0,
+        "F374": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "X3",
+      "inventory_id": "X3",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7500,
+      "stock_width": 1219,
+      "cuts": {
+        "F375": 0,
+        "F370": 3,
+        "F381": 1,
+        "F374": 4
+      },
+      "details": [
+        {
+          "order_no": "F375",
+          "width": 200.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F370",
+          "width": 122.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F381",
+          "width": 64.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F374",
+          "width": 195.0,
+          "lines": 4
+        }
+      ],
+      "trim_loss_mm": 9.0,
+      "trim_loss_pct": 0.738,
+      "cut_w": {
+        "F375": 0.0,
+        "F370": 2251.846,
+        "F381": 393.765,
+        "F374": 4799.016
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0895/23",
+      "inventory_id": "HTV0895/23",
+      "trim_loss_mm": 19.0,
+      "trim_loss_pct": 1.559,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 5350,
+      "stock_width": 1219,
+      "cuts": {
+        "F375": 6,
+        "F370": 0,
+        "F381": 0,
+        "F374": 0
+      },
+      "details": [
+        {
+          "order_no": "F375",
+          "width": 200.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F370",
+          "width": 122.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F381",
+          "width": 64.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F374",
+          "width": 195.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F375": 5266.612,
+        "F370": 0.0,
+        "F381": 0.0,
+        "F374": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "HTV1363/23",
+      "inventory_id": "HTV1363/23",
+      "trim_loss_mm": 19.0,
+      "trim_loss_pct": 1.559,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 4000,
+      "stock_width": 1219,
+      "cuts": {
+        "F375": 6,
+        "F370": 0
+      },
+      "details": [
+        {
+          "order_no": "F375",
+          "width": 200.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F370",
+          "width": 122.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F375": 3937.654,
+        "F370": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "TM23BH00000192",
+      "inventory_id": "TM23BH00000192",
+      "trim_loss_mm": 19.0,
+      "trim_loss_pct": 1.559,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 6590,
+      "stock_width": 1219,
+      "cuts": {
+        "F375": 6,
+        "F370": 0,
+        "F368": 0,
+        "F381": 0,
+        "F372": 0,
+        "F379": 0,
+        "F369": 0,
+        "F374": 0
+      },
+      "details": [
+        {
+          "order_no": "F375",
+          "width": 200.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F370",
+          "width": 122.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F368",
+          "width": 105.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F381",
+          "width": 64.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F372",
+          "width": 167.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F379",
+          "width": 290.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F369",
+          "width": 109.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F374",
+          "width": 195.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F375": 6487.285,
+        "F370": 0.0,
+        "F368": 0.0,
+        "F381": 0.0,
+        "F372": 0.0,
+        "F379": 0.0,
+        "F369": 0.0,
+        "F374": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0828/23-D1",
+      "inventory_id": "HTV0828/23-D1",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 4266,
+      "stock_width": 1108,
+      "cuts": {
+        "F146": 0,
+        "F141": 0,
+        "F134": 0,
+        "F142": 7,
+        "F153": 0,
+        "F154": 0,
+        "F151": 1,
+        "F136": 0,
+        "F152": 0
+      },
+      "details": [
+        {
+          "order_no": "F146",
+          "width": 220.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F141",
+          "width": 145.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F134",
+          "width": 106.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F142",
+          "width": 150.0,
+          "lines": 7
+        },
+        {
+          "order_no": "F153",
+          "width": 70.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F154",
+          "width": 72.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F151",
+          "width": 52.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F136",
+          "width": 120.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F152",
+          "width": 63.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.542,
+      "cut_w": {
+        "F146": 0.0,
+        "F141": 0.0,
+        "F134": 0.0,
+        "F142": 4042.69,
+        "F153": 0.0,
+        "F154": 0.0,
+        "F151": 200.209,
+        "F136": 0.0,
+        "F152": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP235H001943",
+      "inventory_id": "TP235H001943",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 400,
+      "stock_width": 1219,
+      "cuts": {
+        "F146": 0,
+        "F141": 6,
+        "F134": 2,
+        "F142": 0,
+        "F153": 0,
+        "F154": 0,
+        "F138": 0,
+        "F151": 0,
+        "F136": 0,
+        "F152": 2
+      },
+      "details": [
+        {
+          "order_no": "F146",
+          "width": 220.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F141",
+          "width": 145.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F134",
+          "width": 106.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F142",
+          "width": 150.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F153",
+          "width": 70.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F154",
+          "width": 72.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F138",
+          "width": 127.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F151",
+          "width": 52.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F136",
+          "width": 120.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F152",
+          "width": 63.0,
+          "lines": 2
+        }
+      ],
+      "trim_loss_mm": 11.0,
+      "trim_loss_pct": 0.902,
+      "cut_w": {
+        "F146": 0.0,
+        "F141": 285.48,
+        "F134": 69.565,
+        "F142": 0.0,
+        "F153": 0.0,
+        "F154": 0.0,
+        "F138": 0.0,
+        "F151": 0.0,
+        "F136": 0.0,
+        "F152": 41.345
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "X6",
+      "inventory_id": "X6",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8000,
+      "stock_width": 1219,
+      "cuts": {
+        "F58": 0,
+        "F57": 4,
+        "F74": 0,
+        "F53": 0,
+        "F55": 0,
+        "F70": 2,
+        "F46": 0,
+        "F71": 0,
+        "F67": 2,
+        "F75": 2,
+        "F77": 0,
+        "F66": 0,
+        "F78": 1,
+        "F72": 2
+      },
+      "details": [
+        {
+          "order_no": "F58",
+          "width": 147.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F57",
+          "width": 136.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F74",
+          "width": 80.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F53",
+          "width": 123.8,
+          "lines": 0
+        },
+        {
+          "order_no": "F55",
+          "width": 130.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F70",
+          "width": 68.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F46",
+          "width": 100.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F71",
+          "width": 70.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F67",
+          "width": 60.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F75",
+          "width": 85.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F77",
+          "width": 92.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F66",
+          "width": 57.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F78",
+          "width": 93.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F72",
+          "width": 74.0,
+          "lines": 2
+        }
+      ],
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.656,
+      "cut_w": {
+        "F58": 0.0,
+        "F57": 3570.139,
+        "F74": 0.0,
+        "F53": 0.0,
+        "F55": 0.0,
+        "F70": 892.535,
+        "F46": 0.0,
+        "F71": 0.0,
+        "F67": 787.531,
+        "F75": 1115.669,
+        "F77": 0.0,
+        "F66": 0.0,
+        "F78": 610.336,
+        "F72": 971.288
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "X5",
+      "inventory_id": "X5",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7000,
+      "stock_width": 1219,
+      "cuts": {
+        "F58": 3,
+        "F74": 7,
+        "F53": 0,
+        "F55": 0,
+        "F46": 0,
+        "F71": 3,
+        "F77": 0,
+        "F66": 0,
+        "F78": 0
+      },
+      "details": [
+        {
+          "order_no": "F58",
+          "width": 147.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F74",
+          "width": 80.0,
+          "lines": 7
+        },
+        {
+          "order_no": "F53",
+          "width": 123.8,
+          "lines": 0
+        },
+        {
+          "order_no": "F55",
+          "width": 130.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F46",
+          "width": 100.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F71",
+          "width": 70.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F77",
+          "width": 92.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F66",
+          "width": 57.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F78",
+          "width": 93.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.656,
+      "cut_w": {
+        "F58": 2532.404,
+        "F74": 3215.751,
+        "F53": 0.0,
+        "F55": 0.0,
+        "F46": 0.0,
+        "F71": 1205.906,
+        "F77": 0.0,
+        "F66": 0.0,
+        "F78": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TR242H00000035",
+      "inventory_id": "TR242H00000035",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 4618,
+      "stock_width": 1219,
+      "cuts": {
+        "F58": 0,
+        "F74": 0,
+        "F53": 3,
+        "F55": 4,
+        "F46": 1,
+        "F71": 1,
+        "F77": 1,
+        "F66": 1
+      },
+      "details": [
+        {
+          "order_no": "F58",
+          "width": 147.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F74",
+          "width": 80.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F53",
+          "width": 123.8,
+          "lines": 3
+        },
+        {
+          "order_no": "F55",
+          "width": 130.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F46",
+          "width": 100.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F71",
+          "width": 70.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F77",
+          "width": 92.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F66",
+          "width": 57.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 8.599999999999909,
+      "trim_loss_pct": 0.705,
+      "cut_w": {
+        "F58": 0.0,
+        "F74": 0.0,
+        "F53": 1406.994,
+        "F55": 1969.943,
+        "F46": 378.835,
+        "F71": 265.185,
+        "F77": 348.528,
+        "F66": 215.936
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP236H005510",
+      "inventory_id": "TP236H005510",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 4395,
+      "stock_width": 1219,
+      "cuts": {
+        "F351": 1,
+        "F349": 0,
+        "F347": 2,
+        "F348": 3,
+        "F354": 3,
+        "F357": 0
+      },
+      "details": [
+        {
+          "order_no": "F351",
+          "width": 334.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F349",
+          "width": 160.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F347",
+          "width": 135.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F348",
+          "width": 147.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F354",
+          "width": 55.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F357",
+          "width": 90.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 9.0,
+      "trim_loss_pct": 0.738,
+      "cut_w": {
+        "F351": 1204.208,
+        "F349": 0.0,
+        "F347": 973.462,
+        "F348": 1589.988,
+        "F354": 594.893,
+        "F357": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "TP236H005509",
+      "inventory_id": "TP236H005509",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9260,
+      "stock_width": 1219,
+      "cuts": {
+        "F351": 2,
+        "F349": 1,
+        "F347": 1,
+        "F348": 1,
+        "F357": 1
+      },
+      "details": [
+        {
+          "order_no": "F351",
+          "width": 334.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F349",
+          "width": 160.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F347",
+          "width": 135.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F348",
+          "width": 147.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F357",
+          "width": 90.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 19.0,
+      "trim_loss_pct": 1.559,
+      "cut_w": {
+        "F351": 5074.389,
+        "F349": 1215.422,
+        "F347": 1025.513,
+        "F348": 1116.669,
+        "F357": 683.675
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0832/24",
+      "inventory_id": "HTV0832/24",
+      "trim_loss_mm": 14.0,
+      "trim_loss_pct": 1.138,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 11215,
+      "stock_width": 1230,
+      "cuts": {
+        "F442": 4
+      },
+      "details": [
+        {
+          "order_no": "F442",
+          "width": 304.0,
+          "lines": 4
+        }
+      ],
+      "cut_w": {
+        "F442": 11087.35
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 2,
+      "stock": "HTV0134/24",
+      "inventory_id": "HTV0134/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8038,
+      "stock_width": 1219,
+      "cuts": {
+        "F621": 1,
+        "F620": 0,
+        "F610": 4,
+        "F618": 0,
+        "F617": 0,
+        "F608": 1,
+        "F613": 0,
+        "F616": 1,
+        "F607": 1,
+        "F615": 0,
+        "F609": 0
+      },
+      "details": [
+        {
+          "order_no": "F621",
+          "width": 292.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F620",
+          "width": 282.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F610",
+          "width": 137.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F618",
+          "width": 196.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F617",
+          "width": 178.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F608",
+          "width": 115.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F613",
+          "width": 146.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F616",
+          "width": 156.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F607",
+          "width": 102.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F615",
+          "width": 154.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F609",
+          "width": 126.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.492,
+      "cut_w": {
+        "F621": 1925.427,
+        "F620": 0.0,
+        "F610": 3613.473,
+        "F618": 0.0,
+        "F617": 0.0,
+        "F608": 758.302,
+        "F613": 0.0,
+        "F616": 1028.653,
+        "F607": 672.581,
+        "F615": 0.0,
+        "F609": 0.0
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0135/24",
+      "inventory_id": "HTV0135/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7869,
+      "stock_width": 1219,
+      "cuts": {
+        "F621": 0,
+        "F620": 2,
+        "F610": 0,
+        "F618": 0,
+        "F617": 2,
+        "F608": 0,
+        "F613": 2,
+        "F616": 0,
+        "F615": 0,
+        "F609": 0
+      },
+      "details": [
+        {
+          "order_no": "F621",
+          "width": 292.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F620",
+          "width": 282.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F610",
+          "width": 137.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F618",
+          "width": 196.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F617",
+          "width": 178.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F608",
+          "width": 115.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F613",
+          "width": 146.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F616",
+          "width": 156.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F615",
+          "width": 154.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F609",
+          "width": 126.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 7.0,
+      "trim_loss_pct": 0.574,
+      "cut_w": {
+        "F621": 0.0,
+        "F620": 3640.784,
+        "F610": 0.0,
+        "F618": 0.0,
+        "F617": 2298.084,
+        "F608": 0.0,
+        "F613": 1884.945,
+        "F616": 0.0,
+        "F615": 0.0,
+        "F609": 0.0
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0136/24",
+      "inventory_id": "HTV0136/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7919,
+      "stock_width": 1219,
+      "cuts": {
+        "F621": 1,
+        "F620": 2,
+        "F610": 0,
+        "F618": 0,
+        "F617": 2,
+        "F608": 0,
+        "F613": 0,
+        "F616": 0,
+        "F615": 0,
+        "F609": 0
+      },
+      "details": [
+        {
+          "order_no": "F621",
+          "width": 292.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F620",
+          "width": 282.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F610",
+          "width": 137.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F618",
+          "width": 196.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F617",
+          "width": 178.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F608",
+          "width": 115.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F613",
+          "width": 146.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F616",
+          "width": 156.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F615",
+          "width": 154.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F609",
+          "width": 126.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 7.0,
+      "trim_loss_pct": 0.574,
+      "cut_w": {
+        "F621": 1896.922,
+        "F620": 3663.918,
+        "F610": 0.0,
+        "F618": 0.0,
+        "F617": 2312.686,
+        "F608": 0.0,
+        "F613": 0.0,
+        "F616": 0.0,
+        "F615": 0.0,
+        "F609": 0.0
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "X12",
+      "inventory_id": "X12",
+      "trim_loss_mm": 43.0,
+      "trim_loss_pct": 3.527,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9000,
+      "stock_width": 1219,
+      "cuts": {
+        "F621": 0,
+        "F620": 0,
+        "F610": 0,
+        "F618": 6,
+        "F617": 0,
+        "F608": 0,
+        "F613": 0,
+        "F616": 0,
+        "F607": 0,
+        "F615": 0,
+        "F609": 0
+      },
+      "details": [
+        {
+          "order_no": "F621",
+          "width": 292.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F620",
+          "width": 282.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F610",
+          "width": 137.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F618",
+          "width": 196.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F617",
+          "width": 178.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F608",
+          "width": 115.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F613",
+          "width": 146.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F616",
+          "width": 156.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F607",
+          "width": 102.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F615",
+          "width": 154.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F609",
+          "width": 126.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F621": 0.0,
+        "F620": 0.0,
+        "F610": 0.0,
+        "F618": 8682.527,
+        "F617": 0.0,
+        "F608": 0.0,
+        "F613": 0.0,
+        "F616": 0.0,
+        "F607": 0.0,
+        "F615": 0.0,
+        "F609": 0.0
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0139/24",
+      "inventory_id": "HTV0139/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7825,
+      "stock_width": 1219,
+      "cuts": {
+        "F621": 1,
+        "F620": 0,
+        "F610": 1,
+        "F618": 4,
+        "F617": 0,
+        "F608": 0,
+        "F613": 0,
+        "F615": 0,
+        "F609": 0
+      },
+      "details": [
+        {
+          "order_no": "F621",
+          "width": 292.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F620",
+          "width": 282.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F610",
+          "width": 137.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F618",
+          "width": 196.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F617",
+          "width": 178.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F608",
+          "width": 115.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F613",
+          "width": 146.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F615",
+          "width": 154.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F609",
+          "width": 126.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.0,
+      "trim_loss_pct": 0.492,
+      "cut_w": {
+        "F621": 1874.405,
+        "F620": 0.0,
+        "F610": 879.43,
+        "F618": 5032.65,
+        "F617": 0.0,
+        "F608": 0.0,
+        "F613": 0.0,
+        "F615": 0.0,
+        "F609": 0.0
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "inventory_id": "TR245H00000054-Se1",
+      "stock_width": 964.0,
+      "stock_weight": 6264.0196882690725,
+      "customer_short_name": "CIC",
+      "explanation": "Semi Cut",
+      "remark": "",
+      "cutting_date": "",
+      "trim_loss_mm": 9999,
+      "trim_loss_pct": 9999,
+      "cuts": {
+        "F181": 8
+      },
+      "details": [
+        {
+          "order_no": "F181",
+          "width": 120.0,
+          "lines": 8
+        }
+      ]
+    },
+    {
+      "count": 1,
+      "stock": "HTV0520/23",
+      "inventory_id": "HTV0520/23",
+      "trim_loss_mm": 19.0,
+      "trim_loss_pct": 1.559,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 11560,
+      "stock_width": 1219,
+      "cuts": {
+        "F124": 0,
+        "F125": 3,
+        "F123": 0
+      },
+      "details": [
+        {
+          "order_no": "F124",
+          "width": 225.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F125",
+          "width": 400.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F123",
+          "width": 173.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F124": 0.0,
+        "F125": 11379.82,
+        "F123": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 4,
+      "stock": "HTV0729/23",
+      "inventory_id": "HTV0729/23",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 3000,
+      "stock_width": 1219,
+      "cuts": {
+        "F124": 3,
+        "F125": 0,
+        "F123": 3
+      },
+      "details": [
+        {
+          "order_no": "F124",
+          "width": 225.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F125",
+          "width": 400.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F123",
+          "width": 173.0,
+          "lines": 3
+        }
+      ],
+      "trim_loss_mm": 25.0,
+      "trim_loss_pct": 2.051,
+      "cut_w": {
+        "F124": 1661.198,
+        "F125": 0.0,
+        "F123": 1277.276
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0831/24",
+      "inventory_id": "HTV0831/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9090,
+      "stock_width": 1219,
+      "cuts": {
+        "F424": 4,
+        "F426": 5,
+        "F425": 0
+      },
+      "details": [
+        {
+          "order_no": "F424",
+          "width": 180.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F426",
+          "width": 97.0,
+          "lines": 5
+        },
+        {
+          "order_no": "F425",
+          "width": 197.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 14.0,
+      "trim_loss_pct": 1.148,
+      "cut_w": {
+        "F424": 5368.991,
+        "F426": 3616.612,
+        "F425": 0.0
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "TR246H00000078",
+      "inventory_id": "TR246H00000078",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8121,
+      "stock_width": 1219,
+      "cuts": {
+        "F424": 5,
+        "F426": 1,
+        "F425": 1
+      },
+      "details": [
+        {
+          "order_no": "F424",
+          "width": 180.0,
+          "lines": 5
+        },
+        {
+          "order_no": "F426",
+          "width": 97.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F425",
+          "width": 197.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 25.0,
+      "trim_loss_pct": 2.051,
+      "cut_w": {
+        "F424": 5995.816,
+        "F426": 646.216,
+        "F425": 1312.418
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "HTV1545/23",
+      "inventory_id": "HTV1545/23",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 11900,
+      "stock_width": 1219,
+      "cuts": {
+        "F282": 4,
+        "F279": 3,
+        "F281": 3,
+        "F280": 1
+      },
+      "details": [
+        {
+          "order_no": "F282",
+          "width": 88.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F279",
+          "width": 118.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F281",
+          "width": 128.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F280",
+          "width": 120.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 9.0,
+      "trim_loss_pct": 0.738,
+      "cut_w": {
+        "F282": 3436.259,
+        "F279": 3455.783,
+        "F281": 3748.646,
+        "F280": 1171.452
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV1772/23",
+      "inventory_id": "HTV1772/23",
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.679,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8900,
+      "stock_width": 1178,
+      "cuts": {
+        "F156": 5,
+        "F159": 0,
+        "F158": 0
+      },
+      "details": [
+        {
+          "order_no": "F156",
+          "width": 234.0,
+          "lines": 5
+        },
+        {
+          "order_no": "F159",
+          "width": 90.6,
+          "lines": 0
+        },
+        {
+          "order_no": "F158",
+          "width": 86.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F156": 8839.559,
+        "F159": 0.0,
+        "F158": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV1773/23",
+      "inventory_id": "HTV1773/23",
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.679,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9140,
+      "stock_width": 1178,
+      "cuts": {
+        "F156": 5,
+        "F159": 0,
+        "F158": 0
+      },
+      "details": [
+        {
+          "order_no": "F156",
+          "width": 234.0,
+          "lines": 5
+        },
+        {
+          "order_no": "F159",
+          "width": 90.6,
+          "lines": 0
+        },
+        {
+          "order_no": "F158",
+          "width": 86.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F156": 9077.929,
+        "F159": 0.0,
+        "F158": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0802/24-D1",
+      "inventory_id": "HTV0802/24-D1",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 5848,
+      "stock_width": 1219,
+      "cuts": {
+        "F156": 1,
+        "F159": 4,
+        "F158": 7
+      },
+      "details": [
+        {
+          "order_no": "F156",
+          "width": 234.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F159",
+          "width": 90.6,
+          "lines": 4
+        },
+        {
+          "order_no": "F158",
+          "width": 86.0,
+          "lines": 7
+        }
+      ],
+      "trim_loss_mm": 20.59999999999991,
+      "trim_loss_pct": 1.69,
+      "cut_w": {
+        "F156": 1122.586,
+        "F159": 1738.569,
+        "F158": 2888.02
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0340/24",
+      "inventory_id": "HTV0340/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8363,
+      "stock_width": 1219,
+      "cuts": {
+        "F626": 0,
+        "F636": 3,
+        "F637": 1,
+        "F624": 2,
+        "F628": 1,
+        "F646": 1
+      },
+      "details": [
+        {
+          "order_no": "F626",
+          "width": 121.2,
+          "lines": 0
+        },
+        {
+          "order_no": "F636",
+          "width": 196.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F637",
+          "width": 206.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F624",
+          "width": 110.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F628",
+          "width": 135.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F646",
+          "width": 63.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 7.0,
+      "trim_loss_pct": 0.574,
+      "cut_w": {
+        "F626": 0.0,
+        "F636": 4033.998,
+        "F637": 1413.272,
+        "F624": 1509.319,
+        "F628": 926.173,
+        "F646": 432.214
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0341/24",
+      "inventory_id": "HTV0341/24",
+      "trim_loss_mm": 7.0,
+      "trim_loss_pct": 0.574,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8948,
+      "stock_width": 1219,
+      "cuts": {
+        "F626": 10,
+        "F636": 0,
+        "F637": 0,
+        "F624": 0,
+        "F628": 0,
+        "F646": 0
+      },
+      "details": [
+        {
+          "order_no": "F626",
+          "width": 121.2,
+          "lines": 10
+        },
+        {
+          "order_no": "F636",
+          "width": 196.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F637",
+          "width": 206.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F624",
+          "width": 110.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F628",
+          "width": 135.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F646",
+          "width": 63.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F626": 8896.617,
+        "F636": 0.0,
+        "F637": 0.0,
+        "F624": 0.0,
+        "F628": 0.0,
+        "F646": 0.0
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0348/24",
+      "inventory_id": "HTV0348/24",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7809,
+      "stock_width": 1219,
+      "cuts": {
+        "F626": 4,
+        "F636": 0,
+        "F637": 3,
+        "F624": 1,
+        "F628": 0
+      },
+      "details": [
+        {
+          "order_no": "F626",
+          "width": 121.2,
+          "lines": 4
+        },
+        {
+          "order_no": "F636",
+          "width": 196.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F637",
+          "width": 206.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F624",
+          "width": 110.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F628",
+          "width": 135.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 6.2000000000000455,
+      "trim_loss_pct": 0.509,
+      "cut_w": {
+        "F626": 3105.663,
+        "F636": 0.0,
+        "F637": 3958.952,
+        "F624": 704.668,
+        "F628": 0.0
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "HTV0349/24",
+      "inventory_id": "HTV0349/24",
+      "trim_loss_mm": 43.0,
+      "trim_loss_pct": 3.527,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7904,
+      "stock_width": 1219,
+      "cuts": {
+        "F626": 0,
+        "F636": 6,
+        "F637": 0,
+        "F624": 0,
+        "F628": 0,
+        "F646": 0
+      },
+      "details": [
+        {
+          "order_no": "F626",
+          "width": 121.2,
+          "lines": 0
+        },
+        {
+          "order_no": "F636",
+          "width": 196.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F637",
+          "width": 206.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F624",
+          "width": 110.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F628",
+          "width": 135.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F646",
+          "width": 63.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F626": 0.0,
+        "F636": 7625.188,
+        "F637": 0.0,
+        "F624": 0.0,
+        "F628": 0.0,
+        "F646": 0.0
+      },
+      "customer_short_name": "TEC"
+    },
+    {
+      "count": 1,
+      "stock": "TM23BH00000052",
+      "inventory_id": "TM23BH00000052",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8960,
+      "stock_width": 990,
+      "cuts": {
+        "F288": 4,
+        "F290": 2,
+        "F287": 0,
+        "F286": 2
+      },
+      "details": [
+        {
+          "order_no": "F288",
+          "width": 143.5,
+          "lines": 4
+        },
+        {
+          "order_no": "F290",
+          "width": 97.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F287",
+          "width": 117.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F286",
+          "width": 102.0,
+          "lines": 2
+        }
+      ],
+      "trim_loss_mm": 18.0,
+      "trim_loss_pct": 1.818,
+      "cut_w": {
+        "F288": 5194.99,
+        "F290": 1755.798,
+        "F287": 0.0,
+        "F286": 1846.303
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "count": 1,
+      "stock": "TP232H001072",
+      "inventory_id": "TP232H001072",
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.649,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8675,
+      "stock_width": 1233,
+      "cuts": {
+        "F33": 0,
+        "F32": 7,
+        "F31": 0,
+        "F29": 0,
+        "F37": 0,
+        "F36": 0,
+        "F34": 0,
+        "F30": 0
+      },
+      "details": [
+        {
+          "order_no": "F33",
+          "width": 188.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F32",
+          "width": 175.0,
+          "lines": 7
+        },
+        {
+          "order_no": "F31",
+          "width": 155.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F29",
+          "width": 120.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F37",
+          "width": 82.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F36",
+          "width": 306.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F34",
+          "width": 205.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F30",
+          "width": 133.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F33": 0.0,
+        "F32": 8618.715,
+        "F31": 0.0,
+        "F29": 0.0,
+        "F37": 0.0,
+        "F36": 0.0,
+        "F34": 0.0,
+        "F30": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP232H001073",
+      "inventory_id": "TP232H001073",
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.649,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7550,
+      "stock_width": 1233,
+      "cuts": {
+        "F33": 0,
+        "F32": 7,
+        "F31": 0,
+        "F29": 0,
+        "F37": 0,
+        "F36": 0,
+        "F34": 0,
+        "F30": 0
+      },
+      "details": [
+        {
+          "order_no": "F33",
+          "width": 188.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F32",
+          "width": 175.0,
+          "lines": 7
+        },
+        {
+          "order_no": "F31",
+          "width": 155.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F29",
+          "width": 120.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F37",
+          "width": 82.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F36",
+          "width": 306.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F34",
+          "width": 205.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F30",
+          "width": 133.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F33": 0.0,
+        "F32": 7501.014,
+        "F31": 0.0,
+        "F29": 0.0,
+        "F37": 0.0,
+        "F36": 0.0,
+        "F34": 0.0,
+        "F30": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP232H001074",
+      "inventory_id": "TP232H001074",
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.649,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7105,
+      "stock_width": 1233,
+      "cuts": {
+        "F33": 0,
+        "F32": 7,
+        "F31": 0,
+        "F29": 0,
+        "F37": 0,
+        "F36": 0,
+        "F34": 0,
+        "F30": 0
+      },
+      "details": [
+        {
+          "order_no": "F33",
+          "width": 188.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F32",
+          "width": 175.0,
+          "lines": 7
+        },
+        {
+          "order_no": "F31",
+          "width": 155.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F29",
+          "width": 120.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F37",
+          "width": 82.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F36",
+          "width": 306.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F34",
+          "width": 205.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F30",
+          "width": 133.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F33": 0.0,
+        "F32": 7058.901,
+        "F31": 0.0,
+        "F29": 0.0,
+        "F37": 0.0,
+        "F36": 0.0,
+        "F34": 0.0,
+        "F30": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP232H001075",
+      "inventory_id": "TP232H001075",
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.649,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9630,
+      "stock_width": 1233,
+      "cuts": {
+        "F33": 0,
+        "F32": 7,
+        "F31": 0,
+        "F29": 0,
+        "F37": 0,
+        "F36": 0,
+        "F34": 0,
+        "F30": 0
+      },
+      "details": [
+        {
+          "order_no": "F33",
+          "width": 188.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F32",
+          "width": 175.0,
+          "lines": 7
+        },
+        {
+          "order_no": "F31",
+          "width": 155.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F29",
+          "width": 120.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F37",
+          "width": 82.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F36",
+          "width": 306.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F34",
+          "width": 205.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F30",
+          "width": 133.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F33": 0.0,
+        "F32": 9567.518,
+        "F31": 0.0,
+        "F29": 0.0,
+        "F37": 0.0,
+        "F36": 0.0,
+        "F34": 0.0,
+        "F30": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP236H005198",
+      "inventory_id": "TP236H005198",
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.704,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8000,
+      "stock_width": 1136,
+      "cuts": {
+        "F33": 6,
+        "F32": 0,
+        "F31": 0,
+        "F29": 0,
+        "F37": 0,
+        "F36": 0,
+        "F34": 0,
+        "F30": 0
+      },
+      "details": [
+        {
+          "order_no": "F33",
+          "width": 188.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F32",
+          "width": 175.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F31",
+          "width": 155.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F29",
+          "width": 120.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F37",
+          "width": 82.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F36",
+          "width": 306.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F34",
+          "width": 205.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F30",
+          "width": 133.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F33": 7943.662,
+        "F32": 0.0,
+        "F31": 0.0,
+        "F29": 0.0,
+        "F37": 0.0,
+        "F36": 0.0,
+        "F34": 0.0,
+        "F30": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "X1",
+      "inventory_id": "X1",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8000,
+      "stock_width": 1219,
+      "cuts": {
+        "F33": 3,
+        "F32": 0,
+        "F31": 0,
+        "F29": 3,
+        "F37": 1,
+        "F36": 0,
+        "F34": 1,
+        "F30": 0
+      },
+      "details": [
+        {
+          "order_no": "F33",
+          "width": 188.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F32",
+          "width": 175.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F31",
+          "width": 155.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F29",
+          "width": 120.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F37",
+          "width": 82.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F36",
+          "width": 306.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F34",
+          "width": 205.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F30",
+          "width": 133.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.656,
+      "cut_w": {
+        "F33": 3701.395,
+        "F32": 0.0,
+        "F31": 0.0,
+        "F29": 2362.592,
+        "F37": 538.146,
+        "F36": 0.0,
+        "F34": 1345.365,
+        "F30": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "X2",
+      "inventory_id": "X2",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 9000,
+      "stock_width": 1219,
+      "cuts": {
+        "F33": 2,
+        "F32": 3,
+        "F31": 2,
+        "F29": 0,
+        "F37": 0,
+        "F36": 0,
+        "F34": 0,
+        "F30": 0
+      },
+      "details": [
+        {
+          "order_no": "F33",
+          "width": 188.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F32",
+          "width": 175.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F31",
+          "width": 155.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F29",
+          "width": 120.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F37",
+          "width": 82.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F36",
+          "width": 306.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F34",
+          "width": 205.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F30",
+          "width": 133.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.656,
+      "cut_w": {
+        "F33": 2776.046,
+        "F32": 3876.128,
+        "F31": 2288.761,
+        "F29": 0.0,
+        "F37": 0.0,
+        "F36": 0.0,
+        "F34": 0.0,
+        "F30": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP235H002655",
+      "inventory_id": "TP235H002655",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8845,
+      "stock_width": 1219,
+      "cuts": {
+        "F33": 3,
+        "F32": 0,
+        "F31": 0,
+        "F29": 3,
+        "F37": 1,
+        "F36": 0,
+        "F34": 1,
+        "F30": 0
+      },
+      "details": [
+        {
+          "order_no": "F33",
+          "width": 188.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F32",
+          "width": 175.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F31",
+          "width": 155.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F29",
+          "width": 120.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F37",
+          "width": 82.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F36",
+          "width": 306.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F34",
+          "width": 205.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F30",
+          "width": 133.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.656,
+      "cut_w": {
+        "F33": 4092.354,
+        "F32": 0.0,
+        "F31": 0.0,
+        "F29": 2612.141,
+        "F37": 594.988,
+        "F36": 0.0,
+        "F34": 1487.469,
+        "F30": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP235H002656-1",
+      "inventory_id": "TP235H002656-1",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 4333,
+      "stock_width": 1219,
+      "cuts": {
+        "F33": 1,
+        "F32": 0,
+        "F31": 1,
+        "F29": 1,
+        "F37": 0,
+        "F36": 0,
+        "F34": 3,
+        "F30": 1
+      },
+      "details": [
+        {
+          "order_no": "F33",
+          "width": 188.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F32",
+          "width": 175.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F31",
+          "width": 155.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F29",
+          "width": 120.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F37",
+          "width": 82.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F36",
+          "width": 306.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F34",
+          "width": 205.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F30",
+          "width": 133.0,
+          "lines": 1
+        }
+      ],
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.656,
+      "cut_w": {
+        "F33": 668.256,
+        "F32": 0.0,
+        "F31": 550.956,
+        "F29": 426.546,
+        "F37": 0.0,
+        "F36": 0.0,
+        "F34": 2186.05,
+        "F30": 472.756
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP235H002654",
+      "inventory_id": "TP235H002654",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8500,
+      "stock_width": 1219,
+      "cuts": {
+        "F33": 1,
+        "F32": 1,
+        "F31": 1,
+        "F29": 1,
+        "F37": 0,
+        "F36": 1,
+        "F34": 0,
+        "F30": 2
+      },
+      "details": [
+        {
+          "order_no": "F33",
+          "width": 188.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F32",
+          "width": 175.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F31",
+          "width": 155.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F29",
+          "width": 120.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F37",
+          "width": 82.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F36",
+          "width": 306.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F34",
+          "width": 205.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F30",
+          "width": 133.0,
+          "lines": 2
+        }
+      ],
+      "trim_loss_mm": 9.0,
+      "trim_loss_pct": 0.738,
+      "cut_w": {
+        "F33": 1310.911,
+        "F32": 1220.263,
+        "F31": 1080.804,
+        "F29": 836.751,
+        "F37": 0.0,
+        "F36": 2133.716,
+        "F34": 0.0,
+        "F30": 1854.799
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP235H002656-2",
+      "inventory_id": "TP235H002656-2",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 5000,
+      "stock_width": 1219,
+      "cuts": {
+        "F33": 3,
+        "F32": 0,
+        "F31": 1,
+        "F29": 0,
+        "F37": 6,
+        "F36": 0,
+        "F34": 0,
+        "F30": 0
+      },
+      "details": [
+        {
+          "order_no": "F33",
+          "width": 188.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F32",
+          "width": 175.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F31",
+          "width": 155.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F29",
+          "width": 120.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F37",
+          "width": 82.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F36",
+          "width": 306.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F34",
+          "width": 205.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F30",
+          "width": 133.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.656,
+      "cut_w": {
+        "F33": 2313.372,
+        "F32": 0.0,
+        "F31": 635.767,
+        "F29": 0.0,
+        "F37": 2018.048,
+        "F36": 0.0,
+        "F34": 0.0,
+        "F30": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP235H002653",
+      "inventory_id": "TP235H002653",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8855,
+      "stock_width": 1219,
+      "cuts": {
+        "F33": 6,
+        "F32": 0,
+        "F31": 0,
+        "F37": 1,
+        "F36": 0
+      },
+      "details": [
+        {
+          "order_no": "F33",
+          "width": 188.0,
+          "lines": 6
+        },
+        {
+          "order_no": "F32",
+          "width": 175.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F31",
+          "width": 155.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F37",
+          "width": 82.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F36",
+          "width": 306.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 9.0,
+      "trim_loss_pct": 0.738,
+      "cut_w": {
+        "F33": 8193.962,
+        "F32": 0.0,
+        "F31": 0.0,
+        "F37": 595.66,
+        "F36": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TM246H00000202",
+      "inventory_id": "TM246H00000202",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7980,
+      "stock_width": 1219,
+      "cuts": {
+        "F259": 1,
+        "F261": 1,
+        "F256": 1,
+        "F176": 0,
+        "F179": 1,
+        "F178": 1,
+        "F257": 0
+      },
+      "details": [
+        {
+          "order_no": "F259",
+          "width": 185.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F261",
+          "width": 300.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F256",
+          "width": 275.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F176",
+          "width": 175.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F179",
+          "width": 236.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F178",
+          "width": 215.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F257",
+          "width": 60.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 8.0,
+      "trim_loss_pct": 0.656,
+      "cut_w": {
+        "F259": 1211.075,
+        "F261": 1963.905,
+        "F256": 1800.246,
+        "F176": 0.0,
+        "F179": 1544.938,
+        "F178": 1407.465,
+        "F257": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TM236H00000364",
+      "inventory_id": "TM236H00000364",
+      "trim_loss_mm": 19.0,
+      "trim_loss_pct": 1.559,
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 8640,
+      "stock_width": 1219,
+      "cuts": {
+        "F259": 0,
+        "F261": 4,
+        "F256": 0,
+        "F176": 0,
+        "F179": 0,
+        "F178": 0,
+        "F257": 0
+      },
+      "details": [
+        {
+          "order_no": "F259",
+          "width": 185.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F261",
+          "width": 300.0,
+          "lines": 4
+        },
+        {
+          "order_no": "F256",
+          "width": 275.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F176",
+          "width": 175.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F179",
+          "width": 236.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F178",
+          "width": 215.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F257",
+          "width": 60.0,
+          "lines": 0
+        }
+      ],
+      "cut_w": {
+        "F259": 0.0,
+        "F261": 8505.332,
+        "F256": 0.0,
+        "F176": 0.0,
+        "F179": 0.0,
+        "F178": 0.0,
+        "F257": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TM246H00000204",
+      "inventory_id": "TM246H00000204",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7740,
+      "stock_width": 1219,
+      "cuts": {
+        "F259": 0,
+        "F261": 0,
+        "F256": 0,
+        "F176": 5,
+        "F179": 0,
+        "F178": 1,
+        "F257": 2
+      },
+      "details": [
+        {
+          "order_no": "F259",
+          "width": 185.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F261",
+          "width": 300.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F256",
+          "width": 275.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F176",
+          "width": 175.0,
+          "lines": 5
+        },
+        {
+          "order_no": "F179",
+          "width": 236.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F178",
+          "width": 215.0,
+          "lines": 1
+        },
+        {
+          "order_no": "F257",
+          "width": 60.0,
+          "lines": 2
+        }
+      ],
+      "trim_loss_mm": 9.0,
+      "trim_loss_pct": 0.738,
+      "cut_w": {
+        "F259": 0.0,
+        "F261": 0.0,
+        "F256": 0.0,
+        "F176": 5555.783,
+        "F179": 0.0,
+        "F178": 1365.135,
+        "F257": 761.936
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TM246H00000203",
+      "inventory_id": "TM246H00000203",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 7590,
+      "stock_width": 1219,
+      "cuts": {
+        "F259": 2,
+        "F261": 0,
+        "F256": 3,
+        "F179": 0,
+        "F178": 0
+      },
+      "details": [
+        {
+          "order_no": "F259",
+          "width": 185.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F261",
+          "width": 300.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F256",
+          "width": 275.0,
+          "lines": 3
+        },
+        {
+          "order_no": "F179",
+          "width": 236.0,
+          "lines": 0
+        },
+        {
+          "order_no": "F178",
+          "width": 215.0,
+          "lines": 0
+        }
+      ],
+      "trim_loss_mm": 24.0,
+      "trim_loss_pct": 1.969,
+      "cut_w": {
+        "F259": 2303.774,
+        "F261": 0.0,
+        "F256": 5136.792,
+        "F179": 0.0,
+        "F178": 0.0
+      },
+      "customer_short_name": "CIC"
+    },
+    {
+      "count": 1,
+      "stock": "TP233H000003",
+      "inventory_id": "TP233H000003",
+      "explanation": "",
+      "remark": "",
+      "cutting_date": "",
+      "stock_weight": 4000,
+      "stock_width": 1219,
+      "cuts": {
+        "F330": 2,
+        "F332": 3
+      },
+      "details": [
+        {
+          "order_no": "F330",
+          "width": 460.0,
+          "lines": 2
+        },
+        {
+          "order_no": "F332",
+          "width": 95.0,
+          "lines": 3
+        }
+      ],
+      "trim_loss_mm": 14.0,
+      "trim_loss_pct": 1.148,
+      "cut_w": {
+        "F330": 3018.868,
+        "F332": 935.193
+      },
+      "customer_short_name": "VPIC1"
+    },
+    {
+      "inventory_id": "HTV3035/22-02-01",
+      "stock_width": 270,
+      "stock_weight": 970,
+      "customer_short_name": "CIC",
+      "explanation": "Semi Cut",
+      "remark": "",
+      "cutting_date": "",
+      "trim_loss_mm": 9999,
+      "trim_loss_pct": 9999,
+      "cuts": {
+        "F38": 2
+      },
+      "details": [
+        {
+          "order_no": "F38",
+          "width": 122.0,
+          "lines": 2
+        }
+      ]
+    }
+  ]
+}
