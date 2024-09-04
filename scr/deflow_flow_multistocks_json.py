@@ -126,8 +126,8 @@ logging.basicConfig(filename=f'cutting_stocks_{formatted_date}.log', level=loggi
 margin_df = pd.read_csv('scr/model_config/min_margin.csv')
 spec_type = pd.read_csv('scr/model_config/spec_type.csv')
 
-logger.info('*** LOAD JOB LIST ***')
 # LOAD JOB-LIST
+logger.info('*** LOAD JOB LIST ***')
 with open(f'scr/jobs_by_day/job-list-{formatted_date}.json', 'r') as file:
     job_list = json.load(file)
 
@@ -283,15 +283,17 @@ for i in range(n_jobs): # loop for each JOB - PARAM set
                     bound += 1
                 else: ### neu co nghiem thi break while bound < 4 loop
                     total_taken_stocks.append(taken_stocks)
-                    # --- save to df ---
+                    
+                    # --- SAVE to DF ---
                     df = transform_to_df(final_solution_patterns)
                     cleaned_param_set = clean_filename(param_set)
                     filename = f"scr/results/solution-{cleaned_param_set}-{customer_name}-{warehouse_order[i]}.xlsx"
                     df.to_excel(filename, index=False)
-                    # --- save to json ---
-                    solution_json = [item.update({"customer_short_name": customer_name}) for item in final_solution_patterns]
-                    logger.info(f"details: {final_solution_patterns}")
-                    total_solution_json['solution'].extend(final_solution_patterns)
+                    
+                    # --- SAVE to JSON ---
+                    # solution_json = [item.update({"customer_short_name": customer_name}) for item in final_solution_patterns]
+                    # logger.info(f"details: {final_solution_patterns}")
+                    # total_solution_json['solution'].extend(final_solution_patterns)
                     # cleaned_param_set = clean_filename(param_set)
                     # filename = f"scr/results/solution-{cleaned_param_set}-{customer_name}-{warehouse_order[i]}.json"
                     # save_to_json(filename,final_solution_patterns)
@@ -313,7 +315,7 @@ for i in range(n_jobs): # loop for each JOB - PARAM set
             else: coil_center_priority_cond = False                                 # da het coil center de tim
         
         logger.info(f" STOCK-AFTER-CUT {customer_name}: {over_cut}")
-        # JSON FOR CUT WEIGHT
+        # --- SAVE JSON FOR CUT WEIGHT ----
         # filename = f"scr/results/solution-{customer_name}.json"
         # save_to_json(filename, final_solution_json)
         logger.info(f'--- DONE TASK {customer_name}---')
