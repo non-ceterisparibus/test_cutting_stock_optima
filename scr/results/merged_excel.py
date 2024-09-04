@@ -20,4 +20,4 @@ for file in excel_files:
 merged_df = pd.concat(df_list, ignore_index=True)
 
 # Save the merged dataframe to a new Excel file
-merged_df.to_excel(os.path.join(folder_path, 'merged_file_20240805.xlsx'), index=False)
+merged_df.to_excel(os.path.join(folder_path, 'merged_file_202408015.xlsx'), index=False)
