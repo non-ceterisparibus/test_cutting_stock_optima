@@ -4,10 +4,11 @@ import numpy as np
 import json
 import datetime
 import copy
+import os
 
 # INPUT
-fin_file_path = "scr/data/20240815_finish_df.xlsx"
-mc_file_path = "scr/data/20240815_mc_df.xlsx"
+fin_file_path = os.getenv('FIN_DF_PATH')
+mc_file_path = os.getenv('MC_DF_PATH')
 
 def filter_by_params(file_path,params):
     # Read the Excel file into a DataFrame

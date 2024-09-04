@@ -3,10 +3,11 @@ import numpy as np
 import json
 import datetime
 import copy
+import os
 
 # INPUT
-fin_file_path = "scr/data/20240710_finish_df.xlsx"
-mc_file_path = "scr/data/20240801_mc_df.xlsx"
+fin_file_path = os.getenv('FIN_DF_PATH')
+mc_file_path = os.getenv('MC_DF_PATH')
 spec_type_df = pd.read_csv('scr/model_config/spec_type.csv')
 
 # SETUP
