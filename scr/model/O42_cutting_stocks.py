@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import copy
 import statistics
-from model.O31_steel_objects import FinishObjects, StockObjects
+from .O31_steel_objects import FinishObjects, StockObjects
 from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum, PULP_CBC_CMD, value
 
 # DEFINE PROBLEM

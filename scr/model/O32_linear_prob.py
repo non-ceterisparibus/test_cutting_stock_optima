@@ -3,11 +3,10 @@ import numpy as np
 import copy
 
 from pulp import LpMaximize, LpProblem, LpVariable, lpSum, value, LpStatus
-# from O31_steel_objects import FinishObjects, StockObjects
-from model.O31_steel_objects import FinishObjects, StockObjects
+from .O31_steel_objects import FinishObjects, StockObjects
 
 # DEFINE PROBLEM
-class LinearProb:
+class LinearProblem:
   # FOR CASE USE INDICATE EXACTLY ONE COIL TO TRY TRIMLOSS
   def __init__(self, stock, finish):
     self.stock = stock # single stock 
@@ -103,7 +102,7 @@ class CuttingOneStock:
     self.S.update_min_margin(margin_df)
       
   def set_prob(self):
-    self.prob = LinearProb(self.S.stocks,self.F.finish)
+    self.prob = LinearProblem(self.S.stocks,self.F.finish)
   
   def _calculate_finish_after_cut(self):
     # for all orginal finish, not only dual

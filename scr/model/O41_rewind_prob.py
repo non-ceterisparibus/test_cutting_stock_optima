@@ -2,7 +2,7 @@ import numpy as np
 import copy
 import statistics
 from pulp import LpMaximize, LpProblem, LpVariable, lpSum, value, LpStatus
-from model.O41_dual_solver import DualProblem
+from .O41_dual_solver import DualProblem
     
 class RewindProb(DualProblem):
   

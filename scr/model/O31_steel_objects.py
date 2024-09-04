@@ -8,11 +8,13 @@ spec_type = pd.read_csv('scr/model_config/spec_type.csv')
 
 # DEFINE OBJECTS
 class FinishObjects:
-    # SET UP FINISH
-    # Finish: { width, need_cut,
-    #               fc1,fc2,fc3
-    #               fc4, fc5, fc6
-    #               min_weight, max_weight} 
+    """SET UP FINISH
+    "customer_name","width", "need_cut", 
+    "fc1", "fc2", "fc3",
+    "fc4", "fc5", "fc6",
+    "1st Priority", "2nd Priority", "3rd Priority",
+    "Min_weight", "Max_weight", "min_max_weight_gr"
+    """
     def __init__(self, finish, PARAMS):
         self.upperbound = 2 # DEFAULT 2 months forecast
         self.spec = PARAMS['spec_name']
@@ -21,15 +23,11 @@ class FinishObjects:
         self.type = PARAMS['type']
         self.finish =  finish
 
-    def _calculate_upper_bounds(self): 
+    def _calculate_upper_bounds(self,bound): 
+        self.finish = {f: {**f_info, "mean_3fc": (f_info['fc1'] + f_info['fc2'] + f_info['fc3'])/3} for f, f_info in self.finish.items()}
         # Need_cut van la so am
-        if self.upperbound == 1:
-            self.finish = {f: {**f_info, "upper_bound": -f_info['need_cut'] + f_info['fc1']} for f, f_info in self.finish.items()}
-        elif self.upperbound == 2:
-            self.finish = {f: {**f_info, "upper_bound": -f_info['need_cut'] + f_info['fc1'] + f_info['fc2']} for f, f_info in self.finish.items()}
-        elif self.upperbound == 3:
-            self.finish = {f: {**f_info, "upper_bound": -f_info['need_cut'] + f_info['fc1'] + f_info['fc2'] + f_info['fc3']} for f, f_info in self.finish.items()}
-    
+        self.finish = {f: {**f_info, "upper_bound": -f_info['need_cut'] + f_info['mean_3fc']* bound} for f, f_info in self.finish.items()}
+      
     def _reverse_need_cut_sign(self):
         for _, f_info in self.finish.items():
             if f_info['need_cut']  < 0:
@@ -42,10 +40,19 @@ class FinishObjects:
         # Default case
         if bound <= 3:
             self.upperbound = bound
-            self._calculate_upper_bounds()
+            self._calculate_upper_bounds(bound)
             self._reverse_need_cut_sign()
         else:
             raise ValueError("bound should be smaller than 3")
+    
+    def update_exceptional_bound(self,bound):
+        # Default case
+        if bound <= 6:
+            self.upperbound = bound
+            self._calculate_upper_bounds()
+            self._reverse_need_cut_sign()
+        else:
+            raise ValueError("bound should be smaller than 6")
     
 class StockObjects:
     # SET UP STOCKS

@@ -2,10 +2,8 @@
 import pandas as pd
 import numpy as np
 import copy
-
 from pulp import LpMaximize, LpProblem, LpVariable, lpSum, value, LpStatus
-# from O31_steel_objects import FinishObjects, StockObjects
-from model.O31_steel_objects import FinishObjects, StockObjects
+from .O31_steel_objects import FinishObjects, StockObjects
 
 # DEFINE PROBLEM
 class SemiProb():
@@ -85,7 +83,7 @@ class SemiProb():
     
   def _check_remain_width(self):
     # case nay giong nhu check Z:SEMI MCOIL, ghi lai Remark cach cat nhu dict-cut
-    wh = self.stock[self.skey]['warehouse']
+    # wh = self.stock[self.skey]['warehouse']
     cond = ((self.remain_width 
             #  - (self.stock[self.skey]['min_margin'])      \
              - self.remained_cuts * self.finish[self.fkey]['width']) < self.stock[self.skey]['width'] * 0.04

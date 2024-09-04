@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import copy
-from model.O31_steel_objects import FinishObjects, StockObjects
+from .O31_steel_objects import FinishObjects, StockObjects
 from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum, PULP_CBC_CMD, LpStatus, value
 
 # DEFINE PROBLEM
@@ -13,7 +13,8 @@ class DualProblem:
         self.start_stocks = dual_stocks
         self.start_finish = dual_finish
         self.final_solution_patterns = []
-        # [{'stock': 'TP238H002948-1', 'cuts': {'F200': 0, 'F198': 3, 'F197': 0, 'F196': 1, 'F190': 4, 'F511': 2, 'F203': 0}, 
+        # patterns [{'stock': 'TP238H002948-1', 
+        # 'cuts': {'F200': 0, 'F198': 3, 'F197': 0, 'F196': 1, 'F190': 4, 'F511': 2, 'F203': 0}, 
         #  'trim_loss': 48.0, 'trim_loss_pct': 3.938}, 
 
     # PHASE 1: Naive/ Dual Pattern Generation
@@ -46,11 +47,8 @@ class DualProblem:
                 # print(f"No feasible pattern was found for Stock {s} and FG {f}")
 
     def create_finish_demand_by_line_w_naive_pattern(self):
-        """
-        finish {finish: width, need_cut, upper_bound,fc1,fc2,fc3 } 
-        Convert demand in KGs to demand in slice on naive pattern
-        """
         self._make_naive_patterns()
+        # print(len(self.patterns))
         dump_ls = {}
         for f, finish_info in self.dual_finish.items():
             try:
@@ -252,11 +250,15 @@ class DualProblem:
                 count = solution[i]
                 if count > 0:
                     self.solution_list.append({"count": count, **pattern_info})
-            self.probstt = "Optimal"
+            self.probstt = "Solved"
         except KeyError: self.probstt = "Infeasible" # khong co nghiem
     
     def find_final_solution_patterns(self):
-        # Neu lap stock thi rm all pattern tru cai trim loss thap nhat va chay lai
+        """ 
+        patterns [{'stock': 'TP238H002948-1', 
+        'cuts': {'F200': 0, 'F198': 3, 'F197': 0, 'F196': 1, 'F190': 4, 'F511': 2, 'F203': 0}, 
+         'trim_loss': 48.0, 'trim_loss_pct': 3.938}, 
+        """
         sorted_solution_list = sorted(self.solution_list, key=lambda x: (x['stock'],  x.get('trim_loss_pct', float('inf'))))
         self.overused_list = []
         take_stock = None
@@ -267,7 +269,7 @@ class DualProblem:
             else:
                 take_stock = current_stock
                 self.final_solution_patterns.append(solution_pattern)
-
+                
     def run(self):
         #Phase 1
         self.create_finish_demand_by_line_w_naive_pattern()
@@ -277,11 +279,9 @@ class DualProblem:
 
         #Phase 3
         self.filter_patterns_and_stocks_by_constr()
-        print(f"patterns leng: {len(self.filtered_patterns)}")
-        print(f"stocks: {len(self.chosen_stocks)}")
         
         #Phase 4
         self.optimize_cut()
         print(f"stt: {self.probstt}")
-        if self.probstt == 'Optimal':
+        if self.probstt == 'Solved':
             self.find_final_solution_patterns()
