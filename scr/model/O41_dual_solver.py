@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 import copy
-from .O31_steel_objects import FinishObjects, StockObjects
-from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum, PULP_CBC_CMD, LpStatus, value
+# from model import FinishObjects, StockObjects
+from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum, PULP_CBC_CMD, HiGHS, HiGHS_CMD, value
 
 # DEFINE PROBLEM
 class DualProblem:
@@ -13,9 +13,6 @@ class DualProblem:
         self.start_stocks = dual_stocks
         self.start_finish = dual_finish
         self.final_solution_patterns = []
-        # patterns [{'stock': 'TP238H002948-1', 
-        # 'cuts': {'F200': 0, 'F198': 3, 'F197': 0, 'F196': 1, 'F190': 4, 'F511': 2, 'F203': 0}, 
-        #  'trim_loss': 48.0, 'trim_loss_pct': 3.938}, 
 
     # PHASE 1: Naive/ Dual Pattern Generation
     def _make_naive_patterns(self):
@@ -40,15 +37,21 @@ class DualProblem:
                     cuts_dict[f] = num_cuts
                     trim_loss = self.dual_stocks[s]['width'] - sum([self.dual_finish[f]["width"] * cuts_dict[f] for f in self.dual_finish.keys()])
                     trim_loss_pct = round(trim_loss/self.dual_stocks[s]['width'] * 100, 3)
-                    self.patterns.append({"stock": s, "cuts": cuts_dict, 'trim_loss':trim_loss, "trim_loss_pct": trim_loss_pct })
-
+                    self.patterns.append({"stock":s, "inventory_id": s,
+                                          'trim_loss_mm':trim_loss, "trim_loss_pct": trim_loss_pct ,
+                                          "explanation":"",'remark':"","cutting_date":"",
+                                          "stock_weight": self.dual_stocks[s]['weight'], 'stock_width':self.dual_stocks[s]['width'],
+                                          "cuts": cuts_dict,
+                                          "details": [{'order_no': f, 'width':self.dual_finish[f]['width'], 'lines': cuts_dict[f]} for f in cuts_dict.keys()] 
+                    })
+                    
             if not feasible:
-                pass
-                # print(f"No feasible pattern was found for Stock {s} and FG {f}")
+                # continue
+                print(f"No feasible pattern was found for Stock {s} and FG {f}")
 
     def create_finish_demand_by_line_w_naive_pattern(self):
         self._make_naive_patterns()
-        # print(len(self.patterns))
+        # print(f"LEN PATTERN : {len(self.patterns)}")
         dump_ls = {}
         for f, finish_info in self.dual_finish.items():
             try:
@@ -97,7 +100,7 @@ class DualProblem:
         prob = LpProblem("NewPatternProblem", LpMaximize)
 
         # Decision variables - Pattern
-        ap = {f: LpVariable(f"ap_{f}", 0, ap_upper_bound[f], cat="Integer") for f in self.dual_finish.keys()}
+        ap = {f: LpVariable(f"ap_{f}", lowBound=0, upBound = ap_upper_bound[f], cat="Integer") for f in self.dual_finish.keys()}
 
         # Objective function
         # maximize marginal_cut:
@@ -132,15 +135,20 @@ class DualProblem:
         upper_demand_finish = {f: self.dual_finish[f]["upper_demand_line"] for f in F}
 
         # Decision variables #relaxed integrality
-        x = {p: LpVariable(f"x_{p}", 0, None, cat="Continuous") for p in P}
+        x = {p: LpVariable(f"x_{p}", lowBound=0, upBound=20, cat="Continuous") for p in P}
 
         # OBJECTIVE function minimize stock used:
         prob += lpSum(x[p] for p in P), "Cost"
 
         # Constraints
         for f in F:
-            prob += lpSum(a[f, p] * x[p] for p in P) >= demand_finish[f], f"Demand_{f}"
-            prob += lpSum(a[f, p] * x[p] for p in P) <= upper_demand_finish[f], f"UpperDemand_{f}" # ADD CONTRAINT UPPER
+            prob += (
+                lpSum(a[f, p] * x[p] for p in P) >= demand_finish[f], 
+                f"Demand_{f}"
+            )
+            prob += (lpSum(a[f, p] * x[p] for p in P) <= upper_demand_finish[f], 
+                     f"UpperDemand_{f}" 
+            )
 
         # Solve the problem
         prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs']))
@@ -160,14 +168,23 @@ class DualProblem:
             
         try:
             s = max(marginal_values, key=marginal_values.get) # pick the first stock if having same width
-            new_pattern = {"stock": s, "cuts": pattern[s]}
+            cuts_dict =pattern[s]
+            new_pattern = {"stock":s, "inventory_id": s,"explanation":"",'remark':"","cutting_date":"",
+                           'stock_weight': self.dual_stocks[s]['weight'], 
+                           'stock_width': self.dual_stocks[s]["width"],
+                           "cuts": pattern[s],
+                           "details": [{'order_no': f, 
+                                        'width':self.dual_finish[f]['width'], 
+                                        'lines': cuts_dict[f]} 
+                                       for f in cuts_dict.keys()] 
+                           }
         except ValueError:
             new_pattern = None
         return new_pattern
     
-    # Solve Duality
+    # Solve PATTERN Duality
     def generate_patterns(self):
-        n = 0
+        n = 1
         remove_stock = True
         self.max_key = None
         while remove_stock == True:
@@ -178,6 +195,7 @@ class DualProblem:
                 self.patterns.append(new_pattern)   
                 dual_pat.append(new_pattern)        # dual pat de tinh stock bi lap nhieu lan
                 new_pattern = self._generate_dual_pattern()
+                # print(f"TEST NEW PATTERN: {new_pattern}")
 
             # filter stock having too many patterns
             if not dual_pat:
@@ -186,10 +204,12 @@ class DualProblem:
                 ls = self._count_pattern(dual_pat)
                 self.max_key = max(ls, key=ls.get) 
                 max_count = ls[self.max_key]
-                if max_count > 1 and n < self.len_stocks - 2:
+                if max_count >= 1 and n < self.len_stocks:
+                    # print(f"N {n}")
                     remove_stock = True
                     n +=1
                 else: 
+                    # print(f"N-end {n}")
                     remove_stock = False
 
     # PHASE 3: Filter Patterns
@@ -197,15 +217,17 @@ class DualProblem:
         # Initiate list
         self.filtered_patterns = []
 
+        # print(f"ORG PAT: {len(self.patterns)}")
         # Filter patterns
         for pattern in self.patterns:
             cuts_dict= pattern['cuts']
             width_s = self.start_stocks[pattern['stock']]['width']
             trim_loss = width_s - sum([self.start_finish[f]["width"] * cuts_dict[f] for f in cuts_dict.keys()])
             trim_loss_pct = round(trim_loss/width_s * 100, 3)
-            if trim_loss_pct <= 4.00: # filter for naive pattern
+            if trim_loss_pct <= 4.00: # Filter for naive pattern
                 pattern.update({'trim_loss': trim_loss, "trim_loss_pct": trim_loss_pct})
                 self.filtered_patterns.append(pattern)
+        # print(f"PATTERN: {self.filtered_patterns}")
 
         # Initiate dict
         self.chosen_stocks = {}
@@ -219,32 +241,41 @@ class DualProblem:
     # PHASE 4: Optimize WEIGHT Patterns
     def optimize_cut(self):
 
-        # Parameters - unit weight
-        c = {p: self.chosen_stocks[pattern['stock']]["weight"]/self.chosen_stocks[pattern['stock']]["width"] for p, pattern in enumerate(self.filtered_patterns)}
+        # PARAMETER - unit weight of stock
+        c = {p: self.chosen_stocks[pattern["stock"]]["weight"]/self.chosen_stocks[pattern["stock"]]["width"] for p, pattern in enumerate(self.filtered_patterns)}
 
+        # Define VARIABLES
+        x = {p: LpVariable(f"x_{p}",lowBound=0, upBound=1, cat='Integer') for p in range(len(self.filtered_patterns))} 
+        
         # Create a LP minimization problem
         prob = LpProblem("PatternCuttingProblem", LpMinimize)
-
-        # Define variables
-        x = {p: LpVariable(f"x_{p}", 0, 1, cat='Integer') for p in range(len(self.filtered_patterns))} # tu tach ta stock dung nhieu lan thanh 2 3 dong
-
+        
         # Objective function: minimize total stock use
         prob += lpSum(x[p] for p in range(len(self.filtered_patterns))), "TotalStockUse"
 
         # Constraints: meet demand for each finished part
         for f in self.dual_finish:
-            prob += lpSum(self.filtered_patterns[p]['cuts'][f] * self.dual_finish[f]['width'] * x[p] * c[p] 
-                          for p in range(len(self.filtered_patterns))) >= self.dual_finish[f]['need_cut'], f"DemandWeight{f}"
-            prob += lpSum(self.filtered_patterns[p]['cuts'][f] * self.dual_finish[f]['width'] * x[p] * c[p] 
-                          for p in range(len(self.filtered_patterns))) <= self.dual_finish[f]['upper_bound'], f"UpperDemandWeight{f}"
+            prob += (
+                lpSum(self.filtered_patterns[p]['cuts'][f] * self.dual_finish[f]['width'] * c[p] * x[p]
+                          for p in range(len(self.filtered_patterns))) >= self.dual_finish[f]['need_cut'], 
+                f"DemandWeight{f}"
+            )
+            prob += (
+                lpSum(self.filtered_patterns[p]['cuts'][f] * self.dual_finish[f]['width'] * c[p] * x[p]
+                          for p in range(len(self.filtered_patterns))) <= self.dual_finish[f]['upper_bound'], 
+                f"UpperDemandWeight{f}"
+            )
         
         # Solve the problem
-        prob.solve()
+        prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs']))
 
-        # if  self.probstt == "Optimal":
-        try:
-            # Extract results
-            solution = [1 if (x[p].varValue > 0 and round(x[p].varValue)==0) else round(x[p].varValue) for p in range(len(self.filtered_patterns))]  # Fix integer
+        try: # Extract results
+            solution = [
+                        1 if (x[p].varValue > 0 and round(x[p].varValue) == 0) 
+                        else round(x[p].varValue) 
+                        for p in range(len(self.filtered_patterns))
+                    ]  # Fix integer
+
             self.solution_list = []
             for i, pattern_info in enumerate(self.filtered_patterns):
                 count = solution[i]
@@ -253,13 +284,34 @@ class DualProblem:
             self.probstt = "Solved"
         except KeyError: self.probstt = "Infeasible" # khong co nghiem
     
+    def _expand_solution_list(self):
+
+        # List to hold the result
+        self.expanded_solution_list = []
+
+        # Process each item in the inventory
+        for item in self.solution_list:
+            count = item['count']
+            # Replicate the entry 'count' times >1 to 'count' set to 1
+            for _ in range(count):
+                new_item = item.copy()  # Copy the item
+                new_item['count'] = 1  # Set the count to 1
+                self.expanded_solution_list.append(new_item)
+    
     def find_final_solution_patterns(self):
         """ 
-        patterns [{'stock': 'TP238H002948-1', 
-        'cuts': {'F200': 0, 'F198': 3, 'F197': 0, 'F196': 1, 'F190': 4, 'F511': 2, 'F203': 0}, 
-         'trim_loss': 48.0, 'trim_loss_pct': 3.938}, 
+        Args:
+            patterns [
+                    {"stock":,'TP238H002948-1', 'inventory_id': 'TP238H002948-1',
+                    'stock_weight': 4000, 'stock_width': 1219 'trim_loss_mm': 48.0, 'trim_loss_pct': 3.938,
+                    'explanation':, "cutting_date': , 'remark':,
+                    'cuts': {'F200': 0, 'F198': 3, 'F197': 0, 'F196': 1, 'F190': 4, 'F511': 2, 'F203': 0}, 
+                    'details:[]
+                    }, 
+                ]
         """
-        sorted_solution_list = sorted(self.solution_list, key=lambda x: (x['stock'],  x.get('trim_loss_pct', float('inf'))))
+        self._expand_solution_list()
+        sorted_solution_list = sorted(self.expanded_solution_list, key=lambda x: (x['stock'],  x.get('trim_loss_pct', float('inf'))))
         self.overused_list = []
         take_stock = None
         for solution_pattern in sorted_solution_list:
@@ -282,6 +334,6 @@ class DualProblem:
         
         #Phase 4
         self.optimize_cut()
-        print(f"stt: {self.probstt}")
+        print(f"SOLUTION STATUS: {self.probstt}")
         if self.probstt == 'Solved':
             self.find_final_solution_patterns()

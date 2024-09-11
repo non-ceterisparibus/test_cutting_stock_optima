@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-
+import math
 
 # INPUT
 margin_df = pd.read_csv('scr/model_config/min_margin.csv')
@@ -8,12 +8,13 @@ spec_type = pd.read_csv('scr/model_config/spec_type.csv')
 
 # DEFINE OBJECTS
 class FinishObjects:
-    """SET UP FINISH
+    """
+    SET UP FINISH
+    
     "customer_name","width", "need_cut", 
     "fc1", "fc2", "fc3",
-    "fc4", "fc5", "fc6",
     "1st Priority", "2nd Priority", "3rd Priority",
-    "Min_weight", "Max_weight", "min_max_weight_gr"
+    "Min_weight", "Max_weight",
     """
     def __init__(self, finish, PARAMS):
         self.upperbound = 2 # DEFAULT 2 months forecast
@@ -23,8 +24,16 @@ class FinishObjects:
         self.type = PARAMS['type']
         self.finish =  finish
 
-    def _calculate_upper_bounds(self,bound): 
-        self.finish = {f: {**f_info, "mean_3fc": (f_info['fc1'] + f_info['fc2'] + f_info['fc3'])/3} for f, f_info in self.finish.items()}
+    def _calculate_upper_bounds(self,bound):
+        mean_3fc = {
+            f: (
+                sum(v for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) if not math.isnan(v)) /
+                sum(1 for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) if not math.isnan(v))
+            ) if any(not math.isnan(v) for v in (f_info['fc1'], f_info['fc2'], f_info['fc3'])) else float('nan')
+            for f, f_info in self.finish.items()
+        }
+        self.finish = {f: {**f_info, "mean_3fc": mean_3fc[f]} for f, f_info in self.finish.items()}
+        
         # Need_cut van la so am
         self.finish = {f: {**f_info, "upper_bound": -f_info['need_cut'] + f_info['mean_3fc']* bound} for f, f_info in self.finish.items()}
       

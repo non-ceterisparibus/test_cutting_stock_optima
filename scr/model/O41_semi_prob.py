@@ -3,7 +3,8 @@ import pandas as pd
 import numpy as np
 import copy
 from pulp import LpMaximize, LpProblem, LpVariable, lpSum, value, LpStatus
-from .O31_steel_objects import FinishObjects, StockObjects
+from model import FinishObjects, StockObjects
+# from O31_steel_objects import FinishObjects, StockObjects
 
 # DEFINE PROBLEM
 class SemiProb():
@@ -34,11 +35,18 @@ class SemiProb():
     self._max_loss_margin_by_wh(margin_df)
   
   def _cut_patterns(self):
-    # to satisfy upperbound weight -> how many lines to cut
-    self.num_cuts_by_weight = round(
-          self.finish[self.fkey]['upper_bound'] /
-          (self.stock[self.skey]['weight'] * self.finish[self.fkey]['width'] / self.stock[self.skey]['width'] )
-      )
+    try:
+      # Calculate the upper bound value
+      upper_bound = self.finish[self.fkey]['upper_bound']
+
+      # Calculate the weight factor
+      weight_factor = self.stock[self.skey]['weight'] * self.finish[self.fkey]['width'] / self.stock[self.skey]['width']
+
+      # Calculate the number of cuts by weight
+      self.num_cuts_by_weight = round(upper_bound / weight_factor)
+    except Exception:
+      print(f"upper_bound {upper_bound} weigh_factor {weight_factor}")
+
     self.num_cuts_by_width = int(
           (self.stock[self.skey]["width"] - self.stock[self.skey]["min_margin"]) / 
           self.finish[self.fkey]["width"]
@@ -126,19 +134,28 @@ if __name__ == "__main__":
             "code": "POSCOVN JSC270C-SD 2.0"
          }
   stocks = {
-            "TZ241H12000011": {
-               "receiving_date": 45202,
-               "width": 1049,
-               "weight": 4415,
-               "warehouse": "HSC",
-               "status":"M:RAW MATERIAL",
-               "remark":""
+            "HTV1766/24": {
+               "receiving_date": 45514,
+               "width": 938,
+               "weight": 8325.0,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
             }
          }
-  finish = {"F524": {   "customer_name": "VPIC1",   "width": 85.0,   "need_cut":- 350.0,  
-                     "fc1": 114.8576,   "fc2": 93.372,   "fc3": 114.7572, 
-                     "1st Priority": "HSC",   "2nd Priority": "x",   "3rd Priority": "x",  
-                     "Min_weight": 0.0,   "Max_weight": 0.0
+  finish = {"F524": {
+                     "customer_name": " LEG ",
+                     "width": 110.0,
+                     "need_cut": -2000.0,
+                     "fc1": 1693.624,
+                     "fc2": 1320.9008000000001,
+                     "fc3": 1507,
+                     "average FC": 1507.2624,
+                     "1st Priority": "NQS",
+                     "2nd Priority": "HSC",
+                     "3rd Priority": "HSC",
+                     "Min_weight": 0,
+                     "Max_weight": 0
                   }
                }
   margin_df = pd.read_csv('scr/model_config/min_margin.csv')
