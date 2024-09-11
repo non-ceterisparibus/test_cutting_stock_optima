@@ -3,3 +3,6 @@
 
 # Ignore Python compiled files
 *.pyc
+
+# Ignore log
+*.log
