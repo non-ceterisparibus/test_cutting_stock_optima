@@ -14,10 +14,13 @@ spec_type_df = pd.read_csv('scr/model_config/spec_type.csv')
 # SETUP
 finish_key = 'order_id'
 finish_columns = ["customer_name", "width", "need_cut", 
-                  "fc1", "fc2", "fc3", "average FC",
-                  "1st Priority", "2nd Priority", "3rd Priority",
-                  "Min_weight", "Max_weight"
+                  "fc1", "fc2", "fc3", 
+                  "average FC",
+                  "1st Priority", "2nd Priority", "3rd Priority"
+                  ,"Min_weight", "Max_weight"
                   ]
+forecast_columns = ["fc1", "fc2", "fc3"]
+
 stock_key = "inventory_id"
 stock_columns = ['receiving_date',"width", "weight",'warehouse',
                  "status",'remark'
@@ -38,9 +41,16 @@ def div(numerator, denominator):
 def create_finish_dict(finish_df):
   
     finish_df.loc[:, 'stock_ratio'] = finish_df.apply(div('need_cut', 'average FC'), axis=1)
-    can_cut_df = finish_df[finish_df['stock_ratio'] < 0.5] # Co the cat du cho hang ko co need cut am
+    can_cut_df = finish_df[finish_df['stock_ratio'] < 0.3] # Co the cat du cho hang ko co need cut am
+    
+    # Width - Decreasing// need_cut - Descreasing // Average FC - Increasing
     sorted_df = can_cut_df.sort_values(by=['need_cut','width'], ascending=[True,False]) # need cut van dang am
     
+    # sorted_df = can_cut_df.sort_values(by=['width','need_cut'], ascending=[False,True,True]) # need cut van dang am
+    
+    # Fill NaN values in specific columns with the average, ignoring NaN
+    sorted_df[forecast_columns] = sorted_df[forecast_columns].apply(lambda x: x.fillna(x.mean()), axis=1)
+
     # Initialize result dictionary - take time if the list long
     finish = {f"F{int(row[finish_key])}": {column: row[column] for 
                                           column in finish_columns} for 
@@ -49,14 +59,15 @@ def create_finish_dict(finish_df):
 
 def create_stocks_dict(stock_df):
     # Sort data according to the priority of FIFO
-    sorted_df = stock_df.sort_values(by=['width','weight','receiving_date',], ascending=[ False,False,True,])
-    # Set the index of the DataFrame to 'stock_id'
+    sorted_df = stock_df.sort_values(by=['warehouse','weight','receiving_date'], ascending=[True,True, True])
+    
+    # Set the index of the DataFrame to 'inventory_id'
     sorted_df.set_index(stock_key, inplace=True)
+    
     # Convert DataFrame to dictionary
-    sorted_df[stock_columns] = sorted_df[stock_columns].fillna("") 
+    sorted_df[stock_columns] = sorted_df[stock_columns].fillna("")
     stocks = sorted_df[stock_columns].to_dict(orient='index')
    
-
     return stocks
 
 def filter_by_params(file_path,params):
@@ -70,7 +81,7 @@ def filter_by_params(file_path,params):
                     ]
     return filtered_df
 
-def filter_fininsh_by_params(file_path,params):
+def filter_finish_by_params(file_path,params):
     # Read the Excel file into a DataFrame
     df = pd.read_excel(file_path)
 
@@ -138,7 +149,7 @@ if __name__ == "__main__":
                     "maker"     : maker,
                     "code"      : maker + " " + spec  + " " + str(thickness)
                     }
-            finish_df = filter_fininsh_by_params(fin_file_path, PARAMS1)
+            finish_df = filter_finish_by_params(fin_file_path, PARAMS1)
             finish = create_finish_dict(finish_df)
             finish_list['param_finish'][param]['customer'].append({cust: finish})
         
