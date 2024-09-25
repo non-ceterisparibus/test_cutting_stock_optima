@@ -32,7 +32,7 @@ class FinishObjects:
             ) if any(not math.isnan(v) for v in (f_info['fc1'], f_info['fc2'], f_info['fc3'])) else float('nan')
             for f, f_info in self.finish.items()
         }
-        self.finish = {f: {**f_info, "mean_3fc": mean_3fc[f]} for f, f_info in self.finish.items()}
+        self.finish = {f: {**f_info, "mean_3fc": mean_3fc[f] if mean_3fc[f]>0 else -f_info['need_cut'] } for f, f_info in self.finish.items()}
         
         # Need_cut van la so am
         self.finish = {f: {**f_info, "upper_bound": -f_info['need_cut'] + f_info['mean_3fc']* bound} for f, f_info in self.finish.items()}
