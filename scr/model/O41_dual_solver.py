@@ -38,7 +38,7 @@ class DualProblem:
                     trim_loss = self.dual_stocks[s]['width'] - sum([self.dual_finish[f]["width"] * cuts_dict[f] for f in self.dual_finish.keys()])
                     trim_loss_pct = round(trim_loss/self.dual_stocks[s]['width'] * 100, 3)
                     self.patterns.append({"stock":s, "inventory_id": s,
-                                          'trim_loss_mm':trim_loss, "trim_loss_pct": trim_loss_pct ,
+                                          'trim_loss':trim_loss, "trim_loss_pct": trim_loss_pct ,
                                           "explanation":"",'remark':"","cutting_date":"",
                                           "stock_weight": self.dual_stocks[s]['weight'], 'stock_width':self.dual_stocks[s]['width'],
                                           "cuts": cuts_dict,
