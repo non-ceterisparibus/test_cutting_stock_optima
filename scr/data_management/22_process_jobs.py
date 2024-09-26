@@ -8,12 +8,15 @@ import os
 # INPUT
 fin_file_path = os.getenv('FIN_DF_PATH')
 mc_file_path = os.getenv('MC_DF_PATH')
+stock_ratio_input = os.getenv('STOCK_RATIO_INPUT')
 
 spec_type_df = pd.read_csv('scr/model_config/spec_type.csv')
 
 # SETUP
 finish_key = 'order_id'
-finish_columns = ["customer_name", "width", "need_cut", 
+finish_columns = [ "width", "need_cut", 
+                #   "customer_name",
+                  "customer","Standard",
                   "fc1", "fc2", "fc3", 
                   "average FC",
                   "1st Priority", "2nd Priority", "3rd Priority"
@@ -41,7 +44,7 @@ def div(numerator, denominator):
 def create_finish_dict(finish_df):
   
     finish_df.loc[:, 'stock_ratio'] = finish_df.apply(div('need_cut', 'average FC'), axis=1)
-    can_cut_df = finish_df[finish_df['stock_ratio'] < 0.3] # Co the cat du cho hang ko co need cut am
+    can_cut_df = finish_df[finish_df['stock_ratio'] < float(stock_ratio_input)] # Co the cat du cho hang ko co need cut am
     
     # Width - Decreasing// need_cut - Descreasing // Average FC - Increasing
     sorted_df = can_cut_df.sort_values(by=['need_cut','width'], ascending=[True,False]) # need cut van dang am
@@ -85,7 +88,9 @@ def filter_finish_by_params(file_path,params):
     # Read the Excel file into a DataFrame
     df = pd.read_excel(file_path)
 
-    filtered_df = df[(df["customer_name"] == params["customer"]) & 
+    filtered_df = df[
+                    # (df["customer_name"] == params["customer"]) & 
+                     (df["customer"] == params["customer"]) &
                     (df["spec_name"] == params["spec_name"]) & 
                     (df["thickness"] == params["thickness"]) &
                     (df["maker"] == params["maker"])
@@ -116,6 +121,8 @@ if __name__ == "__main__":
 
     with open(f'scr/jobs_by_day/job-list-{formatted_date}.json', 'r') as file:
         job_list = json.load(file)
+    
+    print(f"use stock ratio {stock_ratio_input}")
 
     for job in job_list['jobs']: 
         # loop to create stock list
