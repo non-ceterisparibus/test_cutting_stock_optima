@@ -35,13 +35,13 @@ class RewindProb(DualProblem):
     #create new set stock if remained weight not to small
     if min_w < self.og_weight - self.med_demand_weight:
       for i in range(2):
-        self.dual_stocks[f'{self.stock_key}-{i+1}'] = self.stock[self.stock_key]
+        self.dual_stocks[f'{self.stock_key}-Re{i+1}'] = self.stock[self.stock_key]
         if i < 1: 
-          self.dual_stocks[f'{self.stock_key}-{i+1}'].update({'weight':self.med_demand_weight})
+          self.dual_stocks[f'{self.stock_key}-Re{i+1}'].update({'weight':self.med_demand_weight})
           # print(f"cut rewind weight {self.med_demand_weight}")
         else: 
-          self.dual_stocks[f'{self.stock_key}-{i+1}'].update({'weight': self.og_weight - self.med_demand_weight}) # we have new set of stock
-        self.dual_stocks[f'{self.stock_key}-{i+1}'].update({'status':"R:REWIND"})
+          self.dual_stocks[f'{self.stock_key}-Re{i+1}'].update({'weight': self.og_weight - self.med_demand_weight}) # we have new set of stock
+        self.dual_stocks[f'{self.stock_key}-Re{i+1}'].update({'status':"R:REWIND"})
         
       self.start_stocks = copy.deepcopy(self.dual_stocks)
     else: 

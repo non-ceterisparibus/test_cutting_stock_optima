@@ -2,10 +2,10 @@ import pandas as pd
 import numpy as np
 import copy
 # from model import FinishObjects, StockObjects
-from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum, PULP_CBC_CMD, HiGHS, HiGHS_CMD, value
+from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum, PULP_CBC_CMD, GLPK ,GLPK_CMD, LpAffineExpression, LpBinary, value
 
 # DEFINE PROBLEM
-class DualProblem:
+class testDualProblem:
     def __init__(self, dual_finish, dual_stocks):
         self.len_stocks = len(dual_stocks)
         self.dual_finish = dual_finish
@@ -46,8 +46,8 @@ class DualProblem:
                     })
                     
             if not feasible:
-                # continue
-                print(f"No feasible pattern was found for Stock {s} and FG {f}")
+                continue
+                # print(f"No feasible pattern was found for Stock {s} and FG {f}")
 
     def create_finish_demand_by_line_w_naive_pattern(self):
         self._make_naive_patterns()
@@ -195,7 +195,6 @@ class DualProblem:
                 self.patterns.append(new_pattern)   
                 dual_pat.append(new_pattern)        # dual pat de tinh stock bi lap nhieu lan
                 new_pattern = self._generate_dual_pattern()
-                # print(f"TEST NEW PATTERN: {new_pattern}")
 
             # filter stock having too many patterns
             if not dual_pat:
@@ -204,30 +203,46 @@ class DualProblem:
                 ls = self._count_pattern(dual_pat)
                 self.max_key = max(ls, key=ls.get) 
                 max_count = ls[self.max_key]
-                if max_count >= 1 and n < self.len_stocks:
-                    # print(f"N {n}")
+                if max_count >= 1 and n < self.len_stocks: #remove den khi chi con 1 stock???
                     remove_stock = True
                     n +=1
                 else: 
-                    # print(f"N-end {n}")
                     remove_stock = False
 
     # PHASE 3: Filter Patterns
+    def _count_fg_cut(self, dict):
+        count = sum(1 for value in dict.values() if value > 0)
+        return count
+    
     def filter_patterns_and_stocks_by_constr(self):
+        """_summary_
+        {"stock":s, "inventory_id": s,
+        "explanation":"",'remark':"","cutting_date":"",
+            'stock_weight': 4000, 
+            'stock_width': 1219,
+            "cuts": pattern[s],
+            "details": [{'order_no': f, 
+                         'width':self.dual_finish[f]['width'], 
+                         'lines': cuts_dict[f]} 
+                        for f in cuts_dict.keys()] 
+            }
+        """
         # Initiate list
         self.filtered_patterns = []
 
-        # print(f"ORG PAT: {len(self.patterns)}")
         # Filter patterns
         for pattern in self.patterns:
             cuts_dict= pattern['cuts']
+            count_fg_cut = self._count_fg_cut(cuts_dict)
             width_s = self.start_stocks[pattern['stock']]['width']
             trim_loss = width_s - sum([self.start_finish[f]["width"] * cuts_dict[f] for f in cuts_dict.keys()])
             trim_loss_pct = round(trim_loss/width_s * 100, 3)
             if trim_loss_pct <= 4.00: # Filter for naive pattern
-                pattern.update({'trim_loss': trim_loss, "trim_loss_pct": trim_loss_pct})
+                pattern.update({'trim_loss': trim_loss, "trim_loss_pct": trim_loss_pct, "count_cut":count_fg_cut})
                 self.filtered_patterns.append(pattern)
-        # print(f"PATTERN: {self.filtered_patterns}")
+        # Sort pattern
+        self.filtered_patterns = sorted(self.filtered_patterns, key=lambda x: (x['trim_loss_pct'], -x['count_cut']))
+        # print(f"filter pattern {len(self.filtered_patterns)}:{ self.filtered_patterns}")
 
         # Initiate dict
         self.chosen_stocks = {}
@@ -239,19 +254,38 @@ class DualProblem:
                 self.chosen_stocks[stock_name]= {**stock_info}
     
     # PHASE 4: Optimize WEIGHT Patterns
+    def _have_sol(self, sol):
+        have_sol = True
+        for x in sol:
+            if x > 0 and round(x)==0:
+                have_sol = False
+            elif round(x)==1:
+                have_sol=True
+                break
+        return have_sol
+        
     def optimize_cut(self):
+        # Sets
+        S = list(self.chosen_stocks.keys())
+        P = list(range(len(self.filtered_patterns)))
 
         # PARAMETER - unit weight of stock
         c = {p: self.chosen_stocks[pattern["stock"]]["weight"]/self.chosen_stocks[pattern["stock"]]["width"] for p, pattern in enumerate(self.filtered_patterns)}
-
+        s = {p: self.chosen_stocks[pattern["stock"]]["weight"] for p, pattern in enumerate(self.filtered_patterns)}
+        sp = {(s, p): 1 if self.filtered_patterns[p]["stock"]== s else 0 for p in P for s in S}
+        
         # Define VARIABLES
-        x = {p: LpVariable(f"x_{p}",lowBound=0, upBound=1, cat='Integer') for p in range(len(self.filtered_patterns))} 
+        x = {p: LpVariable(f"X_{p}",lowBound=0, upBound=1,cat='Integer') for p in P}
         
         # Create a LP minimization problem
         prob = LpProblem("PatternCuttingProblem", LpMinimize)
         
-        # Objective function: minimize total stock use
-        prob += lpSum(x[p] for p in range(len(self.filtered_patterns))), "TotalStockUse"
+        # Objective function: MINIMIZE total stock use
+        prob += lpSum(x[p] for p in P), "TotalStockUse"
+
+        # prob += LpAffineExpression([
+        #     (x[p], s[p]) for p in P
+        # ])
 
         # Constraints: meet demand for each finished part
         for f in self.dual_finish:
@@ -267,21 +301,25 @@ class DualProblem:
             )
         
         # Solve the problem
-        prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs']))
-
+        prob.solve(GLPK(msg=False,path="/opt/homebrew/bin/glpsol"))
+        # if prob.status != 1:
+        #     prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs']))
+        
         try: # Extract results
             solution = [
                         1 if (x[p].varValue > 0 and round(x[p].varValue) == 0) 
                         else round(x[p].varValue) 
                         for p in range(len(self.filtered_patterns))
-                    ]  # Fix integer
-
+                    ]
             self.solution_list = []
             for i, pattern_info in enumerate(self.filtered_patterns):
                 count = solution[i]
                 if count > 0:
                     self.solution_list.append({"count": count, **pattern_info})
-            self.probstt = "Solved"
+            # self.probstt = "Solved"
+            if prob.status == 1:
+                self.probstt = "Solved"
+            else: self.probstt = "Infeasible"
         except KeyError: self.probstt = "Infeasible" # khong co nghiem
     
     def _expand_solution_list(self):
@@ -303,11 +341,13 @@ class DualProblem:
         Args:
             patterns [
                     {"stock":,'TP238H002948-1', 'inventory_id': 'TP238H002948-1',
-                    'stock_weight': 4000, 'stock_width': 1219 'trim_loss_mm': 48.0, 'trim_loss_pct': 3.938,
+                    'stock_weight': 4000, 'stock_width': 1219 'trim_loss': 48.0, 'trim_loss_pct': 3.938,
                     'explanation':, "cutting_date': , 'remark':,
                     'cuts': {'F200': 0, 'F198': 3, 'F197': 0, 'F196': 1, 'F190': 4, 'F511': 2, 'F203': 0}, 
                     'details:[]
                     }, 
+                    {"stock":,'TP238H002948-2', ...
+                    },
                 ]
         """
         self._expand_solution_list()
@@ -334,6 +374,153 @@ class DualProblem:
         
         #Phase 4
         self.optimize_cut()
-        print(f"SOLUTION STATUS: {self.probstt}")
         if self.probstt == 'Solved':
             self.find_final_solution_patterns()
+            
+#HELPER
+import math
+
+def calculate_upper_bounds(finish, bound):
+    mean_3fc = {
+            f: (
+                sum(v for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) if not math.isnan(v)) /
+                sum(1 for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) if not math.isnan(v))
+            ) if any(not math.isnan(v) for v in (f_info['fc1'], f_info['fc2'], f_info['fc3'])) else float('nan')
+            for f, f_info in finish.items()
+        }
+    finish = {f: {**f_info, "mean_3fc": mean_3fc[f] if mean_3fc[f]>0 else -f_info['need_cut'] } for f, f_info in finish.items()}
+        
+    # Need_cut van la so am
+    finish = {f: {**f_info, "upper_bound": -f_info['need_cut'] + f_info['mean_3fc']* bound} for f, f_info in finish.items()}
+    return finish      
+
+if __name__ == "__main__":
+    finish = {
+                  "F626": {
+                     "customer_name": "TEC",
+                     "width": 121.2,
+                     "need_cut": -7005.70698757764,
+                     "fc1": 16388.348,
+                     "fc2": 0.0,
+                     "fc3": 9008.282,
+                     "average FC": 8465.543333333333,
+                     "1st Priority": "NQS",
+                     "2nd Priority": "NST",
+                     "3rd Priority": "HSC",
+                     "Min_weight": 300,
+                     "Max_weight": 500
+                  },
+                  "F636": {
+                     "customer_name": "TEC",
+                     "width": 196.0,
+                     "need_cut": -5663.586956521739,
+                     "fc1": 11943.8700096,
+                     "fc2": 174.68986079999996,
+                     "fc3": 6921.4064136,
+                     "average FC": 6346.655427999999,
+                     "1st Priority": "NQS",
+                     "2nd Priority": "NST",
+                     "3rd Priority": "HSC",
+                     "Min_weight": 150,
+                     "Max_weight": 350
+                  },
+                  "F637": {
+                     "customer_name": "TEC",
+                     "width": 206.0,
+                     "need_cut": -5203.64751552795,
+                     "fc1": 10608.94386,
+                     "fc2": 0.0,
+                     "fc3": 6658.549940000001,
+                     "average FC": 5755.831266666667,
+                     "1st Priority": "NQS",
+                     "2nd Priority": "NST",
+                     "3rd Priority": "HSC",
+                     "Min_weight": 300,
+                     "Max_weight": 500
+                  },
+                  "F624": {
+                     "customer_name": "TEC",
+                     "width": 110.0,
+                     "need_cut": -1280.4992236024846,
+                     "fc1": 1741.616,
+                     "fc2": 1048.29242,
+                     "fc3": 2165.562,
+                     "average FC": 1651.8234733333331,
+                     "1st Priority": "NQS",
+                     "2nd Priority": "NST",
+                     "3rd Priority": "HSC",
+                     "Min_weight": 150,
+                     "Max_weight": 350
+                  },
+                  "F628": {
+                     "customer_name": "TEC",
+                     "width": 135.0,
+                     "need_cut": -203.65877329192546,
+                     "fc1": 2252.57308,
+                     "fc2": 1912.9525500000002,
+                     "fc3": 1331.6751600000002,
+                     "average FC": 1832.4002633333337,
+                     "1st Priority": "NQS",
+                     "2nd Priority": "NST",
+                     "3rd Priority": "HSC",
+                     "Min_weight": 150,
+                     "Max_weight": 350
+                  },
+                  "F646": {
+                     "customer_name": "TEC",
+                     "width": 63.0,
+                     "need_cut": -4.0,
+                     "fc1": 390.9795,
+                     "fc2": 343.1219,
+                     "fc3": 588.3921,
+                     "average FC": 440.83116666666666,
+                     "1st Priority": "NQS",
+                     "2nd Priority": "NST",
+                     "3rd Priority": "HSC",
+                     "Min_weight": 100,
+                     "Max_weight": 300
+                  }
+               }
+    stocks = {
+            "HTV0348/24": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 7809,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": "",
+               "min_margin":5
+            },
+            "HTV0349/24": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 7904,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": "",
+               "min_margin":5
+            },
+            "HTV0340/24": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 8363,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": "",
+               "min_margin":5
+            },
+            "HTV0341/24": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 8948,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": "",
+               "min_margin":5
+            }
+         }
+    
+    finish = calculate_upper_bounds(finish, 1.0)
+    prob = testDualProblem(finish, stocks)
+    prob.run()
+    

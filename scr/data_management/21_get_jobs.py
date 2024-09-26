@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
         # Filter STOCKS by PARAMS 
         param_stocks_df = filter_by_params(mc_file_path, PARAMS)
-        job_list['jobs'].append({'param': param,'stocks_available': {} ,'tasks':{}})
+        job_list['jobs'].append({"job": i,'param': param,'stocks_available': {} ,'tasks':{}})
         current_job = job_list['jobs'][i]
         
         # SUM STOCK BY WAREHOUSE
