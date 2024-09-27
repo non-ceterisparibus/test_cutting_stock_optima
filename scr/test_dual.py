@@ -1,12 +1,13 @@
 # USER FOR BOUND <= 3 - DUALITY, LINEAR, REWIND CASES
 import pandas as pd
 import numpy as np
+import os
 import logging
 import datetime
 import json
 import copy
+import pulp
 import math
-import statistics
 import traceback
 from model import CuttingStocks
 from model import SemiProb
@@ -78,67 +79,93 @@ def transform_to_df(data):
     df = pd.DataFrame(flattened_data)
     return df
 
-def multistocks_cut(logger, finish, stocks, PARAMS, bound, margin_df, solver ,prob_type):
+def refresh_stocks(taken_stocks,stocks_to_use):
+    if not taken_stocks:
+        remained_stocks = stocks_to_use
+    else:
+        # if any taken stock have Div in the name pop -Div, from stock to use ???
+        taken_og = []
+        for s in taken_stocks:
+            if str(s).__contains__("-Di"):
+                og_s = str(s).split("-Di")[0]
+                taken_og.append(og_s)
+        taken_stocks = taken_stocks + taken_og          
+        remained_stocks = {
+                s: {**s_info}
+                for s, s_info in stocks_to_use.items()
+                if s not in taken_stocks
+            }
+    return remained_stocks
+
+def average_3m_fc(finish, over_cut):
+    average_3fc = {
+                key: (
+                    sum(v for v in (finish[key]['fc1'], finish[key]['fc2'], finish[key]['fc3']) if not math.isnan(v)) /
+                    sum(1 for v in (finish[key]['fc1'], finish[key]['fc2'], finish[key]['fc3']) if not math.isnan(v))
+                ) if any(not math.isnan(v) for v in (finish[key]['fc1'], finish[key]['fc2'], finish[key]['fc3'])) else float('nan')
+                for key in over_cut.keys()
+            }
+    return average_3fc
+        
+def multistocks_cut(logger, finish, stocks, PARAMS, margin_df, solver, prob_type):
     # pipeline to cut all possible stock with finish demand upto upperbound
+    bound = 1
     steel = CuttingStocks(finish, stocks, PARAMS)
     steel.update(bound = bound, margin_df=margin_df)
     steel.check_division(s_customer_group=['small', 'medium', 'medium-big'], max_weight=8000)
     steel.filter_stocks() # flow khong consider min va max_weight
     cond = steel.set_prob(prob_type) #  "Dual" / "Rewind"
     final_solution_patterns = []
-    while cond: 
-        # loop to cut as many FG as possible with < 4% trim loss
+    while cond == True: # have stocks and need cut
         len_last_sol = len(final_solution_patterns)
         stt, final_solution_patterns, over_cut = steel.solve_prob(solver) # neu ko erase ket qua ben trong, thi patterns ket qua se duoc accumulate
+    
         ins_bound = (not final_solution_patterns or len(final_solution_patterns) == len_last_sol)
-        if ins_bound and bound == 3: 
-            # empty solution
-            logger.warning(f"Status Empty Solution, max bound 3")
-            break
-        elif ins_bound and bound < 3:
-            # empty solution and can increase bound
-            bound += 1
+        # IF - Bound
+        if ins_bound and bound == max_bound: # empty solution
+            logger.warning(f"Status Empty Solution, max bound")
+            cond = False
+            break #loop while
+        elif ins_bound and bound < max_bound: # empty solution and can increase bound
+            bound += 0.5
             try: #  only able to refresh if len = last solution
                 steel.refresh_stocks()
             except AttributeError: # empty solution in previous run
                 pass
-            steel.update_inner_bound(bound = bound)
-            logger.info(f">>>> No solution bound {bound - 1}, try increasing bound {bound}")
+            # Update bound of FG
+            steel.F.update_bound(bound)
+            logger.info(f">>>> No solution bound {bound - 0.5}, try increasing bound {bound}")
+            cond = True #continue to try new bound
         else: # have solution
             logger.warning(f"Status {stt}")
             logger.info(f">>>> Take stock {[p['stock'] for p in final_solution_patterns]}")
             logger.info(f">>>> Overcut amount {over_cut}")
             steel.refresh_finish(over_cut)
             cond = steel.check_status()
-            
-            if not cond:
-                # Finalize results
-                try:
-                    mean_3fc = {
-                        key: (
-                            sum(v for v in (finish[key]['fc1'], finish[key]['fc2'], finish[key]['fc3']) if not math.isnan(v)) /
-                            sum(1 for v in (finish[key]['fc1'], finish[key]['fc2'], finish[key]['fc3']) if not math.isnan(v))
-                        ) if any(not math.isnan(v) for v in (finish[key]['fc1'], finish[key]['fc2'], finish[key]['fc3'])) else float('nan')
-                        for key in over_cut.keys()
-                    }
-                    over_cut_rate = {key: round(over_cut[key]/mean_3fc[key], 4) for key in over_cut.keys()}
-                    logger.info(f">>>> STOCKS USED {len(final_solution_patterns)}")
-                    trimloss=[p['trim_loss_pct'] for p in final_solution_patterns]
-                    logger.info(f">>>> TRIM LOSS PERCENT OF EACH STOCK {trimloss}, AVERAGE {np.mean(trimloss)}")
-                    logger.info(f">>>> TOTAL STOCK RATIO (OVER CUT): {over_cut_rate}")
-                except ZeroDivisionError:
-                    logger.info(f">>>> STOCKS USED {len(final_solution_patterns)}")
-                    logger.info(f">>>> TRIM LOSS PERCENT OF EACH STOCK {[p['trim_loss_pct'] for p in final_solution_patterns]}")
-                    logger.warning(">>>> ZERO Forecast Data")
-            else:
-                # update REMAINED STOCKS IF continue
-                steel.refresh_stocks()
-                logger.info(f">>>> Stocks to continue to cut {[k for k in steel.prob.dual_stocks.keys()]}")
+        
+    #IF finalize results
+    if not cond:
+        logger.info(f">>>> STOCKS USED {len(final_solution_patterns)}")
+        trimloss=[p['trim_loss_pct'] for p in final_solution_patterns]
+        logger.info(f">>>> TRIM LOSS PERCENT OF EACH STOCK {trimloss}, AVERAGE {np.mean(trimloss)}")
+        mean_3fc = average_3m_fc(finish, over_cut)
+        try:
+            over_cut_rate = {k: round(over_cut[k]/mean_3fc[k], 4) for k in over_cut.keys()}
+        except ZeroDivisionError:
+            logger.warning(">>>> ZERO Forecast Data")
+            over_cut_rate = {k: round(over_cut[k]/(mean_3fc[k]+1), 4) for k in over_cut.keys()}
+        
+        logger.info(f">>>> TOTAL STOCK RATIO (OVER CUT): {over_cut_rate}")
+    else: # update REMAINED STOCKS and CONTINUE
+        steel.refresh_stocks()
+        logger.info(f">>>> Stocks to continue to cut {[k for k in steel.prob.dual_stocks.keys()]}")
     
-    if not final_solution_patterns and bound == 3:
-        # Handle the case when final_solution_patterns is empty, if bound == 2 no solution, it will go to 3
+    # IF raise Error and return value
+    if not final_solution_patterns and bound == max_bound:
         taken_stocks = []
-        raise ValueError("Final_solution_patterns is empty, bound == 3")
+        raise TypeError("Final_solution_patterns is empty, and reach MAX bound")
+    elif (len(final_solution_patterns) == len_last_sol) and bound == max_bound:
+        raise TypeError("Havent finished cutting, but no Optimal Solution and reach MAX bound")
     else:
         taken_stocks = [p['stock'] for p in final_solution_patterns]
     
@@ -150,17 +177,25 @@ def multistocks_cut(logger, finish, stocks, PARAMS, bound, margin_df, solver ,pr
                 }
         return final_solution_patterns, over_cut, taken_stocks, remained_stocks
     else: 
-        return final_solution_patterns, over_cut, taken_stocks, bound
+        return final_solution_patterns, over_cut, taken_stocks
 
 today = datetime.datetime.today()
 formatted_date = today.strftime("%d-%m-%y")
 
 # START
 logger = logging.getLogger(__name__)
-logging.basicConfig(filename=f'scr/log/test-dual-{formatted_date}.log', level=logging.INFO, 
+logging.basicConfig(filename=f'scr/log/comb-cust-{formatted_date}.log', level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 # LOAD CONFIG & DATA
+global max_bound
+global no_warehouse
+
+max_bound = float(os.getenv('MAX_BOUND', '5.0'))
+no_warehouse = float(os.getenv('NO_WAREHOUSE', '3.0'))
+print(f"MAX BOUND {max_bound}")
+print(f"NO WH {no_warehouse}")
+
 margin_df = pd.read_csv('scr/model_config/min_margin.csv')
 spec_type = pd.read_csv('scr/model_config/spec_type.csv')
 
@@ -185,7 +220,7 @@ total_solution_json = {"date": formatted_date,
                         }
 
 # RUN JOB-LIST
-i = 0
+i = 5
 
 # LOAD JOB INFO -- 1/2 LAYER                           
 param_set = job_list['jobs'][i]['param']
@@ -232,7 +267,7 @@ for finish_item in finish_list['param_finish'][param_set]['customer']:
         
         ### SORT STOCK BY coil center priority, changed by customer preference
         j = 0 # j = {0, 1, 2}
-        while j < 3: ### INITIATE stock from WH priority P2.0
+        while j < no_warehouse: ### INITIATE stock from WH priority  P2.0
             stocks_by_wh = filter_stocks_by_wh(stocks_to_use,[warehouse_order[j]])
             if len(stocks_by_wh.keys()) > 0:
                 logger.info(f"->>> cut in WH {warehouse_order[j]}")
@@ -241,7 +276,7 @@ for finish_item in finish_list['param_finish'][param_set]['customer']:
             else:
                 logger.warning(f'>>>> Out of stocks for for WH {warehouse_order[j]}')
                 j +=1
-                if j == 3: 
+                if j == no_warehouse: 
                     coil_center_priority_cond = False
         logger.info(f"->>> SUB-TASK: {len(finish.keys())} FINISH  w {len(stocks_by_wh.keys())} MC")
         nx_wh_stocks = []      
@@ -251,131 +286,101 @@ for finish_item in finish_list['param_finish'][param_set]['customer']:
             else:                # Refresh stocks P3.2
                 stocks_by_wh = copy.deepcopy(nx_wh_stocks)
                 logger.info(f"->>> cut in WH {warehouse_order[j]}")
-            bound = 1
+                logger.info(f"Cut for: {len(finish.keys())} FINISH  w {len(stocks_by_wh.keys())} MC")
+            # bound = 1
             print(f"RUNNING.... in {warehouse_order[j]}")
-            while bound <= 3:    # OPERATOR UPPER BOUND = {0.5, 1, 1.5} P4.0
-                args_dict = {
-                            'logger': logger,
-                            'finish': finish,
-                            'stocks': stocks_by_wh,
-                            'PARAMS': PARAMS,
-                            'bound': bound,
-                            'margin_df': margin_df,
-                            }
-                
-                logger.info("*** NORMAL DUAL case - GLPK ***")
-                try:              # P4.1
-                    final_solution_patterns, over_cut, taken_stocks, bound = multistocks_cut(**args_dict, solver = None, prob_type="Dual")
-                    ### Exclude taken_stocks out of stock_to_use only for dual case
-                    if not taken_stocks:
-                        pass # Do nothing
-                    else:
-                        # if any taken stock have Div in the name pop -Div, from stock to use ???
-                        taken_og = []
-                        for s in taken_stocks:
-                            if str(s).__contains__("-Di"):
-                                og_s = str(s).split("-Di")[0]
-                                taken_og.append(og_s)
-                        taken_stocks = taken_stocks + taken_og          
-                        remained_stocks = {
-                                s: {**s_info}
-                                for s, s_info in stocks_to_use.items()
-                                if s not in taken_stocks
-                            }
-                        stocks_to_use = copy.deepcopy(remained_stocks)
-                except ValueError:  # raise in multistock_cut => ko co nghiem DUAL, ko su dung stocks nao, con nguyen
-                    bound = 3       # already try bound == 3 in Dual
-                    if len(stocks_by_wh) == 1 and len(finish) == 1: #### SEMI CASE
-                        logger.info('*** SEMI case *** 1 FG vs 1 Stock')
-                        steel = SemiProb(stocks_by_wh, finish, PARAMS)
-                        steel.update(margin_df)
-                        steel.cut_n_create_new_stock_set()
-                        #### Update lai stock
+            # while bound <= max_bound:    # OPERATOR UPPER BOUND = {0.5, 1, 1.5} P4.0
+            args_dict = {
+                        'logger': logger,
+                        'finish': finish,
+                        'stocks': stocks_by_wh,
+                        'PARAMS': PARAMS,
+                        'margin_df': margin_df,
+                        }
+            
+            logger.info("*** NORMAL DUAL case - GLPK ***")
+            try:              # P4.1
+                final_solution_patterns, over_cut, taken_stocks = multistocks_cut(**args_dict, solver = None, prob_type="Dual")
+                ### Exclude taken_stocks out of stock_to_use only for dual case
+                stocks_to_use = refresh_stocks(taken_stocks, stocks_to_use)
+            except TypeError or pulp.apis.core.PulpSolverError:  # raise in multistock_cut => ko co nghiem DUAL, ko su dung stocks nao, con nguyen
+                if len(stocks_by_wh) == 1 and len(finish) == 1: #### SEMI CASE
+                    logger.info('*** SEMI case *** 1 FG vs 1 Stock')
+                    steel = SemiProb(stocks_by_wh, finish, PARAMS)
+                    steel.update(margin_df)
+                    steel.cut_n_create_new_stock_set()
+                    #### Update lai stock
+                    stocks_to_use.pop(list(stocks_by_wh.keys())[0]) # truong hop ko cat duoc 
+                    stocks_to_use.update(steel.remained_stocks)     # thi 2 dong nay bu tru nhau
+                    stocks_to_use.update(steel.taken_stocks)
+                    try:
+                        taken_stock = list(steel.taken_stocks.keys())[0]
+                        final_solution_patterns = [{"inventory_id": taken_stock, 
+                                                    "stock_width":  steel.taken_stocks[taken_stock]['width'],
+                                                    "stock_weight": steel.taken_stocks[taken_stock]['weight'],
+                                                    "customer_short_name": customer_name,
+                                                    "explanation": "Semi Cut",
+                                                    "remark":"",
+                                                    "cutting_date":"",
+                                                    "trim_loss_mm": 9999, "trim_loss_pct": 9999,
+                                                    'cuts': steel.cut_dict,
+                                                    'details': [{'order_no': f, 'width': finish[f]['width'], 'lines': steel.cut_dict[f]} for f in steel.cut_dict.keys()] 
+                                                 }] #SEMI CASE - TRIM LOSS >>
+                    except IndexError:
+                        final_solution_patterns = []
+                        
+                elif len(stocks_by_wh) == 1: #### REWIND 
+                    logger.info("*** REWIND case ***")
+                    try:
+                        final_solution_patterns, over_cut, taken_stocks, remained_stocks = multistocks_cut(**args_dict,solver =None, prob_type="Rewind")
+                        logger.info(f"REMAINED stocks: {remained_stocks}")
                         stocks_to_use.pop(list(stocks_by_wh.keys())[0]) # truong hop ko cat duoc 
-                        stocks_to_use.update(steel.remained_stocks)     # thi 2 dong nay bu tru nhau
-                        stocks_to_use.update(steel.taken_stocks)
+                        stocks_to_use.update(remained_stocks)     # thi 2 dong nay bu tru nhau
+                    except TypeError or pulp.apis.core.PulpSolverError: ### empty final_sol_pattern
+                        logger.warning("*** No Solution for Rewind case - GLPK ***")
+                        logger.info("*** NORMAL DUAL case - CBC ***")
                         try:
-                            taken_stock = list(steel.taken_stocks.keys())[0]
-                            final_solution_patterns = [{"inventory_id": taken_stock, 
-                                                        "stock_width":  steel.taken_stocks[taken_stock]['width'],
-                                                        "stock_weight": steel.taken_stocks[taken_stock]['weight'],
-                                                        "customer_short_name": customer_name,
-                                                        "explanation": "Semi Cut",
-                                                        "remark":"",
-                                                        "cutting_date":"",
-                                                        "trim_loss_mm": 9999, "trim_loss_pct": 9999,
-                                                        'cuts': steel.cut_dict,
-                                                        'details': [{'order_no': f, 'width': finish[f]['width'], 'lines': steel.cut_dict[f]} for f in steel.cut_dict.keys()] 
-                                                     }] #SEMI CASE - TRIM LOSS >>
-                        except IndexError:
-                            final_solution_patterns = []
-                            
-                    elif len(stocks_by_wh) == 1: #### REWIND 
-                        logger.info("*** REWIND case ***")
-                        try:
-                            final_solution_patterns, over_cut, taken_stocks, remained_stocks = multistocks_cut(**args_dict,solver =None, prob_type="Rewind")
-                            logger.info(f"REMAINED stocks: {remained_stocks}")
-                            stocks_to_use.pop(list(stocks_by_wh.keys())[0]) # truong hop ko cat duoc 
-                            stocks_to_use.update(remained_stocks)     # thi 2 dong nay bu tru nhau
-                        except ValueError: ### empty final_sol_pattern
-                            pass  
-                    else: 
-                        # pass
-                        logger.info("*** NORMAL DUAL case - try CBC ***")
-                        ### NO SOLUTION for REWIND va SEMI ??? -> reset bound, try sub-optimal CBC - go to P4.1
-                        bound = 1
-                        final_solution_patterns, over_cut, taken_stocks, bound = multistocks_cut(**args_dict, solver = "CBC", prob_type="Dual")
-                        ### Exclude taken_stocks out of stock_to_use only for dual case
-                        if not taken_stocks:
-                            pass # Do nothing
-                        else:
-                            # if any taken stock have Div in the name pop -Div, from stock to use ???
-                            taken_og = []
-                            for s in taken_stocks:
-                                if str(s).__contains__("-Di"):
-                                    og_s = str(s).split("-Di")[0]
-                                    taken_og.append(og_s)
-                            taken_stocks = taken_stocks + taken_og          
-                            remained_stocks = {
-                                    s: {**s_info}
-                                    for s, s_info in stocks_to_use.items()
-                                    if s not in taken_stocks
-                                }
-                            stocks_to_use = copy.deepcopy(remained_stocks)
+                            final_solution_patterns, over_cut, taken_stocks = multistocks_cut(**args_dict, solver = "CBC", prob_type="Dual")
+                            stocks_to_use = refresh_stocks(taken_stocks, stocks_to_use)
+                        except TypeError: #empty solution
+                            pass
                 
-                # Complete Cutting in current warehouse
-                if not final_solution_patterns:
-                    logger.warning(f"->>>> The solution at bound {bound} is empty.")
-                    if bound == 3:
-                        over_cut = {f: f_info['need_cut'] for f, f_info in finish.items()}
-                        bound +=1
-                    else:
-                        bound += 1
-                else: 
-                    ### neu co nghiem thi break while bound < 4 
-                    total_taken_stocks.append(taken_stocks)
-                    
-                    # --- SAVE to DF ---
-                    df = transform_to_df(final_solution_patterns)
-                    cleaned_param_set = clean_filename(param_set)
-                    filename = f"scr/results/trial-dual-{cleaned_param_set}-{customer_name}-{warehouse_order[j]}.xlsx"
-                    df.to_excel(filename, index=False)
+                else: # DUAL CBC
+                    logger.info("*** NORMAL DUAL case - try CBC ***")
+                    ### NO SOLUTION for REWIND va SEMI -> reset bound, try sub-optimal CBC - go to P4.1
+                    try:
+                        final_solution_patterns, over_cut, taken_stocks = multistocks_cut(**args_dict, solver = "CBC", prob_type="Dual")
+                        stocks_to_use = refresh_stocks(taken_stocks, stocks_to_use)
+                    except TypeError:
+                        pass
+            
+            # Complete Cutting in current warehouse
+            if not final_solution_patterns:
+                logger.warning(f"->>>> The solution at WH {warehouse_order[j]} is empty.")
+            else: 
+                ### neu co nghiem thi break while bound < 4 
+                total_taken_stocks.append(taken_stocks)
                 
-                    logger.info(f"->>>> The solution {param_set}-{customer_name}- bound {bound} EXCEL saved")
-                    break 
+                # --- SAVE to DF ---
+                df = transform_to_df(final_solution_patterns)
+                cleaned_param_set = clean_filename(param_set)
+                filename = f"scr/results/comb-cust-{cleaned_param_set}-{customer_name}-{warehouse_order[j]}.xlsx"
+                df.to_excel(filename, index=False)
+            
+                logger.info(f"->>>> The solution {param_set} for {customer_name} at {warehouse_order[j]} saved  EXCEL file")
                 
             # To nex COIL CENTER priority if still ABLE
-            if j < 2: 
+            if j < no_warehouse - 1: # go from ZERO 
                 j+=1
                 nx_wh_stocks = filter_stocks_by_wh(stocks_to_use, [warehouse_order[j]])          #try to find STOCKS in next WH
                 try:
                     has_negative_over_cut = any(value < 0 for value in over_cut.values())
                     coil_center_priority_cond = (has_negative_over_cut & (len(nx_wh_stocks)!=0)) #can cat tiep va co coil o next priority
-                    logger.info(f"->>> Go to next warehouse {coil_center_priority_cond}")
+                    logger.info(f"->>> ? Go to next warehouse: {coil_center_priority_cond}")
                     if coil_center_priority_cond:
                         finish =  refresh_finish(finish, over_cut)                                   # Remained need_cut finish to cut in next WH
                         f_list = {f : (finish[f]['need_cut']) for f in finish.keys()}
-                        logger.info(f"->>> Remained finish to cut in next WH {f_list}")
+                        logger.info(f"->>> Remained finish to cut in next WH: {f_list}")
                     # BACK TO P3.2
                 except TypeError or AttributeError:                                              # overcut empty -> chua optimized duoc o coil center n-1
                     coil_center_priority_cond = (len(nx_wh_stocks)!=0)            
