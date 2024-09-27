@@ -26,7 +26,14 @@ class FinishObjects:
         self.maker = PARAMS['maker']
         self.type = PARAMS['type']
         self.finish =  finish
-
+        
+    def reverse_need_cut_sign(self):
+        for _, f_info in self.finish.items():
+            if f_info['need_cut']  < 0:
+                f_info['need_cut'] *= -1
+            else: 
+                f_info['need_cut'] = 0
+                
     def _calculate_upper_bounds(self,bound):
         average_fc = {
             f: (
@@ -35,36 +42,18 @@ class FinishObjects:
             ) if any(not math.isnan(v) for v in (f_info['fc1'], f_info['fc2'], f_info['fc3'])) else float('nan')
             for f, f_info in self.finish.items()
         }
-        self.finish = {f: {**f_info, "average FC": average_fc[f] if average_fc[f] > 0 else -f_info['need_cut'] } for f, f_info in self.finish.items()}
+        self.finish = {f: {**f_info, "average FC": average_fc[f] if average_fc[f] > 0 else f_info['need_cut'] } for f, f_info in self.finish.items()}
         
-        # Need_cut van la so am
-        self.finish = {f: {**f_info, "upper_bound": -f_info['need_cut'] + f_info['average FC']* bound} for f, f_info in self.finish.items()}
+        # Need_cut doi thanh so duong
+        self.finish = {f: {**f_info, "upper_bound": f_info['need_cut'] + f_info['average FC']* bound} for f, f_info in self.finish.items()}
       
-    def _reverse_need_cut_sign(self):
-        for _, f_info in self.finish.items():
-            if f_info['need_cut']  < 0:
-                f_info['need_cut'] *= -1
-            else: 
-                f_info['need_cut'] = 0
-                f_info['upper_bound'] += -f_info['need_cut']
-
     def update_bound(self,bound):
-        # Default case
+        # Need_cut doi thanh so duong
         if bound <= max_bound:
             self.upperbound = bound
             self._calculate_upper_bounds(bound)
-            self._reverse_need_cut_sign()
         else:
             raise ValueError(f"bound should be smaller than {max_bound}")
-    
-    def update_exceptional_bound(self,bound):
-        # Exceptional case
-        if bound <= 6:
-            self.upperbound = bound
-            self._calculate_upper_bounds()
-            self._reverse_need_cut_sign()
-        else:
-            raise ValueError("bound should be smaller than 6")
     
 class StockObjects:
     """
