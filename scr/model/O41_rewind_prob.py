@@ -2,9 +2,10 @@ import numpy as np
 import copy
 import statistics
 from pulp import LpMaximize, LpProblem, LpVariable, lpSum, value, LpStatus
-from model import DualProblem
+# from model import DualProblem
+from .dual_solver_test import testDualProblem
     
-class RewindProb(DualProblem):
+class RewindProb(testDualProblem):
   
   # have condition to decide proportion of orginal MC to cut # apply for many FG and 1 stock MC
   # then move to the linear problem -> to decide the trim loss only
@@ -46,10 +47,3 @@ class RewindProb(DualProblem):
       self.start_stocks = copy.deepcopy(self.dual_stocks)
     else: 
       print(f"rewind_coil too small{self.og_weight - self.med_demand_weight}")
-      
-
-     
-  
-
-  
-  

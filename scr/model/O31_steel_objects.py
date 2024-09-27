@@ -1,20 +1,23 @@
 import pandas as pd
 import numpy as np
 import math
+import os
 
-# INPUT
+# INPUT & CONFIG
 margin_df = pd.read_csv('scr/model_config/min_margin.csv')
-spec_type = pd.read_csv('scr/model_config/spec_type.csv') 
+spec_type = pd.read_csv('scr/model_config/spec_type.csv')
+ 
+global max_bound
+max_bound = float(os.getenv('MAX_BOUND', '5.0'))
 
 # DEFINE OBJECTS
 class FinishObjects:
     """
     SET UP FINISH
-    
-    "customer_name","width", "need_cut", 
+    finish {"customer_name","width", "need_cut", 
     "fc1", "fc2", "fc3",
     "1st Priority", "2nd Priority", "3rd Priority",
-    "Min_weight", "Max_weight",
+    "Min_weight", "Max_weight"}
     """
     def __init__(self, finish, PARAMS):
         self.upperbound = 2 # DEFAULT 2 months forecast
@@ -25,17 +28,17 @@ class FinishObjects:
         self.finish =  finish
 
     def _calculate_upper_bounds(self,bound):
-        mean_3fc = {
+        average_fc = {
             f: (
                 sum(v for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) if not math.isnan(v)) /
                 sum(1 for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) if not math.isnan(v))
             ) if any(not math.isnan(v) for v in (f_info['fc1'], f_info['fc2'], f_info['fc3'])) else float('nan')
             for f, f_info in self.finish.items()
         }
-        self.finish = {f: {**f_info, "mean_3fc": mean_3fc[f] if mean_3fc[f]>0 else -f_info['need_cut'] } for f, f_info in self.finish.items()}
+        self.finish = {f: {**f_info, "average FC": average_fc[f] if average_fc[f] > 0 else -f_info['need_cut'] } for f, f_info in self.finish.items()}
         
         # Need_cut van la so am
-        self.finish = {f: {**f_info, "upper_bound": -f_info['need_cut'] + f_info['mean_3fc']* bound} for f, f_info in self.finish.items()}
+        self.finish = {f: {**f_info, "upper_bound": -f_info['need_cut'] + f_info['average FC']* bound} for f, f_info in self.finish.items()}
       
     def _reverse_need_cut_sign(self):
         for _, f_info in self.finish.items():
@@ -47,15 +50,15 @@ class FinishObjects:
 
     def update_bound(self,bound):
         # Default case
-        if bound <= 3:
+        if bound <= max_bound:
             self.upperbound = bound
             self._calculate_upper_bounds(bound)
             self._reverse_need_cut_sign()
         else:
-            raise ValueError("bound should be smaller than 3")
+            raise ValueError(f"bound should be smaller than {max_bound}")
     
     def update_exceptional_bound(self,bound):
-        # Default case
+        # Exceptional case
         if bound <= 6:
             self.upperbound = bound
             self._calculate_upper_bounds()
@@ -64,8 +67,10 @@ class FinishObjects:
             raise ValueError("bound should be smaller than 6")
     
 class StockObjects:
-    # SET UP STOCKS
-    # Stock: {receiving_date, width, weight, status, remark}
+    """
+    SET UP STOCKS
+    Stock: {receiving_date, width, weight, status, remark}
+    """
     def __init__(self,stocks, PARAMS):
         self.spec = PARAMS['spec_name']
         self.thickness = PARAMS['thickness']

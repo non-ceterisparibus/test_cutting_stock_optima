@@ -51,16 +51,22 @@ class testDualProblem:
 
     def create_finish_demand_by_line_w_naive_pattern(self):
         self._make_naive_patterns()
-        # print(f"LEN PATTERN : {len(self.patterns)}")
         dump_ls = {}
         for f, finish_info in self.dual_finish.items():
             try:
                 non_zero_min = min([self.patterns[i]['cuts'][f] for i, _ in enumerate(self.patterns) if self.patterns[i]['cuts'][f] != 0])
             except ValueError:
                 non_zero_min = 0
-            dump_ls[f] = {**finish_info
+                
+            try:    
+                dump_ls[f] = {**finish_info
                             ,"upper_demand_line": max([self.patterns[i]['cuts'][f] for i,_ in enumerate(self.patterns)])
                             ,"demand_line": non_zero_min }
+            except ValueError:
+                dump_ls[f] = {**finish_info
+                            ,"upper_demand_line":non_zero_min
+                            ,"demand_line": non_zero_min }
+                
        
         # Filtering the dictionary to include only items with keys in keys_to_keep
         self.dual_finish = {k: v for k, v in dump_ls.items() if v['upper_demand_line'] > 0} # xem lai dieu kien nay, tuc la neu cat dai nay voi stock hien co thì overcut lon
