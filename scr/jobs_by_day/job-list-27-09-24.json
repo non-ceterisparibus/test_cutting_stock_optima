@@ -1,0 +1,80 @@
+{
+    "date": "27-09-24",
+    "number of job": 6,
+    "jobs": [
+        {
+            "job": 0,
+            "param": "POSCO+JSH270C-PO+2.6",
+            "stocks_available": {
+                "HSC": 6990.0,
+                "NQS": 49116.0
+            },
+            "tasks": {
+                "CICVPIC1": {
+                    "total_need_cut": 33312.1230516817
+                }
+            }
+        },
+        {
+            "job": 1,
+            "param": "CSVC+JSH270C-PO+2.0",
+            "stocks_available": {
+                "NQS": 66750.0
+            },
+            "tasks": {
+                "CICVPIC1": {
+                    "total_need_cut": 23864.871205906482
+                }
+            }
+        },
+        {
+            "job": 2,
+            "param": "CSVC+JSH440W-PO+3.2",
+            "stocks_available": {
+                "NQS": 21925.0
+            },
+            "tasks": {
+                "CIC": {
+                    "total_need_cut": 11755.735849056604
+                }
+            }
+        },
+        {
+            "job": 3,
+            "param": "POSCO+JSH270C-PO+2.9",
+            "stocks_available": {
+                "HSC": 7400.0,
+                "NQS": 28041.0
+            },
+            "tasks": {
+                "CICVPIC1": {
+                    "total_need_cut": 23197.9803982096
+                }
+            }
+        },
+        {
+            "job": 4,
+            "param": "CSVC+JSH270C-PO+1.6",
+            "stocks_available": {
+                "HSC": 33273.0
+            },
+            "tasks": {
+                "CICVPIC1": {
+                    "total_need_cut": 12278.807219031993
+                }
+            }
+        },
+        {
+            "job": 5,
+            "param": "POSCO+JSH440W-PO+2.0",
+            "stocks_available": {
+                "HSC": 57890.0
+            },
+            "tasks": {
+                "CICVPIC1": {
+                    "total_need_cut": 11385.478862038086
+                }
+            }
+        }
+    ]
+}

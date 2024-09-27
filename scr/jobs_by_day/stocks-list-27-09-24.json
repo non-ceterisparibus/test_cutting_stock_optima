@@ -1,0 +1,383 @@
+{
+   "date": "27-09-24",
+   "param_finish": {
+      "POSCO+JSH270C-PO+2.6": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 2.6,
+            "maker": "POSCO",
+            "code": "POSCO JSH270C-PO 2.6"
+         },
+         "stocks": {
+            "TP235H001943": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 400,
+               "warehouse": "HSC",
+               "status": "R:REWIND",
+               "remark": ""
+            },
+            "TM23BH00000192": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 6590,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "HTV1363/23": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 4000,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "HTV0828/23-D1": {
+               "receiving_date": 44945,
+               "width": 1108,
+               "weight": 4266,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "HTV0895/23": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 5350,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "X3": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 7500,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "Z4": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 8500,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "X4": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 9500,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "Z3": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 10000,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            }
+         }
+      },
+      "CSVC+JSH270C-PO+2.0": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 2.0,
+            "maker": "CSVC",
+            "code": "CSVC JSH270C-PO 2.0"
+         },
+         "stocks": {
+            "Z5": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 4000,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "HTV1983/23-1": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 5485,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "HTV1983/23-2": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 6000,
+               "warehouse": "NQS",
+               "status": "R:REWIND",
+               "remark": ""
+            },
+            "X8": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 9000,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "X9": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 9500,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "X7": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 10000,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "HTV1060/24": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 11295,
+               "warehouse": "NQS",
+               "status": "R:REWIND",
+               "remark": ""
+            },
+            "HTV1059/24": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 11470,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            }
+         }
+      },
+      "CSVC+JSH440W-PO+3.2": {
+         "param": {
+            "spec_name": "JSH440W-PO",
+            "type": "Carbon",
+            "thickness": 3.2,
+            "maker": "CSVC",
+            "code": "CSVC JSH440W-PO 3.2"
+         },
+         "stocks": {
+            "HTV0729/23": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 3000,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "HTV0519/23": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 3365,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "Y1": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 4000,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "HTV0520/23": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 11560,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            }
+         }
+      },
+      "POSCO+JSH270C-PO+2.9": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 2.9,
+            "maker": "POSCO",
+            "code": "POSCO JSH270C-PO 2.9"
+         },
+         "stocks": {
+            "TR23AH00000052": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 7400,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "HTV0800/24-D2": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 4153,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "HTV0802/24-D1": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 5848,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "HTV1772/23": {
+               "receiving_date": 44945,
+               "width": 1178,
+               "weight": 8900,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "HTV1773/23": {
+               "receiving_date": 44945,
+               "width": 1178,
+               "weight": 9140,
+               "warehouse": "NQS",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            }
+         }
+      },
+      "CSVC+JSH270C-PO+1.6": {
+         "param": {
+            "spec_name": "JSH270C-PO",
+            "type": "Carbon",
+            "thickness": 1.6,
+            "maker": "CSVC",
+            "code": "CSVC JSH270C-PO 1.6"
+         },
+         "stocks": {
+            "TP236H005510": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 4395,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "TR242H00000035": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 4618,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "X5": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 7000,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "X6": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 8000,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "TP236H005509": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 9260,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            }
+         }
+      },
+      "POSCO+JSH440W-PO+2.0": {
+         "param": {
+            "spec_name": "JSH440W-PO",
+            "type": "Carbon",
+            "thickness": 2.0,
+            "maker": "POSCO",
+            "code": "POSCO JSH440W-PO 2.0"
+         },
+         "stocks": {
+            "TP233H000003": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 4000,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "TM236H00000365": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 6970,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "TP231H004996": {
+               "receiving_date": 44945,
+               "width": 1208,
+               "weight": 7300,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "TM246H00000203": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 7590,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "TP231H005005": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 7670,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            },
+            "TM246H00000204": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 7740,
+               "warehouse": "HSC",
+               "status": "Z:SEMI MCOIL",
+               "remark": ""
+            },
+            "TM246H00000202": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 7980,
+               "warehouse": "HSC",
+               "status": "Z:SEMI MCOIL",
+               "remark": ""
+            },
+            "TM236H00000364": {
+               "receiving_date": 44945,
+               "width": 1219,
+               "weight": 8640,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": ""
+            }
+         }
+      }
+   }
+}
