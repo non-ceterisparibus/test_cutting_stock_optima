@@ -5,7 +5,7 @@ import os
 folder_path = 'scr/results'
 
 # Get a list of all Excel files in the folder
-excel_files = [f for f in os.listdir(folder_path) if f.endswith('.xlsx') and f.startswith('solution')]
+excel_files = [f for f in os.listdir(folder_path) if f.endswith('.xlsx') and f.startswith('split-cust')]
 
 # Initialize an empty list to hold dataframes
 df_list = []
@@ -20,4 +20,4 @@ for file in excel_files:
 merged_df = pd.concat(df_list, ignore_index=True)
 
 # Save the merged dataframe to a new Excel file
-merged_df.to_excel(os.path.join(folder_path, '20240911_test_result_batch1.xlsx'), index=False)
+merged_df.to_excel(os.path.join(folder_path, '20240912_test_result_batch1_s_split.xlsx'), index=False)
