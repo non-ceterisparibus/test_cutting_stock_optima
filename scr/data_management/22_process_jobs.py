@@ -9,25 +9,23 @@ import os
 fin_file_path = os.getenv('FIN_DF_PATH')
 mc_file_path = os.getenv('MC_DF_PATH')
 stock_ratio_input = os.getenv('STOCK_RATIO_INPUT')
-
 spec_type_df = pd.read_csv('scr/model_config/spec_type.csv')
 
 # SETUP
 finish_key = 'order_id'
-finish_columns = [ "width", "need_cut", 
-                #   "customer_name",
-                  "customer","Standard",
-                  "fc1", "fc2", "fc3", 
-                  "average FC",
-                  "1st Priority", "2nd Priority", "3rd Priority"
-                  ,"Min_weight", "Max_weight"
+finish_columns = [
+                "customer_name",
+                # "customer",
+                "width", "need_cut", "Standard",
+                "fc1", "fc2", "fc3", "average FC",
+                "1st Priority", "2nd Priority", "3rd Priority",
+                "Min_weight", "Max_weight"
                   ]
 forecast_columns = ["fc1", "fc2", "fc3"]
 
 stock_key = "inventory_id"
 stock_columns = ['receiving_date',"width", "weight",'warehouse',
-                 "status",'remark'
-                 ]
+                 "status",'remark']
 def div(numerator, denominator):
     def division_operation(row):
         if row[denominator] == 0:
@@ -44,11 +42,10 @@ def div(numerator, denominator):
 def create_finish_dict(finish_df):
   
     finish_df.loc[:, 'stock_ratio'] = finish_df.apply(div('need_cut', 'average FC'), axis=1)
-    can_cut_df = finish_df[finish_df['stock_ratio'] < float(stock_ratio_input)] # Co the cat du cho hang ko co need cut am
+    can_cut_df = finish_df[finish_df['stock_ratio'] < float(stock_ratio_input)] # chon ca nhung need cut ko am
     
     # Width - Decreasing// need_cut - Descreasing // Average FC - Increasing
     sorted_df = can_cut_df.sort_values(by=['need_cut','width'], ascending=[True,False]) # need cut van dang am
-    
     # sorted_df = can_cut_df.sort_values(by=['width','need_cut'], ascending=[False,True,True]) # need cut van dang am
     
     # Fill NaN values in specific columns with the average, ignoring NaN
@@ -89,8 +86,8 @@ def filter_finish_by_params(file_path,params):
     df = pd.read_excel(file_path)
 
     filtered_df = df[
-                    # (df["customer_name"] == params["customer"]) & 
-                     (df["customer"] == params["customer"]) &
+                    (df["customer_name"] == params["customer"]) & 
+                    #  (df["customer"] == params["customer"]) &
                     (df["spec_name"] == params["spec_name"]) & 
                     (df["thickness"] == params["thickness"]) &
                     (df["maker"] == params["maker"])

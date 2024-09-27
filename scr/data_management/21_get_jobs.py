@@ -49,7 +49,8 @@ def load_dta(fin_file_path,mc_file_path):
     return params, n_jobs
 
 if __name__ == "__main__":
-    params, n_jobs = load_dta(fin_file_path =fin_file_path,mc_file_path = mc_file_path)
+    params, n_jobs = load_dta(fin_file_path =fin_file_path,
+                              mc_file_path = mc_file_path)
 
     # DATE
     today = datetime.datetime.today()
@@ -93,13 +94,13 @@ if __name__ == "__main__":
             current_job['stocks_available'][wh] = float(sum_wh_stock)
             
         # CUSTOMER in the list
-        # customer_list = to_cut_finish_df['customer_name'].unique()
-        customer_list = to_cut_finish_df['customer'].unique()
+        customer_list = to_cut_finish_df['customer_name'].unique()
+        # customer_list = to_cut_finish_df['customer'].unique()
         sub_job_operator = {}
         # finished goods list by customer
         for cust in customer_list:
-            # cust_df = to_cut_finish_df[to_cut_finish_df['customer_name']==cust]
-            cust_df = to_cut_finish_df[to_cut_finish_df['customer']==cust]
+            cust_df = to_cut_finish_df[to_cut_finish_df['customer_name']==cust]
+            # cust_df = to_cut_finish_df[to_cut_finish_df['customer']==cust]
             total_needcut = sum(cust_df['need_cut']) * -1
             sub_job_operator[cust] = {"total_need_cut": float(total_needcut)}
 
