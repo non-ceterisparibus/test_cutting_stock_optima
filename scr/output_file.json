@@ -1,0 +1,472 @@
+[
+    {
+        "coil_center":"NQS",
+        "Type":"Carbon",
+        "Thickness":"\u22640.8",
+        "Max lines":21,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"Carbon",
+        "Thickness":"0.8<T\u22642.0",
+        "Max lines":21,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"Carbon",
+        "Thickness":"2.0<T\u22643.0",
+        "Max lines":16,
+        "Min Trim loss (mm)":6,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"Carbon",
+        "Thickness":"3.0<T\u22644.0",
+        "Max lines":12,
+        "Min Trim loss (mm)":8,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"Carbon",
+        "Thickness":"4.0<T\u22645.0",
+        "Max lines":8,
+        "Min Trim loss (mm)":8,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"Carbon",
+        "Thickness":"5.0<T\u22646.0",
+        "Max lines":6,
+        "Min Trim loss (mm)":12,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"Carbon",
+        "Thickness":"6.0<T\u22648.0",
+        "Max lines":6,
+        "Min Trim loss (mm)":16,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"SUS410",
+        "Thickness":"\u22640.8",
+        "Max lines":15,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"SUS410",
+        "Thickness":"0.8<T\u22642.0",
+        "Max lines":13,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"SUS410",
+        "Thickness":"2.0<T\u22643.0",
+        "Max lines":13,
+        "Min Trim loss (mm)":6,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"SUS410",
+        "Thickness":"3.0<T\u22644.0",
+        "Max lines":11,
+        "Min Trim loss (mm)":7,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"SUS410",
+        "Thickness":"4.0<T\u22645.0",
+        "Max lines":9,
+        "Min Trim loss (mm)":8,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"SUS410",
+        "Thickness":"5.0<T\u22646.0",
+        "Max lines":7,
+        "Min Trim loss (mm)":12,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"SUS409L",
+        "Thickness":"\u22640.8",
+        "Max lines":12,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"SUS409L",
+        "Thickness":"0.8<T\u22642.0",
+        "Max lines":10,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"SUS409L",
+        "Thickness":"2.0<T\u22643.0",
+        "Max lines":10,
+        "Min Trim loss (mm)":6,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"SUS409L",
+        "Thickness":"3.0<T\u22644.0",
+        "Max lines":8,
+        "Min Trim loss (mm)":6,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"SUS409L",
+        "Thickness":"4.0<T\u22645.0",
+        "Max lines":7,
+        "Min Trim loss (mm)":8,
+        "Max MC weight (KG)":"25,000",
+        "Min MC Width (mm)":500,
+        "Max MC Width (mm)":1600
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"F:FINISHED",
+        "Thickness":"\u22641.0",
+        "Max lines":15,
+        "Min Trim loss (mm)":6,
+        "Max MC weight (KG)":"10,000",
+        "Min MC Width (mm)":30,
+        "Max MC Width (mm)":650
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"F:FINISHED",
+        "Thickness":"1.0<T\u22642.5",
+        "Max lines":10,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"10,000",
+        "Min MC Width (mm)":30,
+        "Max MC Width (mm)":650
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"All",
+        "Thickness":"\u22642.5",
+        "Max lines":10,
+        "Min Trim loss (mm)":6,
+        "Max MC weight (KG)":"10,000",
+        "Min MC Width (mm)":30,
+        "Max MC Width (mm)":650
+    },
+    {
+        "coil_center":"NQS",
+        "Type":"All",
+        "Thickness":">2.5",
+        "Max lines":10,
+        "Min Trim loss (mm)":6,
+        "Max MC weight (KG)":"10,000",
+        "Min MC Width (mm)":30,
+        "Max MC Width (mm)":650
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"All",
+        "Thickness":"\u22640.8",
+        "Max lines":20,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"All",
+        "Thickness":"0.8<T\u22641.0",
+        "Max lines":18,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"All",
+        "Thickness":"1.0<T\u22641.2",
+        "Max lines":17,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"All",
+        "Thickness":"1.2<T\u22641.6",
+        "Max lines":15,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"All",
+        "Thickness":"1.6<T\u22641.8",
+        "Max lines":14,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"All",
+        "Thickness":"1.8<T\u22642.0",
+        "Max lines":13,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"All",
+        "Thickness":"2.0<T\u22642.3",
+        "Max lines":12,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"All",
+        "Thickness":"2.3<T\u22643.2",
+        "Max lines":10,
+        "Min Trim loss (mm)":5,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"All",
+        "Thickness":"3.2<T\u22643.9",
+        "Max lines":9,
+        "Min Trim loss (mm)":8,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"All",
+        "Thickness":"3.9<T\u22644.2",
+        "Max lines":5,
+        "Min Trim loss (mm)":10,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"All",
+        "Thickness":"4.2<T\u22646.0",
+        "Max lines":5,
+        "Min Trim loss (mm)":10,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"All",
+        "Thickness":">6.0",
+        "Max lines":5,
+        "Min Trim loss (mm)":10,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"F:FINISHED",
+        "Thickness":"0.2\u2264T\u22641.0",
+        "Max lines":14,
+        "Min Trim loss (mm)":6,
+        "Max MC weight (KG)":"3,000",
+        "Min MC Width (mm)":50,
+        "Max MC Width (mm)":630
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"F:FINISHED",
+        "Thickness":"1.0<T\u22641.5",
+        "Max lines":10,
+        "Min Trim loss (mm)":6,
+        "Max MC weight (KG)":"3,000",
+        "Min MC Width (mm)":50,
+        "Max MC Width (mm)":630
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"F:FINISHED",
+        "Thickness":"1.5<T\u22641.6",
+        "Max lines":8,
+        "Min Trim loss (mm)":8,
+        "Max MC weight (KG)":"3,000",
+        "Min MC Width (mm)":50,
+        "Max MC Width (mm)":630
+    },
+    {
+        "coil_center":"HSC",
+        "Type":"F:FINISHED",
+        "Thickness":">1.6",
+        "Max lines":8,
+        "Min Trim loss (mm)":8,
+        "Max MC weight (KG)":"3,000",
+        "Min MC Width (mm)":50,
+        "Max MC Width (mm)":630
+    },
+    {
+        "coil_center":"NST",
+        "Type":"All",
+        "Thickness":"\u22641.5",
+        "Max lines":30,
+        "Min Trim loss (mm)":8,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":50,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"NST",
+        "Type":"All",
+        "Thickness":"1.5<T\u22642",
+        "Max lines":25,
+        "Min Trim loss (mm)":8,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":50,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"NST",
+        "Type":"All",
+        "Thickness":"2<T\u22642.5",
+        "Max lines":16,
+        "Min Trim loss (mm)":8,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":50,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"NST",
+        "Type":"All",
+        "Thickness":"2.5<T\u22643",
+        "Max lines":11,
+        "Min Trim loss (mm)":8,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":50,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"NST",
+        "Type":"All",
+        "Thickness":"3<T\u22643.5",
+        "Max lines":8,
+        "Min Trim loss (mm)":9,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":50,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"NST",
+        "Type":"All",
+        "Thickness":"3.5<T\u22644",
+        "Max lines":6,
+        "Min Trim loss (mm)":11,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":50,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"NST",
+        "Type":"All",
+        "Thickness":"4<T\u22644.5",
+        "Max lines":4,
+        "Min Trim loss (mm)":13,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":50,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"NST",
+        "Type":"All",
+        "Thickness":">4.5",
+        "Max lines":4,
+        "Min Trim loss (mm)":13,
+        "Max MC weight (KG)":"20,000",
+        "Min MC Width (mm)":50,
+        "Max MC Width (mm)":1300
+    },
+    {
+        "coil_center":"NST",
+        "Type":"F:FINISHED",
+        "Thickness":"\u22644.5",
+        "Max lines":5,
+        "Min Trim loss (mm)":10,
+        "Max MC weight (KG)":"3,000",
+        "Min MC Width (mm)":100,
+        "Max MC Width (mm)":1219
+    }
+]
