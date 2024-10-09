@@ -36,6 +36,30 @@ def create_warehouse_order(finish):
     warehouse_order = [coil_center_1st,coil_center_2nd,coil_center_3rd]
     return warehouse_order
 
+def partial_stocks(stocks,allowed_cut_weight):
+    stocks = dict(sorted(stocks.items(), key=lambda x: (x[1]['weight'], x[1]['receiving_date']), reverse= True))
+    partial_stocks = {}
+    accumulated_weight = 0
+    for s, sinfo in stocks.items():
+        accumulated_weight += sinfo['weight']
+        if allowed_cut_weight * 1.1 <= accumulated_weight:
+            break
+        else:
+            partial_stocks[s] = {**sinfo} 
+    return partial_stocks
+
+def partial_finish(finish, stock_ratio):
+    partial_finish = {}
+    for f, finfo in finish.items():
+        fg_ratio = finfo['need_cut']/(finfo['average FC']+1)
+        ave_fc = finfo['average FC']
+        if (
+            fg_ratio < 0 or
+            (0 <= fg_ratio <= stock_ratio and round(ave_fc) > 3000)
+        ):
+            partial_finish[f] = finfo.copy()
+    return partial_finish
+
 def filter_stocks_by_wh(data, warehouse_order):
     # Filter and order the dictionary
     return {k: v for w in warehouse_order for k, v in data.items() if v['warehouse'] == w}
@@ -123,7 +147,7 @@ def average_3m_fc(finish):
         
 def multistocks_cut(logger, finish, stocks, PARAMS, margin_df, prob_type):
     #to cut all possible stock with finish demand upto upperbound
-    bound = 0.5
+    bound = 0.75
     steel = CuttingStocks(finish, stocks, PARAMS)
     steel.update(bound = bound, margin_df=margin_df)
     steel.check_division_stocks()
@@ -217,12 +241,15 @@ logging.basicConfig(filename=f'scr/log/CBC-{formatted_date}.log', level=logging.
 # LOAD CONFIG & DATA
 global max_bound
 global no_warehouse
+global step
+global mc_ratio
+global stock_ratio
 
 max_bound = float(os.getenv('MAX_BOUND', '3.0'))
 no_warehouse = float(os.getenv('NO_WAREHOUSE', '3.0'))
-
-print(f"MAX BOUND {max_bound}")
-print(f"NO WH {no_warehouse}")
+step = float(os.getenv('STEP', '0.5'))
+mc_ratio = float(os.getenv('MC_RATIO', '2.5'))
+added_stock_ratio = float(os.getenv('ST_RATIO', '-0.02'))
 
 margin_df = pd.read_csv('scr/model_config/min_margin.csv')
 spec_type = pd.read_csv('scr/model_config/spec_type.csv')
@@ -249,7 +276,9 @@ total_solution_json = {"date": formatted_date,
                         }
 
 # RUN JOB-LIST
-i = 4
+i = 3
+# mc_ratio = 2
+# added_stock_ratio = 0.10
 
 # LOAD JOB INFO -- 1/2 LAYER                           
 param_set = job_list['jobs'][i]['param']
@@ -260,7 +289,9 @@ batch = PARAMS['code']
 
 # LOAD STOCKS
 og_stocks = stocks_list['param_finish'][param_set]['stocks'] # Original stocks available - phan biet vs stocks se dung cho tung customer
-stocks_to_use = copy.deepcopy(og_stocks)
+# Take stock as mc_ratio
+total_need_cut = round(job_list['jobs'][i]['total_need_cut'],2)
+stocks_to_use = partial_stocks(og_stocks, total_need_cut*mc_ratio)
     
 # START
 logger.info("------------------------------------------------")
@@ -283,11 +314,15 @@ for finish_item in finish_list['param_finish'][param_set]['customer']:
         final_solution_patterns = []
         
         ### if NUMBER NEED CUT FG < 0 small, take all
-        filtered_finish = {k: v for k, v in og_finish.items() if v['need_cut']/(v['average FC']+1) < -0.02}
-        if len(filtered_finish) <= 3:
-            finish = copy.deepcopy(og_finish)
+        if added_stock_ratio == -0.02:
+            filtered_finish = {k: v for k, v in og_finish.items() if v['need_cut']/(v['average FC']+1) < -0.02}
+            if len(filtered_finish) <= 3:
+                finish = copy.deepcopy(og_finish)
+            else:
+                finish = copy.deepcopy(filtered_finish)
         else:
-            finish = copy.deepcopy(filtered_finish)
+            finish = partial_finish(og_finish, added_stock_ratio)
+        
         if not finish:
             pass #### go to next min-max gr
         else:
@@ -312,7 +347,9 @@ for finish_item in finish_list['param_finish'][param_set]['customer']:
                 if j == no_warehouse: 
                     coil_center_priority_cond = False
         logger.info(f"->>> SUB-TASK: {len(finish.keys())} FINISH  w {len(stocks_by_wh.keys())} MC")
-        nx_wh_stocks = []      
+        # fl = [f for f in finish.keys()]
+        # logger.info(f"FINISH KEY {fl}")
+        nx_wh_stocks = []
         while coil_center_priority_cond: ### OPERATOR COIL CENTER to cut until all FG DONE P3.0
             if not nx_wh_stocks: # Empty P3.1
                 pass 
