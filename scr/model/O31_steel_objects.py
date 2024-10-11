@@ -20,7 +20,6 @@ class FinishObjects:
     "Min_weight", "Max_weight"}
     """
     def __init__(self, finish, PARAMS):
-        self.upperbound = 2 # DEFAULT 2 months forecast
         self.spec = PARAMS['spec_name']
         self.thickness = PARAMS['thickness']
         self.maker = PARAMS['maker']
@@ -34,23 +33,29 @@ class FinishObjects:
             else: 
                 f_info['need_cut'] = 0
                 
-    def _calculate_upper_bounds(self,bound):
+    def _average_forecast_po(self):
         average_fc = {
-            f: (
-                sum(v for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) if not math.isnan(v)) /
-                sum(1 for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) if not math.isnan(v))
-            ) if any(not math.isnan(v) for v in (f_info['fc1'], f_info['fc2'], f_info['fc3'])) else float('nan')
-            for f, f_info in self.finish.items()
-        }
+                f: (
+                    sum(v for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) 
+                        if isinstance(v, (int, float)) and not math.isnan(v)) /
+                    sum(1 for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) 
+                        if isinstance(v, (int, float)) and not math.isnan(v))
+                ) if any(isinstance(v, (int, float)) and not math.isnan(v) 
+                        for v in (f_info['fc1'], f_info['fc2'], f_info['fc3'])) 
+                else float('nan')
+                for f, f_info in self.finish.items()
+            }
         self.finish = {f: {**f_info, "average FC": average_fc[f] if average_fc[f] > 0 else f_info['need_cut'] } for f, f_info in self.finish.items()}
         
+                
+    def _calculate_upper_bounds(self,bound):
         # Need_cut doi thanh so duong
         self.finish = {f: {**f_info, "upper_bound": f_info['need_cut'] + f_info['average FC']* bound} for f, f_info in self.finish.items()}
       
     def update_bound(self,bound):
         # Need_cut doi thanh so duong
         if bound <= max_bound:
-            self.upperbound = bound
+            self._average_forecast_po()
             self._calculate_upper_bounds(bound)
         else:
             raise ValueError(f"bound should be smaller than {max_bound}")
