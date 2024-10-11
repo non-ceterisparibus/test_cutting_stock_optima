@@ -1,12 +1,24 @@
 import numpy as np
 import pandas as pd
 import copy
-import statistics
+import math
 from model import FinishObjects, StockObjects
-# from .O41_dual_solver import DualProblem
-from .dual_solver_test import testDualProblem
-from .O41_rewind_prob import RewindProb
-from pulp import LpMaximize, LpMinimize, LpProblem, LpVariable, lpSum, PULP_CBC_CMD, value
+from model import RewindProb
+import os
+
+from model import DualProblem
+# from .O41_dual_solver import testDualProblem
+
+global max_coil_weight
+global customer_group 
+
+customer_gr = os.getenv('CUSTOMER_GR')
+if customer_gr:
+    customer_group = customer_gr.split(',')
+else:
+    customer_group = ['small','medium','medium-big','medium - big']
+    
+max_coil_weight = float(os.getenv('MAX_WEIGHT_MC_DIV', '8000'))
 
 # DEFINE PROBLEM
 class CuttingStocks:
@@ -20,7 +32,10 @@ class CuttingStocks:
             "maker": "CSVC",
             "code": "CSVC JSH270C-PO 3.0"
         stocks = {"HTV0269/24-D1": {   "receiving_date": 44961,   "width": 1158, 
-                                        "weight": 3936,   "warehouse": "NQS"}
+                                        "weight": 3936,   "warehouse": "NQS"},
+                   "HTV0269/24-D2": {   "receiving_date": 44961,   "width": 1219, 
+                                        "weight": 3936,   "warehouse": "NQS"}   
+                                        }                  
         finish = {"F288": {   "customer_name": "VPIC1",   "width": 143.5,  "need_cut": -1300.0,  
                             "fc1": 2724.48,   "fc2": 1776.9600000000003,   "fc3": 1752.9600000000003,  
                             "1st Priority": "HSC",   "2nd Priority": "x",   "3rd Priority": "x",  
@@ -33,12 +48,9 @@ class CuttingStocks:
         self.over_cut = {}
 
     def update(self, bound, margin_df):
+        self.F.reverse_need_cut_sign()
         self.F.update_bound(bound)
         self.S.update_min_margin(margin_df)
-    
-    def update_inner_bound(self,bound):
-        for _ , f_info in self.prob.dual_finish.items():
-            f_info['upper_bound'] = f_info['need_cut'] + f_info['average FC'] * bound
      
     def _stock_weight_threshold_by_width(self, min_w, max_w):
         """_Create a diction of min and weight of coil that will produce same div of FG_
@@ -99,7 +111,7 @@ class CuttingStocks:
                 stock_item = list(self.S.stocks.items())[p]
                 stock_key = stock_item[0]
                 pop_stock_key.append(stock_key)
-                half_wg = self.S.stocks[stock_key]['weight']/2
+                half_wg = self.S.stocks[stock_key]['weight']*0.5
                 for i in range(2):
                     self.S.stocks[f'{stock_key}-Di{i+1}'] = self.S.stocks[stock_key]
                     self.S.stocks[f'{stock_key}-Di{i+1}'].update({'weight': half_wg})
@@ -111,17 +123,19 @@ class CuttingStocks:
             #### Update lai stock
                 self.S.stocks.pop(s) #remove original stock
             
-    def check_division(self, s_customer_group=['small', 'medium', 'medium-big'], max_weight=8000):
+    def check_division_stocks(self, customer_group=customer_group, max_coil_weight=max_coil_weight):        
         # Check customer gr
         first_item = list(self.F.finish.items())[0]
         customer_gr = first_item[1]['Standard']
-        check_cus_gr = [1 if customer_gr == v else 0 for v in s_customer_group]
+        check_cus_gr = [1 if customer_gr == v else 0 for v in customer_group]
         
         # Check stock need to be div
-        self.check_stock_pos = [1 if v['weight']>= max_weight else 0 for k, v in self.S.stocks.items()]
+        self.check_stock_pos = [1 if v['weight']>= max_coil_weight else 0 for _, v in self.S.stocks.items()]
         if np.sum(check_cus_gr) >= 1 and np.sum(self.check_stock_pos)>=1:
             self._div_stocks()
-            
+        # Sort stock as beginning
+        self.S.stocks = dict(sorted(self.S.stocks.items(), key=lambda x: (x[1]['weight'], x[1]['receiving_date']), reverse= True))
+ 
     def filter_stocks(self, min_weight = None, max_weight = None):
         if min_weight == None and max_weight == None: # flow khong consider min va max_weight
             self.filtered_stocks = copy.deepcopy(self.S.stocks)
@@ -131,9 +145,8 @@ class CuttingStocks:
 
     def set_prob(self, prob_type):
         if len(self.filtered_stocks) > 0 and prob_type == "Dual":
-            # Initiate problem 
-            # self.prob = DualProblem(self.F.finish, self.filtered_stocks)
-            self.prob = testDualProblem(self.F.finish, self.filtered_stocks)
+            # Initiate problem  => thanh self.prob.dual_finish va self.prob.dual_stocks
+            self.prob = DualProblem(self.F.finish, self.filtered_stocks)
             return True # continue to run solve prob
         elif len(self.filtered_stocks) > 0 : 
             self.prob = RewindProb(self.F.finish, self.filtered_stocks)
@@ -143,22 +156,22 @@ class CuttingStocks:
             return False
 
     # Phase 5: Evaluation Over-cut / Stock Ratio
-    def _count_weight(self):
+    def _sum_weight(self):
         # Initialize an empty dictionary for the total sums
-        total_sums = {}
+        sums_weight = {}
         # Loop through each dictionary in the list
         for entry in self.prob.final_solution_patterns:
             # count = entry['count']
             cuts = entry['cut_w']
-            
             # Loop through each key in the cuts dictionary
             for key, value in cuts.items():
                 # If the key is not already in the total_sums dictionary, initialize it to 0
-                if key not in total_sums:
-                    total_sums[key] = 0
+                if key not in sums_weight:
+                    sums_weight[key] = 0
                 # Add the product of count and value to the corresponding key in the total_sums dictionary
-                total_sums[key] += round(value,2)
-        return total_sums
+                sums_weight[key] += round(value,3)
+                
+        return sums_weight
 
     def _calculate_div_ratio(self,s):
         """
@@ -182,8 +195,36 @@ class CuttingStocks:
                 self.div_ratio =  (3-i) + 2
                 break
     
+    def _remark_div_ratio_by_mm_weight(self,w, c, min, max):
+        """_summary_
+
+        Args:
+            w (_type_): total cut weight of f in F
+            c (_type_): line cut of f in F
+            min (_type_): min weight of f in F
+            max (_type_): max weight of f in F
+
+        Returns:
+            remark_note : 
+        """
+        min_value = float(min) if min else 0.0
+        max_value = float(max) if max else 0.0
+        if float(c) == 0:
+            rnote = ""
+        elif min!= "" and float(w)/float(c) <= min_value:
+            rnote = "nho hon min weight"
+        elif float(w)/float(c) <= max_value and max != "":
+            rnote = ""
+        elif min == "" and max == "":
+            rnote = ""
+        else:
+            div_ratio = math.ceil(w/(c*max))
+            rnote = f"chat {div_ratio} phan"
+        return rnote
+        
     def _calculate_finish_after_cut_by_mm_weight(self):
         # for all orginal finish, not only dual
+        # ap dung TH chat 1 kieu cho tat ca cac FG code 
         if self.prob.probstt == "Solved":
             for i, sol in enumerate(self.prob.final_solution_patterns):
                 s = self.prob.final_solution_patterns[i]['stock'] # stock cut
@@ -199,24 +240,40 @@ class CuttingStocks:
                 self.prob.final_solution_patterns[i].update({"remark": rmark_note})
             # Total Cuts
             total_sums = self._count_weight()
-            self.over_cut = {k: round(total_sums[k] - self.F.finish[k]['need_cut'],3) for k in total_sums.keys()} # can tinh overcut cho moi finish, du ko duoc cat trong list dual finish
+            for k in self.F.finish.keys():
+                try:
+                    self.over_cut[k] = round(total_sums[k] - self.F.finish[k]['need_cut'],3) 
+                except KeyError:
+                    self.over_cut[k] = - round(self.F.finish[k]['need_cut'],3) 
+                    # can tinh overcut cho moi finish, du ko duoc cat trong list dual finish
         else: pass # ko co nghiem trong lan chay truoc do
     
     def _calculate_finish_after_cut(self):
         # for all orginal finish, not only dual
         if self.prob.probstt == "Solved":
             for i, sol in enumerate(self.prob.final_solution_patterns):
-                s = self.prob.final_solution_patterns[i]['stock'] # stock cut
-                # self._calculate_div_ratio(s)
+                s = self.prob.final_solution_patterns[i]['stock'] # stock taken
                 cuts_dict = self.prob.final_solution_patterns[i]['cuts']
-                weight_dict = {f: round(cuts_dict[f] * self.F.finish[f]['width'] * self.prob.start_stocks[s]['weight']/self.prob.start_stocks[s]['width'],3) for f in cuts_dict.keys()}
+                unit_weight = self.prob.start_stocks[s]['weight']/self.prob.start_stocks[s]['width']
+                weight_dict = {f: round(cuts_dict[f] * self.F.finish[f]['width'] * unit_weight,3) for f in cuts_dict.keys()}
 
+                rmark_dict = {f: self._remark_div_ratio_by_mm_weight(weight_dict[f],cuts_dict[f],
+                                                                    self.F.finish[f]['Min_weight'],
+                                                                    self.F.finish[f]['Max_weight']) for f in cuts_dict.keys()}
+                
                 self.prob.final_solution_patterns[i] = {**sol, 
                                                         "cut_w": weight_dict,
+                                                        "remarks": rmark_dict
                                                         }
+                
             # Total Cuts
-            total_sums = self._count_weight()
-            self.over_cut = {k: round(total_sums[k] - self.F.finish[k]['need_cut'],3) for k in total_sums.keys()} # can tinh overcut cho moi finish, du ko duoc cat trong list dual finish
+            sums_weight = self._sum_weight()
+            for k in self.F.finish.keys():
+                try:
+                    self.over_cut[k] = round(sums_weight[k] - self.F.finish[k]['need_cut'],3) 
+                except KeyError:
+                    self.over_cut[k] = - round(self.F.finish[k]['need_cut'],3) 
+            # self.over_cut = {k: round(sums_weight[k] - self.F.finish[k]['need_cut'],3) for k in sums_weight.keys()} # can tinh overcut cho moi finish, du ko duoc cat trong list dual finish
         else: pass # ko co nghiem
             
     def solve_prob(self, solver):
@@ -229,16 +286,23 @@ class CuttingStocks:
 
     def _check_remain_stocks(self):
         # Extract stocks from final_solution_patterns
-        taken_stocks = {p['stock'] for p in self.prob.final_solution_patterns} 
-        # Update need cut
-        for f, f_info in self.prob.dual_finish.items():
-            if self.over_cut[f] < 0:
-                f_info['need_cut'] = - self.over_cut[f] #overcut < 0 and needcut > 0
-            else: 
-                f_info['need_cut'] = 0
-                f_info['upper_bound'] += -self.over_cut[f]
+        if not self.prob.final_solution_patterns:
+            taken_stocks = {}
+        else    :
+            taken_stocks = {p['stock'] for p in self.prob.final_solution_patterns} 
+
+        try:
+            # Update need cut
+            for f, f_info in self.prob.dual_finish.items():
+                if self.over_cut[f] < 0:
+                    f_info['need_cut'] = - self.over_cut[f] #overcut < 0 and needcut > 0
+                else: 
+                    f_info['need_cut'] = 0
+                    f_info['upper_bound'] += -self.over_cut[f]
+        except KeyError: # no solution - > no overcut -> key error
+            pass
                 
-        # Find remained_stocks dictionary
+        # Find remained_stocks dictionary - 
         self.remained_stocks = {
             s: {**s_info}
             for s, s_info in self.prob.start_stocks.items()
@@ -256,6 +320,8 @@ class CuttingStocks:
             return True
         
     def refresh_stocks(self):
+        # Update remained stock after cut
+        self._check_remain_stocks()
         self.prob.dual_stocks = copy.deepcopy(self.remained_stocks)
 
     def refresh_finish(self, over_cut):
@@ -276,9 +342,16 @@ class CuttingStocks:
         re_finish = {k: v for k, v in self.prob.dual_finish.items() if v['need_cut']/(v['average FC']+1) < -0.02}
         if len(re_finish) >= 3:
             pass
+        elif len({k: v for k, v in self.prob.dual_finish.items() if v['need_cut']/(v['average FC']+1) <= 0}) >= 3:
+            re_finish = {k: v for k, v in self.prob.dual_finish.items() if v['need_cut']/(v['average FC']+1) <= 0}
         else:
             re_finish = {k: v for k, v in self.prob.dual_finish.items() if v['need_cut']/(v['average FC']+1) < 0.3}
         
         # update finish
         self.prob.dual_finish = copy.deepcopy(re_finish)
-        
+    
+    def update_upperbound(self, bound):
+        self.prob.dual_finish = {f: {**f_info, 
+                                     "upper_bound": f_info['need_cut'] + f_info['average FC']* bound} 
+                                 for f, f_info in self.prob.dual_finish.items()}
+          
