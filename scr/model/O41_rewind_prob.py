@@ -3,10 +3,9 @@ import copy
 import statistics
 from pulp import LpMaximize, LpProblem, LpVariable, lpSum, value, LpStatus
 # from model import DualProblem
-from .dual_solver_test import testDualProblem
+from .O41_dual_solver import DualProblem
     
-class RewindProb(testDualProblem):
-  
+class RewindProb(DualProblem):
   # have condition to decide proportion of orginal MC to cut # apply for many FG and 1 stock MC
   # then move to the linear problem -> to decide the trim loss only
   def __init__(self, finish, stock):
