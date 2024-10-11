@@ -15,11 +15,6 @@ import re
 import os
 
 # HELPERS
-def clean_filename(filename):
-    # Define a regular expression pattern for allowed characters (letters, numbers, dots, underscores, and dashes)
-    # Replace any character not in this set with an underscore
-    return re.sub(r'[\\/:"*?<>|]+', '_', filename)
-
 def create_warehouse_order(finish):
     finish_dict_value = dict(list(finish.values())[0])
     coil_center_1st = finish_dict_value['1st Priority']
@@ -36,6 +31,10 @@ def create_warehouse_order(finish):
     warehouse_order = [coil_center_1st,coil_center_2nd,coil_center_3rd]
     return warehouse_order
 
+def filter_stocks_by_wh(data, warehouse_order):
+    # Filter and order the dictionary
+    return {k: v for w in warehouse_order for k, v in data.items() if v['warehouse'] == w}
+
 def partial_stocks(stocks,allowed_cut_weight):
     stocks = dict(sorted(stocks.items(), key=lambda x: (x[1]['weight'], x[1]['receiving_date']), reverse= True))
     partial_stocks = {}
@@ -43,7 +42,10 @@ def partial_stocks(stocks,allowed_cut_weight):
     for s, sinfo in stocks.items():
         accumulated_weight += sinfo['weight']
         if allowed_cut_weight * 1.1 <= accumulated_weight:
-            break
+            if len(partial_stocks) ==0:
+                partial_stocks[s] = {**sinfo}
+            else:
+                break
         else:
             partial_stocks[s] = {**sinfo} 
     return partial_stocks
@@ -60,10 +62,6 @@ def partial_finish(finish, stock_ratio):
             partial_finish[f] = finfo.copy()
     return partial_finish
 
-def filter_stocks_by_wh(data, warehouse_order):
-    # Filter and order the dictionary
-    return {k: v for w in warehouse_order for k, v in data.items() if v['warehouse'] == w}
-
 def refresh_finish(finish, over_cut):
     # Update need cut
     for f in over_cut.keys(): # neu f khong co trong over_cut thi tuc la finish[f] chua duoc xu ly
@@ -79,30 +77,12 @@ def refresh_finish(finish, over_cut):
                 pass
             
     # Take only finish with negative need_cut
-    re_finish = {k: v for k, v in finish.items() if v['need_cut']/(v['average FC']+1) < -0.01}
+    re_finish = {k: v for k, v in finish.items() if v['need_cut']/(v['average FC']+1) < -0.02}
     if len(re_finish) >= 3:
         return re_finish
     else:
         re_finish = {k: v for k, v in finish.items() if v['need_cut']/(v['average FC']+1) < 0.3}
         return re_finish
-
-def save_to_json(filename, data):
-    with open(filename, 'w') as solution_file:
-        json.dump(data, solution_file, indent=2)
-
-def transform_to_df(data):
-    # Flatten the data
-    flattened_data = []
-    for item in data:
-        common_data = {k: v for k, v in item.items() if k not in ['count','cuts', "cut_w"]}
-        for cut, line in item['cuts'].items():
-            if line > 0:
-                flattened_item = {**common_data, 'cuts': cut, 'lines': line, 'cut_weight': item['cut_w'][cut]}
-                flattened_data.append(flattened_item)
-
-    # Create DataFrame
-    df = pd.DataFrame(flattened_data)
-    return df
 
 def refresh_stocks(taken_stocks,stocks):
     if not taken_stocks:
@@ -136,20 +116,41 @@ def refresh_stocks(taken_stocks,stocks):
     return remained_stocks
 
 def average_3m_fc(finish):
-    average_3fc = {
-                key: (
-                    sum(v for v in (finish[key]['fc1'], finish[key]['fc2'], finish[key]['fc3']) if not math.isnan(v)) /
-                    sum(1 for v in (finish[key]['fc1'], finish[key]['fc2'], finish[key]['fc3']) if not math.isnan(v))
-                ) if any(not math.isnan(v) for v in (finish[key]['fc1'], finish[key]['fc2'], finish[key]['fc3'])) else float('nan')
-                for key in finish.keys()
-            }
+    average_3fc = {f: f_info['average FC'] for f, f_info in finish.items()}
     return average_3fc
-        
+
+# Save File
+def save_to_json(filename, data):
+    with open(filename, 'w') as solution_file:
+        json.dump(data, solution_file, indent=2)
+
+def transform_to_df(data):
+    # Flatten the data
+    flattened_data = []
+    for item in data:
+        common_data = {k: v for k, v in item.items() if k not in ['count','cuts', "cut_w", "remark"]}
+        for cut, line in item['cuts'].items():
+            if line > 0:
+                flattened_item = {**common_data, 'cuts': cut, 'lines': line,
+                                  'cut_weight': item['cut_w'][cut],
+                                  'remarks': item['remarks'][cut]}
+                flattened_data.append(flattened_item)
+
+    # Create DataFrame
+    df = pd.DataFrame(flattened_data)
+    return df
+
+def clean_filename(filename):
+    # Define a regular expression pattern for allowed characters (letters, numbers, dots, underscores, and dashes)
+    # Replace any character not in this set with an underscore
+    return re.sub(r'[\\/:"*?<>|]+', '_', filename)
+
+# Control flow        
 def multistocks_cut(logger, finish, stocks, PARAMS, margin_df, prob_type):
     #to cut all possible stock with finish demand upto upperbound
-    bound = 0.75
+    bound = bound_step
     steel = CuttingStocks(finish, stocks, PARAMS)
-    steel.update(bound = bound, margin_df=margin_df)
+    steel.update(bound = bound, margin_df = margin_df)
     steel.check_division_stocks()
     st = {k for k in steel.S.stocks.keys()}
     logger.info(f"->>> After dividing stocks: {st}")
@@ -167,13 +168,14 @@ def multistocks_cut(logger, finish, stocks, PARAMS, margin_df, prob_type):
             cond = False
             break #loop while
         elif ins_bound and bound < max_bound: # empty solution and can increase bound
-            bound += 0.5
+            bound += bound_step
             try: #  only able to refresh if len = last solution
                 steel.refresh_stocks()
             except AttributeError: # empty solution in previous run
                 pass
+            finish_k = {k for k in steel.prob.dual_finish.keys()}
+            logger.info(f" No solution/or limited optimals for {finish_k}, increase to {bound} bound")
             steel.update_upperbound(bound)
-            logger.info(f" No solution/or limited optimals, increase to {bound} bound")
             cond = True #continue to try new bound
         else: # have solution
             logger.warning(f"Status {stt}")
@@ -190,7 +192,7 @@ def multistocks_cut(logger, finish, stocks, PARAMS, margin_df, prob_type):
             if len_og_finish <= 3:
                 has_negative_over_cut = sum(value < -0.02 for value in over_cut_rate.values()) > 0
             else:
-                has_negative_over_cut = sum(value < -0.02 for value in over_cut_rate.values()) > 1
+                has_negative_over_cut = sum(value < -0.02 for value in over_cut_rate.values()) >= 1
             # logger.info(f"Have 2 neg need cut stock ratio < - 2% {has_negative_over_cut}")
             cond = has_negative_over_cut and cont_cut
             if cond:
@@ -231,11 +233,11 @@ def multistocks_cut(logger, finish, stocks, PARAMS, margin_df, prob_type):
         return final_solution_patterns, over_cut, taken_stocks
     
 today = datetime.datetime.today()
-formatted_date = today.strftime("%d-%m-%y")
+formatted_date = today.strftime("%y-%m-%d")
 
 # START
 logger = logging.getLogger(__name__)
-logging.basicConfig(filename=f'scr/log/CBC-{formatted_date}.log', level=logging.INFO, 
+logging.basicConfig(filename=f'scr/log/run-CBC-{formatted_date}.log', level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 # LOAD CONFIG & DATA
@@ -244,11 +246,13 @@ global no_warehouse
 global step
 global mc_ratio
 global stock_ratio
+global bound_step
 
 max_bound = float(os.getenv('MAX_BOUND', '3.0'))
 no_warehouse = float(os.getenv('NO_WAREHOUSE', '3.0'))
 step = float(os.getenv('STEP', '0.5'))
 mc_ratio = float(os.getenv('MC_RATIO', '2.5'))
+bound_step = float(os.getenv('BOUND_STEP', '0.75'))
 added_stock_ratio = float(os.getenv('ST_RATIO', '-0.02'))
 
 margin_df = pd.read_csv('scr/model_config/min_margin.csv')
@@ -276,7 +280,10 @@ total_solution_json = {"date": formatted_date,
                         }
 
 # RUN JOB-LIST
-i = 3
+i = 7 # no solution
+# i = 12 16 17 18 # no stock in priority
+# i= 24 chua cat het duoc fg codes
+# i = 24
 # mc_ratio = 2
 # added_stock_ratio = 0.10
 
@@ -291,7 +298,7 @@ batch = PARAMS['code']
 og_stocks = stocks_list['param_finish'][param_set]['stocks'] # Original stocks available - phan biet vs stocks se dung cho tung customer
 # Take stock as mc_ratio
 total_need_cut = round(job_list['jobs'][i]['total_need_cut'],2)
-stocks_to_use = partial_stocks(og_stocks, total_need_cut*mc_ratio)
+stocks_to_use = partial_stocks(og_stocks, total_need_cut * mc_ratio)
     
 # START
 logger.info("------------------------------------------------")
