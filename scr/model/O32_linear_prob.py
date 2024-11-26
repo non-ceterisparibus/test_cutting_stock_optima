@@ -41,7 +41,7 @@ class LinearProblem:
     # Create the problem
     prob = LpProblem("CuttingOneStock", LpMaximize)
 
-    # Data and parameters
+    # Data 
     F = list(self.finish.keys())
     width_s_min_margin = self.stock[self.skey]['width'] - self.stock[self.skey]['min_margin']
     width_f = {f: self.finish[f]["width"] for f in self.finish.keys()}
@@ -75,10 +75,10 @@ class LinearProblem:
     self.optimize_cut()
   
 class CuttingOneStock:
-  def __init__(self, finish, stock, PARAMS):
+  def __init__(self, finish, stock, MATERIALPROPS):
       """
       -- Operator for type One Stock ONLY --
-      PARAMS: {
+      MATERIALPROPS: {
           "spec_name": "JSH270C-PO",
           "type": "Carbon",
           "thickness": 3.0,
@@ -93,8 +93,8 @@ class CuttingOneStock:
                 "F290": {...}
                 }
       """
-      self.S = StockObjects(stock, PARAMS)
-      self.F = FinishObjects(finish, PARAMS)
+      self.S = StockObjects(stock, MATERIALPROPS)
+      self.F = FinishObjects(finish, MATERIALPROPS)
       self.over_cut = None
 
   def update(self, margin_df):
@@ -125,7 +125,7 @@ if __name__ == "__main__":
   margin_df = pd.read_csv('scr/model_config/min_margin.csv')
   spec_type = pd.read_csv('scr/model_config/spec_type.csv')
   
-  PARAM={
+  MATERIALPROP={
             "spec_name": "JSH590R-PO",
             "type": "Carbon",
             "thickness": 2.0,
@@ -195,7 +195,7 @@ if __name__ == "__main__":
          "Max_weight": 500.0
       }  
   }
-  steel = CuttingOneStock(finish,stock,PARAM)
+  steel = CuttingOneStock(finish,stock,MATERIALPROP)
   steel.update(margin_df)
   # print(steel.S.stocks)
   steel.set_prob()

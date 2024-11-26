@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import math
 import os
+import copy
 
 # INPUT & CONFIG
 margin_df = pd.read_csv('scr/model_config/min_margin.csv')
@@ -19,12 +20,12 @@ class FinishObjects:
     "1st Priority", "2nd Priority", "3rd Priority",
     "Min_weight", "Max_weight"}
     """
-    def __init__(self, finish, PARAMS):
-        self.spec = PARAMS['spec_name']
-        self.thickness = PARAMS['thickness']
-        self.maker = PARAMS['maker']
-        self.type = PARAMS['type']
-        self.finish =  finish
+    def __init__(self, finish, MATERIALPROPS):
+        self.spec = MATERIALPROPS['spec_name']
+        self.thickness = MATERIALPROPS['thickness']
+        self.maker = MATERIALPROPS['maker']
+        self.type = MATERIALPROPS['type']
+        self.finish =  copy.deepcopy(finish)
         
     def reverse_need_cut_sign(self):
         for _, f_info in self.finish.items():
@@ -34,6 +35,7 @@ class FinishObjects:
                 f_info['need_cut'] = 0
                 
     def _average_forecast_po(self):
+        # dieu chinh so forecast neu ko co forecast ma co needcut
         average_fc = {
                 f: (
                     sum(v for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) 
@@ -46,8 +48,7 @@ class FinishObjects:
                 for f, f_info in self.finish.items()
             }
         self.finish = {f: {**f_info, "average FC": average_fc[f] if average_fc[f] > 0 else f_info['need_cut'] } for f, f_info in self.finish.items()}
-        
-                
+                       
     def _calculate_upper_bounds(self,bound):
         # Need_cut doi thanh so duong
         self.finish = {f: {**f_info, "upper_bound": f_info['need_cut'] + f_info['average FC']* bound} for f, f_info in self.finish.items()}
@@ -65,12 +66,12 @@ class StockObjects:
     SET UP STOCKS
     Stock: {receiving_date, width, weight, status, remark}
     """
-    def __init__(self,stocks, PARAMS):
-        self.spec = PARAMS['spec_name']
-        self.thickness = PARAMS['thickness']
-        self.maker = PARAMS['maker']
-        self.type = PARAMS['type']
-        self.stocks = stocks
+    def __init__(self,stocks, MATERIALPROPS):
+        self.spec = MATERIALPROPS['spec_name']
+        self.thickness = MATERIALPROPS['thickness']
+        self.maker = MATERIALPROPS['maker']
+        self.type = MATERIALPROPS['type']
+        self.stocks = copy.deepcopy(stocks)
         
     def update_min_margin(self, margin_df):
         for s, s_info in self.stocks.items():
