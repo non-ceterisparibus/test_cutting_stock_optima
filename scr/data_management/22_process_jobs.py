@@ -8,7 +8,9 @@ import os
 # INPUT
 fin_file_path = os.getenv('FIN_DF_PATH')
 mc_file_path = os.getenv('MC_DF_PATH')
-stock_ratio_input = os.getenv('STOCK_RATIO_INPUT')
+stock_ratio_default = float(os.getenv('STOCK_RATIO_DEFAULT', '0.5'))
+
+# DATA
 spec_type_df = pd.read_csv('scr/model_config/spec_type.csv')
 
 # SETUP
@@ -26,6 +28,7 @@ forecast_columns = ["fc1", "fc2", "fc3"]
 stock_key = "inventory_id"
 stock_columns = ['receiving_date',"width", "weight",'warehouse',
                  "status",'remark']
+
 def div(numerator, denominator):
     def division_operation(row):
         if row[denominator] == 0:
@@ -42,14 +45,16 @@ def div(numerator, denominator):
 def create_finish_dict(finish_df):
   
     finish_df.loc[:, 'stock_ratio'] = finish_df.apply(div('need_cut', 'average FC'), axis=1)
-    can_cut_df = finish_df[finish_df['stock_ratio'] < float(stock_ratio_input)] # chon ca nhung need cut ko am
+    can_cut_df = finish_df[finish_df['stock_ratio'] < float(stock_ratio_default)] # chon ca nhung need cut ko am
     
     # Width - Decreasing// need_cut - Descreasing // Average FC - Increasing
     sorted_df = can_cut_df.sort_values(by=['need_cut','width'], ascending=[True,False]) # need cut van dang am
     # sorted_df = can_cut_df.sort_values(by=['width','need_cut'], ascending=[False,True,True]) # need cut van dang am
     
     # Fill NaN values in specific columns with the average, ignoring NaN
-    sorted_df[forecast_columns] = sorted_df[forecast_columns].apply(lambda x: x.fillna(x.mean()), axis=1)
+    sorted_df[finish_columns] = sorted_df[finish_columns].fillna("")
+    # sorted_df[forecast_columns] = sorted_df[forecast_columns].apply(lambda x: x.fillna(x.mean()), axis=1)
+    sorted_df[forecast_columns] = sorted_df[forecast_columns].fillna(0)
 
     # Initialize result dictionary - take time if the list long
     finish = {f"F{int(row[finish_key])}": {column: row[column] for 
@@ -70,27 +75,27 @@ def create_stocks_dict(stock_df):
    
     return stocks
 
-def filter_by_params(file_path,params):
+def filter_by_materialprops(file_path, materialprops):
     # Read the Excel file into a DataFrame
     df = pd.read_excel(file_path)
 
     filtered_df = df[
-                    (df["spec_name"] == params["spec_name"]) & 
-                    (df["thickness"] == params["thickness"]) &
-                    (df["maker"] == params["maker"])
+                    (df["spec_name"] == materialprops["spec_name"]) & 
+                    (df["thickness"] == materialprops["thickness"]) &
+                    (df["maker"] == materialprops["maker"])
                     ]
     return filtered_df
 
-def filter_finish_by_params(file_path,params):
+def filter_finish_by_materialprops(file_path, materialprops):
     # Read the Excel file into a DataFrame
     df = pd.read_excel(file_path)
 
     filtered_df = df[
-                    (df["customer_name"] == params["customer"]) & 
-                    #  (df["customer"] == params["customer"]) &
-                    (df["spec_name"] == params["spec_name"]) & 
-                    (df["thickness"] == params["thickness"]) &
-                    (df["maker"] == params["maker"])
+                    (df["customer_name"] == materialprops["customer"]) & 
+                    #  (df["customer"] == materialprops["customer"]) &
+                    (df["spec_name"] == materialprops["spec_name"]) & 
+                    (df["thickness"] == materialprops["thickness"]) &
+                    (df["maker"] == materialprops["maker"])
                     ]
     return filtered_df
 
@@ -105,32 +110,32 @@ def find_spec_type(spec,spec_type_df):
 if __name__ == "__main__":
     
     today = datetime.datetime.today()
-    formatted_date = today.strftime("%d-%m-%y")
+    formatted_date = today.strftime("%y-%m-%d")
 
     finish_list = {
         'date': formatted_date,
-        'param_finish':{}
+        'materialprop_finish':{}
     }
     stocks_list = {
         'date': formatted_date,
-        'param_finish':{}
+        'materialprop_stock':{}
     }
 
     with open(f'scr/jobs_by_day/job-list-{formatted_date}.json', 'r') as file:
         job_list = json.load(file)
     
-    print(f"use stock ratio {stock_ratio_input}")
+    # print(f"use stock ratio {stock_ratio_default}")
 
     for job in job_list['jobs']: 
         # loop to create stock list
-        PARAMS = {}
-        param = job['param']
-        param_split = param.split("+")
-        maker = param_split[0]
-        spec = param_split[1]
-        thickness = round(float(param_split[2]),2)
+        MATERIALPROPS = {}
+        materialprop = job['materialprop']
+        materialprop_split = materialprop.split("+")
+        maker = materialprop_split[0]
+        spec = materialprop_split[1]
+        thickness = round(float(materialprop_split[2]),2)
 
-        PARAMS = {
+        MATERIALPROPS = {
                     "spec_name" :spec,
                     "type"      : find_spec_type(spec,spec_type_df),
                     "thickness" :thickness,
@@ -138,14 +143,14 @@ if __name__ == "__main__":
                     "code"      : maker + " " + spec  + " " + str(thickness)
                     }
 
-        mc_df = filter_by_params(mc_file_path, PARAMS)
+        mc_df = filter_by_materialprops(mc_file_path, MATERIALPROPS)
         stocks = create_stocks_dict(mc_df)
 
-        stocks_list['param_finish'][param] = {'param': PARAMS, 'stocks': stocks}
-        finish_list['param_finish'][param] = {'param': PARAMS, 'customer':[]}
+        stocks_list['materialprop_stock'][materialprop] = {'materialprop': MATERIALPROPS, 'stocks': stocks}
+        finish_list['materialprop_finish'][materialprop] = {'materialprop': MATERIALPROPS, 'customer':[]}
         for cust, value in job['tasks'].items():
-            # loop to create finish list accordingly with params and customer
-            PARAMS1 = {
+            # loop to create finish list accordingly with materialprop and customer
+            MATERIALPROPS1 = {
                     'customer'  :cust,
                     "spec_name" :spec,
                     "type"      : find_spec_type(spec,spec_type_df),
@@ -153,9 +158,9 @@ if __name__ == "__main__":
                     "maker"     : maker,
                     "code"      : maker + " " + spec  + " " + str(thickness)
                     }
-            finish_df = filter_finish_by_params(fin_file_path, PARAMS1)
+            finish_df = filter_finish_by_materialprops(fin_file_path, MATERIALPROPS1)
             finish = create_finish_dict(finish_df)
-            finish_list['param_finish'][param]['customer'].append({cust: finish})
+            finish_list['materialprop_finish'][materialprop]['customer'].append({cust: finish})
         
     with open(f'scr/jobs_by_day/stocks-list-{formatted_date}.json', 'w') as stocks_file:
         json.dump(stocks_list, stocks_file, indent=3)
