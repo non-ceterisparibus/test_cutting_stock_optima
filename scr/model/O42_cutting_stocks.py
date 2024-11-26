@@ -22,10 +22,10 @@ max_coil_weight = float(os.getenv('MAX_WEIGHT_MC_DIV', '8000'))
 
 # DEFINE PROBLEM
 class CuttingStocks:
-    def __init__(self, finish, stocks, PARAMS):
+    def __init__(self, finish, stocks, MATERIALPROPS):
         """
         -- Input --
-        PARAMS: {
+        MATERIALPROPS: {
             "spec_name": "JSH270C-PO",
             "type": "Carbon",
             "thickness": 3.0,
@@ -43,14 +43,14 @@ class CuttingStocks:
                   "F290": {...}
                   }
         """
-        self.S = StockObjects(stocks, PARAMS)
-        self.F = FinishObjects(finish, PARAMS)
+        self.S = copy.deepcopy(StockObjects(stocks, MATERIALPROPS))
+        self.F = copy.deepcopy(FinishObjects(finish, MATERIALPROPS))
         self.over_cut = {}
 
     def update(self, bound, margin_df):
-        self.F.reverse_need_cut_sign()
-        self.F.update_bound(bound)
         self.S.update_min_margin(margin_df)
+        self.F.reverse_need_cut_sign() #from negative to positive
+        self.F.update_bound(bound)
      
     def _stock_weight_threshold_by_width(self, min_w, max_w):
         """_Create a diction of min and weight of coil that will produce same div of FG_
@@ -236,6 +236,7 @@ class CuttingStocks:
                 else: rmark_note = f"chat {self.div_ratio} phan"
                 self.prob.final_solution_patterns[i] = {**sol, 
                                                         "cut_w": weight_dict,
+                                                        "cut_width": {f: self.F.finish[f]['width'] for f in cuts_dict.keys()}
                                                         }
                 self.prob.final_solution_patterns[i].update({"remark": rmark_note})
             # Total Cuts
@@ -263,6 +264,7 @@ class CuttingStocks:
                 
                 self.prob.final_solution_patterns[i] = {**sol, 
                                                         "cut_w": weight_dict,
+                                                        "cut_width": {f: self.F.finish[f]['width'] for f in cuts_dict.keys()},
                                                         "remarks": rmark_dict
                                                         }
                 

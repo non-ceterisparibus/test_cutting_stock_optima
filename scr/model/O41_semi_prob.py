@@ -8,9 +8,9 @@ from model import FinishObjects, StockObjects
 
 # DEFINE PROBLEM
 class SemiProb():
-  def __init__(self, stocks, finish,PARAMS):
-    self.S = StockObjects(stocks, PARAMS)
-    self.F = FinishObjects(finish, PARAMS)
+  def __init__(self, stocks, finish,MATERIALPROPS):
+    self.S = StockObjects(stocks, MATERIALPROPS)
+    self.F = FinishObjects(finish, MATERIALPROPS)
     self.skey = list(stocks.keys())[0]
     self.fkey = list(finish.keys())[0]
     self.taken_stocks ={}
@@ -126,7 +126,7 @@ class SemiProb():
         self.taken_stocks = {}
     
 if __name__ == "__main__":
-  PARAMS = {
+  MATERIALPROPS = {
             "spec_name": "JSC270C-SD",
             "type": "Carbon",
             "thickness": 2.0,
@@ -161,7 +161,7 @@ if __name__ == "__main__":
   margin_df = pd.read_csv('scr/model_config/min_margin.csv')
   spec_type = pd.read_csv('scr/model_config/spec_type.csv')
   
-  steel = SemiProb(stocks, finish, PARAMS)
+  steel = SemiProb(stocks, finish, MATERIALPROPS)
   steel.update(margin_df)
   steel.cut_n_create_new_stock_set()
   print(f"cuts: {steel.cut_dict}")
