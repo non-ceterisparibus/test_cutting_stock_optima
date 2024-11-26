@@ -111,7 +111,7 @@ class DualProblem:
         prob += lpSum(ap[f] * self.dual_finish[f]["width"] for f in self.dual_finish.keys()) >= 0.96 * width_s , "StockWidth"
 
         # Solve the problem
-        prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs'],timeLimit=60))
+        prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs']))
 
         marg_cost = value(prob.objective)
         pattern = {f: int(ap[f].varValue) for f in self.dual_finish.keys()}
@@ -179,7 +179,7 @@ class DualProblem:
                                         'lines': cuts_dict[f]} 
                                        for f in cuts_dict.keys()] 
                            }
-        except ValueError:
+        except ValueError or TypeError:
             new_pattern = None
         return new_pattern
     
@@ -262,8 +262,8 @@ class DualProblem:
 
         # PARAMETER - unit weight of stock
         c = {p: self.chosen_stocks[pattern["stock"]]["weight"]/self.chosen_stocks[pattern["stock"]]["width"] for p, pattern in enumerate(self.filtered_patterns)}
-        # s = {p: self.chosen_stocks[pattern["stock"]]["weight"] for p, pattern in enumerate(self.filtered_patterns)}
-        # sp = {(s, p): 1 if self.filtered_patterns[p]["stock"]== s else 0 for p in P for s in S}
+        s = {p: self.chosen_stocks[pattern["stock"]]["weight"] for p, pattern in enumerate(self.filtered_patterns)}
+        sp = {(s, p): 1 if self.filtered_patterns[p]["stock"]== s else 0 for p in P for s in S}
         
         # Define VARIABLES
         x = {p: LpVariable(f"X_{p}",lowBound=0,upBound=1,cat='Integer') for p in P}
@@ -272,11 +272,10 @@ class DualProblem:
         prob = LpProblem("PatternCuttingProblem", LpMinimize)
         
         # Objective function: MINIMIZE total stock use
-        prob += lpSum(x[p] for p in P), "TotalStockUse"
-
-        # prob += LpAffineExpression([
-        #     (x[p], s[p]) for p in P
-        # ])
+        # prob += lpSum(x[p] for p in P), "TotalStockUse"
+        prob += LpAffineExpression([
+            (x[p], s[p]) for p in P
+        ])
 
         # Constraints: meet demand for each finished part
         for f in self.dual_finish:
@@ -289,6 +288,13 @@ class DualProblem:
                 lpSum(self.filtered_patterns[p]['cuts'][f] * self.dual_finish[f]['width'] * c[p] * x[p]
                           for p in range(len(self.filtered_patterns))) <= self.dual_finish[f]['upper_bound'], 
                 f"UpperDemandWeight{f}"
+            )
+        
+        # Contraint: for each stock choose one only pattern
+        for s in S:
+            prob += (
+                lpSum(x[p] * sp[s,p] for p in range(len(self.filtered_patterns))) <= 1,
+                f"PatternStock{s}"
             )
         
         # Solve the problem GLPL - IBM solver
@@ -315,7 +321,7 @@ class DualProblem:
         
     def cbc_optimize_cut(self):
         # Sets
-        S = list(self.chosen_stocks.keys())
+        # S = list(self.chosen_stocks.keys())
         P = list(range(len(self.filtered_patterns)))
 
         # PARAMETER - unit weight of stock
@@ -329,9 +335,7 @@ class DualProblem:
         # Create a LP minimization problem
         prob = LpProblem("PatternCuttingProblem", LpMinimize)
         
-        # Objective function: MINIMIZE total stock use
-        # prob += lpSum(x[p] for p in P), "TotalStockUse"
-        
+        # Objective function: MINIMIZE total stock use considering stock weight    
         prob += LpAffineExpression([
             (x[p], s[p]) for p in P
         ])
@@ -348,9 +352,9 @@ class DualProblem:
                           for p in range(len(self.filtered_patterns))) <= self.dual_finish[f]['upper_bound'], 
                 f"UpperDemandWeight{f}"
             )
-        # Solve the problem GLPL - IBM solver
+        
+        # Solve the problem CBC - Default solver
         prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs'], timeLimit=60))
-        print("solver CBC")
         
         try: # Extract results
             solution = [
@@ -407,7 +411,7 @@ class DualProblem:
             else:
                 take_stock = current_stock
                 self.final_solution_patterns.append(solution_pattern)
-                
+        
     def run(self, solver):
         #Phase 1
         self.create_finish_demand_by_line_w_naive_pattern()
