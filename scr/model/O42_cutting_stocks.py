@@ -12,13 +12,14 @@ from model import DualProblem
 global max_coil_weight
 global customer_group 
 
+# Group to div stock >8000
 customer_gr = os.getenv('CUSTOMER_GR')
 if customer_gr:
     customer_group = customer_gr.split(',')
 else:
-    customer_group = ['small','medium','medium-big','medium - big']
-    
-max_coil_weight = float(os.getenv('MAX_WEIGHT_MC_DIV', '8000'))
+    customer_group = ['small','small-medium']
+
+max_coil_weight = float(os.getenv('MAX_WEIGHT_MC_DIV', '7000'))
 
 # DEFINE PROBLEM
 class CuttingStocks:
@@ -52,7 +53,7 @@ class CuttingStocks:
         self.F.reverse_need_cut_sign() #from negative to positive
         self.F.update_bound(bound)
      
-    def _stock_weight_threshold_by_width(self, min_w, max_w):
+    def _stock_weight_threshold(self, min_w, max_w):
         """_Create a diction of min and weight of coil that will produce same div of FG_
 
         Args:
@@ -94,7 +95,7 @@ class CuttingStocks:
             for i in range(4):
                 max_t = max_coil_weight * (i+1)
                 max_threshold.append(max_t)
-            self.mm_stock_weight[c_width] = {"min":min_coil_weight, "max": max_threshold}
+            self.mm_stock_weight[c_width] = {"min": min_coil_weight, "max": max_threshold}
 
     def _filter_min_stock(self):
         "Remove MC that too small, 1 line cut [weight] < Min Weight "
@@ -104,44 +105,84 @@ class CuttingStocks:
             filtered_min_stocks = {k: v for k, v in self.S.stocks.items() if (v['width'] == s_width and v['weight'] >= min_w)}
             self.filtered_stocks.update(filtered_min_stocks)
     
-    def _div_stocks(self):
+    def _div_to_small_stocks(self):
         pop_stock_key = []
         for p, v in enumerate(self.check_stock_pos):
             if v == 1:
-                stock_item = list(self.S.stocks.items())[p]
+                stock_item = list(self.filtered_stocks.items())[p]
                 stock_key = stock_item[0]
                 pop_stock_key.append(stock_key)
-                half_wg = self.S.stocks[stock_key]['weight']*0.5
-                for i in range(2):
-                    self.S.stocks[f'{stock_key}-Di{i+1}'] = self.S.stocks[stock_key]
-                    self.S.stocks[f'{stock_key}-Di{i+1}'].update({'weight': half_wg})
-                    self.S.stocks[f'{stock_key}-Di{i+1}'].update({'status':"R:REWIND"})
+                if self.filtered_stocks[stock_key]['weight'] < 10000:
+                    half_wg = self.filtered_stocks[stock_key]['weight']*0.5
+                    for i in range(2):
+                        self.filtered_stocks[f'{stock_key}-Di{i+1}'] = self.filtered_stocks[stock_key]
+                        self.filtered_stocks[f'{stock_key}-Di{i+1}'].update({'weight': half_wg})
+                        self.filtered_stocks[f'{stock_key}-Di{i+1}'].update({'status':"R:REWIND"})
+                else:
+                    third_wg = self.filtered_stocks[stock_key]['weight']/3
+                    for i in range(3):
+                        self.filtered_stocks[f'{stock_key}-Di{i+1}'] = self.filtered_stocks[stock_key]
+                        self.filtered_stocks[f'{stock_key}-Di{i+1}'].update({'weight': third_wg})
+                        self.filtered_stocks[f'{stock_key}-Di{i+1}'].update({'status':"R:REWIND"})
             else:
                 pass
             
         for s in pop_stock_key:
             #### Update lai stock
-                self.S.stocks.pop(s) #remove original stock
+                self.filtered_stocks.pop(s) #remove original stock
+    
+    def _div_medi_stocks(self):
+        pop_stock_key = []
+        for k, v in self.filtered_stocks.items():
+            if self.filtered_stocks[k]['weight'] > self.min_mc_weight*2:
+                pop_stock_key.append(k)
+                half_wg = self.filtered_stocks[k]['weight']*0.5
+                for i in range(2):
+                    self.filtered_stocks[f'{k}-Di{i+1}'] = self.filtered_stocks[k]
+                    self.filtered_stocks[f'{k}-Di{i+1}'].update({'weight': half_wg})
+                    self.filtered_stocks[f'{k}-Di{i+1}'].update({'status':"R:REWIND"})
+            else:
+                pass
             
-    def check_division_stocks(self, customer_group=customer_group, max_coil_weight=max_coil_weight):        
+        for s in pop_stock_key:
+            #### Update lai stock
+                self.filtered_stocks.pop(s) #remove original stock
+     
+    def check_division_stocks(self):
         # Check customer gr
         first_item = list(self.F.finish.items())[0]
-        customer_gr = first_item[1]['Standard']
+        customer_gr = first_item[1]['standard']
         check_cus_gr = [1 if customer_gr == v else 0 for v in customer_group]
         
         # Check stock need to be div
-        self.check_stock_pos = [1 if v['weight']>= max_coil_weight else 0 for _, v in self.S.stocks.items()]
-        if np.sum(check_cus_gr) >= 1 and np.sum(self.check_stock_pos)>=1:
-            self._div_stocks()
+        self.check_stock_pos = [1 if v['weight']>= max_coil_weight else 0 for _, v in self.filtered_stocks.items()]
+        
+        if customer_gr =="medium":
+            self._div_medi_stocks
+        elif np.sum(check_cus_gr) >= 1 and np.sum(self.check_stock_pos)>=1:
+            self._div_to_small_stocks()
+            
         # Sort stock as beginning
-        self.S.stocks = dict(sorted(self.S.stocks.items(), key=lambda x: (x[1]['weight'], x[1]['receiving_date']), reverse= True))
+        self.filtered_stocks = dict(sorted(self.filtered_stocks.items(), key=lambda x: (x[1]['weight'], x[1]['receiving_date']), reverse= True))
  
-    def filter_stocks(self, min_weight = None, max_weight = None):
-        if min_weight == None and max_weight == None: # flow khong consider min va max_weight
+    def filter_stocks_min_max(self, min_weight = None, max_weight = None):
+        if min_weight == None and max_weight == None: 
+            # flow khong consider min va max_weight
             self.filtered_stocks = copy.deepcopy(self.S.stocks)
         else:
-            self._stock_weight_threshold_by_width(min_weight, max_weight)
+            self._stock_weight_threshold(min_weight, max_weight)
             self._filter_min_stock()
+    
+    def filter_stocks(self):
+        first_item = list(self.F.finish.items())[0]
+        customer_gr = first_item[1]['standard']
+        if customer_gr == "medium":
+            self.min_mc_weight = np.percentile(sorted([v['Min_MC_weight'] for _, v in self.F.finish.items()]),75)
+            self.filtered_stocks = {k: v for k, v in self.S.stocks.items() if v['weight'] > self.min_mc_weight}
+        elif customer_gr == "big":
+            self.filtered_stocks = {k: v for k, v in self.S.stocks.items() if v['weight'] > max_coil_weight}
+        else:
+            self.filtered_stocks = copy.deepcopy(self.S.stocks)
 
     def set_prob(self, prob_type):
         if len(self.filtered_stocks) > 0 and prob_type == "Dual":
@@ -235,6 +276,7 @@ class CuttingStocks:
                     rmark_note = "" 
                 else: rmark_note = f"chat {self.div_ratio} phan"
                 self.prob.final_solution_patterns[i] = {**sol, 
+                                                        "customer_short_name":{f: self.F.finish[f]['customer_name'] for f in cuts_dict.keys()},
                                                         "cut_w": weight_dict,
                                                         "cut_width": {f: self.F.finish[f]['width'] for f in cuts_dict.keys()}
                                                         }
@@ -262,7 +304,8 @@ class CuttingStocks:
                                                                     self.F.finish[f]['Min_weight'],
                                                                     self.F.finish[f]['Max_weight']) for f in cuts_dict.keys()}
                 
-                self.prob.final_solution_patterns[i] = {**sol, 
+                self.prob.final_solution_patterns[i] = {**sol,
+                                                        "customer_short_name":{f: self.F.finish[f]['customer_name'] for f in cuts_dict.keys()},
                                                         "cut_w": weight_dict,
                                                         "cut_width": {f: self.F.finish[f]['width'] for f in cuts_dict.keys()},
                                                         "remarks": rmark_dict

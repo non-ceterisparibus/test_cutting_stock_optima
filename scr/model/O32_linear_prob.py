@@ -75,6 +75,7 @@ class LinearProblem:
     self.optimize_cut()
   
 class CuttingOneStock:
+  
   def __init__(self, finish, stock, MATERIALPROPS):
       """
       -- Operator for type One Stock ONLY --

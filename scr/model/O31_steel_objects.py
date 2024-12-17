@@ -15,11 +15,13 @@ max_bound = float(os.getenv('MAX_BOUND', '5.0'))
 class FinishObjects:
     """
     SET UP FINISH
-    finish {"customer_name","width", "need_cut", 
+    finish 
+    {"customer_name","width", "need_cut", 
     "fc1", "fc2", "fc3",
     "1st Priority", "2nd Priority", "3rd Priority",
     "Min_weight", "Max_weight"}
     """
+    
     def __init__(self, finish, MATERIALPROPS):
         self.spec = MATERIALPROPS['spec_name']
         self.thickness = MATERIALPROPS['thickness']
