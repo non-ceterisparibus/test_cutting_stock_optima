@@ -1,18 +1,28 @@
 import pandas as pd
 import numpy as np
+import re
 import copy
+import os
+
 # from model import FinishObjects, StockObjects
 from pulp import LpMaximize, LpMinimize, LpProblem,LpAffineExpression, LpVariable, lpSum, PULP_CBC_CMD, GLPK ,GLPK_CMD, LpBinary, value
 # from ortools.linear_solver import pywraplp
 
+global stop_stock_ratio
+global stop_needcut_wg
+
+stop_stock_ratio = float(os.getenv('STOP_STOCK_RATIO', '-0.03'))
+stop_needcut_wg = -100
+
 # DEFINE PROBLEM
 class DualProblem:
+    
     def __init__(self, finish, stocks):
         self.len_stocks = len(stocks)
-        self.dual_finish = finish
-        self.dual_stocks = stocks
-        self.start_stocks = stocks
-        self.start_finish = finish
+        self.dual_stocks = copy.deepcopy(stocks)
+        self.start_stocks = copy.deepcopy(stocks)
+        self.dual_finish = copy.deepcopy(finish)
+        self.start_finish = copy.deepcopy(finish)
         self.final_solution_patterns = []
 
     # PHASE 1: Naive/ Dual Pattern Generation
@@ -21,6 +31,8 @@ class DualProblem:
         Generates patterns of feasible cuts from stock width to meet specified finish widths.
         """
         self.patterns = []
+        # stock_check = {k for k in self.dual_stocks.keys()}
+        # print(f"stock check bef nai patterns {stock_check}")
         for f in self.dual_finish:
             feasible = False
             for s in self.dual_stocks:
@@ -38,51 +50,39 @@ class DualProblem:
                     cuts_dict[f] = num_cuts
                     trim_loss = self.dual_stocks[s]['width'] - sum([self.dual_finish[f]["width"] * cuts_dict[f] for f in self.dual_finish.keys()])
                     trim_loss_pct = round(trim_loss/self.dual_stocks[s]['width'] * 100, 3)
-                    self.patterns.append({"stock":s, "inventory_id": s,
-                                          'trim_loss':trim_loss, "trim_loss_pct": trim_loss_pct ,
-                                          "explanation":"",'remark':"","cutting_date":"",
-                                          "stock_weight": self.dual_stocks[s]['weight'], 'stock_width':self.dual_stocks[s]['width'],
-                                          "cuts": cuts_dict,
-                                          "details": [{'order_no': f, 'width':self.dual_finish[f]['width'], 'lines': cuts_dict[f]} for f in cuts_dict.keys()] 
-                    })
+                    self.patterns.append(
+                        {"stock":s, "inventory_id": re.sub(r"-Di\d+", "", s),
+                        'trim_loss':trim_loss, "trim_loss_pct": trim_loss_pct ,
+                        "explanation":"",'remark':"","cutting_date":"",
+                        "stock_weight": self.dual_stocks[s]['weight'], 'stock_width':self.dual_stocks[s]['width'],
+                        "cuts": cuts_dict
+                        }
+                    )
                     
             if not feasible:
                 continue
-                # print(f"No feasible pattern was found for Stock {s} and FG {f}")
 
     def create_finish_demand_by_line_w_naive_pattern(self):
         self._make_naive_patterns()
-        dump_ls = {}
-        for f, finish_info in self.dual_finish.items():
-            non_zero_min = min([self.patterns[i]['cuts'][f] for i, _ in enumerate(self.patterns) if self.patterns[i]['cuts'][f] != 0], default= 0)
-          
-            dump_ls[f] = {**finish_info
-                            ,"upper_demand_line": max([self.patterns[i]['cuts'][f] for i,_ in enumerate(self.patterns)], default=1)
-                            ,"demand_line": non_zero_min }
-    
-        # Filtering the dictionary to include only items with keys in keys_to_keep
-        self.dual_finish = {k: v for k, v in dump_ls.items() if v['upper_demand_line'] > 0} # xem lai dieu kien nay, tuc la neu cat dai nay voi stock hien co thì overcut lon
-    
+        self.dual_finish = {f: {**f_info
+                                ,"upper_demand_line": max([self.patterns[i]['cuts'][f] for i,_ in enumerate(self.patterns)], default=1)
+                                ,"demand_line": min([self.patterns[i]['cuts'][f] for i, _ in enumerate(self.patterns) if self.patterns[i]['cuts'][f] != 0], default= 0)
+                            } for f, f_info in self.dual_finish.items()
+        }
+        
     # PHASE 2: Pattern Duality
     def _filter_out_overlapped_stock(self):
-        """
-        Find stocks {stock:receiving_date,width, weight, qty} 
-        with condition, take the list of pattern diff from the key
-        """
-        filtered_list = {}
-        for s, stock_info in self.dual_stocks.items():
-            if s != self.max_key:
-                filtered_list[s] = {**stock_info}
-            
-        self.dual_stocks = copy.deepcopy(filtered_list)
-
+        if self.max_key is not None:
+            del self.dual_stocks[self.max_key]
+            # Refresh patterns      
+            self.create_finish_demand_by_line_w_naive_pattern() #bo refresh thi pattern se it hon
+        else: pass
+        
     def _count_pattern(self,patterns):
         """
         Count each stock is used how many times
         """
-
         stock_counts = {}
-
         # Iterate through the list and count occurrences of each stock
         for item in patterns:
             stock = item['stock']
@@ -149,7 +149,7 @@ class DualProblem:
             )
 
         # Solve the problem
-        prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs'],timeLimit=60))
+        prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs']))
 
         # Extract dual values
         dual_values = {f: prob.constraints[f"Demand_{f}"].pi for f in F}
@@ -170,88 +170,88 @@ class DualProblem:
         try:
             s = max(marginal_values, key=marginal_values.get) # pick the first stock if having same width
             cuts_dict =pattern[s]
-            new_pattern = {"stock":s, "inventory_id": s,"explanation":"",'remark':"","cutting_date":"",
+            new_pattern = {"stock":s, "inventory_id": re.sub(r"-Di\d+", "", s),
                            'stock_weight': self.dual_stocks[s]['weight'], 
                            'stock_width': self.dual_stocks[s]["width"],
-                           "cuts": pattern[s],
-                           "details": [{'order_no': f, 
-                                        'width':self.dual_finish[f]['width'], 
-                                        'lines': cuts_dict[f]} 
-                                       for f in cuts_dict.keys()] 
+                           "cuts": cuts_dict,
+                            "explanation":"",'remark':"","cutting_date":""
                            }
         except ValueError or TypeError:
             new_pattern = None
         return new_pattern
     
-    # Solve PATTERN Duality
+    # GENERATION FLOW
     def generate_patterns(self):
         n = 1
         remove_stock = True
         self.max_key = None
+        self.total_dual_pat = []
         while remove_stock == True:
             self._filter_out_overlapped_stock()
             new_pattern = self._generate_dual_pattern() 
-            dual_pat = []
+            dual_pat = [] # check stock lap
             while (new_pattern not in dual_pat) and (new_pattern is not None):
-                self.patterns.append(new_pattern)   
-                dual_pat.append(new_pattern)        # dual pat de tinh stock bi lap nhieu lan
+                dual_pat.append(new_pattern) 
+                self.total_dual_pat.append(new_pattern)
+                self.patterns.append(new_pattern)
                 new_pattern = self._generate_dual_pattern()
-
-            # filter stock having too many patterns
+            # Filter stock having too many patterns
             if not dual_pat:
                 remove_stock = False
             else:
                 ls = self._count_pattern(dual_pat)
                 self.max_key = max(ls, key=ls.get) 
                 max_count = ls[self.max_key]
-                if max_count >= 1 and n < self.len_stocks: #remove den khi chi con 1 stock???
+                if max_count >= 1 and n < self.len_stocks: #remove until only 1 stock
                     remove_stock = True
                     n +=1
                 else: 
-                    remove_stock = False
-
+                    remove_stock = False          
+        # Refresh naive patterns
+        self._make_naive_patterns()
+        
     # PHASE 3: Filter Patterns
     def _count_fg_cut(self, dict):
+        # Count bao nhieu FG duoc cat trong pattern nay
         count = sum(1 for value in dict.values() if value > 0)
         return count
     
     def filter_patterns_and_stocks_by_constr(self):
         """_summary_
-        {"stock":s, "inventory_id": s,
-        "explanation":"",'remark':"","cutting_date":"",
+        {"stock":s, 
+            "inventory_id": s,
+            "explanation":"",'remark':"","cutting_date":"",
             'stock_weight': 4000, 
             'stock_width': 1219,
             "cuts": pattern[s],
-            "details": [{'order_no': f, 
-                         'width':self.dual_finish[f]['width'], 
-                         'lines': cuts_dict[f]} 
-                        for f in cuts_dict.keys()] 
             }
         """
         # Initiate list
         self.filtered_patterns = []
-
+        print(f"leng {len(self.total_dual_pat)}")
         # Filter patterns
-        for pattern in self.patterns:
+        final_patterns = [*self.patterns, *self.total_dual_pat]
+        for pattern in final_patterns:
             cuts_dict= pattern['cuts']
             count_fg_cut = self._count_fg_cut(cuts_dict)
             width_s = self.start_stocks[pattern['stock']]['width']
             trim_loss = width_s - sum([self.start_finish[f]["width"] * cuts_dict[f] for f in cuts_dict.keys()])
             trim_loss_pct = round(trim_loss/width_s * 100, 3)
-            if trim_loss_pct <= 4.00: # Filter for naive pattern
-                pattern.update({'trim_loss': trim_loss, "trim_loss_pct": trim_loss_pct, "count_cut":count_fg_cut})
+            if (count_fg_cut == 1 and trim_loss_pct < 3.5) or (count_fg_cut > 1 and trim_loss_pct <= 3.8):
+                # Filter out pattern only cut for 1 FG and trim loss too high
+                pattern.update({'trim_loss': trim_loss, "trim_loss_pct": trim_loss_pct, "count_cut": count_fg_cut})
                 self.filtered_patterns.append(pattern)
+                
         # Sort pattern
-        self.filtered_patterns = sorted(self.filtered_patterns, key=lambda x: (x['trim_loss_pct'], -x['count_cut']))
-        # print(f"filter pattern {len(self.filtered_patterns)}:{ self.filtered_patterns}")
+        self.filtered_patterns = sorted(self.filtered_patterns, key=lambda x: (x['trim_loss_pct'], -x['count_cut'],))
 
         # Initiate dict
         self.chosen_stocks = {}
 
         # Filter stocks
-        filtered_stocks = [self.filtered_patterns[i]['stock'] for i in range(len(self.filtered_patterns))]
+        filtered_stocks = copy.deepcopy([self.filtered_patterns[i]['stock'] for i in range(len(self.filtered_patterns))])
         for stock_name, stock_info in self.start_stocks.items():
-            if stock_name in filtered_stocks:
+            if stock_name in filtered_stocks and stock_name not in self.chosen_stocks.keys():
                 self.chosen_stocks[stock_name]= {**stock_info}
     
     # PHASE 4: Optimize WEIGHT Patterns    
@@ -336,9 +336,7 @@ class DualProblem:
         prob = LpProblem("PatternCuttingProblem", LpMinimize)
         
         # Objective function: MINIMIZE total stock use considering stock weight    
-        prob += LpAffineExpression([
-            (x[p], s[p]) for p in P
-        ])
+        prob += LpAffineExpression([(x[p], s[p]) for p in P])
 
         # Constraints: meet demand for each finished part
         for f in self.dual_finish:
@@ -354,26 +352,28 @@ class DualProblem:
             )
         
         # Solve the problem CBC - Default solver
-        prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs'], timeLimit=60))
+        prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs']))
         
-        try: # Extract results
-            solution = [
-                        1 if (x[p].varValue > 0 and round(x[p].varValue) == 0) 
-                        else round(x[p].varValue) 
-                        for p in range(len(self.filtered_patterns))
-                        ]
+        try: # Extract results        
+            # Take ALL SUB-OPTIMAL solutions
+            sol = [1 if x[i].varValue >= 0.4 else 0 for i in range(len(self.filtered_patterns))] #trimloss co the rat cao,
+            if sum(sol) == 0:
+                solution = [1 if x[i].varValue >= 0.1 else 0 for i in range(len(self.filtered_patterns))] #stockratio vuot xa muc cho phep
+            else:
+                solution = copy.deepcopy(sol)
+            # solution = [1 if x[i].varValue > 0 else 0 for i in range(len(self.filtered_patterns))]
+            
             self.solution_list = []
             for i, pattern_info in enumerate(self.filtered_patterns):
-                count = solution[i]
-                if count > 0:
-                    self.solution_list.append({"count": count, **pattern_info})
+                # count = solution[i]
+                if solution[i] > 0:
+                    self.solution_list.append({"count": solution[i], **pattern_info})
             if sum(solution) > 0:
                 self.probstt = "Solved"
             else: self.probstt = "Infeasible"
-        except KeyError: self.probstt = "Infeasible" # khong co nghiem
+        except KeyError: self.probstt = "Infeasible" # No result
     
     def _expand_solution_list(self):
-
         # List to hold the result
         self.expanded_solution_list = []
 
@@ -390,28 +390,32 @@ class DualProblem:
         """ 
         Args:
             patterns [
-                    {"stock":,'TP238H002948-1', 'inventory_id': 'TP238H002948-1',
+                    {"stock":,'TP238H002948-1', # ID by model, can have "Di1" "Di2"
+                    'inventory_id': 'TP238H002948-1', original ID
                     'stock_weight': 4000, 'stock_width': 1219 'trim_loss': 48.0, 'trim_loss_pct': 3.938,
                     'explanation':, "cutting_date': , 'remark':,
-                    'cuts': {'F200': 0, 'F198': 3, 'F197': 0, 'F196': 1, 'F190': 4, 'F511': 2, 'F203': 0}, 
-                    'details:[]
+                    'cuts': {'F200': 0, 'F198': 3, 'F197': 0, 'F196': 1, 'F190': 4, 'F511': 2, 'F203': 0}
                     }, 
-                    {"stock":,'TP238H002948-2', ...
+                    {"stock":,'TP238H002948-2',
                     },
                 ]
         """
         self._expand_solution_list()
-        sorted_solution_list = sorted(self.expanded_solution_list, key=lambda x: (x['stock'],  x.get('trim_loss_pct', float('inf'))))
+        sorted_solution_list = sorted(self.expanded_solution_list, key=lambda x: (x['stock'], x.get('trim_loss_pct', float('inf')),-x['count_cut']))
+        print(f"ORGINAL SOLUTION LIST {len(sorted_solution_list)}")
+        
         self.overused_list = []
         take_stock = None
         for solution_pattern in sorted_solution_list:
             current_stock = solution_pattern['stock']
             if current_stock == take_stock:
+                # stock duoc dung truoc do
                 self.overused_list.append(solution_pattern)
             else:
                 take_stock = current_stock
                 self.final_solution_patterns.append(solution_pattern)
-        
+    
+    # RUN FLOW 4 PHASES    
     def run(self, solver):
         #Phase 1
         self.create_finish_demand_by_line_w_naive_pattern()
@@ -430,151 +434,124 @@ class DualProblem:
         
         if self.probstt == 'Solved':
             self.find_final_solution_patterns()
-            
-# #HELPER
-# import math
 
-# def calculate_upper_bounds(finish, bound):
-#     mean_3fc = {
-#             f: (
-#                 sum(v for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) if not math.isnan(v)) /
-#                 sum(1 for v in (f_info['fc1'], f_info['fc2'], f_info['fc3']) if not math.isnan(v))
-#             ) if any(not math.isnan(v) for v in (f_info['fc1'], f_info['fc2'], f_info['fc3'])) else float('nan')
-#             for f, f_info in finish.items()
-#         }
-#     finish = {f: {**f_info, "mean_3fc": mean_3fc[f] if mean_3fc[f]>0 else -f_info['need_cut'] } for f, f_info in finish.items()}
-        
-#     # Need_cut van la so am
-#     finish = {f: {**f_info, "upper_bound": -f_info['need_cut'] + f_info['mean_3fc']* bound} for f, f_info in finish.items()}
-#     return finish      
-
-# if __name__ == "__main__":
-#     finish = {
-#                   "F626": {
-#                      "customer_name": "TEC",
-#                      "width": 121.2,
-#                      "need_cut": -7005.70698757764,
-#                      "fc1": 16388.348,
-#                      "fc2": 0.0,
-#                      "fc3": 9008.282,
-#                      "average FC": 8465.543333333333,
-#                      "1st Priority": "NQS",
-#                      "2nd Priority": "NST",
-#                      "3rd Priority": "HSC",
-#                      "Min_weight": 300,
-#                      "Max_weight": 500
-#                   },
-#                   "F636": {
-#                      "customer_name": "TEC",
-#                      "width": 196.0,
-#                      "need_cut": -5663.586956521739,
-#                      "fc1": 11943.8700096,
-#                      "fc2": 174.68986079999996,
-#                      "fc3": 6921.4064136,
-#                      "average FC": 6346.655427999999,
-#                      "1st Priority": "NQS",
-#                      "2nd Priority": "NST",
-#                      "3rd Priority": "HSC",
-#                      "Min_weight": 150,
-#                      "Max_weight": 350
-#                   },
-#                   "F637": {
-#                      "customer_name": "TEC",
-#                      "width": 206.0,
-#                      "need_cut": -5203.64751552795,
-#                      "fc1": 10608.94386,
-#                      "fc2": 0.0,
-#                      "fc3": 6658.549940000001,
-#                      "average FC": 5755.831266666667,
-#                      "1st Priority": "NQS",
-#                      "2nd Priority": "NST",
-#                      "3rd Priority": "HSC",
-#                      "Min_weight": 300,
-#                      "Max_weight": 500
-#                   },
-#                   "F624": {
-#                      "customer_name": "TEC",
-#                      "width": 110.0,
-#                      "need_cut": -1280.4992236024846,
-#                      "fc1": 1741.616,
-#                      "fc2": 1048.29242,
-#                      "fc3": 2165.562,
-#                      "average FC": 1651.8234733333331,
-#                      "1st Priority": "NQS",
-#                      "2nd Priority": "NST",
-#                      "3rd Priority": "HSC",
-#                      "Min_weight": 150,
-#                      "Max_weight": 350
-#                   },
-#                   "F628": {
-#                      "customer_name": "TEC",
-#                      "width": 135.0,
-#                      "need_cut": -203.65877329192546,
-#                      "fc1": 2252.57308,
-#                      "fc2": 1912.9525500000002,
-#                      "fc3": 1331.6751600000002,
-#                      "average FC": 1832.4002633333337,
-#                      "1st Priority": "NQS",
-#                      "2nd Priority": "NST",
-#                      "3rd Priority": "HSC",
-#                      "Min_weight": 150,
-#                      "Max_weight": 350
-#                   },
-#                   "F646": {
-#                      "customer_name": "TEC",
-#                      "width": 63.0,
-#                      "need_cut": -4.0,
-#                      "fc1": 390.9795,
-#                      "fc2": 343.1219,
-#                      "fc3": 588.3921,
-#                      "average FC": 440.83116666666666,
-#                      "1st Priority": "NQS",
-#                      "2nd Priority": "NST",
-#                      "3rd Priority": "HSC",
-#                      "Min_weight": 100,
-#                      "Max_weight": 300
-#                   }
-#                }
-#     stocks = {
-#             "HTV0348/24": {
-#                "receiving_date": 44945,
-#                "width": 1219,
-#                "weight": 7809,
-#                "warehouse": "NQS",
-#                "status": "M:RAW MATERIAL",
-#                "remark": "",
-#                "min_margin":5
-#             },
-#             "HTV0349/24": {
-#                "receiving_date": 44945,
-#                "width": 1219,
-#                "weight": 7904,
-#                "warehouse": "NQS",
-#                "status": "M:RAW MATERIAL",
-#                "remark": "",
-#                "min_margin":5
-#             },
-#             "HTV0340/24": {
-#                "receiving_date": 44945,
-#                "width": 1219,
-#                "weight": 8363,
-#                "warehouse": "NQS",
-#                "status": "M:RAW MATERIAL",
-#                "remark": "",
-#                "min_margin":5
-#             },
-#             "HTV0341/24": {
-#                "receiving_date": 44945,
-#                "width": 1219,
-#                "weight": 8948,
-#                "warehouse": "NQS",
-#                "status": "M:RAW MATERIAL",
-#                "remark": "",
-#                "min_margin":5
-#             }
-#          }
+if __name__ == "__main__":
+    finish = {
+                  "F306": {
+                     "customer_name": "CIC",
+                     "fg_codes": "CSC JSC590R-SD 1.60X235XC",
+                     "width": 235.0,
+                     "need_cut": -6608.0,
+                     "standard": "small",
+                     "fc1": 11341.576,
+                     "fc2": 10078.48,
+                     "fc3": 18567.596,
+                     "average FC": 13329.217333333334,
+                     "1st Priority": "HSC",
+                     "2nd Priority": "x",
+                     "3rd Priority": "x",
+                     "Min_weight": "",
+                     "Max_weight": 800.0,
+                     "Min_MC_weight": 34277.24255319149
+                  },
+                  "F323": {
+                     "customer_name": "INT",
+                     "fg_codes": "CSC JSC590R-SD 1.60X129XC",
+                     "width": 129.0,
+                     "need_cut": -3161.862182116489,
+                     "standard": "small",
+                     "fc1": 3791.726153999999,
+                     "fc2": 4199.807901599999,
+                     "fc3": 6159.230968499998,
+                     "average FC": 4716.921674699999,
+                     "1st Priority": "HSC",
+                     "2nd Priority": "x",
+                     "3rd Priority": "x",
+                     "Min_weight": 318.0,
+                     "Max_weight": 950.0,
+                     "Min_MC_weight": 3004.9767441860463
+                  },
+                  "F322": {
+                     "customer_name": "INT",
+                     "fg_codes": "CSC JSC590R-SD 1.60X227XC",
+                     "width": 227.0,
+                     "need_cut": -536.5996718621822,
+                     "standard": "small",
+                     "fc1": 4448.174868,
+                     "fc2": 4926.9064272000005,
+                     "fc3": 7225.557777,
+                     "average FC": 5533.5463574,
+                     "1st Priority": "HSC",
+                     "2nd Priority": "x",
+                     "3rd Priority": "x",
+                     "Min_weight": 559.0,
+                     "Max_weight": 1400.0,
+                     "Min_MC_weight": 3001.854625550661
+                  },
+                  "F321": {
+                     "customer_name": "INT",
+                     "fg_codes": "CSC JSC590R-SD 1.60X188XC",
+                     "width": 188.0,
+                     "need_cut": -337.0,
+                     "standard": "small",
+                     "fc1": 1352.7734749200004,
+                     "fc2": 1389.8148742800004,
+                     "fc3": 1356.1391844000002,
+                     "average FC": 1366.2425112000003,
+                     "1st Priority": "HSC",
+                     "2nd Priority": "x",
+                     "3rd Priority": "x",
+                     "Min_weight": 463.0,
+                     "Max_weight": 1390.0,
+                     "Min_MC_weight": 3002.1117021276596
+                  },
+                  "F320": {
+                     "customer_name": "INT",
+                     "fg_codes": "CSC JSC590R-SD 1.60X133XC",
+                     "width": 133.0,
+                     "need_cut": -312.0,
+                     "standard": "small",
+                     "fc1": 3341.9581117999996,
+                     "fc2": 3433.4670061999996,
+                     "fc3": 3350.2729259999996,
+                     "average FC": 3375.232681333333,
+                     "1st Priority": "HSC",
+                     "2nd Priority": "x",
+                     "3rd Priority": "x",
+                     "Min_weight": 328.0,
+                     "Max_weight": 950.0,
+                     "Min_MC_weight": 3006.2556390977443
+                  },
+               }
     
-#     finish = calculate_upper_bounds(finish, 1.0)
-#     prob = testDualProblem(finish, stocks)
-#     prob.run()
+    stocks = {
+            "TP248H001865": {
+               "receiving_date": 0,
+               "width": 1219,
+               "weight": 6460.0,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": "",
+               "min_margin":5
+            },
+            "TP247H002487": {
+               "receiving_date": 0,
+               "width": 1219,
+               "weight": 9810.0,
+               "warehouse": "HSC",
+               "status": "M:RAW MATERIAL",
+               "remark": "",
+               "min_margin":5
+            }
+         }
+    
+    finish = {f: {**f_info, "upper_bound": -f_info['need_cut'] + f_info['average FC']* 0.75} 
+                for f, f_info in finish.items()}
+    
+    steel = DualProblem(finish, stocks)
+    steel.create_finish_demand_by_line_w_naive_pattern()
+    steel.generate_patterns()
+    steel.filter_patterns_and_stocks_by_constr()
+    shorted = [{'stock': p['stock'], 'trimloss': p['trim_loss'],'cuts': p['cuts']} for p in steel.total_dual_pat]
+    print(shorted)
     

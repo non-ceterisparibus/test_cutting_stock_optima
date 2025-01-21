@@ -49,11 +49,17 @@ class FinishObjects:
                 else float('nan')
                 for f, f_info in self.finish.items()
             }
-        self.finish = {f: {**f_info, "average FC": average_fc[f] if average_fc[f] > 0 else f_info['need_cut'] } for f, f_info in self.finish.items()}
+        self.finish = {f: {**f_info, 
+                           "average FC": round(average_fc[f]) if average_fc[f] > 0 
+                           else f_info['need_cut'] } for f, f_info in self.finish.items()
+                       }
                        
     def _calculate_upper_bounds(self,bound):
         # Need_cut doi thanh so duong
-        self.finish = {f: {**f_info, "upper_bound": f_info['need_cut'] + f_info['average FC']* bound} for f, f_info in self.finish.items()}
+        self.finish = {f: {**f_info, 
+                           "upper_bound": f_info['need_cut'] + f_info['average FC']* bound} 
+                       for f, f_info in self.finish.items()
+                    }
       
     def update_bound(self,bound):
         # Need_cut doi thanh so duong
