@@ -111,7 +111,7 @@ class DualProblem:
         prob += lpSum(ap[f] * self.dual_finish[f]["width"] for f in self.dual_finish.keys()) >= 0.96 * width_s , "StockWidth"
 
         # Solve the problem
-        prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs']))
+        prob.solve(PULP_CBC_CMD(msg=False, options=['--solver', 'highs'],timeLimit=60))
 
         marg_cost = value(prob.objective)
         pattern = {f: int(ap[f].varValue) for f in self.dual_finish.keys()}
@@ -166,7 +166,6 @@ class DualProblem:
             marginal_values[s], pattern[s] = self._new_pattern_problem( #new pattern by line cut (trimloss), ignore weight
                 self.dual_stocks[s]["width"], ap_upper_bound, demand_duals, self.dual_stocks[s]["min_margin"]
             )
-            
         try:
             s = max(marginal_values, key=marginal_values.get) # pick the first stock if having same width
             cuts_dict =pattern[s]
@@ -228,7 +227,7 @@ class DualProblem:
         """
         # Initiate list
         self.filtered_patterns = []
-        print(f"leng {len(self.total_dual_pat)}")
+        print(f"leng DUAL PATTERNS {len(self.total_dual_pat)}")
         # Filter patterns
         final_patterns = [*self.patterns, *self.total_dual_pat]
         for pattern in final_patterns:
@@ -237,7 +236,7 @@ class DualProblem:
             width_s = self.start_stocks[pattern['stock']]['width']
             trim_loss = width_s - sum([self.start_finish[f]["width"] * cuts_dict[f] for f in cuts_dict.keys()])
             trim_loss_pct = round(trim_loss/width_s * 100, 3)
-            if (count_fg_cut == 1 and trim_loss_pct < 3.5) or (count_fg_cut > 1 and trim_loss_pct <= 3.8):
+            if (count_fg_cut == 1 and trim_loss_pct <= 3.5) or (count_fg_cut > 1 and trim_loss_pct < 4.0):
                 # Filter out pattern only cut for 1 FG and trim loss too high
                 pattern.update({'trim_loss': trim_loss, "trim_loss_pct": trim_loss_pct, "count_cut": count_fg_cut})
                 self.filtered_patterns.append(pattern)
@@ -356,12 +355,10 @@ class DualProblem:
         
         try: # Extract results        
             # Take ALL SUB-OPTIMAL solutions
-            sol = [1 if x[i].varValue >= 0.4 else 0 for i in range(len(self.filtered_patterns))] #trimloss co the rat cao,
-            if sum(sol) == 0:
-                solution = [1 if x[i].varValue >= 0.1 else 0 for i in range(len(self.filtered_patterns))] #stockratio vuot xa muc cho phep
-            else:
-                solution = copy.deepcopy(sol)
-            # solution = [1 if x[i].varValue > 0 else 0 for i in range(len(self.filtered_patterns))]
+            for var in [0.4, 0.1]:
+                solution = [1 if x[i].varValue >= var else 0 for i in range(len(self.filtered_patterns))] #trimloss co the rat cao voi varValue lon/stock ratio cao voi varValue thap
+                if sum(solution) > 0:
+                    break
             
             self.solution_list = []
             for i, pattern_info in enumerate(self.filtered_patterns):
@@ -376,7 +373,6 @@ class DualProblem:
     def _expand_solution_list(self):
         # List to hold the result
         self.expanded_solution_list = []
-
         # Process each item in the inventory
         for item in self.solution_list:
             count = item['count']
@@ -384,7 +380,8 @@ class DualProblem:
             for _ in range(count):
                 new_item = item.copy()  # Copy the item
                 new_item['count'] = 1  # Set the count to 1
-                self.expanded_solution_list.append(new_item)
+                self.expanded_solution_list.append(new_item)   
+        # print(f"EXPANDED SOLUTION LIST {len(self.expanded_solution_list)}")
     
     def find_final_solution_patterns(self):
         """ 
@@ -400,9 +397,9 @@ class DualProblem:
                     },
                 ]
         """
-        self._expand_solution_list()
-        sorted_solution_list = sorted(self.expanded_solution_list, key=lambda x: (x['stock'], x.get('trim_loss_pct', float('inf')),-x['count_cut']))
-        print(f"ORGINAL SOLUTION LIST {len(sorted_solution_list)}")
+        # self._expand_solution_list()
+        sorted_solution_list = sorted(self.solution_list, key=lambda x: (x['stock'], x.get('trim_loss_pct', float('inf')), -x['count_cut']))
+        # sorted_solution_list = sorted(self.expanded_solution_list, key=lambda x: (x['stock'], x.get('trim_loss_pct', float('inf')), -x['count_cut']))
         
         self.overused_list = []
         take_stock = None
