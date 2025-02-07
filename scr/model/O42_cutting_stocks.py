@@ -9,7 +9,8 @@ import os
 from model import DualProblem
 # from .O41_dual_solver import testDualProblem
 
-global max_coil_weight
+global max_coil_weight3
+global max_coil_weight2
 global customer_group 
 global stop_stock_ratio
 global stop_needcut_wg
@@ -24,7 +25,8 @@ if customer_gr:
 else:
     customer_group = ['small','small-medium','medium']
 
-max_coil_weight = float(os.getenv('MAX_WEIGHT_MC_DIV', '7000'))
+max_coil_weight2 = float(os.getenv('MAX_WEIGHT_MC_DIV_2', '7000'))
+max_coil_weight3 = float(os.getenv('MAX_WEIGHT_MC_DIV_3', '10000'))
 
 # DEFINE PROBLEM
 class CuttingStocks:
@@ -91,15 +93,15 @@ class CuttingStocks:
                 min_coil_weight = min_w * c_width/min_f_width
             # max
             if max_w == 0.0:
-                max_coil_weight = float('inf')
+                max_coil_wg = float('inf')
             else:
-                max_coil_weight = max_w * c_width/ max_f_width
+                max_coil_wg = max_w * c_width/ max_f_width
             
             # check if min_coil_weight << max_coil_weight
 
             max_threshold = []
             for i in range(4):
-                max_t = max_coil_weight * (i+1)
+                max_t = max_coil_wg * (i+1)
                 max_threshold.append(max_t)
             self.mm_stock_weight[c_width] = {"min": min_coil_weight, "max": max_threshold}
 
@@ -118,7 +120,7 @@ class CuttingStocks:
                 stock_item = list(self.filtered_stocks.items())[p]
                 stock_key = stock_item[0]
                 pop_stock_key.append(stock_key)
-                if self.filtered_stocks[stock_key]['weight'] < 10000:
+                if self.filtered_stocks[stock_key]['weight'] < max_coil_weight3:
                     half_wg = self.filtered_stocks[stock_key]['weight']*0.5
                     for i in range(2):
                         self.filtered_stocks[f'{stock_key}-Di{i+1}'] = self.filtered_stocks[stock_key]
@@ -160,19 +162,16 @@ class CuttingStocks:
         first_item = list(self.F.finish.items())[0]
         customer_gr = first_item[1]['standard']
         check_cus_gr = [1 if customer_gr == v else 0 for v in customer_group]
-        
         # Check stocks need to be divided for small and small-medium
-        self.check_stock_pos = [1 if v['weight']>= max_coil_weight else 0 for _, v in self.filtered_stocks.items()]
-        
+        self.check_stock_pos = [1 if v['weight']>= max_coil_weight2 else 0 for _, v in self.filtered_stocks.items()]
         if customer_gr == "medium":
             self._div_to_medi_stocks()
         elif np.sum(check_cus_gr) >= 1 and np.sum(self.check_stock_pos)>=1:
             self._div_to_small_stocks()
         else: pass
-            
         # Sort stock as beginning
-        self.filtered_stocks = dict(sorted(self.filtered_stocks.items(), key=lambda x: (x[1]['weight']),reverse=True))
- 
+        self.filtered_stocks = dict(sorted(self.filtered_stocks.items(), key=lambda x: (-x[1]['receiving_date'],x[1]['weight']), reverse= True))
+    
     def filter_stocks_min_max(self, min_weight = None, max_weight = None):
         if min_weight == None and max_weight == None: 
             # flow khong consider min va max_weight
@@ -192,7 +191,7 @@ class CuttingStocks:
             self.filtered_stocks = {k: v for k, v in self.S.stocks.items() if v['weight'] >= self.min_mc_weight}
         elif customer_gr == "big":
             # Filter out stock < 7000
-            self.filtered_stocks = {k: v for k, v in self.S.stocks.items() if v['weight'] >= max_coil_weight}
+            self.filtered_stocks = {k: v for k, v in self.S.stocks.items() if v['weight'] >= max_coil_weight2}
         else:
             # No filter for small group
             self.filtered_stocks = copy.deepcopy(self.S.stocks)
@@ -280,7 +279,7 @@ class CuttingStocks:
                 self.over_cut_ratio[k] = round(self.over_cut[k]/(self.F.finish[k]['average FC']+1),3)
         else: pass # ko co nghiem trong lan chay truoc do
     
-    def _remark_div_ratio_by_mm_weight(self,wg, line, min, max):
+    def _remark_div_ratio_by_mm_weight(self, wg, line, min, max):
         """_summary_
         Args:
             w (_type_): total cut weight of f in F
@@ -335,7 +334,6 @@ class CuttingStocks:
                 except KeyError:
                     self.over_cut[k] = - round(self.F.finish[k]['need_cut'],3)
                 self.over_cut_ratio[k] = round(self.over_cut[k]/(self.F.finish[k]['average FC']+1),3)
-            # self.over_cut = {k: round(sums_weight[k] - self.F.finish[k]['need_cut'],3) for k in sums_weight.keys()} # can tinh overcut cho moi finish, du ko duoc cat trong list dual finish
         else: pass # ko co nghiem
             
     def solve_prob(self, solver):
@@ -374,24 +372,6 @@ class CuttingStocks:
         self.prob.dual_stocks = copy.deepcopy(self.remained_stocks)
 
     def refresh_finish(self):
-        # Update need cut
-        # for f in self.prob.dual_finish.keys():
-        #     self.prob.dual_finish[f]['need_cut'] = copy.deepcopy(self.over_cut[f])
-        #     self.prob.dual_finish[f]['upper_bound'] += -self.over_cut[f]
-            
-        # for f in self.over_cut.keys(): # neu f khong co trong over_cut thi tuc la finish[f] chua duoc xu ly
-        #     if self.over_cut[f] < 0.0:
-        #         try: # finish stock ratio < -2% removed in previous run, still in overcut
-        #             self.prob.dual_finish[f]['need_cut'] = copy.deepcopy(self.over_cut[f]) # finish need cut am
-        #         except KeyError:
-        #             pass 
-        #     else:
-        #         try: # finish removed in previous run wont appear in finish[f] but still in overcut
-        #             self.prob.dual_finish[f]['need_cut'] = 0
-        #             self.prob.dual_finish[f]['upper_bound'] += -self.over_cut[f]
-        #         except KeyError:
-        #             pass
-                
         # Take only finish with negative need_cut or stock ratio low
         re_finish = {k: v for k, v in self.prob.dual_finish.items() 
                         if self.over_cut_ratio[k] < stop_stock_ratio 
