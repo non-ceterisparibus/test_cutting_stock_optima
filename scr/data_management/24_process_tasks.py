@@ -293,7 +293,7 @@ def create_finish_dict(finish_df):
 
 def create_stocks_dict(stock_df):
     # Sort data according to the priority of FIFO
-    sorted_df = stock_df.sort_values(by=['warehouse','weight','receiving_date'], ascending=[True,True, True])
+    sorted_df = stock_df.sort_values(by=['warehouse','receiving_date','weight'], ascending=[True,True, True])
     
     # Set the index of the DataFrame to 'inventory_id'
     sorted_df.set_index(stock_key, inplace=True)
