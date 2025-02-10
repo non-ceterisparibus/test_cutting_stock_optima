@@ -441,6 +441,12 @@ for i, materialprop in enumerate(materialprops):
     current_job['tasks'] = copy.deepcopy(sorted_data)
     current_job['total_need_cut'] = total_need_cut
 
+# Sort lai job_list truoc khi
+
+job_list["jobs"] = sorted(
+        job_list["jobs"], key=lambda x: int(x["total_need_cut"]), reverse=False
+    )
+
 with open(f'scr/jobs_by_day/job-list-{formatted_date}.json', 'w') as json_file:
     json.dump(job_list, json_file, indent=4) 
 with open(f'scr/jobs_by_day/stocks-list-{formatted_date}.json', 'w') as stocks_file:
