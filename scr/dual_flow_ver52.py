@@ -544,7 +544,7 @@ for finish_item in finish_list['materialprop_finish'][materialprop_set]['group']
                 # GO TO next COIL CENTER priority if still ABLE
                 if j < no_warehouse - 1: # go from ZERO 
                     j+=1
-                    next_warehouse_stocks = filter_stocks_by_wh(stocks_to_use, [warehouse_order[j]])          #try to find STOCKS in next WH
+                    next_warehouse_stocks = filter_stocks_by_wh(stocks_to_use, [warehouse_order[j]])         
                     try:
                         over_cut_rate = {f: round(over_cut[f]/(og_finish[f]['average FC']+1), 4) for f in over_cut.keys()}
                         # condition by stock ratio
@@ -557,7 +557,6 @@ for finish_item in finish_list['materialprop_finish'][materialprop_set]['group']
                         coil_center_priority_cond = (not has_negative_over_cut and (len(next_warehouse_stocks)!=0)) #can cat tiep va co coil o next priority
                         logger.info(f"??? Go to next warehouse: {coil_center_priority_cond}")
                         if coil_center_priority_cond:
-                            # logger.info(f"overcut rate({over_cut_rate})")
                             finish =  refresh_finish(finish, over_cut)                                   # Remained need_cut finish to cut in next WH
                             f_list = {f : (finish[f]['need_cut']) for f in finish.keys()}               # need cut am
                             logger.info(f">>> Remained FG to cut in next WH: {f_list}")
@@ -565,7 +564,7 @@ for finish_item in finish_list['materialprop_finish'][materialprop_set]['group']
                     except TypeError or AttributeError:# overcut empty -> chua optimized duoc o coil center n-1
                         coil_center_priority_cond = (len(next_warehouse_stocks)!=0)            
                 else: 
-                    coil_center_priority_cond = False  # da het coil center de tim
+                    coil_center_priority_cond = False 
                 
                 if coil_center_priority_cond:
                     total_over_cut = -sum(value < 0 for value in over_cut.values()) > 0
