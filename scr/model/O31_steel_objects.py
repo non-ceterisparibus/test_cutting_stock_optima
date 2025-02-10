@@ -84,9 +84,9 @@ class StockObjects:
     def update_min_margin(self, margin_df):
         for s, s_info in self.stocks.items():
             if s_info['warehouse'] == "NQS":
-                margin_filtered = margin_df[(margin_df['coil_center'] == "NQS") & (margin_df['Type'] == self.type)]
+                margin_filtered = margin_df[(margin_df['Coil Center'] == "NQS") & (margin_df['Type'] == self.type) & (margin_df['Maker'] == self.maker)]
             else:
-                margin_filtered = margin_df[(margin_df['coil_center'] == s_info['warehouse'])]
+                margin_filtered = margin_df[(margin_df['Coil Center'] == s_info['warehouse'])& (margin_df['Maker'] == self.maker)]
 
             min_trim_loss = self._find_min_trim_loss(margin_filtered)
             
