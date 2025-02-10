@@ -1,4 +1,4 @@
-﻿Maker,Type,Coil Center,Thickness ,Max lines,Suggest Min Trim loss (mm),Max MC weight (KG),Min MC Width (mm),Max MC Width (mm),Min Trim loss (mm)
+﻿Maker,Type,Coil Center,Thickness,Max lines,Suggest Min Trim loss (mm),Max MC weight (KG),Min MC Width (mm),Max MC Width (mm),Min Trim loss (mm)
 CSC,Carbon,NQS,≤0.8,21,5,25000,500,1600,6
 CSC,Carbon,NQS,0.8<T≤2.0,21,6,25000,500,1600,6
 CSC,Carbon,NQS,2.0<T≤3.0,16,6,25000,500,1600,6
