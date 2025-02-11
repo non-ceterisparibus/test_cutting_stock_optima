@@ -67,13 +67,11 @@ def find_materialprops_and_jobs(fin_file_path,mc_file_path):
     mc_df = pd.read_excel(mc_file_path)
 
     has_need_cut_df = fin_df[fin_df['need_cut'] < -10]
-
     has_need_cut_df['materialprops'] = has_need_cut_df.apply(
         lambda row: f"{row['maker']}+{row['spec_name']}+{row['thickness']}", axis=1
     )
 
     fin_materialprops = has_need_cut_df['materialprops'].unique()
-
     mc_df.loc[:, 'materialprops'] = (mc_df['maker'] + "+" + mc_df['spec_name']+ "+" + mc_df['thickness'].astype(str))
     mc_materialprops = mc_df['materialprops'].unique()
 
@@ -81,8 +79,12 @@ def find_materialprops_and_jobs(fin_file_path,mc_file_path):
     overlap = set(mc_materialprops) & set(fin_materialprops)
 
     # Convert the result back to a list if needed
-    materialprops = sorted(list(overlap))
-    n_jobs = len(materialprops)
+    overlapped_materialprops = sorted(list(overlap))
+    n_jobs = len(overlapped_materialprops)
+    
+    need_cut_df_filtered = has_need_cut_df[has_need_cut_df['materialprops'].isin(overlapped_materialprops)]
+    need_cut_df_grouped = need_cut_df_filtered.groupby('materialprops')['need_cut'].sum().reset_index().sort_values(by='need_cut', ascending=False) #needcut am
+    materialprops = need_cut_df_grouped['materialprops'].unique()
     
     return materialprops, n_jobs
 
@@ -335,7 +337,6 @@ def filter_finish_by_stock_ratio(file_path, materialprops):
     
     return df
 
-
 materialprops, n_jobs = find_materialprops_and_jobs(fin_file_path =fin_file_path,
                                                         mc_file_path = mc_file_path)
 # DATE
@@ -355,10 +356,6 @@ stocks_list = {
     'date': formatted_date,
     'materialprop_stock':{}
 }
-print(f"LEN {n_jobs}")
-
-# for i , mat in enumerate(materialprops):
-#     print(f"{i} {mat}")
         
 for i, materialprop in enumerate(materialprops):
     print(f"MADDD {i} {materialprop}")
@@ -371,9 +368,9 @@ for i, materialprop in enumerate(materialprops):
     MATERIALPROPS = {
         "spec_name" :spec,
         "thickness" :thickness,
-        "maker"     : maker,
+        "maker"     :maker,
         "type"      :find_spec_type(spec,spec_type_df),
-        "code"      : HTV_code
+        "code"      :HTV_code
     }
     
     finish_list['materialprop_finish'][materialprop] = {'materialprop': MATERIALPROPS, 'group':[]}
